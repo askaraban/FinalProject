@@ -1,0 +1,103 @@
+예매
+- 티켓
+	- id(ticket_id, varchar2, pk)
+	- 성인(ticket_adult_count, number)
+	- 아이(ticket_child_count, number)
+	- 유아(ticket_infant_count, number)
+	- 좌석명(seat_name, varchar2, fk - seat)
+	- 좌석등급(seat_grade, varchar2, fk - seat)
+	- 좌석옵션(seat_option, varchar2, fk - seat)
+	- 회원(member_id, varchar2, fk - member)
+	- 일정(schedule_id, number, fk - schedule)
+	- 예약일자(reserved_date, date, sysdate)
+	- 결제방식(payment_type, number) : 1.일반 결제, 2.포인트 결제, ...
+	- 상태(ticket_status, number) : 필요?
+- 공항(airport)
+	- 공항id(airport_id, number, pk)
+	- 국가(airport_country, varchar2)
+	- 도시(airport_region, varchar2)
+	- 이름(airport_name, varchar2)
+- 비행기(flight)
+	- 비행기id(flight_id, number, pk)
+	- 비행기편명(flight_name, varchar2)
+	- 비행출발지(flight_departure, varchar2, fk - airport)
+	- 비행도착지(flight_arrival, varchar2, fk - airport)
+	- 비행시간(flight_time, number)
+	- 비행type(flight_type, number) : 1. 국내선, 2. 국제선 구분(필요함?)
+	- 비행기상태(flight_status, number) : ex) 1. 운행 중, 2. 운행 종료
+	* 궁금한게 노선, 운항정보를 따로 테이블로 빼면, 추후 항공편 스케줄 변경 혹은 결항시 id값만 바꾸면 됨
+	  기준을 비행기 id로 잡으면 각 출발하는 편명이 다르게됨 / 항공스케쥴을 기준으로 잡으면 db너무 커질것같음
+- 노선(route)
+	- id
+	- 출발지
+	- 도착지
+	- 비행시간
+	- 타입
+- 운항정보(schedule)
+	- id(schedule_id, number, pk)
+	- 출발날짜(schedule_depdate, date)
+	- 도착날짜(schedule_arrdate, date)
+	- 비행기id(flight_id, number, fk - flight)
+	- 노선id(route_id, number, fk - route)
+	- 운항상태(schedule_status, number) : ex) 1. 운행중, 2.운행종료
+- 좌석
+	- 비행기id(flight_id, number, fk - flight)
+	- 좌석명(seat_name, varchar2)
+	- 좌석등급(seat_grade, varchar2) : 이코노미35, 프레미아42
+	- 좌석옵션(seat_option, varchar2) : 라이트(이코노미35만), 스탠다드, 플렉스
+- 회원(member)
+	- 회원id(member_id, varchar2, pk)
+	- 이름(member_kor_name, varchar2)
+	- 이메일(member_email, varchar2)
+	- 비밀번호(member_pw, varchar2)
+	- 핸드폰번호(member_phone, varchar2)
+	- 성별(member_gender, number) : 1남자, 2여자, 3해당없음ㅋ 
+	- 영문 성(member_eng_lastname, varchar2)
+	- 영문 이름(member_eng_firstname, varchar2)
+	- 생년월일(member_birthday, varchar2)
+	- 국적(member_country, varchar2)
+	- 여권번호(member_passport, varchar2)
+	- 여권만료일(member_passport_expdate, date)
+	- 회원상태(member_status) : 1. 가입상태, 2. 탈퇴
+- 비회원(nonmember)
+	- id(nonmember_id, varchar2, pk)
+	- 이름(nonmember_kor_name, varchar2)
+	- 이메일(nonmember_email, varchar2)
+	- 핸드폰번호(nonmember_phone, varchar2)
+	- 성별(member_gender, number) : 1남자, 2여자, 3해당없음ㅋ
+	- 영문 성(nonmember_eng_lastname, varchar2)
+	- 영문 이름(nonmember_eng_firstname, varchar2)
+	- 생년월일(nonmember_birthday, varchar2)
+	- 국적(nonmember_country, varchar2)
+	- 여권번호(nonmember_passport, varchar2)
+	- 여권만료일(nonmember_passport_expdate, date)
+	- 비회원상태(nonmember_status) : 1. 결제함,  2. 체크인함 ?
+- 결제
+
+- 환불수수료
+
+- 포인트(point) : 결제금액 %
+	- 포인트id(point_id, number, pk) : 비회원 여부에 따른 포인트 발생시 각각의 id 부여
+	- 회원id(member_id, varchar2, fk - member) : 적립 대상 회원 id
+	- 티켓id(ticket_id, , fk - ticket) : 적립 대상 티켓 id
+	- 사용포인트(use_point, number) : 사용된 마일리지 값
+	- 사용포인트설명(use_desc, varchar2) : 사용처
+	- 포인트추가(add_point, number) : 추가된 마일리지 값
+	- 추가된포인트설명(add_desc, varchar2) : 추가된곳
+	- 계(point_balance, number) : 총합계
+	- 변동일자(point_date, date) : 추가, 사용됬을때의 날짜
+	- 유효기간(expiration_date, date) : 유효기간 3년
+- 등급(member_grade)
+	- 등급이름(grade_name, varchar2, pk) : BLUE, GOLD, DIAMOND
+	- 포인트비율(point_rate, number) : .007%, .011%, .015%
+	- 포인트승급(point_rank, number) : ~3999, 4000~8999, 9000~
+	- 등급유지날짜(grade_maintain_date, date) : 2년 (승급/강등시 2년마다 재심사 후 승급기준에 맞는 등급으로 재설정)
+- 몰?루
+
+* 예매 프로세스
+출발지, 도착지 선택 / 여정시작일, (왕복시) 돌아오는여정일 선택 / 인원수 선택 후 검색
+항공편 선택 / 좌석 등급 선택 / 좌석 옵션 선택
+여행객 정보 입력(회원일 시 정보 불러오기 가능)
+부가서비스(좌석 선택 / 추가 기내 수하물) 선택
+컨펌 페이지
+결제 페이지
