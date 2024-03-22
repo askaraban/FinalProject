@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Flight - Reseration</title>
+<title>Flight - Seat selection</title>
 <!-- PLUGINS CSS STYLE -->
 <link href='../assets/plugins/fontawesome-5.15.2/css/all.min.css' rel='stylesheet'>
 <link href='../assets/plugins/fontawesome-5.15.2/css/fontawesome.min.css' rel='stylesheet'>
@@ -57,11 +57,19 @@
           </p>
         </div>
 
-        <!-- Search Box -->
+		<!-- 왕복/편도 선택 버튼 -->
+		<div class="row align-items-start">
+			<div class="col-md-3 col-lg-2 mb-2">
+				<button type="submit" class="btn btn-primary">왕복</button>
+				<button type="submit" class="btn btn-primary">편도</button>
+			</div>
+			<div class="col-md-3 col-lg-2 mb-2"></div>
+		</div>
+        <!-- 항공권예매 검색박스 -->
         <div class="search-box-2">
           <form class="row g-2 justify-content-center" method="GET" action="listings-half-screen-map-list.html">
 
-            <div class="form-group col-md-5 col-lg-4 mb-0">
+            <div class="form-group col-md-3 col-lg-2 mb-0">
               <div class="select-default">
          		 <select class="select-location">
 		            <option>출발지</option>
@@ -72,7 +80,7 @@
         		</div>
             </div>
             
-             <div class="form-group col-md-5 col-lg-4 mb-0">
+             <div class="form-group col-md-3 col-lg-2 mb-0">
               <div class="select-default">
 		          <select class="select-location">
 		            <option>도착지</option>
@@ -83,10 +91,10 @@
 		        </div>
             </div>
 
-            <div class="form-group prepend-append col-md-5 col-lg-4 mb-0">
+            <div class="form-group prepend-append col-md-3 col-lg-4 mb-0">
               <div class="select-default">
 		          <select class="select-location">
-		            <option>도착일</option>
+		            <option>YY/MM/DD - YY/MM/DD</option>
 		            <option>여기다</option>
 		            <option>달력을</option>
 		            <option>출력</option>
@@ -94,13 +102,13 @@
 		        </div>
             </div>
             
-            <div class="form-group prepend-append col-md-5 col-lg-4 mb-0">
+            <div class="form-group prepend-append col-md-3 col-lg-3 mb-0">
               <div class="select-default">
 		          <select class="select-location">
 		            <option>인원수 셀렉션</option>
-		            <option>- 성인 +</option>
-		            <option>- 소아 +</option>
-		            <option>- 유아 +</option>
+		            <option>- 성인 : 1 +</option>
+		            <option>- 소아 : 0 +</option>
+		            <option>- 유아 : 0 +</option>
 		          </select>
 		        </div>
             </div>
