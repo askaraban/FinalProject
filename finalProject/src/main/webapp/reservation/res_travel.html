@@ -25,6 +25,9 @@
 <!-- CUSTOM CSS -->
 <link href="../assets/css/style.css" rel="stylesheet" id="option_style">
 
+<!-- daterangepicker CSS -->
+<link rel="stylesheet" href="../assets/css/daterangepicker.css">
+
 <!-- <link rel="stylesheet" href="assets/css/default.css" id="option_color"> -->
 
 <!-- FAVICON -->
@@ -59,13 +62,13 @@
         </div>
 
 		<!-- 왕복/편도 선택 버튼 -->
-		<div class="row align-items-start">
+		<!-- <div class="row align-items-start">
 			<div class="col-md-3 col-lg-2 mb-2">
 				<button type="submit" class="btn btn-primary">왕복</button>
 				<button type="submit" class="btn btn-primary">편도</button>
 			</div>
 			<div class="col-md-3 col-lg-2 mb-2"></div>
-		</div>
+		</div> -->
         <!-- 항공권예매 검색박스 -->
         <div class="search-box-2">
           <form class="row g-2 justify-content-center" method="GET" action="listings-half-screen-map-list.html">
@@ -77,6 +80,9 @@
 		            <option>서울/인천(ICN)</option>
 		            <option>샌프란시스코(SFO)</option>
 		            <option>로스앤젤레스(LAX)</option>
+		            <option>뉴욕/뉴어크 리버티(EWR)</option>
+		            <option>방콕(BKK)</option>
+		            <option>도쿄/나리타(NRT)</option>
 		          </select>
         		</div>
             </div>
@@ -88,28 +94,23 @@
 		            <option>서울/인천(ICN)</option>
 		            <option>샌프란시스코(SFO)</option>
 		            <option>로스앤젤레스(LAX)</option>
+		            <option>뉴욕/뉴어크 리버티(EWR)</option>
+		            <option>방콕(BKK)</option>
+		            <option>도쿄/나리타(NRT)</option>
 		          </select>
 		        </div>
             </div>
 
-            <div class="form-group prepend-append col-md-3 col-lg-4 mb-0">
-              <div class="select-default">
-		          <select class="select-location">
-		            <option>YY/MM/DD - YY/MM/DD</option>
-		            <option>여기다</option>
-		            <option>달력을</option>
-		            <option>출력</option>
-		          </select>
-		        </div>
-            </div>
-            
+			<div class="form-group col-md-3 col-lg-5 mb-0">
+				<input type="text" class="form-control" name="daterange">
+			</div>
+			
             <div class="form-group prepend-append col-md-3 col-lg-3 mb-0">
               <div class="select-default">
 		          <select class="select-location">
 		            <option>인원수 셀렉션</option>
 		            <option>- 성인 : 1 +</option>
 		            <option>- 소아 : 0 +</option>
-		            <option>- 유아 : 0 +</option>
 		          </select>
 		        </div>
             </div>
@@ -143,6 +144,36 @@
 <script src='../assets/plugins/map/js/rich-marker.js'></script>
 <script src='../assets/plugins/map/js/infobox_packed.js'></script>
 <script src='../assets/js/map.js'></script>
+
+<!-- daterangepicker -->
+<!-- https://www.daterangepicker.com/#config -->
+<script src="../assets/js/moment.min.js"></script>
+<script src="../assets/js/daterangepicker.js"></script>
+<script>
+$(function() {
+  $('input[name="daterange"]').daterangepicker({
+    opens: 'left'
+  }, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
+});
+</script>
+<!-- 단일 날짜 select
+<input type="text" name="birthday" value="10/24/1984" />
+<script>
+$(function() {
+  $('input[name="birthday"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    minYear: 1901,
+    maxYear: parseInt(moment().format('YYYY'),10)
+  }, function(start, end, label) {
+    var years = moment().diff(start, 'years');
+    alert("You are " + years + " years old!");
+  });
+});
+</script>
+-->
 
 <script>
 	var d = new Date();
