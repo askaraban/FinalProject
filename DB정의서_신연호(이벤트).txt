@@ -1,0 +1,37 @@
+테이블명 : 이벤트(event)
+ - id(event_id, number, pk)
+ - 프로모션 id(promo_id, number, fk - promotion)
+ - 쿠폰 id(coupon_id, number, fk - coupon)
+ - 제목(event_title, varchar2)
+ - 작성 날짜(event_date, sysdate)
+ - 대표이미지(event_banner_image1, varchar2)
+ - 상세이미지(event_banner_image2, varchar2)
+ - 운영기간 시작일(event_start_date, date)
+ - 운영기간 종료일(event_end_date, date)
+ - 탑승기간 시작일(event_boarding_depdate, date)
+ - 탑승기간 종료일(event_boarding_arrdate, date)
+ - 사용 범위(event_range, varchar2)
+ - 사용 방법(event_method, varchar2)
+ - 유의사항(event_notice, varchar2)
+ - 이벤트 상태(event_status, number) - 1 : 진행중, 2 : 종료됨
+
+테이블명 : 프로모션(promotion)
+ - id(promo_id, number, pk)
+ - 프로모션 코드(promo_code, varchar2)
+ - 할인율(promo_discount, number) - 10%, 15%, 20% 
+
+테이블명 : 쿠폰(coupon)  **member랑 연결
+ - id(coupon_id, number, pk)
+ - 쿠폰명(coupon_name, varchar2) - 도쿄 Tokyo 20,000 KRW
+ - 발급일자(coupon_created_date, date) 
+ - 유효기간(coupon_expiration_date, date) - 발급일로부터 30일
+ - 할인율(coupon_discount, number) - 10%, 15%, 20% 
+
+테이블명 : 월별 매출(monthlysales)
+ - id(monthly_sales_id, number, pk)
+ - 결제 id(payment_id, number, fk)
+ - 티켓 id(tiket_id, number, fk)
+
+테이블명 : 월별 방문객(monthlyvisitors)
+ - id(monthly_visitors_id, number, pk)
+ - 티켓 id(tiket_id, number, fk)
