@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home Map - Listty</title>
+    <title>Swift Air</title>
 
     <!-- PLUGINS CSS STYLE -->
     <link href='assets/plugins/fontawesome-5.15.2/css/all.min.css' rel='stylesheet'>
@@ -50,7 +50,41 @@
   </head>
 
   <body id="body" class="up-scroll">
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      	<div class="form-group mb-6">
+      		<div class="d-flex justify-content-between align-items-center flex-wrap mb-5">
+      			<span class="font-weight-bold">Adults</span>
+      				<div class="count-input">
+      					<a class="incr-btn" data-action="decrease" href="#">–</a>
+      						<input class="quantity" type="text" value="1">
+                		<a class="incr-btn" data-action="increase" href="#">+</a>
+              		</div>
+            </div>
+        	<div class="d-flex justify-content-between align-items-center flex-wrap mb-5">
+	            <span class="font-weight-bold">Children</span>
+	              	<div class="count-input">
+	                	<a class="incr-btn" data-action="decrease" href="#">–</a>
+	                		<input class="quantity" type="text" value="1">
+	                	<a class="incr-btn" data-action="increase" href="#">+</a>
+	              	</div>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
     <!-- Preloader -->
     <div id="preloader" class="smooth-loader-wrapper">
       <div class="smooth-loader">
@@ -315,18 +349,10 @@
 	    <div class="form-group mb-6" style="padding-top: 30px;">
 	       <input type="text" class="form-control double-date">
 	    </div>
-        <div class="select-default" style="padding: 10px;">
-          <select class="select-location">
-            <option>All Categories</option>
-            <option>Restaurants</option>
-            <option>Hotels</option>
-            <option>Nightclubs</option>
-            <option>Automotive</option>
-            <option>Museums</option>
-            <option>Movie Theaters</option>
-            <option>Shopping</option>
-          </select>
-        </div>
+        <!-- Button trigger modal -->
+		<button type="button"  class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+		  성인 1
+		</button>
         <button type="submit" class="btn btn-primary">
           Search
         </button>
@@ -344,21 +370,20 @@
 	<div class="container">
 
     <!-- Section Title -->
-		<div class="section-title">
-			<h2>EVENT</h2>
-			<p style="text-align: right; width: 890px;">더보기</p>
+		<div class="section-title" style="display: flex; justify-content: space-between;">
+			<h2 style="color: mediumaquamarine;">EVENT</h2>
+			<p style="color: gray;">더보기</p>
 		</div>
-
 		<div class="row">
 			<div class="col-sm-4 col-xs-12">
 				<div class="card border-0 bg-transparent">
 					<a href="blog-details.html">
 						<img class="card-img-top rounded lazyestload" data-src="assets/img/blog/blog-article-1.jpg" src="assets/img/blog/blog-article-1.jpg" alt="Card image cap">
 					</a>
-          <div class="card-body p-0 pt-5">
-						<div class="meta-post">
+         			 <div class="card-body p-0 pt-5">
+						<div class="meta-post" style="display: flex; justify-content: space-between;">
 							<date class="meta-date">Jan 22, 2021</date>
-							<span class="meta-author"> By <a href="blog-details.html">Jno Deo</a></span>
+							<span class="badge text-bg-primary fs-6">진행 중</span>
 						</div>
 						<h3 class="card-title">
 							<a href="blog-details.html"> Lorem ipsum dolor sit amet	</a>
@@ -369,37 +394,36 @@
 			</div>
 
 			<div class="col-sm-4 col-xs-12">
-        <div class="card border-0 bg-transparent">
-					<a href="blog-details.html">
-						<img class="card-img-top rounded lazyestload" data-src="assets/img/blog/blog-article-2.jpg" src="assets/img/blog/blog-article-2.jpg" alt="Card image cap">
-					</a>
-					<div class="card-body p-0 pt-5">
-            <div class="meta-post">
-              <date class="meta-date">Jan 20, 2021</date>
-              <span class="meta-author"> By <a href="blog-details.html">Adam Smith</a></span>
-            </div>
-						<h3 class="card-title">
-							<a href="blog-details.html"> Ut Enim Ad Minim Veniam.</a>
-						</h3>
-            <p >Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit</p>
-					</div>
+	        	<div class="card border-0 bg-transparent">
+				<a href="blog-details.html">
+					<img class="card-img-top rounded lazyestload" data-src="assets/img/blog/blog-article-2.jpg" src="assets/img/blog/blog-article-2.jpg" alt="Card image cap">
+				</a>
+				<div class="card-body p-0 pt-5">
+	            	<div class="meta-post" style="display: flex; justify-content: space-between;">
+	              		<date class="meta-date">Jan 20, 2021</date>
+	              		<span class="badge text-bg-primary fs-6">진행 중</span>
+	            	</div>
+					<h3 class="card-title">
+						<a href="blog-details.html"> Ut Enim Ad Minim Veniam.</a>
+					</h3>
+           	 		<p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit</p>
+				</div>
 				</div>
 			</div>
-
 			<div class="col-sm-4 col-xs-12">
-        <div class="card border-0 bg-transparent">
+		        <div class="card border-0 bg-transparent">
 					<a href="blog-details.html">
 						<img class="card-img-top rounded lazyestload" data-src="assets/img/blog/blog-article-3.jpg" src="assets/img/blog/blog-article-3.jpg" alt="Card image cap">
 					</a>
-          <div class="card-body p-0 pt-5">
-            <div class="meta-post">
-              <date class="meta-date">Jan 17, 2021</date>
-              <span class="meta-author"> By <a href="blog-details.html">Kathy Brown</a></span>
-            </div>
+		         	<div class="card-body p-0 pt-5">
+			            <div class="meta-post" style="display: flex; justify-content: space-between;">
+			              <date class="meta-date">Jan 17, 2021</date>
+			              <span class="badge text-bg-primary fs-6">진행 중</span>
+			            </div>
 						<h3 class="card-title">
 							<a href="blog-details.html"> Velit Esse Cillum Dolore Eu Fugiat	</a>
 						</h3>
-            <p >Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		            	<p >Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 					</div>
 				</div>
 			</div>
@@ -590,6 +614,14 @@
       var d = new Date();
       var year = d.getFullYear();
       document.getElementById("copy-year").innerHTML = year;
+    </script>
+    <script type="text/javascript">
+	    const myModal = document.getElementById('myModal')
+	    const myInput = document.getElementById('myInput')
+	
+	    myModal.addEventListener('shown.bs.modal', () => {
+	      myInput.focus()
+	    })
     </script>
     <script src='assets/js/listty.js'></script>
   </body>

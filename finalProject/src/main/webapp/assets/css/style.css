@@ -7058,7 +7058,7 @@ textarea.form-control-lg {
 }
 
 .text-bg-primary {
-  color: #000 !important;
+  color: #fff !important;
   background-color: RGBA(var(--bs-primary-rgb), var(--bs-bg-opacity, 1)) !important;
 }
 
@@ -16736,11 +16736,9 @@ button:focus {
 .section-title {
   text-align: center;
   text-transform: capitalize;
-  margin-bottom: 2rem;
 }
 @media (min-width: 768px) {
   .section-title {
-    margin-bottom: 3.625rem;
     margin-left: auto;
     margin-right: auto;
     width: 550px;
@@ -16748,7 +16746,7 @@ button:focus {
 }
 @media (min-width: 992px) {
   .section-title {
-    width: 650px;
+    width: 1140px;
   }
 }
 .section-title h2, .section-title .h2 {
