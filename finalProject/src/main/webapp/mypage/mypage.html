@@ -40,136 +40,74 @@
 <!-- ====================================
 ———	MY PROFILE
 ===================================== -->
-<section class="bg-light py-5 height100vh">
+<!-- <section class="bg-light py-5 height100vh"> -->
+<section style="width: 100%; margin: 20px;" >
   <div class="container">
-    <!-- <nav class="bg-transparent breadcrumb breadcrumb-2 py-4" aria-label="breadcrumb">
       <h2 class="fw-normal mb-4 mb-md-0">마이페이지</h2>
+   <!-- <nav class="bg-transparent breadcrumb breadcrumb-2 py-4" aria-label="breadcrumb">
       <ul class="list-unstyled d-flex p-0 m-0">
         <li class="breadcrumb-item"><a  href="index.html">나의 등급</a></li>
         <li class="breadcrumb-item"><a  href="dashboard-stie-admin.html">포인트</a></li>
         <li class="breadcrumb-item active" aria-current="page">My Profile</li>
       </ul>
-    </nav>
-    <div class="row">
-      <div class="col-md-5 col-lg-4">
-        <div class="card card-profile">
-          <div class="card-profile-img py-6" style="text-align: center;">  
-            <img class="rounded-circle lazyestload" data-src="../mypage/user.png" src="../mypage/user.png" alt="Image">
-            <div class="custom-file" style="text-align: center;">
-              <input type="file" class="custom-file-input" id="customFileLang" lang="es">
-              <label class="custom-file-label" for="customFileLang">Upload a Picture</label>
-             <h3 class="fw-normal mb-4">SUMIN KIM</h3>
-             <h5 class="fw-normal mb-4">(회원번호:10004156970)</h5> 
-             <p class="fw-normal mb-4">suumin0722@naver.com</p>
-            <a href="pricing-table.html" class="btn btn-secondary btn-sm mb-3">회원 정보 변경</a>
-            </div>
-          </div>
-        </div>
-      </div>
- -->
+    </nav> -->
 
-      <div class="col-md-7 col-lg-8" style="width: 100%;">
+      <div class="col-md-7 col-lg-8" style="width: 100%; margin-top: 20px;">
         <div class="card">
           <div class="card-body p-6">
-            <h2 class="fw-normal mb-4">Your Profile</h2>
-            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
-              in some form Ipsum available.</p>
+            <div class="col-md-5 col-lg-4" style="float: left;">
+	        <div class="card card-profile" style="display: flex;">
+	          <div class="card-profile-img py-6" style="text-align: center;">  
+	            <img class="rounded-circle lazyestload" data-src="../mypage/user.png" src="../mypage/user.png" alt="Image">
+	          </div>
+	            <div class="custom-file" style="text-align: center; float: right;">
+	             <h3 class="fw-normal mb-4">SUMIN KIM</h3>
+	             <h5 class="fw-normal mb-4">(회원번호:10004156970)</h5> 
+	             <p class="fw-normal mb-4">suumin0722@naver.com</p>
+	            <a href="pricing-table.html" class="btn btn-secondary btn-sm mb-3">회원 정보 변경</a>
+	            </div>
+	        </div>
+	        </div>
+	        
+	        <div class="col-md-5 col-lg-4" style="float: right;">
+	        <!-- <div class="card card-profile"> -->
+	        <div >
+	          <div class="card-profile-img py-6" style="text-align: center;"> 
+	            <div style="float: left; margin: 0;">
+	            <h4>나의 등급</h4>
+	            <a href="pricing-table.html" class="btn btn-secondary btn-sm mb-3"> > BLUE</a>
+	          	</div>
+	          	
+	          	<div style="float: right; margin: 0;">
+	            <h4>포인트</h4>
+	            <a href="pricing-table.html" class="btn btn-secondary btn-sm mb-3"> > 10만P</a>
+	          	</div>
+	          </div>
+	        </div>
+	        </div>
+	        
           </div>
         </div>
-
-        <form>
-          <div class="card">
-            <div class="card-body p-6">
-              <h3 class="fw-normal mb-4">About You</h3>
-
-              <div class="row">
-                <div class="form-group col-md-6 mb-6">
-                  <label class="form-label" for="firstNameProfile">Fast Name</label>
-                  <input type="text" class="form-control" id="firstNameProfile" placeholder="Fast Name" value="Jane">
-                </div>
-                <div class="form-group col-md-6 mb-6">
-                  <label class="form-label" for="lastNameProfile">Last Name</label>
-                  <input type="text" class="form-control" id="lastNameProfile" placeholder="Last Name" value="Doe">
-                </div>
-                <div class="form-group col-md-6 mb-6">
-                  <label class="form-label" for="emailProfile">Email</label>
-                  <input type="email" class="form-control" placeholder="Email" value="Jane@example.com">
-                </div>
-                <div class="form-group col-md-6 mb-6">
-                  <label class="form-label" for="phoneProfile">Phone</label>
-                  <input type="number" class="form-control" placeholder="Phone" value="">
-                </div>
-                <div class="form-group col-md-12">
-                  <label class="form-label" for="aboutYou">About You</label>
-                  <textarea class="form-control" rows="5" id="aboutYou" placeholder="About You">I am web designer.</textarea>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-body p-6">
-              <h3 class="fw-normal mb-4">Social Network</h3>
-
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label class="form-label" for="firstNameProfile1">Fast Name</label>
-                  <input type="text" class="form-control" id="firstNameProfile1" placeholder="Fast Name" value="Jane">
-                </div>
-                <div class="form-group col-md-6">
-                  <label class="form-label" for="lastNameProfile2">Last Name</label>
-                  <input type="text" class="form-control" id="lastNameProfile2" placeholder="Last Name" value="Doe">
-                </div>
-                <div class="form-group col-md-6">
-                  <label class="form-label" for="emailProfile">Email</label>
-                  <input type="email" class="form-control" placeholder="Email" value="Jane@example.com">
-                </div>
-                <div class="form-group col-md-6">
-                  <label class="form-label" for="phoneProfile">Phone</label>
-                  <input type="number" class="form-control" placeholder="Phone" value="">
-                </div>
-              </div>
-
-              <div class="mt-4">
-                <button class="btn btn-primary text-uppercase" type="button">
-                  Save Change
-                </button>
-              </div>
-
-            </div>
-          </div>
-        </form>
-
-        <form>
-          <div class="card">
-            <div class="card-body p-6">
-              <h3 class="fw-normal mb-4">Update Password</h3>
-              <div class="row">
-
-                <div class="form-group col-12">
-                  <label class="form-label" for="currentPassword">Current Password</label>
-                  <input type="password" class="form-control" placeholder="********" autocomplete="current-password">
-                </div>
-                <div class="form-group col-12">
-                  <label class="form-label" for="newPassword">New Password</label>
-                  <input type="password" class="form-control" placeholder="New Password" autocomplete="new-password">
-                </div>
-                <div class="form-group col-12">
-                  <label class="form-label" for="confirmPassword">Confirm Password</label>
-                  <input type="password" class="form-control" placeholder="Confirm Password" autocomplete="new-password">
-                </div>
-                <div class="form-group col-12 mt-4">
-                  <button class="btn btn-outline-primary" type="button">Change Password</button>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </form>
-
       </div>
-    </div>
+      
+      <ul class="nav nav-pills">
+		  <li class="nav-item" style="margin: 5px; ">
+		    <a href="#default-tab-1" data-bs-toggle="tab" class="nav-link active" style="background-color: #43C4AE;">다가오는 여정</a>
+		  </li>
+		  <li class="nav-item" style="margin: 5px;">
+		    <a href="#default-tab-1" data-bs-toggle="tab" class="nav-link active" style="background-color: #43C4AE;">지난 여정</a>
+		  </li>
+		   <li class="nav-item" style="margin: 5px;">
+		    <a href="#default-tab-1" data-bs-toggle="tab" class="nav-link active" style="background-color: #43C4AE;">나의 분실물 내역</a>
+		  </li>
+		</ul>
+		
+		<div class="tab-content panel p-3 rounded">
+		  <div class="tab-pane fade active show" id="default-tab-1">
+		    테이블이 들어가야 합니다.
+		  </div>
+		</div>
+      
   </div>
 </section>
 
