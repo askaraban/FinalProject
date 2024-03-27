@@ -17139,7 +17139,7 @@ button:focus {
     width: calc(100% - 30px);
     position: absolute;
     left: 50%;
-    bottom: -50px;
+    bottom: -150px;
     transform: translateX(-50%);
   }
 }
@@ -17172,7 +17172,7 @@ button:focus {
 }
 .search-box form {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
 }
@@ -17183,13 +17183,13 @@ button:focus {
 @media (min-width: 768px) {
   .search-box form .form-group,
   .search-box form .select-default {
-    width: 27%;
+    width: 20%;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 800px) {
   .search-box form .form-group,
   .search-box form .select-default {
-    width: 28.3%;
+    width: 20%;
   }
 }
 .search-box form .btn {
