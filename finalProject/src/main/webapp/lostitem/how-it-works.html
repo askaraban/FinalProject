@@ -1,89 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-.table.table-bordered th,
-.table.table-bordered td {
-    width: auto; /* 각 셀의 너비를 자동으로 조정합니다. */
-}
 
-.table.table-bordered {
-    width: 100%; /* 테이블을 부모 요소에 맞춰 너비를 100%로 설정합니다. */
-    table-layout: fixed; /* 테이블의 너비를 고정합니다. */
-}
-.comContent {
-    padding:10%
-}
-h3 {
-    display: block;
-    font-size: 1.17em;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
-    unicode-bidi: isolate;
-}
-.cttWrapper .row {
-    padding: 1.875rem 0;
-    position: relative;
-    display: flex;
-    align-items: center;
-    border-bottom: 0.0625rem solid #ddd;
-    align-items: flex-start;
-}
-.cttWrapper .cttInfo {
-    margin-left: 8.125rem;
-    display: block;
-    font-weight: 400;
-    color: gray;
-    margin-bottom: 5%
-}
-
-.cttWrapper .row .label {
-
-    font-family: "Premia";
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #0093ff;
-}
-
-.cttWrapper .row .value {
-    width: calc(100% - 6.25rem);
-    align-items: flex-start;
-    position: relative;
-    display: flex;
-    color:black;
-}
-
-.cttWrapper .row.inFo {
-    padding: 1.875rem 0 1.25rem 0;
-    border-bottom: 0;
-}
-
-button {
-    display: inline-block;
-	vertical-align: baseline;
-    cursor: pointer;
-    margin: 5%
-}
-
-.taskButton {
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: -0.032em;
-    width: 100%;
-    height: 3rem;
-    padding: 0 0.25rem;
-    color: #fff;
-    text-align: center;
-    background-color: #0c2340;
-    border-radius: 0.5rem;
-}
-
-</style>
   <head>
 
-    <!-- SITE TITTLE -->
+ <!-- SITE TITTLE -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -128,37 +48,24 @@ button {
   </head>
 
   <body id="body" class="up-scroll">
-
-    <!-- Preloader -->
-    <div id="preloader" class="smooth-loader-wrapper">
-      <div class="smooth-loader">
-        <div class="loader1">
-          <div class="loader-target">
-            <div class="loader-target-main"></div>
-            <div class="loader-target-inner"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-  
-
-
-<!-- <div class="clearfix p-0"> -->
-	<!-- <div id="map-canvas"> -->
-	<div style=" margin: 10%; text-align: center;" >
-	<h2 style="text-align: center">기내 분실물 센터</h2>
-	</div>
-	<!-- </div> -->
+    <!-- js-loader -->
+    <div id="js-loader"></div>
 
 
 
 <!-- ====================================
-———	LOCATION SEARCH ONE
+———	breadcrumb
 ===================================== -->
-<section style="width : 100%; margin: 20px;">
-<div class="py-7 py-md-0 " style=" margin: 10%; text-align: center; background-color: white;">
+
+
+<!-- Grid wrapper for ell elements -->
+<div class="element-wrapper">
+
+
+<!-- ====================================
+———	How It Works
+===================================== -->
+<section class="py-7 py-md-10">
   <div class="container position-relative px-md-0" style="background-color: white;">
     <div class="search-box">
       <form method="GET" action="listings-half-screen-map-list.html">
@@ -197,75 +104,49 @@ button {
     </div>
   </div>
 
-  	<div class="panel panel-inverse" data-sortable-id="table-basic-7">
-        
-                        <div class="panel-body">
-							<div class="table-responsive" style="padding:20px; background-color: white; margin-top:2%">
-								<table class="table table-bordered">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>Table heading</th>
-											<th>Table heading</th>
-											<th>Table heading</th>
-											<th>Table heading</th>
-											<th>Table heading</th>
-											<th>Table heading</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Table cell</td>
-											<td>Table cell</td>
-											<td>Table cell</td>
-											<td>Table cell</td>
-											<td>Table cell</td>
-											<td>Table cell</td>
-										</tr>
-									</tbody>
-								</table> 
-							</div>
-						</div>
-					</div>
-  
-</div>
-<div class="comContent">
-	<div class="lostCtt">
-		<h3 class="subSmTit">분실물 문의</h3>
-		<div class="cttWrapper">
-			<div class="row">
-				<div class="label">STEP 01</div>
-				<div class="value">
-					"기내 물품 분실 신고를 해주시기 바랍니다."
-				</div>
-			</div>
-			<div class="row">
-				<div class="label">STEP 02</div>
-				<div class="value resvt">
-					"분실 신고가 접수되면 담당 직원이 전화 또는 이메일로 수령방법을 안내드립니다."
-				</div>
-			</div>
-			<div class="row inFo">
-				<div class="label">STEP 03</div>
-				<div class="value apbl">
-					"에어프레미아 해당 지점으로 방문하여 분실물을 찾아주시기 바랍니다."
-				</div>
-			</div>
-			<div class="cttInfo">※ 분실물 인수 시 신청서를 작성하신 분의 신분증을 필수로 지참해 주시기 바랍니다.</div>
-			<div class="buttonWrapper">
-				<button class="taskButton" onclick="">기내 분실물 신고</button>
-			</div>
-		</div>
-	</div>
-</div>
+    <hr class="my-5">
+
+    <div class="row py-5 py-md-9">
+      <div class="col-sm-4 col-xs-12">
+        <div class="text-center text-md-start mb-5 mb-md-0">
+          <img class="lazyestload" data-src="assets/img/works/works-big-2.png" src="assets/img/works/works-big-2.png" alt="Image Works">
+        </div>
+      </div>
+      <div class="col-sm-8 col-xs-12">
+        <div class="text-start text-md-end">
+          <span class="mb-2 d-inline-block">Step 2</span>
+          <h2 class="h4 mb-4">Review & Plan Your Day</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt  labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident. sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5">
+
+    <div class="row pt-5 pt-md-9">
+      <div class="col-sm-4 col-xs-12 order-md-1">
+        <div class="text-center text-md-end mb-5 mb-md-0">
+          <img class="lazyestload" data-src="assets/img/works/works-big-3.png" src="assets/img/works/works-big-3.png" alt="Image Works">
+        </div>
+      </div>
+      <div class="col-sm-8 col-xs-12">
+        <div >
+          <span class="mb-2 d-inline-block">Step 3</span>
+          <h2 class="h4 mb-4">Explore Location</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt  labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident. sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 
 
+  </div> <!-- element wrapper ends -->
 
 
-    <!-- JAVASCRIPTS -->
+
+   <!-- JAVASCRIPTS -->
     <script src='../assets/plugins/jquery/jquery-3.4.1.min.js'></script>
     <script src='../assets/plugins/bootstrap/js/bootstrap.bundle.js'></script>
     <script src='../assets/plugins/menuzord/js/menuzord.js'></script>
@@ -303,4 +184,3 @@ button {
     <script src='../assets/js/listty.js'></script>
   </body>
 </html>
-
