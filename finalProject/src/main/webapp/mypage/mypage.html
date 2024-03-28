@@ -54,25 +54,23 @@
 
       <div class="col-md-7 col-lg-8" style="width: 100%; margin-top: 20px;">
         <div class="card">
-          <div class="card-body p-6">
-            <div class="col-md-5 col-lg-4" style="float: left;">
-	        <div class="card card-profile">
-	          <div class="card-profile-img py-6" style="text-align: center;">  
+          <div class="card-body p-6" style="display: flex; flex-direction: row;">
+            <div class="col-md-5 col-lg-4">
+	          <div class="card card-profile">
+	           <div class="card-profile-img py-6" style="text-align: center;">  
 	            <img class="rounded-circle lazyestload" data-src="../mypage/user.png" src="../mypage/user.png" alt="Image">
+	           </div>
 	          </div>
 	        </div>
-	        </div>
-	        <div class="col-md-5 col-lg-4" style="float: left; margin-left: 10px;">
-	            <div class="custom-file" style="text-align: left; float: right;">
+	        <div class="col-md-5 col-lg-4" style="margin : 10px;">
+	           <div class="custom-file" style="text-align: left; float: right;">
 	             <h3 class="fw-normal mb-4">SUMIN KIM</h3>
 	             <h5 class="fw-normal mb-4">(회원번호:10004156970)</h5> 
 	             <p class="fw-normal mb-4">suumin0722@naver.com</p>
 	            <a href="pricing-table.html" class="btn btn-secondary btn-sm mb-3">회원 정보 변경</a>
-	            </div>
-	        </div>    
-	        <div class="col-md-5 col-lg-4" style="float: right;">
-	        <!-- <div class="card card-profile"> -->
-	        <div >
+	           </div>
+	       </div>    
+	       <div class="col-md-5 col-lg-4" style="float: right;">
 	          <div class="card-profile-img py-6" style="text-align: center;"> 
 	            <div style="float: left; margin: 0;">
 	            <h4>나의 등급</h4>
@@ -83,13 +81,14 @@
 	            <h4>포인트</h4>
 	            <a href="pricing-table.html" class="btn btn-secondary btn-sm mb-3"> > 10만P</a>
 	          	</div>
+	        <div >
 	          </div>
 	        </div>
 	        </div>
 	        
-          </div>
-        </div>
-      </div>
+         </div>
+       </div>
+  </div>
       
       <ul class="nav nav-pills">
 		  <li class="nav-item" style="margin: 5px; ">
@@ -105,7 +104,22 @@
 		
 		<div class="tab-content panel p-3 rounded">
 		  <div class="tab-pane fade active show" id="default-tab-1">
-		    테이블이 들어가야 합니다.
+		  	<div class="table-responsive">
+			  <table class="table">
+			    <tr>
+			    	<th>테이블 컬럼1</th>
+			    </tr>
+			    <tr>
+			    	<th>테이블 컬럼2</th>
+			    </tr>
+			    <tr>
+			    	<td>테이블 내용1</td>
+			    </tr>
+			     <tr>
+			    	<td>테이블 내용2</td>
+			    </tr>
+			  </table>
+			</div>
 		  </div>
 		</div>
       
