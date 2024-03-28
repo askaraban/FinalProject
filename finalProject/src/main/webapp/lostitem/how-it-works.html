@@ -79,166 +79,186 @@ button {
     background-color: #0c2340;
     border-radius: 0.5rem;
 }
+div.search {
+    background-color: #fff;
+    z-index: 10;
+    padding: 0.9375rem;
+    border: 2px solid rgba(33, 150, 243, 0.3);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 0.375rem;
+}
+
+.selectric {
+    width: 300px;
+}
+
+element.style {
+    max-width: fit-content;
+}
+
 </style>
   <head>
 
  <!-- SITE TITTLE -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>기내 분실물 센터</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>기내 분실물 센터</title>
 
-    <!-- PLUGINS CSS STYLE -->
-    <link href='../assets/plugins/fontawesome-5.15.2/css/all.min.css' rel='stylesheet'>
-    <link href='../assets/plugins/fontawesome-5.15.2/css/fontawesome.min.css' rel='stylesheet'>
-    <link href='../assets/plugins/listtyicons/style.css' rel='stylesheet'>
-    <link href='../assets/plugins/menuzord/css/menuzord.css' rel='stylesheet'>
+<!-- PLUGINS CSS STYLE -->
+<link href='../assets/plugins/fontawesome-5.15.2/css/all.min.css' rel='stylesheet'>
+<link href='../assets/plugins/fontawesome-5.15.2/css/fontawesome.min.css' rel='stylesheet'>
+<link href='../assets/plugins/listtyicons/style.css' rel='stylesheet'>
+<link href='../assets/plugins/menuzord/css/menuzord.css' rel='stylesheet'>
 
-    <link href='../assets/plugins/selectric/selectric.css' rel='stylesheet'>
-    <link href='../assets/plugins/dzsparallaxer/dzsparallaxer.css' rel='stylesheet'>
-    
-    
-    
-    
-    <link href='../assets/plugins/map/css/map.css' rel='stylesheet'>
-    
-    
-    
-    
- 
-    <!-- GOOGLE FONT --><!-- font-family: 'Mulish', sans-serif; --><!-- font-family: 'Poppins', sans-serif; -->
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href='../assets/plugins/selectric/selectric.css' rel='stylesheet'>
+<link href='../assets/plugins/dzsparallaxer/dzsparallaxer.css' rel='stylesheet'>
 
-    <!-- CUSTOM CSS -->
-    <link href="../assets/css/style.css" rel="stylesheet" id="option_style">
 
-    <link rel="stylesheet" href="assets/css/default.css" id="option_color">
-    <!-- FAVICON -->
-    <link href="../assets/img/favicon.png" rel="shortcut icon">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
 
-  </head>
+<link href='../assets/plugins/map/css/map.css' rel='stylesheet'>
 
-  <!-- <body id="body" class="up-scroll"> -->
-  <body id="body">
-    <!-- js-loader -->
-    <div id="js-loader"></div>
+
+
+
+
+<!-- GOOGLE FONT --><!-- font-family: 'Mulish', sans-serif; --><!-- font-family: 'Poppins', sans-serif; -->
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- CUSTOM CSS -->
+<link href="../assets/css/style.css" rel="stylesheet" id="option_style">
+
+<link rel="stylesheet" href="assets/css/default.css" id="option_color">
+<!-- FAVICON -->
+<link href="../assets/img/favicon.png" rel="shortcut icon">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<!-- <body id="body" class="up-scroll"> -->
+<body id="body" style="margin: 50px;">
+  <!-- js-loader -->
+<div id="js-loader"></div>
 
 <!-- Grid wrapper for ell elements -->
-<div class="element-wrapper">
+<div class="element-wrapper" style="padding: 3.75rem 7.5rem 12.5rem;">
 
 
-<!-- ====================================
-———	How It Works
-===================================== -->
- <div class="row py-5 py-md-9">
- <div style="border-color: blue; background-color: white;">
-         <!-- <div class="search-box" style="display:inline-block; "> -->
-         <div style="display: inline-block; border-color: blue; background-color: white;">
-		      <form method="GET" action="listings-half-screen-map-list.html">
-		        <div class="select-default" style="float: left;">
-		          <select class="select-location">
-		            <option>지역</option>
-		            <option>1</option>
-		            <option>2</option>
-		            <option>3</option>
-		          </select>
-		        </div>
-		        <div class="select-default" style="float: left;">
-		          <select class="select-location">
-		            <option>공항</option>
-		            <option>U.S.A</option>
-		            <option>U.K</option>
-		            <option>ASIA</option>
-		          </select>
-		        </div>
-		        <div class="select-default" style="float: left;">
-		          <select class="select-location">
-		            <option>도착</option>
-		            <option>Restaurants</option>
-		            <option>Hotels</option>
-		            <option>Nightclubs</option>
-		            <option>Automotive</option>
-		            <option>Museums</option>
-		            <option>Movie Theaters</option>
-		            <option>Shopping</option>
-		          </select>
-		        </div>
-		        <button type="submit" class="btn btn-primary" style="float: left;">
-		          search
-		        </button>
-		      </form>
-    	 </div>
-   </div> 	 
- </div>
-
-
-    <div class="row py-5 py-md-9">
-        <div class="table-responsive" style="padding:20px; background-color: white; margin-top:2%">
-								<table class="table table-bordered">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>Table heading</th>
-											<th>Table heading</th>
-											<th>Table heading</th>
-											<th>Table heading</th>
-											<th>Table heading</th>
-											<th>Table heading</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Table cell</td>
-											<td>Table cell</td>
-											<td>Table cell</td>
-											<td>Table cell</td>
-											<td>Table cell</td>
-											<td>Table cell</td>
-										</tr>
-									</tbody>
-								</table> 
-							</div>
+<!-- 분실물 -->
+<div>
+	기내 분실물 센터
+</div>
+<div style="text-align: center;">
+  <div class="search" style="display: inline-block; margin-top: 20px; max-width: 100%;  border-radius: 10px; padding: 30px;">
+      <form method="GET" action="listings-half-screen-map-list.html">
+        <div class="select-default" style="display: inline-block; margin-right: 15px;">
+          <select class="select-location">
+            <option>지역</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+        </div>
+        <div class="select-default" style="display: inline-block; margin-right: 15px;">
+          <select class="select-location">
+            <option>공항</option>
+            <option>U.S.A</option>
+            <option>U.K</option>
+            <option>ASIA</option>
+          </select>
+        </div>
+        <div class="select-default" style="display: inline-block; margin-right: 15px;">
+          <select class="select-location">
+            <option>도착</option>
+            <option>Restaurants</option>
+            <option>Hotels</option>
+            <option>Nightclubs</option>
+            <option>Automotive</option>
+            <option>Museums</option>
+            <option>Movie Theaters</option>
+            <option>Shopping</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="vertical-align: top;">
+          search
+        </button>
+      </form>
     </div>
+</div>
 
 
-    <div class="row pt-5 pt-md-9">
-      <div class="lostCtt">
-		<h3 class="subSmTit">분실물 문의</h3>
-		<div class="cttWrapper">
-			<div class="row">
-				<div class="label">STEP 01</div>
-				<div class="value">
-					"기내 물품 분실 신고를 해주시기 바랍니다."
-				</div>
-			</div>
-			<div class="row">
-				<div class="label">STEP 02</div>
-				<div class="value resvt">
-					"분실 신고가 접수되면 담당 직원이 전화 또는 이메일로 수령방법을 안내드립니다."
-				</div>
-			</div>
-			<div class="row inFo">
-				<div class="label">STEP 03</div>
-				<div class="value apbl">
-					"에어프레미아 해당 지점으로 방문하여 분실물을 찾아주시기 바랍니다."
-				</div>
-			</div>
-			<div class="cttInfo">※ 분실물 인수 시 신청서를 작성하신 분의 신분증을 필수로 지참해 주시기 바랍니다.</div>
-			<div class="buttonWrapper">
-				<button class="taskButton" onclick="">기내 분실물 신고</button>
+
+
+
+
+
+   <div class="row py-5">
+       <div class="table-responsive" style="padding:20px; background-color: white; margin-top:2%">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Table heading</th>
+									<th>Table heading</th>
+									<th>Table heading</th>
+									<th>Table heading</th>
+									<th>Table heading</th>
+									<th>Table heading</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Table cell</td>
+									<td>Table cell</td>
+									<td>Table cell</td>
+									<td>Table cell</td>
+									<td>Table cell</td>
+									<td>Table cell</td>
+								</tr>
+							</tbody>
+						</table> 
+					</div>
+  </div>
+
+
+  <div class="row pt-5 pt-md-9">
+    <div class="lostCtt">
+<h3 class="subSmTit">분실물 문의</h3>
+<div class="cttWrapper">
+	<div class="row">
+		<div class="label">STEP 01</div>
+		<div class="value">
+			"기내 물품 분실 신고를 해주시기 바랍니다."
+		</div>
+	</div>
+	<div class="row">
+		<div class="label">STEP 02</div>
+		<div class="value resvt">
+			"분실 신고가 접수되면 담당 직원이 전화 또는 이메일로 수령방법을 안내드립니다."
+		</div>
+	</div>
+	<div class="row inFo">
+		<div class="label">STEP 03</div>
+		<div class="value apbl">
+			"에어프레미아 해당 지점으로 방문하여 분실물을 찾아주시기 바랍니다."
+		</div>
+	</div>
+	<div class="cttInfo">※ 분실물 인수 시 신청서를 작성하신 분의 신분증을 필수로 지참해 주시기 바랍니다.</div>
+	<div class="buttonWrapper">
+		<button class="taskButton" onclick="">기내 분실물 신고</button>
 			</div>
 		</div>
 	</div>
   </div>
-</section>
+
 
 
 
@@ -246,41 +266,41 @@ button {
 
 
 
-   <!-- JAVASCRIPTS -->
-    <script src='../assets/plugins/jquery/jquery-3.4.1.min.js'></script>
-    <script src='../assets/plugins/bootstrap/js/bootstrap.bundle.js'></script>
-    <script src='../assets/plugins/menuzord/js/menuzord.js'></script>
+<!-- JAVASCRIPTS -->
+<script src='../assets/plugins/jquery/jquery-3.4.1.min.js'></script>
+<script src='../assets/plugins/bootstrap/js/bootstrap.bundle.js'></script>
+<script src='../assets/plugins/menuzord/js/menuzord.js'></script>
 
-    <script src='../assets/plugins/selectric/jquery.selectric.min.js'></script>
-    <script src='../assets/plugins/dzsparallaxer/dzsparallaxer.js'></script>
-    
-    
-    
-    
-    
-    
-    
-    <script src='../assets/plugins/smoothscroll/SmoothScroll.js'></script>
-    <script src='../assets/plugins/lazyestload/lazyestload.js'></script>
-    
-    
-    
-    
-    
-    
-    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDU79W1lu5f6PIiuMqNfT1C6M0e_lq1ECY'></script>
-    <script src='../assets/plugins/map/js/markerclusterer.js'></script>
-    <script src='../assets/plugins/map/js/rich-marker.js'></script>
-    <script src='../assets/plugins/map/js/infobox_packed.js'></script>
-    <script src='../assets/js/map.js'></script>
-    
-    
-    
-    <script>
-      var d = new Date();
-      var year = d.getFullYear();
-      document.getElementById("copy-year").innerHTML = year;
-    </script>
+<script src='../assets/plugins/selectric/jquery.selectric.min.js'></script>
+<script src='../assets/plugins/dzsparallaxer/dzsparallaxer.js'></script>
+
+
+
+
+
+
+
+<script src='../assets/plugins/smoothscroll/SmoothScroll.js'></script>
+<script src='../assets/plugins/lazyestload/lazyestload.js'></script>
+
+
+
+
+
+
+<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDU79W1lu5f6PIiuMqNfT1C6M0e_lq1ECY'></script>
+<script src='../assets/plugins/map/js/markerclusterer.js'></script>
+<script src='../assets/plugins/map/js/rich-marker.js'></script>
+<script src='../assets/plugins/map/js/infobox_packed.js'></script>
+<script src='../assets/js/map.js'></script>
+
+
+
+<script>
+var d = new Date();
+var year = d.getFullYear();
+document.getElementById("copy-year").innerHTML = year;
+</script>
     <script src='../assets/js/listty.js'></script>
   </body>
 </html>
