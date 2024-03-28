@@ -32,6 +32,28 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+<style type="text/css">
+.airplane--div {
+	overflow: auto;
+	max-height: 660px;
+	min-width: 670px;
+}
+
+/* 백그라운드 처리 */
+.airplane--background {
+	width: 645px;
+	height: 2414px;
+}
+.e--seat {
+	margin-left: 79px;	
+}
+.e--seat img {
+	width: 47px;
+	height: 47px;
+}
+
+</style>
+
   </head>
 
   <body id="body" class="body-wrapper boxed-menu">
@@ -349,8 +371,12 @@
       <div class="col-lg-8 order-lg-1">
         <!-- Search Result Bar -->
         <div class="row">
-			<div style="overflow: scroll; width: 700px; height: 660px;">
-			<img src="../assets/img/seat/airplane_empty2.png" alt="image">
+			<div class="d-flex" style="width: 100%;">
+			<div class="airplane--div" id="sch1Airplane">
+				<div class="airplane--background" style="background-image: url('../assets/img/seat/airplane_empty2.png');">
+					<img alt="image" src="../assets/img/seat/economy_not.png" class="e--seat">
+				</div>	
+			</div>
 			</div>
 			<div style="padding-top: 1.2rem; padding-right: 4.8rem; text-align: right;">
 				<button type="button" class="btn btn-primary">다음 &nbsp;<img src="../assets/img/seat/icons8-arrow-16.png"></button>
