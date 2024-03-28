@@ -41,26 +41,27 @@
 
 <body id="body" class="up-scroll">
 
-<section class="banner" style="background-image: url('assets/img/background/banner-img1.jpg');">
+<section class="bg-light py-8">
   <div class="container">
-    <div class="row text-center align-items-center justify-content-center" style="height:624px;">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <nav aria-label="breadcrumb">
+        <h2 class="breadcrumb-title text-center mb-4">항공권 예매</h2>
+        <ul class="breadcrumb bg-transparent justify-content-center p-0 m-0">
+          <li class="breadcrumb-item"><a href="#">일정 - 좌석 - 탑승객 정보</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<section class="py-7 py-md-10">
+  <div class="container">
       <div class="col-12">
-        <!-- Banner Info -->
-        <div class="banner-info">
-          <h1 class="text-black mb-4">
-            예매자 정보입력
-          </h1>
-          <p class="lead text-black">
-            예매자의 연락처로 예약 결과를 보낼?듯
-          </p>
-        </div>
 
         <!-- 예매자 정보 -->
         <div>예매자 정보</div>
         <hr>
         <div class="search-box-2">
-          <form class="row g-2 justify-content-center" method="GET" action="listings-half-screen-map-list.html">
-
             <div class="form-group col-md-6 col-lg-12 col-xl-6">
             	<div class="input-group mb-2">
             		<div class="input-group-text">영문 성</div>
@@ -79,7 +80,6 @@
             		<input type="text" class="form-control" placeholder="휴대폰 번호를 입력해주세요." required>
             	</div>
             </div>
-          </form>
  		</div>
 
         <!-- 탑승자 정보입력 -->
@@ -88,8 +88,6 @@
         <div>예약 완료 후 이름 변경 시 항공권 재발행 수수료가 부과될 수 있습니다.</div>
         <hr>
         <div class="search-box-2">
-          <form class="row g-2 justify-content-center" method="GET" action="listings-half-screen-map-list.html">
-
             <div class="form-group col-md-6 col-lg-12 col-xl-6">
             	<div class="input-group mb-2">
             		<div class="input-group-text">영문 성</div>
@@ -123,17 +121,6 @@
             		<input type="text" class="form-control" placeholder="휴대폰 번호를 입력해주세요." required>
             	</div>
             	<div class="input-group mb-2">
-            		<div class="input-group-text">포인트 적립</div>
-            		<div class="btn-group" role="group" aria-label="Basic example">
-            			<button type="button" class="btn btn-outline-secondary btn-sm active">휴대폰 번호로 입력</button>
-			            <button type="button" class="btn btn-outline-secondary btn-sm">회원번호로 입력</button>
-          			</div>
-            	</div>
-            	<div class="input-group mb-2">
-            		<div class="input-group-text">포인트 적립 휴대폰 / 회원 번호</div>
-            		<input type="text" class="form-control" placeholder="휴대폰 번호, 회원번호 입력" required>
-            	</div>
-            	<div class="input-group mb-2">
             		<div class="input-group-text">체류 국가</div>
             	</div>
             	<div class="input-group mb-2">
@@ -153,7 +140,6 @@
             		<input type="text" class="form-control" placeholder="영문으로 입력해주세요." required>
             	</div>
             </div>
-          </form>
  		</div>
  
             <div class="form-group col-md-3 col-lg-2 mb-0">
@@ -164,7 +150,6 @@
 
       </div>
     </div>
-  </div>
 </section>
 
 <!-- JAVASCRIPTS -->
@@ -178,17 +163,11 @@
 <script src='../assets/plugins/smoothscroll/SmoothScroll.js'></script>
 <script src='../assets/plugins/lazyestload/lazyestload.js'></script>
     
-<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDU79W1lu5f6PIiuMqNfT1C6M0e_lq1ECY'></script>
 <script src='../assets/plugins/map/js/markerclusterer.js'></script>
 <script src='../assets/plugins/map/js/rich-marker.js'></script>
 <script src='../assets/plugins/map/js/infobox_packed.js'></script>
 <script src='../assets/js/map.js'></script>
 
-<script>
-	var d = new Date();
-	var year = d.getFullYear();
-	document.getElementById("copy-year").innerHTML = year;
-</script>
 <script src='../assets/js/listty.js'></script>
 </body>
 </html>
