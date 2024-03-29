@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+.subTit {
+	font-size: 1.375rem;
+	font-weight: 700;
+	line-height: 1.6em;
+	word-break: break-word;
+}
+
+.infoInputWrap {
+	padding: 1.875rem 0;
+	border-top: 0.125rem solid #222;
+	border-bottom: 0.125rem solid #222;
+}
+
+.infoInput .inputWrap {
+	flex: 1 1 auto;
+}
+
+.infoInput .infoTtl h3 {
+	font-size: 1.125rem;
+	font-weight: 700;
+}
+
+.inputWrap .row .label {
+	width: 100%;
+	margin-right: 0.3125rem;
+	font-size: 0.875rem;
+	color: black;
+	font-weight: bold;
+	margin-top: 20px;
+}
+
+div {
+	margin: 0;
+	padding: 0;
+	font-family: "NotoSans", "Malgun Gothic", "dotum", "verdana", sans-serif;
+	font-style: normal;
+	text-transform: none;
+	vertical-align: baseline;
+	background: rgba(0, 0, 0, 0);
+	border: 0;
+	unicode-bidi: isolate;
+}
+
+.lostCtt .inputWrap .row .value {
+	padding-left: 0;
+	width: 100%;
+	height: 2.5rem;
+	position: relative;
+	display: flex;
+	align-items: center;
+	flex: 1 1 0%;
+	font-weight: 700;
+}
+
+.infoInput {
+	padding: 1.875rem 0;
+	flex-direction: column;
+	border-bottom: 0;
+}
+
+.inputWrap .row .value {
+	width: 100%;
+	height: 2.5rem;
+	position: relative;
+	display: flex;
+	align-items: center;
+	flex: 1 1 0%;
+	font-weight: 700;
+	border-bottom: 1px solid #ccc;
+}
+
+input[type=text], input {
+	vertical-align: middle;
+	font-size: 100%;
+	-webkit-appearance: none;
+}
+
+input {
+	font-family: "NotoSans", "Malgun Gothic", "dotum", "verdana", sans-serif;
+	font-style: normal;
+	text-transform: none;
+	border: 0;
+}
+
+.inputWrap .row .value input {
+	width: 100%;
+}
+
+.taskButton {
+	width: 50%;
+	height: 3rem;
+	padding: 0 0.25rem;
+	color: #fff;
+	text-align: center;
+	font-weight: 700;
+	background-color: #0c2340;
+	border-radius: 0.5rem;
+}
+</style>
+
+<head>
+
+<!-- SITE TITTLE -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>기내 분실물 신고서</title>
+
+<!-- PLUGINS CSS STYLE -->
+<link href='../assets/plugins/fontawesome-5.15.2/css/all.min.css'
+	rel='stylesheet'>
+<link
+	href='../assets/plugins/fontawesome-5.15.2/css/fontawesome.min.css'
+	rel='stylesheet'>
+<link href='../assets/plugins/listtyicons/style.css' rel='stylesheet'>
+<link href='../assets/plugins/menuzord/css/menuzord.css'
+	rel='stylesheet'>
+
+<link href='../assets/plugins/selectric/selectric.css' rel='stylesheet'>
+
+<link href='../assets/plugins/fancybox/jquery.fancybox.min.css'
+	rel='stylesheet'>
+<link href='../assets/plugins/owl-carousel/assets/owl.carousel.min.css'
+	rel='stylesheet'>
+<link
+	href='../assets/plugins/owl-carousel/assets/owl.theme.default.min.css'
+	rel='stylesheet'>
+
+<link href='../assets/plugins/map/css/map.css' rel='stylesheet'>
+<link href='../assets/plugins/rateyo/jquery.rateyo.min.css'
+	rel='stylesheet'>
+
+
+<link href='../assets/plugins/daterangepicker/daterangepicker.css'
+	rel='stylesheet'>
+
+<!-- GOOGLE FONT -->
+<!-- font-family: 'Mulish', sans-serif; -->
+<!-- font-family: 'Poppins', sans-serif; -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap"
+	rel="stylesheet">
+
+<!-- CUSTOM CSS -->
+<link href="../assets/css/style.css" rel="stylesheet" id="option_style">
+
+<!-- <link rel="stylesheet" href="assets/css/default.css" id="option_color"> -->
+
+<!-- FAVICON -->
+<link href="../assets/img/favicon.png" rel="shortcut icon">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<!-- <body id="body" class="up-scroll"> -->
+<body id="body" style="margin: 50px;">
+
+	<div class="layout lostCtt infoInputVar">
+		<div class="flex">
+			<h1 class="subTit">기내 분실물 신고서</h1>
+		</div>
+	</div>
+
+	<div class="infoInputWrap">
+		<div class="infoInput" style="width: 50%;">
+			<div class="infoTtl">
+				<h3>신청인(이용자)</h3>
+			</div>
+
+			<div class="inputWrap">
+
+				<div class="row">
+					<div class="label">영문 성/이름</div>
+					<div class="value">
+						<input type="text" id="name"
+							placeholder="여권에 표시된 언어로 성과 이름을 입력해 주세요."
+							style="text-transform: uppercase;">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="label">연락처</div>
+					<div class="value">
+						<input type="text" id="phone" placeholder="예): 01010002000"
+							style="text-transform: uppercase;">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="label">주소</div>
+					<div class="value">
+						<input type="text" id="address1"
+							placeholder="예): 서울 강서구 마곡중앙2로 35">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="label">상세주소</div>
+					<div class="value">
+						<input type="text" id="address2" placeholder="예): 101동 1101호">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="label">우편번호</div>
+					<div class="value">
+						<input type="text" id="zipcode" placeholder="예): 08577">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="label">이메일</div>
+					<div class="value">
+						<input type="text" id="email"
+							placeholder="예): airpremia@airpremia.com">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="label">예약 티켓 ID</div>
+					<div class="value">
+						<input type="text" id="ticket_id">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="label">항공편</div>
+					<div class="value">
+						<input type="text" id="schedule" placeholder="예): YP545">
+					</div>
+				</div>
+
+				<!-- 달력뜨게 -->
+				<div class="row">
+					<div class="label" style="margin-bottom: 10px;">탑승일</div>
+					<div class="value" style="margin-top: 15px;">
+						<div class="select-default"
+							style="display: inline-block; margin-right: 15px;">
+							<div class="form-group mb-6">
+								<div class="input-container">
+									<input type="text" class="form-control single-date">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 탑승 구간 선택 -->
+				<div class="row">
+					<div class="label">탑승구간</div>
+					<div class="value">
+						<div class="select-default"
+							style="display: inline-block; margin-right: 15px;">
+							<select class="select-location">
+								<option>출발지 선택</option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+							</select>
+						</div>
+
+						<div class="select-default"
+							style="display: inline-block; margin-right: 15px;">
+							<select class="select-location">
+								<option>도착지 선택</option>
+								<option>U.S.A</option>
+								<option>U.K</option>
+								<option>ASIA</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<!-- 좌석 -->
+				<div class="row">
+					<div class="label">좌석</div>
+					<div class="value">
+						<input type="text" id="seat" placeholder="예): 11C">
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="infoInput bdB" style="width: 50%;">
+			<div class="infoTtl">
+				<h3>분실물품</h3>
+			</div>
+			<div class="inputWrap">
+
+				<!-- 분실 물품 -->
+				<div class="row">
+					<div class="label">물품</div>
+					<div class="value">
+						<input type="text" id="product" placeholder="분실물을 입력해주세요.">
+					</div>
+				</div>
+
+				<!-- 특이사항 -->
+				<div class="row">
+					<div class="label">특이사항</div>
+					<div class="value">
+						<input type="text" id="product" placeholder="상표명 등 특이사항을 입력해주세요.">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="infoInput bdB">
+			<div class="infoTtl">
+				<h3>유의사항</h3>
+			</div>
+			<div class="inputWrap">
+				<ul class="listGlobal">
+					<li>신고서는 기내에서 발생한 물품을 찾기 위한 신고서 입니다. 공항 및 이동지역에서 분실물품은 접수가 되지
+						않습니다. 공항 및 이동지역에서 분실한 물품은 해당 공항 분실물센터 또는 세관에 문의하시기 바랍니다.</li>
+					<li>수집하는 개인정보는 영문이름, 전화번호, 주소, 이메일, 탑승정보(편명,탑승일,출/도착정보,좌석)
+						입니다.<br>수집된 개인정보는 30일 동안 보관 하며, 제3자에게 제공되지 않습니다.
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="buttonWrapper"
+		style="text-align: center; margin-top: 30px;">
+		<button id="btnCofrm" class="taskButton blue">신청</button>
+	</div>
+
+
+
+
+
+
+
+
+
+	<!-- JAVASCRIPTS -->
+	<script src='../assets/plugins/jquery/jquery-3.4.1.min.js'></script>
+	<script src='../assets/plugins/bootstrap/js/bootstrap.bundle.js'></script>
+	<script src='../assets/plugins/menuzord/js/menuzord.js'></script>
+
+	<script src='../assets/plugins/selectric/jquery.selectric.min.js'></script>
+	<script src='../assets/plugins/dzsparallaxer/dzsparallaxer.js'></script>
+
+
+	<script src='../assets/plugins/fancybox/jquery.fancybox.min.js'></script>
+	<script src='../assets/plugins/daterangepicker/moment.min.js'></script>
+	<script src='../assets/plugins/daterangepicker/daterangepicker.js'></script>
+
+
+	<script>
+		window.addEventListener('DOMContentLoaded', function() {
+			const inputField = document
+					.querySelector('.form-control.single-date');
+			const textElement = document.querySelector('.arrow_text');
+
+			inputField.addEventListener('input', function() {
+				textElement.textContent = inputField.value; // 입력 상자의 값으로 텍스트를 업데이트
+			});
+		});
+	</script>
+
+	<script src='../assets/plugins/smoothscroll/SmoothScroll.js'></script>
+	<script src='../assets/plugins/lazyestload/lazyestload.js'></script>
+	<script src='../assets/plugins/owl-carousel/owl.carousel.min.js'></script>
+	<script src='../assets/plugins/rateyo/jquery.rateyo.min.js'></script>
+
+
+	<script>
+		window.addEventListener('DOMContentLoaded', function() {
+			const inputField = document
+					.querySelector('.form-control.single-date');
+			const textElement = document.querySelector('.arrow_text');
+
+			inputField.addEventListener('input', function() {
+				textElement.textContent = inputField.value; // 입력 상자의 값으로 텍스트를 업데이트
+			});
+		});
+	</script>
+
+
+	<script src='../assets/plugins/velocity/velocity.min.js'></script>
+	<script
+		src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDU79W1lu5f6PIiuMqNfT1C6M0e_lq1ECY'></script>
+	<script src='../assets/plugins/map/js/markerclusterer.js'></script>
+	<script src='../assets/plugins/map/js/rich-marker.js'></script>
+	<script src='../assets/plugins/map/js/infobox_packed.js'></script>
+	<script src='../assets/js/map.js'></script>
+
+
+
+	<script>
+		var d = new Date();
+		var year = d.getFullYear();
+		document.getElementById("copy-year").innerHTML = year;
+	</script>
+	<script src='../assets/js/listty.js'></script>
+</body>
+</html>
