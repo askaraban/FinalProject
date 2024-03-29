@@ -72,7 +72,7 @@ button {
 	font-size: 1rem;
 	font-weight: 500;
 	letter-spacing: -0.032em;
-	width: 100%;
+	width: 50%;
 	height: 3rem;
 	padding: 0 0.25rem;
 	color: #fff;
@@ -98,6 +98,36 @@ div.search {
 element.style {
 	max-width: fit-content;
 }
+
+.buttonWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.input-container {
+	position: relative;
+	display: inline-block;
+}
+
+.arrow_text {
+	display: none;
+	position: absolute;
+	bottom: -25px;
+	left: 0; right : 0; background : #888; color : #fff; padding : 3px 6px;
+	border-radius : 3px; font-size : 12px;
+	text-align: center;
+	right: 0;
+	background: #888;
+	color: #fff;
+	padding: 3px 6px;
+	border-radius: 3px;
+	font-size: 12px;
+}
+
+.input-container:hover .arrow_text {
+	display: block;
+}
 </style>
 <head>
 
@@ -105,7 +135,7 @@ element.style {
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>기내 분실물 센터</title>
+<title>Event Listing - Listty</title>
 
 <!-- PLUGINS CSS STYLE -->
 <link href='../assets/plugins/fontawesome-5.15.2/css/all.min.css'
@@ -118,17 +148,22 @@ element.style {
 	rel='stylesheet'>
 
 <link href='../assets/plugins/selectric/selectric.css' rel='stylesheet'>
-<link href='../assets/plugins/dzsparallaxer/dzsparallaxer.css'
+
+<link href='../assets/plugins/fancybox/jquery.fancybox.min.css'
+	rel='stylesheet'>
+<link href='../assets/plugins/owl-carousel/assets/owl.carousel.min.css'
+	rel='stylesheet'>
+<link
+	href='../assets/plugins/owl-carousel/assets/owl.theme.default.min.css'
+	rel='stylesheet'>
+
+<link href='../assets/plugins/map/css/map.css' rel='stylesheet'>
+<link href='../assets/plugins/rateyo/jquery.rateyo.min.css'
 	rel='stylesheet'>
 
 
-
-
-<link href='../assets/plugins/map/css/map.css' rel='stylesheet'>
-
-
-
-
+<link href='../assets/plugins/daterangepicker/daterangepicker.css'
+	rel='stylesheet'>
 
 <!-- GOOGLE FONT -->
 <!-- font-family: 'Mulish', sans-serif; -->
@@ -140,16 +175,17 @@ element.style {
 <!-- CUSTOM CSS -->
 <link href="../assets/css/style.css" rel="stylesheet" id="option_style">
 
-<link rel="stylesheet" href="assets/css/default.css" id="option_color">
+<!-- <link rel="stylesheet" href="assets/css/default.css" id="option_color"> -->
+
 <!-- FAVICON -->
 <link href="../assets/img/favicon.png" rel="shortcut icon">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 
 </head>
 
@@ -169,7 +205,8 @@ element.style {
 		<div style="text-align: center;">
 			<div class="search"
 				style="display: inline-block; margin-top: 20px; max-width: 100%; border-radius: 10px; padding: 30px;">
-				<form method="GET" action="listings-half-screen-map-list.html">
+				<form method="GET" action="listings-half-screen-map-list.html"
+					style="margin-top: 20px;">
 					<div class="select-default"
 						style="display: inline-block; margin-right: 15px;">
 						<select class="select-location">
@@ -190,16 +227,12 @@ element.style {
 					</div>
 					<div class="select-default"
 						style="display: inline-block; margin-right: 15px;">
-						<select class="select-location">
-							<option>도착</option>
-							<option>Restaurants</option>
-							<option>Hotels</option>
-							<option>Nightclubs</option>
-							<option>Automotive</option>
-							<option>Museums</option>
-							<option>Movie Theaters</option>
-							<option>Shopping</option>
-						</select>
+						<div class="form-group mb-6">
+							<div class="input-container">
+								<input type="text" class="form-control single-date">
+								<p class="arrow_text">도착일자를 선택해주세요.</p>
+							</div>
+						</div>
 					</div>
 					<button type="submit" class="btn c"
 						style="vertical-align: top; background-color: #22baa0; color: white;">
@@ -271,12 +304,13 @@ element.style {
 					</div>
 				</div>
 				<h3 class="subSmTit"
-					style="font-size: 1.25rem; font-weight: bold; margin-top: 50px; margin-bottom: 20px;">유의사항</h3>
+					style="font-size: 1.25rem; font-weight: bold; margin-top: 70px; margin-bottom: 20px;">유의사항</h3>
 				<ul>
-					<li style="color: black; margin-bottom: 10px; font-size: 15px;">습득한 물건은 30일간 보관 후 폐기되며, 목베개와 부패성물품은 도착 후 48시간이 경과하면 폐기
-						처분됩니다.</li>
-					<li style="color: black; font-size: 15px;">해당 지점에서 분실물 인수 시 신청서를 작성하신 분의 신분증을 필수로 지참하여 주시기 바랍니다. <br>(신분증
-						미지참 시 분실물 인수에 제한이 있을 수 있습니다.)
+					<li style="color: black; margin-bottom: 10px; font-size: 15px;">습득한
+						물건은 30일간 보관 후 폐기되며, 목베개와 부패성물품은 도착 후 48시간이 경과하면 폐기 처분됩니다.</li>
+					<li style="color: black; font-size: 15px;">해당 지점에서 분실물 인수 시
+						신청서를 작성하신 분의 신분증을 필수로 지참하여 주시기 바랍니다. <br>(신분증 미지참 시 분실물 인수에
+						제한이 있을 수 있습니다.)
 					</li>
 				</ul>
 			</div>
@@ -295,19 +329,33 @@ element.style {
 	<script src='../assets/plugins/dzsparallaxer/dzsparallaxer.js'></script>
 
 
-
+	<script src='../assets/plugins/fancybox/jquery.fancybox.min.js'></script>
+	<script src='../assets/plugins/daterangepicker/moment.min.js'></script>
+	<script src='../assets/plugins/daterangepicker/daterangepicker.js'></script>
 
 
 
 
 	<script src='../assets/plugins/smoothscroll/SmoothScroll.js'></script>
 	<script src='../assets/plugins/lazyestload/lazyestload.js'></script>
+	<script src='../assets/plugins/owl-carousel/owl.carousel.min.js'></script>
+	<script src='../assets/plugins/rateyo/jquery.rateyo.min.js'></script>
 
 
+	<script>
+		window.addEventListener('DOMContentLoaded', function() {
+			const inputField = document
+					.querySelector('.form-control.single-date');
+			const textElement = document.querySelector('.arrow_text');
+
+			inputField.addEventListener('input', function() {
+				textElement.textContent = inputField.value; // 입력 상자의 값으로 텍스트를 업데이트
+			});
+		});
+	</script>
 
 
-
-
+	<script src='../assets/plugins/velocity/velocity.min.js'></script>
 	<script
 		src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDU79W1lu5f6PIiuMqNfT1C6M0e_lq1ECY'></script>
 	<script src='../assets/plugins/map/js/markerclusterer.js'></script>
@@ -318,10 +366,10 @@ element.style {
 
 
 	<script>
-var d = new Date();
-var year = d.getFullYear();
-document.getElementById("copy-year").innerHTML = year;
-</script>
+		var d = new Date();
+		var year = d.getFullYear();
+		document.getElementById("copy-year").innerHTML = year;
+	</script>
 	<script src='../assets/js/listty.js'></script>
 </body>
 </html>
