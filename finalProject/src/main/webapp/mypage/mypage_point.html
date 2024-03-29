@@ -43,65 +43,69 @@
 <!-- <section class="bg-light py-5 height100vh"> -->
 <section style="width: 100%; margin: 20px;" >
   <div class="container">
-      <h2 class="fw-normal mb-4 mb-md-0">회원 등급</h2>
+      <h2 class="fw-normal mb-4 mb-md-0">포인트</h2>
 
       <div class="col-md-7 col-lg-8" style="width: 100%; margin-top: 20px;">
         <div class="card">
-          <div class="card-body p-6" style="display: flex; flex-direction: row; align-items:center; padding: 10px;">
-            <div class="col-md-5 col-lg-4" style="width: 30%">
-	          <!-- <div class="card card-profile"> -->
-	           <!-- <div class="card-profile-img py-6" style="text-align: center;">  --> 
-	           <div style="text-align: center; margin-right: 50px;">  
-	             <h4 class="fw-normal mb-4">SUMIN KIM 님의 등급</h4>
-	             <h2 class="fw-normal mb-4">BLUE</h2>
+          <div class="card-body p-6" style="display: flex; flex-direction: row; align-items: center;">
+	        <div class="col-md-5 col-lg-4" style="margin : 10px;">
+	           <div class="custom-file" style="text-align: left;">
+	             <h4 class="fw-normal mb-4"><strong>SUMIN KIM</strong> 님의 보유 포인트</h4>
+	             <h3 class="fw-normal mb-4">0pp</h3> 
 	           </div>
-	        </div>
-	        <div class="col-md-5 col-lg-4" style="width: 70%">
-	           <div class="custom-file" >
-	             <h4 class="fw-normal mb-4">항공권 결제 금액 적립</h4> 
-	             <h2 class="fw-normal mb-4">1,000원 당 7 포인트 비율로 적립</h2>
+	       </div>  
+	       <div class="col-md-5 col-lg-4" style="margin : 10px;">
+	           <div class="custom-file" style="text-align: left;">
 	           </div>
-	       <div class="col-md-5 col-lg-4" >
+	       </div>  
+	       <div class="col-md-5 col-lg-4" style="float: right;">
 	          <div class="card-profile-img py-6"  style="text-align: center;"> 
 	            <div style="margin: 10px;">
 	            <h3>나의 등급</h3>
+	            <a href="pricing-table.html" class="btn btn-success btn-lg mb-3"> > BLUE</a>
 	          	</div>
 	          	
 	          	<div style="margin: 10px;">
 	            <h3>포인트</h3>
+	            <a href="pricing-table.html" class="btn btn-success btn-lg mb-3"> > 10만P</a>
 	          	</div>
+	          </div>
+	        </div>
 	       </div>    
-	        </div>
-	        </div>
+	        
          </div>
        </div>
-       
-        <div class="card">
-          <div class="card-body p-6" style="display: flex; flex-direction: row; align-items:center; padding: 10px;">
-            <div class="col-md-5 col-lg-4" style="width: 30%">
-	          <!-- <div class="card card-profile"> -->
-	           <!-- <div class="card-profile-img py-6" style="text-align: center;">  --> 
-	           <div style="text-align: center; margin-right: 50px;">  
-	             <h4 class="fw-normal mb-4">최근 24개월 승급 스코어</h4>
-	             <h2 class="fw-normal mb-4">1000pp</h2>
-	             <a href="pricing-table.html" class="btn btn-secondary btn mb-3">GOLD 승급 시 제공</a>
-	           </div>
-	        </div>
-	        <div class="col-md-5 col-lg-4" style="width: 70%">
-	         	<!-- animated -->
-				<div class="col-md-6">
-					<div class="progress rounded-pill mb-2">
-					<div class="progress-bar bg-indigo progress-bar-striped progress-bar-animated rounded-pill fs-10px fw-bold" style="width: 100%">Animated</div>
-				</div>
-	        </div>
-         </div>
-       </div>
-       
   </div>
       
+      <ul class="nav nav-pills">
+		  <li class="nav-item" style="margin: 5px; ">
+		    <a href="#default-tab-1" data-bs-toggle="tab" class="nav-link active" style="background-color: #43C4AE;">다가오는 여정</a>
+		  </li>
+		  <li class="nav-item" style="margin: 5px;">
+		    <a href="#default-tab-1" data-bs-toggle="tab" class="nav-link active" style="background-color: #43C4AE;">지난 여정</a>
+		  </li>
+		   <li class="nav-item" style="margin: 5px;">
+		    <a href="#default-tab-1" data-bs-toggle="tab" class="nav-link active" style="background-color: #43C4AE;">나의 분실물 내역</a>
+		  </li>
+		</ul>
+		
 		<div class="tab-content panel p-3 rounded">
 		  <div class="tab-pane fade active show" id="default-tab-1">
 		  	<div class="table-responsive">
+			 <!--  <table class="table">
+			    <tr>
+			    	<th>테이블 컬럼1</th>
+			    </tr>
+			    <tr>
+			    	<th>테이블 컬럼2</th>
+			    </tr>
+			    <tr>
+			    	<td>테이블 내용1</td>
+			    </tr>
+			     <tr>
+			    	<td>테이블 내용2</td>
+			    </tr>
+			  </table> -->
 			  <div class="panel panel-inverse" data-sortable-id="table-basic-4">
 
 <div class="panel-body">
@@ -114,11 +118,15 @@
 <th nowrap>여정</th>
 <th nowrap>노선</th>
 <th nowrap>일정</th>
+<th nowrap>상태</th>
+<th nowrap>체크인</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
+<td>Table cell</td>
+<td>Table cell</td>
 <td>Table cell</td>
 <td>Table cell</td>
 <td>Table cell</td>
@@ -128,27 +136,13 @@
 <td>Table cell</td>
 <td>Table cell</td>
 <td>Table cell</td>
+<td>Table cell</td>
+<td>Table cell</td>
 </tr>
 <tr>
 <td>3</td>
 <td>Table cell</td>
 <td>Table cell</td>
-<td>Table cell</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Table cell</td>
-<td>Table cell</td>
-<td>Table cell</td>
-</tr>
-<tr>
-<td>5</td>
-<td>Table cell</td>
-<td>Table cell</td>
-<td>Table cell</td>
-</tr>
-<tr>
-<td>6</td>
 <td>Table cell</td>
 <td>Table cell</td>
 <td>Table cell</td>
@@ -163,21 +157,6 @@
 		</div>
       
   </div>
-  
-  <div id="유의사항">
-          <div class="card-body p-6" style="padding: 10px;">
-            <div class="col-md-5 col-lg-4" style="width:100%;">
-	          <p>
-	          회원 등급 유의사항<br>
-				회원 등급의 승급, 유지, 강등 심사는 매일 진행되며, 직전 24개월간 항공권 탑승을 통해 적립한 점수(Score)을 통해 실시합니다.<br>
-				최근 24개월 동안 적립된 스코어가 4,000점 이상일 경우 GOLD/9,000점 이상일 경우 DIAMOND로 회원 등급이 승급됩니다.<br>
-				승급된 회원 등급은 24개월 동안 유지되며 24개월 후의 스코어 적립 실적에 따라 승급, 유지, 강등이 이루어집니다.<br>
-				GOLD, DIAMOND 회원은 등급이 유지되는 24개월 안에 승급에 필요한 스코어 기준을 달성할 경우 등급이 유지되며 아닐 경우 강등됩니다.<br>
-				프레미아 멤버스 정책에 따라 항공권 결제를 통해 적립된 스코어만 등급 산정 기준에 포함됩니다.
-	          </p>
-         </div>
-       </div>
-  
   </div>
 </section>
 
