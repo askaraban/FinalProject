@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
 
+</style>
   <head>
 
     <!-- SITE TITTLE -->
@@ -53,7 +55,7 @@
 
 
 <!-- ====================================
-———	contact-us
+———	contact-us 
 ===================================== -->
 
 <section class="py-7 py-md-10" >
@@ -61,61 +63,29 @@
     <div class="row">
       <!-- Get inTouch -->
       <div class="col-md-7 col-lg-8">
-        <h2 class="fw-normal my-4 mt-md-0">분실물 등록</h2>
-
-        <hr>
-
+        <h2 class="fw-normal my-4 mt-md-0" style="font-size: 2em; font-weight: 800;">공지사항 등록</h2>
         <form class="pt-4">
           <div class="row">
-            <!-- Subject -->
+            <!-- 제목 -->
             <div class="form-group col-md-6 mb-6">
-              <label class="form-label" for="inputState">Subject*</label>
-              <div class="select-bg-transparent select-border w-100">
-                <select class="select-location">
-                  <option>-- Select Subject --</option>
-                  <option>Subject 1</option>
-                  <option>Subject 2</option>
-                  <option>Subject 3</option>
-                  <option>Subject 4</option>
-                  <option>Subject 5</option>
-                </select>
-              </div>
+              <label class="form-label" for="inputtext">Title</label>
+              <input type="text" class="form-control" id="notice_title" required>
             </div>
-
-            <!-- Company Name -->
-            <div class="form-group col-md-6 mb-6">
-              <label class="form-label" for="inputtext">Company Name*</label>
-              <input type="text" class="form-control" id="inputtext" required>
-            </div>
-          </div>
-
-          <!-- Your Name -->
-          <div class="form-group mb-6">
-            <label class="form-label" for="inputName">Your Name*</label>
-            <input type="text" class="form-control" id="inputName" required>
-          </div>
-
-          <!-- Email Address -->
-          <div class="form-group mb-6">
-            <label class="form-label" for="inputAddress">Email Address*</label>
-            <input type="email" class="form-control" id="inputAddress" required>
           </div>
 
           <!-- Text -->
           <div class="form-group mb-6">
-						<label for="textBox" class="form-label control-label">Text*</label>
-						<textarea class="form-control" rows="6" required></textarea>
+						<label for="textBox" class="form-label control-label">Text</label>
+						<textarea class="form-control" rows="10" id="notice_content" required></textarea>
           </div>
           <!-- Button -->
-          <button type="submit" class="btn btn-primary text-uppercase px-5 py-3">등록</button>
+          <button type="submit" class="btn btn-primary text-uppercase px-5 py-3" style="background-color: #22baa0; color: white;">등록</button>
         </form>
       </div>
     </div>
   </div>
 </section>
 
-
-  </div> <!-- element wrapper ends -->
 
 
 
