@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>공지사항 등록</title>
+    <title>FAQ등록</title>
 
     <!-- PLUGINS CSS STYLE -->
     <link href='../assets/plugins/fontawesome-5.15.2/css/all.min.css' rel='stylesheet'>
@@ -66,23 +66,36 @@
 
       <!-- Get inTouch -->
       <div class="col-md-7 col-lg-8">
-        <h2 class="fw-normal my-4 mt-md-0">공지사항 등록</h2>
+        <h2 class="fw-normal my-4 mt-md-0">FQA등록</h2>
         <hr>
 
         <form class="pt-4">
-          
+          <div class="row">
+            <!-- Subject -->
+            <div class="form-group col-md-6 mb-6">
+              <label class="form-label" for="inputState">카테고리</label>
+              <div class="select-bg-transparent select-border w-100">
+                <select class="select-location">
+                  <option>예약</option>
+                  <option>결제</option>
+                  <option>변경취소</option>
+                  <option>공항관련</option>
+                </select>
+              </div>
+            </div>
+          </div>
 
           <!--제목 -->
           <div class="form-group mb-6">
             <label class="form-label" for="inputtext">Title</label>
-            <input type="text" class="form-control" id="notice_title" required>
+            <input type="text" class="form-control" id="faq_title" required>
           </div>
 
 
           <!-- Content -->
           <div class="form-group mb-6">
 						<label for="textBox" class="form-label control-label">Content</label>
-						<textarea class="form-control" rows="10" id="notice_content" required></textarea>
+						<textarea class="form-control" rows="10" id="faq_content" required></textarea>
           </div>
           <!-- Button -->
           <button type="submit" class="btn btn-primary text-uppercase px-5 py-3" style="background-color: #22baa0; color: white;">등록</button>
