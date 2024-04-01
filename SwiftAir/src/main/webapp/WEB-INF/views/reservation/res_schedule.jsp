@@ -192,6 +192,8 @@ $('#exampleModal').on('show.bs.modal', function (e) {
     var externalInputValue = $('#externalInput').val();
     $('#adultCnt').val(externalInputValue);
     $('#childCnt').val(externalInputValue);
+    $('#adultCnt').val('1');
+    $('#childCnt').val('0');
 });
 
 // 적용 버튼 클릭 시 실행
