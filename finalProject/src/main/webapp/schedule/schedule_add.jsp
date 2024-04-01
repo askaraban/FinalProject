@@ -62,36 +62,26 @@
 				</div>
 				<div class="col-sm-8">
 		            	<div class="mb-4">
-		            		<div class="col-sm-2 mb-1 fw-bold">항공기명</div>
-							<input type="text" class="form-control" value="SW0000" required>
+							<div class="col-sm-2 mb-1 fw-bold">항공편명</div>
+								<div class="select-default bg-white">
+									<select class="select-location">
+										<option>항공편명</option>
+										<option>SW1011</option>
+										<option>SW1012</option>
+										<option>SW2011</option>
+										<option>SW2012</option>
+										<option>SW3011</option>
+										<option>SW3012</option>
+									</select>
+								</div>
+						</div>
+		            	<div class="mb-4">
+		            		<div class="col-sm-2 mb-1 fw-bold">출발지</div>
+							<input type="text" class="form-control" required>
 		            	</div>
 		            	<div class="mb-4">
-							<div class="col-sm-2 mb-1 fw-bold">출발지</div>
-								<div class="select-default bg-white">
-									<select class="select-location">
-										<option>출발지</option>
-										<option>서울/인천(ICN)</option>
-										<option>샌프란시스코(SFO)</option>
-										<option>로스앤젤레스(LAX)</option>
-										<option>뉴욕/뉴어크 리버티(EWR)</option>
-										<option>방콕(BKK)</option>
-										<option>도쿄/나리타(NRT)</option>
-									</select>
-								</div>
-							</div>
-		            	<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">도착지</div>
-								<div class="select-default bg-white">
-									<select class="select-location">
-										<option>도착지</option>
-										<option>서울/인천(ICN)</option>
-										<option>샌프란시스코(SFO)</option>
-										<option>로스앤젤레스(LAX)</option>
-										<option>뉴욕/뉴어크 리버티(EWR)</option>
-										<option>방콕(BKK)</option>
-										<option>도쿄/나리타(NRT)</option>
-									</select>
-								</div>
+							<input type="text" class="form-control" required>
 		            	</div>
 		            	<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">운항시간</div>
@@ -106,6 +96,10 @@
 								<div class="col-sm-1 mt-2 ms-n3">분</div>
 							</div>
 						</div>
+						<div class="mb-4">
+		            		<div class="col-sm-2 mb-1 fw-bold">가격</div>
+							<input type="text" class="form-control" required>
+		            	</div>
 						<div class="mb-2">
 							<div class="col-sm-2 mb-1 fw-bold">운항일자</div>
 							<div class="form-group col-md-3 col-lg-12 mb-0">
