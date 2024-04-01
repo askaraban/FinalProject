@@ -3,26 +3,140 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- annotation-driven : @Controller 어노테이션으로 등록된 Spring Bean을 Controller 클래스로
+	동작되는 기능을 제공하는 엘리먼트 -->
+	<!-- => @Controller 어노테이션을 사용한 Controller 클래스의 메소드에 @RequestMapping 어노테이션을
+	사용하여 클라이언트의 요청을 처리하는 요청 처리 메서드로 작성 -->
+	<!-- => @RequestMapping 어노테이션을 사용하면 HandlerMapping 객체를 사용하지 않아도 클라이언트
+	요청에 의해 요청 처리 클래스의 메소드가 호출되도록 처리 -->
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
+	<!-- resources : 클라이언트 요청에 대해 Front Controller가 요청 처리 메소드를 호출하지 
+	않고 직접 응답 처리되도록 설정하는 엘리먼트 - 리소스 파일을 요청한 경우 직접 응답 처리 -->
+	<!-- mapping 속성 : 클라이언트에 의해 요청되는 리소스 파일의 요청 URL 주소의 패턴을 속성값으로 설정 -->
+	<!-- => [**] 패턴문자를 속성값으로 사용한 경우 현재 폴더 및 하위 폴더의 리소스 파일 요청 가능 -->
+	<!-- location 속성 : 클라이언트 요청에 의해 리소스 파일을 검색하여 제공하기 위한 폴더를 속성값으로 설정 -->
+	<!-- <resources mapping="/resources/**" location="/resources/" /> --> 
+	<resources mapping="/images/**" location="/resources/images/" />
+	<resources mapping="/css/**" location="/resources/css/" />
+	<resources mapping="/js/**" location="/resources/js/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="3"/>
 	</beans:bean>
 	
-	<context:component-scan base-package="swift.air.java" />
+	<!-- UrlBasedViewResolver 클래스를 Spring Bean으로 등록 -->
+	<!-- => UrlBasedViewResolver 객체 : 클라이언트 요청에 의해 호출되는 요청 처리 메소드의 
+	반환값(ViewName)을 Spring 프레임워크에서 제공하는 ViewResolver 객체가 아닌 외부의 
+	ViewResolver 객체로 응답 처리하기 위한 기능을 제공하는 ViewResolver 객체 -->
+	<!-- => 뷰이름으로 응답 처리하기 위한 ViewResolver 객체를 커스터마이징(Customizing) 할 때 사용하는 객체 -->
+	<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<!-- viewClass 필드에 ViewResolver 기능을 제공할 클래스가 저장되도록 값 주입 -->
+		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+		<!-- order 필드에 ViewResolver 객체의 우선순위를 설정하기 위한 정수값 주입 -->
+		<!-- => ViewResolver 객체가 여러개 등록되어 있는 경우 반드시 설정 -->
+		<!-- => 필드에 저장된 정수값이 작을수록 우선순위가 높게 설정 -->
+		<beans:property name="order" value="2"/>
+	</beans:bean>
 	
+	<!-- TilesConfigurer 클래스를 Spring Bean으로 등록 -->
+	<!-- => TilesConfigurer 객체 : 요청 처리 메소드의 반환값(ViewName)으로 TilesView 객체가 
+	응답하기 위한 정보를 저장된 환경설정파일을 제공하기 위한 객체 -->
+	<beans:bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<!-- definitions 필드에 List 객체를 생성하여 저장되도록 의존성 주입 -->
+		<!-- => List 객체의 요청에는 TilesView 객체가 사용할 환경설정파일의 경로가 저장되도록 설정 -->
+		<beans:property name="definitions">
+			<beans:list>
+				<beans:value>/WEB-INF/spring/appServlet/tiles.xml</beans:value>
+			</beans:list>
+		</beans:property>	
+	</beans:bean>
 	
+	<!-- <context:component-scan base-package="xyz.itwill.spring" /> -->
+	<context:component-scan base-package="swift.air.controller" />
+	<context:component-scan base-package="swift.air.dao" />
+	<context:component-scan base-package="swift.air.service" />
+
+	<!--  메세지 관리 기능을 제공하는 클래스(ReloadableResourceBundleMessageSource)를 Spring Bean으로 등록 -->
+	<!-- => Spring Bean의 식별자(beanName)을 반드시 [messageSource]로 설정 -->	
+	<beans:bean class="org.springframework.context.support.ReloadableResourceBundleMessageSource" id="messageSource">
+		<!-- basenames 필드에는 List 객체를 생성하여 저장되도록 의존성 주입 -->
+		<!-- => List 객체의 요소에는 메세지가 저장된 Properties 파일의 경로를 저장 -->
+		<!-- => Properties 파일 -->
+		<beans:property name="basenames">
+			<beans:list>
+				<!-- [src/main/webapp] 폴더에 작성된 Properties 파일을 참조 -->
+				<!-- => Properties 파일이 변경되면 자동으로 변경된 메세지 적용 -->
+				<!-- <beans:value>/WEB-INF/message/label</beans:value> -->
 	
+				<!-- [src/main/java] 또는 [src/main/resources] 폴더에 Properties 파일을 작성한 
+				경우 classpath 접두사를 사용하여 Properties 파일에 참조 -->
+				<!-- => Properties 파일이 변경되면 WAS 프로그램을 반드시 재실행해야 변경된 메세지 적용 -->
+				<beans:value>classpath:message/label</beans:value>
+				
+				<beans:value>/WEB-INF/message/error</beans:value>
+			</beans:list>
+		</beans:property>
+		<!-- cacheSeconds 필드에 Properties 파일을 읽어 메모리에 로딩하기 위한 시간(초)이 저장되도록 값 주입 -->
+		<beans:property name="cacheSeconds" value="60"/>
+		<!-- defaultEncoding 필드에 Properties 파일의 문자형태(캐릭터셋)을 저장되도록 값 주입 -->
+		<beans:property name="defaultEncoding" value="utf-8"/>
+	</beans:bean>
+	
+	<!-- 세션 속성값으로 저장된 Locale 객체를 사용해 메세지를 제공하는 기능의 클래스를 Spring Bean으로 등록 -->
+	<beans:bean class="org.springframework.web.servlet.i18n.SessionLocaleResolver" id="localeResolver">
+		<!-- defaultLocale 필드에 기본적으로 사용될 언어가 저장되도록 값 주입 -->
+		<beans:property name="defaultLocale" value="ko"/>
+	</beans:bean>
+	
+	<!-- TransactionManager 객체를 사용하여 트렌젝션을 관리할 수 있도록 설정하기 위해 tx 
+	네임스페이스에 spring-tx.xsd 파일을 제공받아 엘리먼트를 사용할 수 있도록 설정 -->
+	<!-- advice  : TransactionManager 객체(Spring Bean)를 Advisor로 설정하기 위한 엘리먼트 -->
+	<!-- Advisor : 삽입위치(JoinPoint)가 정해져 있는 횡단관심코드의 메소드가 작성된 Advice 클래스의 객체 -->
+	<!-- id 속성 : advice 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
+	<!-- transaction-manager 속성 : TransactionManager 클래스가 등록된 Spring Bean의 식별자
+	(beanName)를 속성값으로 설정 -->
+	<!-- => TransactionManager 객체(Spring Bean)를 사용하여 커밋 또는 롤백 처리 기능 제공 -->
+	<!-- attributes : TransactionManager 객체에 의해 처리될 메소드 목록을 설정하기 위한 엘리먼트 -->
+	<!-- method : TransactionManager 객체에 의해 처리될 메소드와 트렌젝션 처리 방식을 설정하기 위한 엘리먼트 -->
+	<!-- name 속성 : TransactionManager 객체에 의해 처리될 메소드의 이름을 속성값으로 설정 -->
+	<!-- => 메소드 이름에 [*] 패턴문자를 사용하여 설정 가능 -->
+	<!-- rollback-for 속성 : ROLLBACK 명령이 실행되기 위한 예외를 속성값으로 설정 -->
+	<!-- read-only 속성 : false(기본) 또는 true(롤백처리 불필요) 중 하나를 속성값으로 설정 -->
+	<!--  
+	<tx:advice id="txAdvisor" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" rollback-for="Exception"/>
+			<tx:method name="modify*" rollback-for="Exception"/>
+			<tx:method name="remove*" rollback-for="Exception"/>
+			<tx:method name="get*" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+	-->
+		
+	<!-- SpringAOP 기능을 사용할 수 있도록 설정하기 위해 aop 네임스페이스에 spring-aop.xsd 
+	파일을 제공받아 엘리먼트를 사용할 수 있도록 설정 -->
+	<!-- => SpringAOP 기능을 사용하여 타겟메소드 호출시 TransactionManager 객체가 실행되도록 설정 -->
+	<!-- advisor : Advisor(삽입위치가 지정된 Advice 객체)를 제공받아 사용하기 위한 엘리먼트 -->
+	<!-- advice-ref 속성 : advice 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
+	<!--  
+	<aop:config>
+		<aop:advisor advice-ref="txAdvisor" pointcut="execution(* xyz.itwill09.service..*(..))"/>	
+	</aop:config>
+	-->		
 </beans:beans>
