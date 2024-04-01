@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Event - detail</title>
+    <title>NOTICE - detail</title>
 
     <!-- PLUGINS CSS STYLE -->
     <link href='../assets/plugins/fontawesome-5.15.2/css/all.min.css' rel='stylesheet'>
