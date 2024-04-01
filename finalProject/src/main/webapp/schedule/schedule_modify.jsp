@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 
@@ -7,7 +9,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Event - add</title>
+<title>Schedule - modify</title>
 <!-- PLUGINS CSS STYLE -->
 <link href='../assets/plugins/fontawesome-5.15.2/css/all.min.css' rel='stylesheet'>
 <link href='../assets/plugins/fontawesome-5.15.2/css/fontawesome.min.css' rel='stylesheet'>
@@ -16,6 +18,8 @@
 
 <link href='../assets/plugins/selectric/selectric.css' rel='stylesheet'>
 <link href='../assets/plugins/dzsparallaxer/dzsparallaxer.css' rel='stylesheet'>
+
+<link href='../assets/plugins/map/css/map.css' rel='stylesheet'>
  
 <!-- GOOGLE FONT --><!-- font-family: 'Mulish', sans-serif; --><!-- font-family: 'Poppins', sans-serif; -->
 <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -43,45 +47,70 @@
 <body id="body" class="up-scroll">
 
 <!-- ====================================
-———	이벤트 등록
+———	운항일정 수정
 ===================================== -->
 <section class="py-7 py-md-10">
 	<div class="container">
-		<h2 class="fw-normal mb-4 mb-md-5">이벤트 등록</h2>
+		<h2 class="fw-normal mb-4 mb-md-5">운항일정 수정</h2>
 		<div class="col-12">
 
-        <!-- 이벤트 정보 -->
+        <!-- 운항일정 정보 -->
         <div class="border rounded px-6 py-5 mb-6">
 			<div class="row">
 				<div class="col-sm-4">
-					<h5>이벤트</h5>
+					<h5>운항일정</h5>
 				</div>
 				<div class="col-sm-8">
 					<div class="mb-4">
-						<div class="col-sm-2 mb-1 fw-bold">제목</div>
-						<input type="text" class="form-control" required>
+						<div class="col-sm-2 mb-1 fw-bold">항공기명</div>
+						<input type="text" class="form-control" value="SW0000" required>
 					</div>
 					<div class="mb-4">
-						<div class="col-sm-2 mb-1 fw-bold">운영기간</div>
+						<div class="col-sm-2 mb-1 fw-bold">출발지</div>
+							<div class="select-default bg-white">
+								<select class="select-location">
+									<option>출발지</option>
+									<option>서울/인천(ICN)</option>
+									<option>샌프란시스코(SFO)</option>
+									<option>로스앤젤레스(LAX)</option>
+									<option>뉴욕/뉴어크 리버티(EWR)</option>
+									<option>방콕(BKK)</option>
+									<option>도쿄/나리타(NRT)</option>
+								</select>
+							</div>
+					</div>
+					<div class="mb-4">
+						<div class="col-sm-2 mb-1 fw-bold">도착지</div>
+							<div class="select-default bg-white">
+								<select class="select-location">
+									<option>도착지</option>
+									<option>서울/인천(ICN)</option>
+									<option>샌프란시스코(SFO)</option>
+									<option>로스앤젤레스(LAX)</option>
+									<option>뉴욕/뉴어크 리버티(EWR)</option>
+									<option>방콕(BKK)</option>
+									<option>도쿄/나리타(NRT)</option>
+								</select>
+							</div>
+					</div>
+					<div class="mb-4">
+						<div class="col-sm-2 mb-1 fw-bold">운항시간</div>
+						<div class="row">
+							<div class="col-sm-5">
+								<input type="number" class="form-control" required>
+							</div>
+							<div class="col-sm-1 mt-2 ms-n3">시간</div>
+							<div class="col-sm-5">
+								<input type="number" class="form-control" required>
+							</div>
+							<div class="col-sm-1 mt-2 ms-n3">분</div>
+						</div>
+					</div>
+					<div class="mb-2">
+						<div class="col-sm-2 mb-1 fw-bold">운항일자</div>
 						<div class="form-group col-md-3 col-lg-12 mb-0">
 							<input type="text" class="form-control" name="daterange">
 						</div>
-					</div>
-					<div class="mb-4">
-						<div class="col-sm-2 mb-1 fw-bold">행사내용</div>
-						<textarea class="form-control" rows="5" required></textarea>
-					</div>
-					<div class="mb-4">
-						<div class="col-sm-2 mb-1 fw-bold">유의사항</div>
-						<textarea class="form-control" rows="5" required></textarea>
-					</div>
-					<div class="mb-4">
-						<div class="col-sm-2 mb-1 fw-bold">대표 이미지</div>
-						<input type="file" class="form-control" required>
-					</div>
-					<div class="mb-2">
-						<div class="col-sm-2 mb-1 fw-bold">상세 이미지</div>
-						<input type="file" class="form-control" required>
 					</div>
 				</div>
 			</div>
@@ -90,7 +119,7 @@
 		<div style="float: right">
 			<button type="submit" class="btn btn-primary ms-1">목록</button>
 			<button type="submit" class="btn btn-primary ms-1">취소</button>
-			<button type="submit" class="btn btn-primary ms-1">등록</button>
+			<button type="submit" class="btn btn-primary ms-1">수정</button>
 		</div>
 	</div>
 </section>

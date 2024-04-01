@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <style>
@@ -312,8 +314,6 @@
 </section>
 
 
-  </div> <!-- element wrapper ends -->
-
      <!-- JAVASCRIPTS -->
     <script src='../assets/plugins/jquery/jquery-3.4.1.min.js'></script>
     <script src='../assets/plugins/bootstrap/js/bootstrap.bundle.js'></script>
@@ -331,5 +331,3 @@
     <script src='../assets/js/listty.js'></script>
   </body>
 </html>
-
-
