@@ -1,0 +1,305 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<style>
+.paging ul {
+    display: flex;
+    justify-content: center;
+}
+ol, ul, li {
+    list-style: none;
+}
+html, body, header, nav, section, article, aside, footer, table, th, td, div, dl, dt, dd, ol, ul, li, a, button, input, img, select, textarea, fieldset, form, label, legend, h1, h2, h3, h4, h5, h6, p, span, i, b, strong, em, sub, figcaption, figure {
+    margin: 0;
+    padding: 0;
+    font-family: "NotoSans", "Malgun Gothic", "dotum", "verdana", sans-serif;
+    font-style: normal;
+    text-transform: none;
+    vertical-align: baseline;
+    border: 0;
+}
+* {
+    box-sizing: border-box;
+}
+ul {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+}
+
+.tabBtn {
+    display: flex;
+}
+
+.rud .tabBtn .btn {
+    margin-right: 0;
+    padding: 0 0.75rem;
+    font-size: 0.875rem;
+    text-align: center;
+    font-weight: 500;
+    border-radius: 3.75rem;
+    cursor: pointer;
+}
+
+.rud .tabBtn .btn.on {
+    color: #fff;
+    background: #0c2340;
+}
+
+.qusList {
+    padding: 1.875rem 0;
+    border-bottom: 0.0625rem solid #ccc;
+}
+.qus {
+    margin-top: 3.75rem;
+    padding: 0.875rem 0;
+    border-top: 0.0625rem solid #222;
+    border-bottom: 0.0625rem solid #ccc;
+}
+
+.qusList .qst {
+    width: 100%;
+    padding-left: 3.75rem;
+    padding-bottom: 1.875rem;
+    position: relative;
+    text-align: left;
+}
+
+.qusList .asr {
+    /* padding-top: 1.875rem; */
+    width: 100%;
+    padding-left: 3.75rem;
+    position: relative;
+    text-align: left;
+}
+
+.qusList .qst::before{
+    position: absolute;
+    top: 0;
+    left: 1.25rem;
+    font-family: "Premia", "NotoSanas", "sans-serif";
+    font-weight: 700;
+    white-space: pre-wrap;
+    content: "Q";
+    color: gray;
+}
+
+.qusList .qst .tglFtb {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+
+
+
+.qusList .asr::before{
+    content: "A";
+    color: orange;
+    position: absolute;
+    top: 0;
+    left: 1.25rem;
+    font-family: "Premia", "NotoSanas", "sans-serif";
+    font-weight: 700;
+    /* font-size: 2.5rem; */
+    white-space: pre-wrap;
+}
+}
+
+
+</style>
+  <head>
+
+    <!-- SITE TITTLE -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>공지사항</title>
+
+    <!-- PLUGINS CSS STYLE -->
+    <link href='assets/plugins/fontawesome-5.15.2/css/all.min.css' rel='stylesheet'>
+    <link href='assets/plugins/fontawesome-5.15.2/css/fontawesome.min.css' rel='stylesheet'>
+    <link href='assets/plugins/listtyicons/style.css' rel='stylesheet'>
+    <link href='assets/plugins/menuzord/css/menuzord.css' rel='stylesheet'>
+    <link href='assets/plugins/selectric/selectric.css' rel='stylesheet'>
+    <link href='assets/plugins/dzsparallaxer/dzsparallaxer.css' rel='stylesheet'>
+    <link href='assets/plugins/daterangepicker/daterangepicker.css' rel='stylesheet'>
+    <link href='assets/plugins/map/css/map.css' rel='stylesheet'>
+    
+    <!-- GOOGLE FONT --><!-- font-family: 'Mulish', sans-serif; --><!-- font-family: 'Poppins', sans-serif; -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CUSTOM CSS -->
+    <link href="assets/css/style.css" rel="stylesheet" id="option_style">
+
+    <!-- <link rel="stylesheet" href="assets/css/default.css" id="option_color"> -->
+
+    <!-- FAVICON -->
+    <link href="assets/img/favicon.png" rel="shortcut icon">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  </head>
+
+
+<body id="body" class="up-scroll" >
+<section class="py-7 py-md-10">
+	<div class="container">
+		<div class="layout" style="padding: 3.75rem 2.5rem 12.5rem;">
+		 
+         <div class="comTitle">
+                <div class="flex">
+                    <h1 class="subTit">
+                      자주 묻는 질문
+                    </h1>
+                </div>
+         </div>
+            
+            <div class="tabMenu rud">
+              <div class="tabBtn" style="margin-top: 50px;">
+	             <input type="hidden" id="category" value="">
+	             <button class="btn on" onclick="fn_changeCategory(this.value);" value="">전체</button>
+	             <button class="btn" onclick="fn_changeCategory(this.value);" value="bs">유아,소아 좌석관련</button>
+	             <button class="btn" onclick="fn_changeCategory(this.value);" value="bk">예약관련</button>
+	             <button class="btn" onclick="fn_changeCategory(this.value);" value="pm">결제관련</button>
+	             <button class="btn" onclick="fn_changeCategory(this.value);" value="cc">변경 및 취소 관련</button>
+	             <button class="btn" onclick="fn_changeCategory(this.value);" value="bg">수하물관련</button>
+	             <button class="btn" onclick="fn_changeCategory(this.value);" value="ap">공항관련</button>
+              </div>
+            </div>
+            
+           <div class="qus">
+                <span>총&nbsp;<strong id="cnt">nn</strong>건</span>
+           </div>
+            
+           <div class="tabCont" id="FaqList">
+					<div class="mainSecNotice qust">
+						<div class="qusWrap tgLWrap">
+							<!-- 데이터 표출하는 곳 -->
+							<div class="qusList tgList">
+								<div class="qst tgBtn">
+									
+									<p class="tglFtb">유아와 소아의 나이는 어떻게 되나요?</p>
+								</div>
+								<div class="asr tgCont" style="">
+									<p>유아는 생후 7일 이상~만 24개월 미만입니다.<br>소아는 만 2세 이상~만 12세 미만입니다.<br>각
+									여정의 탑승일을 기준으로 유아와 소아의 연령이 적용됩니다.</p>
+								</div>
+							</div>
+							
+							
+							
+							<div class="qusList tgList">
+								<div class="qst tgBtn">
+									<p class="tglFtb">유아 및 소아 요금 할인이 있나요?</p>
+								</div>
+								<div class="asr tgCont" style="">유아 요금의 경우 성인 보호자 운임의 10%만
+									적용(90% 할인), 소아 요금은 성인 운임의 75%가 적용(25% 할인) 됩니다.</div>
+							</div>
+							
+							
+							<div class="qusList tgList">
+								<div class="qst tgBtn">
+									<p class="tglFtb">유아와 소아의 무료 수하물은 얼만큼 허용되나요?</p>
+								</div>
+								<div class="asr tgCont" style="">유아의 경우 무료 위탁 수하물이 10KG
+									제공되며, 소아는 노선별 예약 클래스 규정에 따라 제공됩니다. (예: 호찌민 노선, 이코노미 플렉스석 구매 시
+									23KG/이코노미 라이트석 구매 시 15KG)</div>
+							</div>
+							
+							
+							<div class="qusList tgList">
+								<div class="qst tgBtn">
+									<p class="tglFtb">아이 혼자 탑승이 가능한가요?</p>
+								</div>
+								<div class="asr tgCont" style="">
+									<span style="color: rgb(0, 0, 0);">만 5세 이상~만 12세 미만의 소아
+										손님이 만 18세 이상의 성인과 동반하지 않는 경우 비동반소아서비스를 제공하며, 예약센터 (1800-2626)를
+										통해 예약 가능합니다.</span>
+								</div>
+							</div>
+							
+							
+							<div class="qusList tgList">
+								<div class="qst tgBtn">
+									<p class="tglFtb">동반 유아도 별도로 좌석을 구매할 수 있나요?</p>
+								</div>
+								<div class="asr tgCont" style="display: none;">
+									<p>
+										<span style="color: rgb(0, 0, 0);">네, 항공권 예약 시 ‘좌석 점유
+											유아’로 선택하여 구매 가능합니다.</span><br> <span
+											style="color: rgb(0, 0, 0);">성인 운임의 75%가 적용되며(25% 할인)
+											공항시설 사용료는 면제됩니다.</span>
+									</p>
+									<p>
+										<span style="color: rgb(0, 0, 0);">무료 위탁 수하물은 노선별 예약
+											클래스 규정에 따라 제공됩니다. &nbsp;</span>
+									</p>
+								</div>
+							</div>
+							
+							
+						</div>
+					</div>
+					<input name="pageIndex" id="pageIndex" type="hidden" value="1">
+           </div>
+            
+	       <div class="paging">
+		      <ul id="pagingDiv">
+		      <li class="btnMv"><a class="pagelink" onclick="fn_linkPage('1')">&lt;</a></li><li class="on"><a class="on" onclick="fn_linkPage('1')">1</a></li><li><a onclick="fn_linkPage('2')">2</a></li><li><a onclick="fn_linkPage('3')">3</a></li><li><a onclick="fn_linkPage('4')">4</a></li><li><a onclick="fn_linkPage('5')">5</a></li><li><a onclick="fn_linkPage('6')">6</a></li><li><a onclick="fn_linkPage('7')">7</a></li><li><a onclick="fn_linkPage('8')">8</a></li><li><a onclick="fn_linkPage('9')">9</a></li><li><a onclick="fn_linkPage('10')">10</a></li><li class="btnMv"><a class="pagelink" onclick="fn_linkPage('2')">&gt;</a></li></ul>
+		        <input name="pageIndex" id="pageIndex" type="hidden" value="1">
+		   </div><br>  	    
+	    </div>
+	</div>
+</section>
+
+
+    <!-- JAVASCRIPTS -->
+    <script src='assets/plugins/jquery/jquery-3.4.1.min.js'></script>
+    <script src='assets/plugins/bootstrap/js/bootstrap.bundle.js'></script>
+    <script src='assets/plugins/menuzord/js/menuzord.js'></script>
+
+    <script src='assets/plugins/selectric/jquery.selectric.min.js'></script>
+    <script src='assets/plugins/dzsparallaxer/dzsparallaxer.js'></script>
+    
+    <script src='assets/plugins/smoothscroll/SmoothScroll.js'></script>
+    <script src='assets/plugins/lazyestload/lazyestload.js'></script>
+    
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDU79W1lu5f6PIiuMqNfT1C6M0e_lq1ECY'></script>
+    <script src='assets/plugins/map/js/markerclusterer.js'></script>
+    <script src='assets/plugins/map/js/rich-marker.js'></script>
+    <script src='assets/plugins/map/js/infobox_packed.js'></script>
+    <script src='assets/js/map.js'></script>
+    
+    <script src='assets/plugins/velocity/velocity.min.js'></script>
+    <script src='assets/plugins/fancybox/jquery.fancybox.min.js'></script>
+    <script src='assets/plugins/daterangepicker/moment.min.js'></script>
+    <script src='assets/plugins/daterangepicker/daterangepicker.js'></script>
+    <script src='assets/plugins/daterangepicker/package.js'></script>
+    <script src='assets/plugins/owl-carousel/owl.carousel.min.js'></script>
+    <script src='assets/plugins/rateyo/jquery.rateyo.min.js'></script>
+    
+    <script>
+      var d = new Date();
+      var year = d.getFullYear();
+      document.getElementById("copy-year").innerHTML = year;
+    </script>
+    <script type="text/javascript">
+	    const myModal = document.getElementById('myModal')
+	    const myInput = document.getElementById('myInput')
+	
+	    myModal.addEventListener('shown.bs.modal', () => {
+	      myInput.focus()
+	    })
+    </script>
+    <script src='assets/js/listty.js'></script>
+  </body>
+</html>
