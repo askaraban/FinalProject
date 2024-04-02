@@ -44,11 +44,13 @@
             <div class="login-header">
                 <div class="brand">
                     <span class="logo"></span> Swift Air
-                    <small>아기다리고기다리던 항공!</small>
+                    <small>Redefining travel with speed, convenience, and modernity.</small>
                 </div>
+                <!-- 
                 <div class="icon">
                     <i class="fa fa-plane"></i>
                 </div>
+                 -->
             </div>
             <!-- end brand -->
             <div class="login-content">
