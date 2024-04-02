@@ -27,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- CUSTOM CSS -->
-    <link href="<c:url value="/css/style.css"/>" rel="stylesheet" id="option_style">
+    <link href='<c:url value="/css/style.css"/>' rel='stylesheet' id='option_style'>
 
     <!-- <link rel="stylesheet" href="assets/css/default.css" id="option_color"> -->
 
@@ -60,6 +60,7 @@
     <script src='<c:url value="/plugins/smoothscroll/SmoothScroll.js"/>'></script>
     <script src='<c:url value="/plugins/lazyestload/lazyestload.js"/>'></script>
     
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDU79W1lu5f6PIiuMqNfT1C6M0e_lq1ECY'></script>
     <script src='<c:url value="/plugins/map/js/markerclusterer.js"/>'></script>
     <script src='<c:url value="/plugins/map/js/rich-marker.js"/>'></script>
     <script src='<c:url value="/plugins/map/js/infobox_packed.js"/>'></script>

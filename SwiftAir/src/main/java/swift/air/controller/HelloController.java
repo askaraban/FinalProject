@@ -31,6 +31,13 @@ public class HelloController {
 	//value 속성 : 클라이언트의 요청정보(Command - URL 주소)를 속성값으로 설정
 	// => value 속성외에 다른 속성이 없는 경우 속성값만 설정 가능
 	// => 요청 처리 메소드의 value 속성값이 중복될 경우 WAS 프로그램 실행시 에러 발생
+	
+	// 항공권 예매
+	@RequestMapping(value = "/reservation")
+	public String resSchedule() {
+		log.info("[/helloViewName] 페이지 요청 : HelloController 클래스의 helloViewName() 메소드 호출");
+		return "reservation/res_schedule";
+	}	
 	@RequestMapping(value = "/hello")
 	public String helloViewName() {//요청 처리 메소드
 		log.info("[/helloViewName] 페이지 요청 : HelloController 클래스의 helloViewName() 메소드 호출");
