@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /*
- 이름            널?       유형           
+Name          Null?    Type         
 ------------- -------- ------------ 
 FAQ_CATE_ID   NOT NULL NUMBER       
 FAQ_CATE_NAME          VARCHAR2(20) 

@@ -3,13 +3,14 @@ package swift.air.dto;
 import lombok.Builder;
 import lombok.Data;
 
-/* 컬럼명    제약조건 타입
-  --------- ---------  ------
- SCHEDULE_ID PK VARCHAR2(20)
- SCHEDULE_DEPARTURE_DATE UK DATE
- SCHEDULE_ARRIVAL_DATE UK DATE
- SCHEDULE_FLIGHT VARCHAR2(20)
- SCHEDULE_ROUTE_ID FK NUMBER 
+/*
+Name                    Null?    Type         
+----------------------- -------- ------------ 
+SCHEDULE_ID             NOT NULL VARCHAR2(20) 
+SCHEDULE_DEPARTURE_DATE          DATE         
+SCHEDULE_ARRIVAL_DATE            DATE         
+SCHEDULE_FLIGHT                  VARCHAR2(20) 
+SCHEDULE_ROUTE_ID                NUMBER   
  */
 
 @Data

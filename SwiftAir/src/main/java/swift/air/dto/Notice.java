@@ -4,12 +4,12 @@ import lombok.Builder;
 import lombok.Data;
 
 /*
- 이름             널?       유형             
+Name           Null?    Type           
 -------------- -------- -------------- 
 NOTICE_ID      NOT NULL NUMBER         
 NOTICE_TITLE            VARCHAR2(50)   
 NOTICE_CONTENT          VARCHAR2(1000) 
-NOTICE_DATE             DATE     
+NOTICE_DATE             DATE    
 */
 
 @Data

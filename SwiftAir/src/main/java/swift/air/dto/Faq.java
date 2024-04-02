@@ -4,13 +4,13 @@ import lombok.Builder;
 import lombok.Data;
 
 /*
- 이름          널?       유형             
+Name        Null?    Type           
 ----------- -------- -------------- 
 FAQ_ID      NOT NULL NUMBER         
 FAQ_TITLE            VARCHAR2(50)   
 FAQ_CONTENT          VARCHAR2(1000) 
 FAQ_DATE             DATE           
-FAQ_CATE             NUMBER  
+FAQ_CATE             NUMBER 
 */
 
 @Data
