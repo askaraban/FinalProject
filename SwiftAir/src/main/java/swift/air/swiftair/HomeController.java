@@ -1,4 +1,4 @@
-package swift.air.java;
+package swift.air.swiftair;
 
 import java.text.DateFormat;
 import java.util.Date;
