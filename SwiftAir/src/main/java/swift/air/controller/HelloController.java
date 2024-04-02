@@ -32,15 +32,9 @@ public class HelloController {
 	// => value 속성외에 다른 속성이 없는 경우 속성값만 설정 가능
 	// => 요청 처리 메소드의 value 속성값이 중복될 경우 WAS 프로그램 실행시 에러 발생
 	@RequestMapping(value = "/hello")
-	public void hello() {//요청 처리 메소드
-		//요청 처리 명령 작성
-		log.info("[/hello] 페이지 요청 : HelloController 클래스의 hello() 메소드 호출");
-	}
-	
-	@RequestMapping("/helloViewName")
 	public String helloViewName() {//요청 처리 메소드
 		log.info("[/helloViewName] 페이지 요청 : HelloController 클래스의 helloViewName() 메소드 호출");
-		return "home";
+		return "mypage/mypage";
 	}	
 	
 	@RequestMapping("/helloMav")

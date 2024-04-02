@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,10 +42,11 @@
 							<div>
 								<!-- <div class="card-profile-img py-6" style="text-align: center;">  -->
 								<div style="text-align: center;">
-									<img class="rounded-circle lazyestload"
-										data-src="../mypage/user.png" src="../mypage/user.png"
+									<img class="lazyestload"
+										data-src=<c:url value="/img/mypage/user.png"/>
+										src=<c:url value="/img/mypage/user.png"/>
 										alt="Image"
-										style="width: 50%; height: 50%; border-color: gray;">
+										style="width: 40%; height: 40%; border-color: gray;">
 								</div>
 							</div>
 						</div>
@@ -57,7 +59,7 @@
 									정보 변경</a>
 							</div>
 						</div>
-						<div class="col-md-5 col-lg-4" style="float: right;">
+						<div class="col-md-5 col-lg-4">
 							<div class="card-profile-img py-6" style="text-align: center;">
 								<div style="margin: 10px;">
 									<h3>나의 등급</h3>
@@ -87,10 +89,12 @@
 						href="#nav-pills-tab-2" data-bs-toggle="tab"
 						class="nav-link active" style="background-color: #43C4AE;">지난
 							여정</a></li>
+					<!-- 		
 					<li class="nav-item" style="margin: 5px;"><a
 						href="#nav-pills-tab-3" data-bs-toggle="tab"
 						class="nav-link active" style="background-color: #43C4AE;">나의
 							분실물 내역</a></li>
+					 -->
 				</ul>
 
 				<div class="tab-content panel p-3 rounded">
