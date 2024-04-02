@@ -37,7 +37,7 @@ public class HelloController {
 		return "mypage/mypage";
 	}	
 	
-	@RequestMapping("/helloMav")
+	@RequestMapping("/faq")
 	public ModelAndView helloModelAndView() {//요청 처리 메소드
 		log.info("[/helloMav] 페이지 요청 : HelloController 클래스의 helloModelAndView() 메소드 호출");
 		
@@ -48,7 +48,7 @@ public class HelloController {
 		*/
 
 		//ModelAndView 클래스의 생성자로 뷰이름(ViewName) 초기화
-		ModelAndView modelAndView=new ModelAndView("hello");
+		ModelAndView modelAndView=new ModelAndView("faq/faq_list");
 		
 		return modelAndView;
 	}

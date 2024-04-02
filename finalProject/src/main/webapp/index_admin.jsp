@@ -602,8 +602,8 @@
 	<![endif]-->
 	<script src="assets_admin/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="assets_admin/plugins/jquery-cookie/jquery.cookie.js"></script>
+	<script src="assets_admin/plugins/chart-js/chart.js"></script>
 	<!-- ================== END BASE JS ================== -->
-	
 	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
     <script src="assets_admin/plugins/morris/raphael.min.js"></script>
     <script src="assets_admin/plugins/morris/morris.js"></script>
@@ -613,6 +613,7 @@
 	<script src="assets_admin/plugins/gritter/js/jquery.gritter.js"></script>
 	<script src="assets_admin/js/dashboard-v2.min.js"></script>
 	<script src="assets_admin/js/apps.min.js"></script>
+	<script src="assets_admin/js/chart-js.demo.min.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
 	
 	<script>
