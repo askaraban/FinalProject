@@ -35,20 +35,20 @@
     <link href="<c:url value="/img/favicon.png"/>" rel="shortcut icon">
     
   </head>
-<body>
+	<div class="main-wrapper">
 	<div id="header">
 		<%-- insertAttribute 태그 : TilesView 객체의 환경설정파일에서 put-attribute 엘리먼트로
 		제공된 JSP 문서의 실행결과를 제공받아 삽입하기 위한 태그 --%>
 		<tiles:insertAttribute name="header"/>
 	</div>
-	
 	<div id="content">
 		<tiles:insertAttribute name="content"/>
 	</div>
-	
 	<div id="footer">
 		<tiles:insertAttribute name="footer"/>
 	</div>
+	</div>
+	
 	<!-- JAVASCRIPTS -->
     <script src='<c:url value="/plugins/jquery/jquery-3.4.1.min.js"/>'></script>
     <script src='<c:url value="/plugins/bootstrap/js/bootstrap.bundle.js"/>'></script>
@@ -86,5 +86,4 @@
 	    })
     </script>
     <script src='<c:url value="/js/listty.js"/>'></script>
-</body>
 </html>
