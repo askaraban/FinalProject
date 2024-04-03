@@ -44,7 +44,7 @@
           <td class="text-capitalize" style="text-align:center">2024.02.11</td>
           <td class="td-buttons-2">
             <div class="d-flex justify-content-center flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="listing-event.html">
+              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="modify">
                 <i class="fa fa-edit"></i>
                 수정
               </a>
@@ -66,7 +66,7 @@
           <td class="text-capitalize" style="text-align:center">2024.02.11</td>
           <td class="td-buttons-2">
             <div class="d-flex justify-content-center flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="listing-event.html">
+              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="modify">
                 <i class="fa fa-edit"></i>
                 수정
               </a>
@@ -88,7 +88,7 @@
           <td class="text-capitalize" style="text-align:center">2024.02.11</td>
           <td class="td-buttons-2">
             <div class="d-flex justify-content-center flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="listing-event.html">
+              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="modify">
                 <i class="fa fa-edit"></i>
                 수정
               </a>
@@ -110,7 +110,7 @@
           <td class="text-capitalize" style="text-align:center">2024.02.11</td>
           <td class="td-buttons-2">
             <div class="d-flex justify-content-center flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="listing-event.html">
+              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="modify">
                 <i class="fa fa-edit"></i>
                 수정
               </a>
@@ -132,7 +132,7 @@
           <td class="text-capitalize" style="text-align:center">2024.02.11</td>
           <td class="td-buttons-2">
             <div class="d-flex justify-content-center flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="listing-event.html">
+              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="modify">
                 <i class="fa fa-edit"></i>
                 수정
               </a>
@@ -154,7 +154,7 @@
           <td class="text-capitalize" style="text-align:center">2024.02.11</td>
           <td class="td-buttons-2">
             <div class="d-flex justify-content-center flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="listing-event.html">
+              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="modify">
                 <i class="fa fa-edit"></i>
                 수정
               </a>
@@ -176,7 +176,7 @@
           <td class="text-capitalize" style="text-align:center">2024.02.11</td>
           <td class="td-buttons-2">
             <div class="d-flex justify-content-center flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="listing-event.html">
+              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="modify">
                 <i class="fa fa-edit"></i>
                 수정
               </a>
@@ -198,7 +198,7 @@
           <td class="text-capitalize" style="text-align:center">2024.02.11</td>
           <td class="td-buttons-2">
             <div class="d-flex justify-content-center flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="listing-event.html">
+              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="modify">
                 <i class="fa fa-edit"></i>
                 수정
               </a>

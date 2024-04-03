@@ -71,9 +71,9 @@
 			</div>
  		</div>
 		<div style="float: right">
-		  <button type="submit" class="btn btn-primary ms-1">목록</button>
-		  <button type="submit" class="btn btn-primary ms-1">취소</button>
-		  <button type="submit" class="btn btn-primary ms-1">등록</button>
+		  <button type="submit" class="btn btn-primary ms-1" onclick="location.href='list'">목록</button>
+		  <button type="submit" class="btn btn-primary ms-1" onclick="location.href='list'">취소</button>
+		  <button type="submit" class="btn btn-primary ms-1" onclick="location.href='list'">등록</button>
 		</div>
 	</div>
 </section>

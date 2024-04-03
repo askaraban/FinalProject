@@ -48,10 +48,10 @@
 				<h5 class="mb-8">스위프트에어 이벤트와 함께 특별한 여정을 시작해보세요:)</h5>
 				<div class="d-flex align-items-center">
 					<div class="tapBtn">
-						<button type="button" onclick="location.href='event_detail.html'" class="btn-line on">
+						<button type="button" class="btn-line on" onclick="location.href='main'">
 						진행중
 						</button>
-						<button class="btn-line">
+						<button class="btn-line" onclick="location.href='main'">
 						종료됨
 						</button>
 						
@@ -63,8 +63,8 @@
 		<div class="row">
 			<div class="col-md-6 col-lg-6">
 				<div class="card border-0 bg-transparent">
-					<a href="event_detail.html">
-						<img class="card-img rounded-5" data-src="../assets/img/event/BKsale.jpg" src="../assets/img/event/BKsale.jpg" alt="Card image cap">
+					<a href="detail">
+						<img class="card-img rounded-5" data-src=<c:url value="/img/event/BKsale.jpg"/> src=<c:url value="/img/event/BKsale.jpg"/> alt="Card image cap">
 					</a>
 					<div class="card-body p-0 pt-5">
 		            	<div class="form-label" style="display: flex; justify-content: space-between;">
@@ -72,7 +72,7 @@
 		              		<span class="badge text-bg-primary fs-6" style="line-height: 1.2">진행중</span>
 		            	</div>
 						<h5 class="card-title fw-bolder lh-base">
-							<a href="event_detail.html">
+							<a href="detail">
 								당장 떠나기 좋은 
 								<br> 
 								방콕 노선 임박 특가
@@ -84,8 +84,8 @@
 			
 			<div class="col-md-6 col-lg-6">
 				<div class="card border-0 bg-transparent">
-					<a href="event_detail.html">
-						<img class="card-img rounded-5" data-src="../assets/img/event/SFOsaleMarch.jpg" src="../assets/img/event/SFOsaleMarch.jpg" alt="Card image cap">
+					<a href="detail">
+						<img class="card-img rounded-5" data-src=<c:url value="/img/event/SFOsaleMarch.jpg"/> src=<c:url value="/img/event/SFOsaleMarch.jpg"/> alt="Card image cap">
 					</a>
 					<div class="card-body p-0 pt-5">
 		            	<div class="form-label" style="display: flex; justify-content: space-between;">
@@ -93,7 +93,7 @@
 		              		<span class="badge text-bg-primary fs-6" style="line-height: 1.2">진행중</span>
 		            	</div>
 						<h5 class="card-title fw-bolder lh-base">
-							<a href="event_detail.html">
+							<a href="detail">
 								스위프트에어가 준비한 
 								<br> 
 								샌프란시스코 20% 할인
@@ -105,8 +105,8 @@
 			
 			<div class="col-md-6 col-lg-6">
 				<div class="card border-0 bg-transparent">
-					<a href="event_detail.html">
-						<img class="card-img rounded-5" data-src="../assets/img/event/TKPEsale.jpg" src="../assets/img/event/TKPEsale.jpg" alt="Card image cap">
+					<a href="detail">
+						<img class="card-img rounded-5" data-src=<c:url value="/img/event/TKPEsale.jpg"/> src=<c:url value="/img/event/TKPEsale.jpg"/> alt="Card image cap">
 					</a>
 					<div class="card-body p-0 pt-5">
 		            	<div class="form-label" style="display: flex; justify-content: space-between;">
@@ -114,7 +114,7 @@
 		              		<span class="badge text-bg-primary fs-6" style="line-height: 1.2">진행중</span>
 		            	</div>
 						<h5 class="card-title fw-bolder lh-base">
-							<a href="event_detail.html">
+							<a href="detail">
 								설레는 봄, 벚꽃특가 
 								<br> 
 								도쿄 노선 15% 할인
@@ -126,8 +126,8 @@
 
 			<div class="col-md-6 col-lg-6">
 				<div class="card border-0 bg-transparent">
-					<a href="event_detail.html">
-						<img class="card-img rounded-5" data-src="../assets/img/event/Event.jpg" src="../assets/img/event/Event.jpg" alt="Card image cap">
+					<a href="detail">
+						<img class="card-img rounded-5" data-src=<c:url value="/img/event/Event.jpg"/> src=<c:url value="/img/event/Event.jpg"/> alt="Card image cap">
 					</a>
 					<div class="card-body p-0 pt-5">
 		            	<div class="form-label" style="display: flex; justify-content: space-between;">
@@ -135,7 +135,7 @@
 		              		<span class="badge text-bg-primary fs-6" style="line-height: 1.2">진행중</span>
 		            	</div>
 						<h5 class="card-title fw-bolder lh-base">
-							<a href="event_detail.html">
+							<a href="detail">
 								누적 탑승객 100만명 기념
 								<br>
 								회원가입 이벤트
@@ -147,8 +147,8 @@
 			
 			<div class="col-md-6 col-lg-6">
 				<div class="card border-0 bg-transparent">
-					<a href="event_detail.html">
-						<img class="card-img rounded-5" data-src="../assets/img/event/SFOdeals.jpg" src="../assets/img/event/SFOdeals.jpg" alt="Card image cap">
+					<a href="detail">
+						<img class="card-img rounded-5" data-src=<c:url value="/img/event/SFOdeals.jpg"/> src=<c:url value="/img/event/SFOdeals.jpg"/> alt="Card image cap">
 					</a>
 					<div class="card-body p-0 pt-5">
 		            	<div class="form-label" style="display: flex; justify-content: space-between;">
@@ -156,7 +156,7 @@
 		              		<span class="badge bg-danger fs-6" style="line-height: 1.2">종료됨</span>
 		            	</div>
 						<h5 class="card-title fw-bolder lh-base">
-							<a href="event_detail.html">
+							<a href="detail">
 								스위프트에어
 								<br>
 								샌프란시스코 신규 취항 특가
@@ -168,8 +168,8 @@
 
 			<div class="col-md-6 col-lg-6">
 				<div class="card border-0 bg-transparent">
-					<a href="event_detail.html">
-						<img class="card-img rounded-5" data-src="../assets/img/event/TK1yr.jpg" src="../assets/img/event/TK1yr.jpg" alt="Card image cap">
+					<a href="detail">
+						<img class="card-img rounded-5" data-src=<c:url value="/img/event/TK1yr.jpg"/> src=<c:url value="/img/event/TK1yr.jpg"/> alt="Card image cap">
 					</a>
 					<div class="card-body p-0 pt-5">
 		            	<div class="form-label" style="display: flex; justify-content: space-between;">
@@ -177,7 +177,7 @@
 		              		<span class="badge bg-danger fs-6" style="line-height: 1.2">종료됨</span>
 		            	</div>
 						<h5 class="card-title fw-bolder lh-base">
-							<a href="event_detail.html">
+							<a href="detail">
 								나리타 노선
 								<br> 
 								취항 1주년 기념 특가
@@ -189,8 +189,8 @@
 
 			<div class="col-md-6 col-lg-6">
 				<div class="card border-0 bg-transparent">
-					<a href="event_detail.html">
-						<img class="card-img rounded-5" data-src="../assets/img/event/X-mas.jpg" src="../assets/img/event/X-mas.jpg" alt="Card image cap">
+					<a href="detail">
+						<img class="card-img rounded-5" data-src=<c:url value="/img/event/X-mas.jpg"/> src=<c:url value="/img/event/X-mas.jpg"/> alt="Card image cap">
 					</a>
 					<div class="card-body p-0 pt-5">
 		            	<div class="form-label" style="display: flex; justify-content: space-between;">
@@ -198,7 +198,7 @@
 		              		<span class="badge bg-danger fs-6" style="line-height: 1.2">종료됨</span>
 		            	</div>
 						<h5 class="card-title fw-bolder lh-base">
-							<a href="event_detail.html">
+							<a href="detail">
 								크리스마스를 제대로 즐기는 방법?
 								<br>
 								스위프트에어와 떠나자
@@ -210,8 +210,8 @@
 
 			<div class="col-md-6 col-lg-6">
 				<div class="card border-0 bg-transparent">
-					<a href="event_detail.html">
-						<img class="card-img rounded-5" data-src="../assets/img/event/FRA.jpg" src="../assets/img/event/FRA.jpg" alt="Card image cap">
+					<a href="detail">
+						<img class="card-img rounded-5" data-src=<c:url value="/img/event/FRA.jpg"/> src=<c:url value="/img/event/FRA.jpg"/> alt="Card image cap">
 					</a>
 					<div class="card-body p-0 pt-5">
 		            	<div class="form-label" style="display: flex; justify-content: space-between;">
@@ -219,7 +219,7 @@
 		              		<span class="badge bg-danger fs-6" style="line-height: 1.2">종료됨</span>
 		            	</div>
 						<h5 class="card-title fw-bolder lh-base">
-							<a href="event_detail.html">
+							<a href="detail">
 								에어프레미아 특가
 								<br>
 								유럽 여행의 시작

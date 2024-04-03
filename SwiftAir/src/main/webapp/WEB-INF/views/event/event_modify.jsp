@@ -52,9 +52,9 @@
 		</div>
 		</div>
 		<div style="float: right">
-			<button type="submit" class="btn btn-primary ms-1">목록</button>
-			<button type="submit" class="btn btn-primary ms-1">취소</button>
-			<button type="submit" class="btn btn-primary ms-1">수정</button>
+			<button type="submit" class="btn btn-primary ms-1" onclick="location.href='list'">목록</button>
+			<button type="submit" class="btn btn-primary ms-1" onclick="location.href='list'">취소</button>
+			<button type="submit" class="btn btn-primary ms-1" onclick="location.href='list'">수정</button>
 		</div>
 	</div>
 </section>

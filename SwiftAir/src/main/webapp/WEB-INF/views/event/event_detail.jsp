@@ -33,7 +33,7 @@
         <div class="row">
             <div class="col-md-5 col-lg-4">
             <div class="card border-0 bg-transparent">
-                <img class="card-img rounded-5 mt-sm-5" data-src="../assets/img/event/BKsale2.jpg" src="../assets/img/event/BKsale2.jpg" alt="Card image cap">
+                <img class="card-img rounded-5 mt-sm-5" data-src=<c:url value="/img/event/BKsale2.jpg"/> src=<c:url value="/img/event/BKsale2.jpg"/> alt="Card image cap">
             </div>
             </div>
 
@@ -87,7 +87,7 @@
             <div class="row">
                 <div class="col-sm-8 col-lg-8 ms-md-6"></div>
                 <div class="col-sm-4 col-lg-3">
-                    <button type="submit" class="btn btn-primary w-100">목록으로</button>
+                    <button type="submit" class="btn btn-primary w-100" onclick="location.href='main'">목록으로</button>
                 </div>
             </div>
         </div>
