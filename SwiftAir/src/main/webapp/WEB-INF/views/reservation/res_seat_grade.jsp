@@ -1,45 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<!-- SITE TITTLE -->
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Flight - Seat selection</title>
-<!-- PLUGINS CSS STYLE -->
-<link href='../assets/plugins/fontawesome-5.15.2/css/all.min.css' rel='stylesheet'>
-<link href='../assets/plugins/fontawesome-5.15.2/css/fontawesome.min.css' rel='stylesheet'>
-<link href='../assets/plugins/listtyicons/style.css' rel='stylesheet'>
-<link href='../assets/plugins/menuzord/css/menuzord.css' rel='stylesheet'>
-
-<link href='../assets/plugins/selectric/selectric.css' rel='stylesheet'>
-<link href='../assets/plugins/dzsparallaxer/dzsparallaxer.css' rel='stylesheet'>
-
-<link href='../assets/plugins/map/css/map.css' rel='stylesheet'>
- 
-<!-- GOOGLE FONT --><!-- font-family: 'Mulish', sans-serif; --><!-- font-family: 'Poppins', sans-serif; -->
-<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<!-- CUSTOM CSS -->
-<link href="../assets/css/style.css" rel="stylesheet" id="option_style">
-
-<!-- <link rel="stylesheet" href="assets/css/default.css" id="option_color"> -->
-
-<!-- FAVICON -->
-<link href="../assets/img/favicon.png" rel="shortcut icon">
-
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
-
-</head>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
+<%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 <body id="body" class="up-scroll">
 <!-- ====================================
@@ -55,7 +18,6 @@
         <li class="breadcrumb-item">좌석</li>
       </ul>
     </nav>
-    </div>
   </div>
 </section>
 
@@ -127,7 +89,7 @@
 	<div class="container">
 		<div class="border rounded px-6 py-5 mb-6">
 			<div class="col-sm-12">
-			<img class="img-fluid" src="../assets/img/seat-option/economy35.png">
+			<img class="img-fluid" src=<c:url value="/img/seat-option/economy35.png"/>>
 			</div>
 		</div>
 	</div>
@@ -135,7 +97,7 @@
 	<div class="container">
 		<div class="border rounded px-6 py-5 mb-6">
 			<div class="col-sm-12">
-				<img class="img-fluid" src="../assets/img/seat-option/premia42.png">
+				<img class="img-fluid" src=<c:url value="/img/seat-option/premia42.png"/>>
 			</div>
 		</div>
 	</div>
@@ -160,23 +122,4 @@
 	</div>
 </nav>
 
-<!-- JAVASCRIPTS -->
-<script src='../assets/plugins/jquery/jquery-3.4.1.min.js'></script>
-<script src='../assets/plugins/bootstrap/js/bootstrap.bundle.js'></script>
-<script src='../assets/plugins/menuzord/js/menuzord.js'></script>
-
-<script src='../assets/plugins/selectric/jquery.selectric.min.js'></script>
-<script src='../assets/plugins/dzsparallaxer/dzsparallaxer.js'></script>
-
-<script src='../assets/plugins/smoothscroll/SmoothScroll.js'></script>
-<script src='../assets/plugins/lazyestload/lazyestload.js'></script>
-    
-<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDU79W1lu5f6PIiuMqNfT1C6M0e_lq1ECY'></script>
-<script src='../assets/plugins/map/js/markerclusterer.js'></script>
-<script src='../assets/plugins/map/js/rich-marker.js'></script>
-<script src='../assets/plugins/map/js/infobox_packed.js'></script>
-<script src='../assets/js/map.js'></script>
-
-<script src='../assets/js/listty.js'></script>
 </body>
-</html>

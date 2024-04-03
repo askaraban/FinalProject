@@ -4,9 +4,10 @@ import lombok.Builder;
 import lombok.Data;
 
 /*
-create table refund(
-	    refund_standard NUMBER
-	    , refund_fee NUMBER);
+Name            Null? Type   
+--------------- ----- ------ 
+REFUND_STANDARD       NUMBER 
+REFUND_FEE            NUMBER 
 */
 
 @Data

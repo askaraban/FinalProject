@@ -4,14 +4,13 @@ import lombok.Builder;
 import lombok.Data;
 
 /*
-create table route(
-    route_id NUMBER PRIMARY KEY
-    , route_departure VARCHAR2(50) REFERENCES airport(airport_name)
-    , route_destination VARCHAR2(50) REFERENCES airport(airport_name)
-    , route_time VARCHAR2(30)
-    , route_price NUMBER);
-
-create SEQUENCE route_seq;
+Name              Null?    Type         
+----------------- -------- ------------ 
+ROUTE_ID          NOT NULL NUMBER       
+ROUTE_DEPARTURE            VARCHAR2(50) 
+ROUTE_DESTINATION          VARCHAR2(50) 
+ROUTE_TIME                 VARCHAR2(30) 
+ROUTE_PRICE                NUMBER   
  */
 
 @Data

@@ -6,48 +6,55 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
 
-//¸ğµ¨(Model) ±â´ÉÀ» Á¦°øÇÏ±â À§ÇÑ Å¬·¡½º - ¿äÃ» Ã³¸® Å¬·¡½º : Controller Å¬·¡½º
-//@Controller : ¿äÃ» Ã³¸® Å¬·¡½º(Controller Å¬·¡½º)¸¦ Spring BeanÀ¸·Î µî·ÏÇÏ±â À§ÇÑ ¾î³ëÅ×ÀÌ¼Ç
-// => Å¬·¡½ºÀÇ ÀÌ¸§À» Spring BeanÀ» ±¸ºĞÇÏ±â À§ÇÑ ½Äº°ÀÚ(beanName)·Î »ç¿ë - Å¬·¡½º ÀÌ¸§ÀÇ Ã¹¹®ÀÚ´Â ¼Ò¹®ÀÚ·Î º¯È¯
-// => value ¼Ó¼ºÀ» »ç¿ëÇÏ¿© Spring BeanÀÇ ½Äº°ÀÚ º¯°æ °¡´É
-//@Controller ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÏ¸é Controller ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹ŞÁö ¾Ê¾Æµµ Controller Å¬·¡½º·Î »ç¿ë
-// => ¸Ş¼Òµå¿¡ @RequestMapping ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÏ¿© ¿äÃ» Ã³¸® ¸Ş¼Òµå·Î Ã³¸®µÇµµ·Ï ÀÛ¼º
-// => @RequestMapping ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÑ ¿äÃ» Ã³¸® ¸Ş¼Òµå¸¦ ¿©·¯°³ ÀÛ¼º °¡´É
+//ëª¨ë¸(Model) ê¸°ëŠ¥ì„ ì œê³µí•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤ - ìš”ì²­ ì²˜ë¦¬ í´ë˜ìŠ¤ : Controller í´ë˜ìŠ¤
+//@Controller : ìš”ì²­ ì²˜ë¦¬ í´ë˜ìŠ¤(Controller í´ë˜ìŠ¤)ë¥¼ Spring Beanìœ¼ë¡œ ë“±ë¡í•˜ê¸° ìœ„í•œ ì–´ë…¸í…Œì´ì…˜
+// => í´ë˜ìŠ¤ì˜ ì´ë¦„ì„ Spring Beanì„ êµ¬ë¶„í•˜ê¸° ìœ„í•œ ì‹ë³„ì(beanName)ë¡œ ì‚¬ìš© - í´ë˜ìŠ¤ ì´ë¦„ì˜ ì²«ë¬¸ìëŠ” ì†Œë¬¸ìë¡œ ë³€í™˜
+// => value ì†ì„±ì„ ì‚¬ìš©í•˜ì—¬ Spring Beanì˜ ì‹ë³„ì ë³€ê²½ ê°€ëŠ¥
+//@Controller ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•˜ë©´ Controller ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì§€ ì•Šì•„ë„ Controller í´ë˜ìŠ¤ë¡œ ì‚¬ìš©
+// => ë©”ì†Œë“œì— @RequestMapping ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•˜ì—¬ ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œë¡œ ì²˜ë¦¬ë˜ë„ë¡ ì‘ì„±
+// => @RequestMapping ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•œ ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œë¥¼ ì—¬ëŸ¬ê°œ ì‘ì„± ê°€ëŠ¥
 @Controller
 @Slf4j
 public class HelloController {
-	//¿äÃ» Ã³¸® ¸Ş¼Òµå´Â Front Controller¿¡°Ô ¹İµå½Ã ºäÀÌ¸§(ViewName) Á¦°ø
-	// => Front Controller´Â Á¦°ø¹ŞÀº ºäÀÌ¸§À» ÀÌ¿ëÇÏ¿© ViewResolver °´Ã¼·Î ÀÀ´ä Ã³¸®µÇµµ·Ï º¯È¯
-	//1.¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ ¹İÈ¯ÇüÀ» [void]·Î ÀÛ¼ºÇÑ °æ¿ì @RequestMapping ¾î³ëÅ×ÀÌ¼ÇÀÇ value ¼Ó¼º°ªÀ» ºäÀÌ¸§À¸·Î Á¦°ø
-	//2.¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ ¹İÈ¯ÇüÀ» [String]·Î ÀÛ¼ºÇÑ °æ¿ì ¸Ş¼ÒµåÀÇ ¹İÈ¯°ª(¹®ÀÚ¿­)À» ºäÀÌ¸§À¸·Î Á¦°ø
-	//3.¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ ¹İÈ¯ÇüÀ» [ModelAndView]·Î ÀÛ¼ºÇÑ °æ¿ì ¸Ş¼ÒµåÀÇ ¹İÈ¯°ª(ModelAndView °´Ã¼)¿¡ ºäÀÌ¸§À» ÀúÀåÇÏ¿© Á¦°ø
+	//ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œëŠ” Front Controllerì—ê²Œ ë°˜ë“œì‹œ ë·°ì´ë¦„(ViewName) ì œê³µ
+	// => Front ControllerëŠ” ì œê³µë°›ì€ ë·°ì´ë¦„ì„ ì´ìš©í•˜ì—¬ ViewResolver ê°ì²´ë¡œ ì‘ë‹µ ì²˜ë¦¬ë˜ë„ë¡ ë³€í™˜
+	//1.ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ë°˜í™˜í˜•ì„ [void]ë¡œ ì‘ì„±í•œ ê²½ìš° @RequestMapping ì–´ë…¸í…Œì´ì…˜ì˜ value ì†ì„±ê°’ì„ ë·°ì´ë¦„ìœ¼ë¡œ ì œê³µ
+	//2.ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ë°˜í™˜í˜•ì„ [String]ë¡œ ì‘ì„±í•œ ê²½ìš° ë©”ì†Œë“œì˜ ë°˜í™˜ê°’(ë¬¸ìì—´)ì„ ë·°ì´ë¦„ìœ¼ë¡œ ì œê³µ
+	//3.ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ë°˜í™˜í˜•ì„ [ModelAndView]ë¡œ ì‘ì„±í•œ ê²½ìš° ë©”ì†Œë“œì˜ ë°˜í™˜ê°’(ModelAndView ê°ì²´)ì— ë·°ì´ë¦„ì„ ì €ì¥í•˜ì—¬ ì œê³µ
 	
-	//@RequestMapping : Controller Å¬·¡½ºÀÇ ¸Ş¼Òµå¸¦ Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»À» Ã³¸® ÇÏ±â À§ÇÑ ¿äÃ»
-	//Ã³¸® ¸Ş¼Òµå·Î ¼³Á¤ÇÏ±â À§ÇÑ ¾î³ëÅ×ÀÌ¼Ç
-	// => Å¬¶óÀÌ¾ğÆ®ÀÇ ¸ğµç ¿äÃ»¹æ½Ä(Method - GET, POST, PUT, PATCH, DELETE µî)¿¡ ÀÇÇØ
-	//¿äÃ»ÇÑ °æ¿ì È£ÃâµÇ´Â ¿äÃ» Ã³¸® ¸Ş¼Òµå¸¦ ÀÛ¼ºÇÒ ¶§ »ç¿ë
-	// => Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»¹æ½ÄÀ» ±¸ºĞÇÏ¿© ¿äÃ» Ã³¸® ¸Ş¼Òµå¸¦ È£ÃâÇØ¾ßµÉ °æ¿ì @GetMapping,
-	//@PostMapping, @PutMapping, @PatchMapping, @DeleteMapping µîÀÇ ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÏ¿© ¼³Á¤
-	//value ¼Ó¼º : Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»Á¤º¸(Command - URL ÁÖ¼Ò)¸¦ ¼Ó¼º°ªÀ¸·Î ¼³Á¤
-	// => value ¼Ó¼º¿Ü¿¡ ´Ù¸¥ ¼Ó¼ºÀÌ ¾ø´Â °æ¿ì ¼Ó¼º°ª¸¸ ¼³Á¤ °¡´É
-	// => ¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ value ¼Ó¼º°ªÀÌ Áßº¹µÉ °æ¿ì WAS ÇÁ·Î±×·¥ ½ÇÇà½Ã ¿¡·¯ ¹ß»ı
+	//@RequestMapping : Controller í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œë¥¼ í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì„ ì²˜ë¦¬ í•˜ê¸° ìœ„í•œ ìš”ì²­
+	//ì²˜ë¦¬ ë©”ì†Œë“œë¡œ ì„¤ì •í•˜ê¸° ìœ„í•œ ì–´ë…¸í…Œì´ì…˜
+	// => í´ë¼ì´ì–¸íŠ¸ì˜ ëª¨ë“  ìš”ì²­ë°©ì‹(Method - GET, POST, PUT, PATCH, DELETE ë“±)ì— ì˜í•´
+	//ìš”ì²­í•œ ê²½ìš° í˜¸ì¶œë˜ëŠ” ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œë¥¼ ì‘ì„±í•  ë•Œ ì‚¬ìš©
+	// => í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ë°©ì‹ì„ êµ¬ë¶„í•˜ì—¬ ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•´ì•¼ë  ê²½ìš° @GetMapping,
+	//@PostMapping, @PutMapping, @PatchMapping, @DeleteMapping ë“±ì˜ ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•˜ì—¬ ì„¤ì •
+	//value ì†ì„± : í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì •ë³´(Command - URL ì£¼ì†Œ)ë¥¼ ì†ì„±ê°’ìœ¼ë¡œ ì„¤ì •
+	// => value ì†ì„±ì™¸ì— ë‹¤ë¥¸ ì†ì„±ì´ ì—†ëŠ” ê²½ìš° ì†ì„±ê°’ë§Œ ì„¤ì • ê°€ëŠ¥
+	// => ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ value ì†ì„±ê°’ì´ ì¤‘ë³µë  ê²½ìš° WAS í”„ë¡œê·¸ë¨ ì‹¤í–‰ì‹œ ì—ëŸ¬ ë°œìƒ
+	
+	// í•­ê³µê¶Œ ì˜ˆë§¤
+	@RequestMapping(value = "/reservation")
+	public String resSchedule() {
+		log.info("[/helloViewName] í˜ì´ì§€ ìš”ì²­ : HelloController í´ë˜ìŠ¤ì˜ helloViewName() ë©”ì†Œë“œ í˜¸ì¶œ");
+		return "reservation/res_schedule";
+	}	
 	@RequestMapping(value = "/hello")
-	public String helloViewName() {//¿äÃ» Ã³¸® ¸Ş¼Òµå
-		log.info("[/helloViewName] ÆäÀÌÁö ¿äÃ» : HelloController Å¬·¡½ºÀÇ helloViewName() ¸Ş¼Òµå È£Ãâ");
+	public String helloViewName() {//ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
+		log.info("[/helloViewName] í˜ì´ì§€ ìš”ì²­ : HelloController í´ë˜ìŠ¤ì˜ helloViewName() ë©”ì†Œë“œ í˜¸ì¶œ");
 		return "mypage/mypage";
 	}	
 	
 	@RequestMapping("/faq")
-	public ModelAndView helloModelAndView() {//¿äÃ» Ã³¸® ¸Ş¼Òµå
-		log.info("[/helloMav] ÆäÀÌÁö ¿äÃ» : HelloController Å¬·¡½ºÀÇ helloModelAndView() ¸Ş¼Òµå È£Ãâ");
+	public ModelAndView helloModelAndView() {//ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
+		log.info("[/helloMav] í˜ì´ì§€ ìš”ì²­ : HelloController í´ë˜ìŠ¤ì˜ helloModelAndView() ë©”ì†Œë“œ í˜¸ì¶œ");
 		
-		//ModelAndView °´Ã¼ : ¿äÃ»¿¡ ´ë¶õ Ã³¸®°á°ú¿Í ºäÀÌ¸§(ViewName)À» ÀúÀåÇÏ±â À§ÇÑ °´Ã¼
+		//ModelAndView ê°ì²´ : ìš”ì²­ì— ëŒ€ë€ ì²˜ë¦¬ê²°ê³¼ì™€ ë·°ì´ë¦„(ViewName)ì„ ì €ì¥í•˜ê¸° ìœ„í•œ ê°ì²´
 		/*
 		ModelAndView modelAndView=new ModelAndView();
-		modelAndView.setViewName("hello");//Setter ¸Ş¼Òµå¸¦ È£ÃâÇÏ¿© ºäÀÌ¸§(ViewName) º¯°æ
+		modelAndView.setViewName("hello");//Setter ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ì—¬ ë·°ì´ë¦„(ViewName) ë³€ê²½
 		*/
 
-		//ModelAndView Å¬·¡½ºÀÇ »ı¼ºÀÚ·Î ºäÀÌ¸§(ViewName) ÃÊ±âÈ­
+		//ModelAndView í´ë˜ìŠ¤ì˜ ìƒì„±ìë¡œ ë·°ì´ë¦„(ViewName) ì´ˆê¸°í™”
 		ModelAndView modelAndView=new ModelAndView("faq/faq_list");
 		
 		return modelAndView;

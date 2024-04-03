@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
+<%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!-- HEADER -->
 <header class="header">
   <nav class="nav-menuzord navbar-sticky">
@@ -21,7 +23,7 @@
           <li class="active">
             <a href="javascript:0">예매</a>
             <ul class="dropdown">
-              <li><a href="index.html">항공권 예매</a></li>
+              <li><a href='<c:url value="/reservation"/>'>항공권 예매</a></li>
               <li><a href="index-2.html">포인트 예매</a></li>
               <li><a href="index-3.html">이벤트</a></li>
             </ul>
