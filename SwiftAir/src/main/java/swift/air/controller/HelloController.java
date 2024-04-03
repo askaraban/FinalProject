@@ -13,6 +13,11 @@ public class HelloController {
 	public String resSchedule() {
 		return "reservation/res_schedule";
 	}	
+
+	@RequestMapping(value = "/login_test")
+	public String testLogin() {
+		return "member/login2";
+	}	
 	
 	@RequestMapping(value = "/hello")
 	public String helloViewName() {
