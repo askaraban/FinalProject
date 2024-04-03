@@ -1,55 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
+<%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
-  <head>
-
-    <!-- SITE TITTLE -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Event - detail</title>
-
-    <!-- PLUGINS CSS STYLE -->
-    <link href='../assets/plugins/fontawesome-5.15.2/css/all.min.css' rel='stylesheet'>
-    <link href='../assets/plugins/fontawesome-5.15.2/css/fontawesome.min.css' rel='stylesheet'>
-    <link href='../assets/plugins/listtyicons/style.css' rel='stylesheet'>
-    <link href='../assets/plugins/menuzord/css/menuzord.css' rel='stylesheet'>
-
-    <link href='../assets/plugins/selectric/selectric.css' rel='stylesheet'>
-    
-    <link href='../assets/plugins/fancybox/jquery.fancybox.min.css' rel='stylesheet'>
-    <link href='../assets/plugins/owl-carousel/assets/owl.carousel.min.css' rel='stylesheet'>
-    <link href='../assets/plugins/owl-carousel/assets/owl.theme.default.min.css' rel='stylesheet'>
-    
-    <link href='../assets/plugins/map/css/map.css' rel='stylesheet'>
-    <link href='../assets/plugins/rateyo/jquery.rateyo.min.css' rel='stylesheet'>
-    
-    
-    <link href='../assets/plugins/daterangepicker/daterangepicker.css' rel='stylesheet'>
-
-    <!-- GOOGLE FONT --><!-- font-family: 'Mulish', sans-serif; --><!-- font-family: 'Poppins', sans-serif; -->
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- CUSTOM CSS -->
-    <link href="../assets/css/style.css" rel="stylesheet" id="option_style">
-
-    <!-- <link rel="stylesheet" href="assets/css/default.css" id="option_color"> -->
-
-    <!-- FAVICON -->
-    <link href="../assets/img/favicon.png" rel="shortcut icon">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  </head>
-
-  <body id="body" class="up-scroll">
+<body id="body" class="up-scroll">
 <!-- ====================================
 ———	LISTING SINGLE HEADING
 ===================================== -->
@@ -140,28 +95,4 @@
     </div>
 </section>
 
-    <!-- JAVASCRIPTS -->
-    <script src='../assets/plugins/jquery/jquery-3.4.1.min.js'></script>
-    <script src='../assets/plugins/bootstrap/js/bootstrap.bundle.js'></script>
-    <script src='../assets/plugins/menuzord/js/menuzord.js'></script>
-    <script src='../assets/plugins/selectric/jquery.selectric.min.js'></script>
-
-    <script src='../assets/plugins/fancybox/jquery.fancybox.min.js'></script>
-    <script src='../assets/plugins/daterangepicker/moment.min.js'></script>
-    <script src='../assets/plugins/daterangepicker/daterangepicker.js'></script>
-
-    <script src='../assets/plugins/smoothscroll/SmoothScroll.js'></script>
-    <script src='../assets/plugins/owl-carousel/owl.carousel.min.js'></script>
-    <script src='../assets/plugins/rateyo/jquery.rateyo.min.js'></script>
-
-    <script src='../assets/plugins/velocity/velocity.min.js'></script>
-    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDU79W1lu5f6PIiuMqNfT1C6M0e_lq1ECY'></script>
-
-    <script>
-      var d = new Date();
-      var year = d.getFullYear();
-      document.getElementById("copy-year").innerHTML = year;
-    </script>
-    <script src='../assets/js/listty.js'></script>
-  </body>
-</html>
+</body>
