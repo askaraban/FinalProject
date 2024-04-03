@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,15 +50,15 @@
 								<div>
 									<a href="#modal-without-animation" class="btn btn-white btn-lg"
 										data-toggle="modal"> <img class="img"
-										data-src="../mypage/point_saving.png"
-										src="../mypage/point_saving.png" alt="Image">
+										data-src=<c:url value="/img/mypage/point_saving.png"/>
+										src=<c:url value="/img/mypage/point_saving.png"/> alt="Image">
 									</a>
 									<h3>탑승 후 적립</h3>
 								</div>
 								<div>
-									<a href="pricing-table.html" class="btn btn-white btn-lg">
-										<img class="img" data-src="../mypage/point_guide.png"
-										src="../mypage/point_guide.png" alt="Image">
+									<a href="pointGuide" class="btn btn-white btn-lg">
+										<img class="img" data-src=<c:url value="/img/mypage/point_guide.png"/>
+										src=<c:url value="/img/mypage/point_guide.png"/> alt="Image">
 									</a>
 									<h3>사용 가이드</h3>
 								</div>

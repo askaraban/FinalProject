@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +25,7 @@
 					포인트를 사용하여 국제선 항공권 구매가 가능합니다.<br> 포인트 항공권의 가격은 포인트 캘린더에서 확인
 					가능하며, 해당 편의 좌석 상황에 따라 실시간으로 변경됩니다.
 				</p>
-				<a href="pricing-table.html" class="btn btn-white btn"
+				<a href="../reservation" class="btn btn-white btn"
 					style="border-color: #22baa0; color: black; font-weight: 500;">포인트
 					항공권 예매하러가기</a>
 			</div>
