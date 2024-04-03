@@ -5,37 +5,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
 
-//í˜ì´ì§€ í…ŒìŠ¤íŠ¸ìš© EventController
+//ÆäÀÌÁö Å×½ºÆ®¿ë EventController
 @Controller
 @Slf4j
 public class EventController {
 	@RequestMapping(value = "/event/add")
 	public String eventAdd() {
-		log.info("[/eventAdd] í˜ì´ì§€ ìš”ì²­ : EventController í´ë˜ìŠ¤ì˜ eventAdd() ë©”ì†Œë“œ í˜¸ì¶œ");
+		log.info("[/eventAdd] ÆäÀÌÁö ¿äÃ» : EventController Å¬·¡½ºÀÇ eventAdd() ¸Ş¼Òµå È£Ãâ");
 		return "event/event_add";
 	}
 
 	@RequestMapping(value = "/event/modify")
 	public String eventModify() {
-		log.info("[/eventModify] í˜ì´ì§€ ìš”ì²­ : EventController í´ë˜ìŠ¤ì˜ eventModify() ë©”ì†Œë“œ í˜¸ì¶œ");
+		log.info("[/eventModify] ÆäÀÌÁö ¿äÃ» : EventController Å¬·¡½ºÀÇ eventModify() ¸Ş¼Òµå È£Ãâ");
 		return "event/event_modify";
 	}
 	
 	@RequestMapping(value = "/event/main")
 	public String eventMain() {
-		log.info("[/eventMain] í˜ì´ì§€ ìš”ì²­ : EventController í´ë˜ìŠ¤ì˜eventMain() ë©”ì†Œë“œ í˜¸ì¶œ");
+		log.info("[/eventMain] ÆäÀÌÁö ¿äÃ» : EventController Å¬·¡½ºÀÇeventMain() ¸Ş¼Òµå È£Ãâ");
 		return "event/event_main";
 	}
 	
 	@RequestMapping(value = "/event/detail")
 	public String eventDetail() {
-		log.info("[/eventDetail] í˜ì´ì§€ ìš”ì²­ : EventController í´ë˜ìŠ¤ì˜ eventDetail() ë©”ì†Œë“œ í˜¸ì¶œ");
+		log.info("[/eventDetail] ÆäÀÌÁö ¿äÃ» : EventController Å¬·¡½ºÀÇ eventDetail() ¸Ş¼Òµå È£Ãâ");
 		return "event/event_detail";
 	}
 	
 	@RequestMapping(value = "/event/list")
 	public String eventList() {
-		log.info("[/eventList] í˜ì´ì§€ ìš”ì²­ : EventController í´ë˜ìŠ¤ì˜ eventList() ë©”ì†Œë“œ í˜¸ì¶œ");
+		log.info("[/eventList] ÆäÀÌÁö ¿äÃ» : EventController Å¬·¡½ºÀÇ eventList() ¸Ş¼Òµå È£Ãâ");
 		return "event/event_list";
 	}
 }

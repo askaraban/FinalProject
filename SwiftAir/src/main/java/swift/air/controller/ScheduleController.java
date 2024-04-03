@@ -6,25 +6,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.slf4j.Slf4j;
 
 
-//í˜ì´ì§€ í…ŒìŠ¤íŠ¸ìš© ScheduleController
+//ÆäÀÌÁö Å×½ºÆ®¿ë ScheduleController
 @Controller
 @Slf4j
 public class ScheduleController {
 	@RequestMapping(value = "/schedule/add")
 	public String scheduleAdd() {
-		log.info("[/scheduleAdd] í˜ì´ì§€ ìš”ì²­ : ScheduleController í´ë˜ìŠ¤ì˜ scheduleAdd() ë©”ì†Œë“œ í˜¸ì¶œ");
+		log.info("[/scheduleAdd] ÆäÀÌÁö ¿äÃ» : ScheduleController Å¬·¡½ºÀÇ scheduleAdd() ¸Ş¼Òµå È£Ãâ");
 		return "schedule/schedule_add";
 	}
 	
 	@RequestMapping(value = "/schedule/modify")
 	public String scheduleModify() {
-		log.info("[/scheduleModify] í˜ì´ì§€ ìš”ì²­ : ScheduleController í´ë˜ìŠ¤ì˜ scheduleModify() ë©”ì†Œë“œ í˜¸ì¶œ");
+		log.info("[/scheduleModify] ÆäÀÌÁö ¿äÃ» : ScheduleController Å¬·¡½ºÀÇ scheduleModify() ¸Ş¼Òµå È£Ãâ");
 		return "schedule/schedule_modify";
 	}
 	
 	@RequestMapping(value = "/schedule/list")
 	public String scheduleList() {
-		log.info("[/scheduleList] í˜ì´ì§€ ìš”ì²­ : ScheduleController í´ë˜ìŠ¤ì˜ scheduleList() ë©”ì†Œë“œ í˜¸ì¶œ");
+		log.info("[/scheduleList] ÆäÀÌÁö ¿äÃ» : ScheduleController Å¬·¡½ºÀÇ scheduleList() ¸Ş¼Òµå È£Ãâ");
 		return "schedule/schedule_list";
 	}	
 }

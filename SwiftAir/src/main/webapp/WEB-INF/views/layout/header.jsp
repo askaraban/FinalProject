@@ -17,7 +17,7 @@
           </svg>
         </a>
         <div class="float-right btn-wrapper">
-          <a class="btn btn-outline-primary" href="add-listings.html">+ <span>Add listing</span></a>
+          <a class="btn btn-outline-primary" href="add-listings.html"><span>로그인/회원가입</span></a>
         </div>
         <ul class="menuzord-menu menuzord-right">
           <li class="active">
@@ -31,9 +31,9 @@
           <li class="">
             <a href="javascript:0">조회</a>
             <ul class="dropdown">
-              <li><a href="res_search.html">예약 조회</a></li>
-              <li><a href="index-2.html">출/도착 조회</a></li>
-              <li><a href="index-3.html">운항 스케쥴</a></li>
+              <li><a href="<c:url value="/search/reservation"/>">예약 조회</a></li>
+              <li><a href="<c:url value="/search/destination"/>">출/도착 조회</a></li>
+              <li><a href="<c:url value="/search/schedule"/>">운항 스케쥴</a></li>
             </ul>
           </li>
           <li class="">

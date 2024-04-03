@@ -22,6 +22,7 @@
     <link href='<c:url value="/plugins/dzsparallaxer/dzsparallaxer.css"/>' rel='stylesheet'>
     <link href='<c:url value="/plugins/daterangepicker/daterangepicker.css"/>' rel='stylesheet'>
     <link href='<c:url value="/plugins/map/css/map.css"/>' rel='stylesheet'>
+    <link href='<c:url value="/plugins/DataTables/Responsive-2.2.2/css/responsive.dataTables.min.css"/>' rel='stylesheet'>
     
     <!-- GOOGLE FONT --><!-- font-family: 'Mulish', sans-serif; --><!-- font-family: 'Poppins', sans-serif; -->
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
