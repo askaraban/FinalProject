@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +11,11 @@
 <title>나의 등급</title>
 
 <style type="text/css">
+<c:if test="">
 .table tr td:nth-child(2) {
 	background: #fafafa;
 }
+</c:if>
 </style>
 </head>
 
@@ -44,29 +47,48 @@
 						<div class="col-md-5 col-lg-4" style="width: 70%"
 							style="display: flex; flex-direction: column;">
 							<!-- <div class="custom-file" style="display: flex; flex-direction: row;" > -->
+						<c:choose>
 							<div style="display: flex; flex-direction: row;">
 								<div style="margin: 10px;">
 									<h6 class="fw-normal mb-4">항공권 결제 금액 적립</h6>
 									<h4 class="fw-normal mb-4">1,000원 당 7 포인트 비율로 적립</h4>
 								</div>
+							        <c:when test="${포인트가 4000~8999점 사이이면}">
+							            <h6 class="fw-normal mb-4" style="color: gray;">무료 추가 수하물</h6>
+							            <h4 class="fw-normal mb-4" style="color: gray;">GOLD 승급 시 제공</h4>
+							        </c:when>
+							        <c:otherwise>
+							            <h6 class="fw-normal mb-4" style="color: black;">무료 추가 수하물</h6>
+							            <h4 class="fw-normal mb-4" style="color: black;">GOLD 승급 시 제공</h4>
+							        </c:otherwise>
+						   		
 								<div style="margin: 10px;">
-									<h6 class="fw-normal mb-4">항공권 결제 금액 적립</h6>
-									<h4 class="fw-normal mb-4">1,000원 당 7 포인트 비율로 적립</h4>
-								</div>
-								<div style="margin: 10px;">
-									<h6 class="fw-normal mb-4">항공권 결제 금액 적립</h6>
-									<h4 class="fw-normal mb-4">1,000원 당 7 포인트 비율로 적립</h4>
+							   		<c:when test="${포인트가 9000이상이면}">
+										<h6 class="fw-normal mb-4 diamond" style="color: gray;">사전 좌석 구매</h6>
+										<h4 class="fw-normal mb-4 diamond" style="color: gray;">DIAMOND 승급 시 제공</h4>
+									</c:when>
+									<c:otherwise>
+								        <h6 class="fw-normal mb-4 diamond" style="color: gray;">사전 좌석 구매</h6>
+										<h4 class="fw-normal mb-4 diamond" style="color: gray;">DIAMOND 승급 시 제공</h4>
+								    </c:otherwise>
 								</div>
 							</div>
 
 							<div class="col-md-5 col-lg-4">
 								<div class="card-profile-img py-6">
 									<div style="margin: 10px;">
-										<h6 class="fw-normal mb-4">항공권 결제 금액 적립</h6>
-										<h4 class="fw-normal mb-4">1,000원 당 7 포인트 비율로 적립</h4>
+										<c:when test="${포인트가 9000이상이면}">
+											<h6 class="fw-normal mb-4 diamond" style="color: gray;">좌석 업그레이드</h6>
+											<h4 class="fw-normal mb-4 diamond" style="color: gray;">DIAMOND 승급 시 제공</h4>
+										</c:when>
+										<c:otherwise>
+									        <h6 class="fw-normal mb-4 diamond" style="color: gray;">좌석 업그레이드</h6>
+											<h4 class="fw-normal mb-4 diamond" style="color: gray;">DIAMOND 승급 시 제공</h4>
+									    </c:otherwise>
 									</div>
 								</div>
 							</div>
+						</c:choose>
 						</div>
 					</div>
 				</div>
@@ -78,7 +100,7 @@
 						<!-- <div class="card card-profile"> -->
 						<!-- <div class="card-profile-img py-6" style="text-align: center;">  -->
 						<div style="text-align: center; margin-right: 50px;">
-							<h4 class="fw-normal mb-4">최근 24개월 승급 스코어</h4>
+							<h4 class="fw-normal mb-4">승급 스코어</h4>
 							<h2 class="fw-normal mb-4">1000pp</h2>
 							<a href="pricing-table.html" class="btn btn-link btn mb-3">GOLD
 								승급 시 제공</a>
