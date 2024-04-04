@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ReservationController {
 	@RequestMapping(value = "/reservation/seatgrade")
 	public String resSeatGrade() {
-		log.info("ÇÑ±ÛÅ×½ºÆ®¿ë");
+		log.info("í•œê¸€í…ŒìŠ¤íŠ¸ìž…ë‹ˆë‹¤.");
 		return "reservation/res_seat_grade";
 	}
 	
