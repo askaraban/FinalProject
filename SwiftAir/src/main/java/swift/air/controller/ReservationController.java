@@ -3,33 +3,28 @@ package swift.air.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import lombok.extern.slf4j.Slf4j;
 
-//5252
+//Reservation 테스트
 @Controller
-@Slf4j
+@RequestMapping(value = "/reservation")
 public class ReservationController {
-	@RequestMapping(value = "/reservation/seatgrade")
+	@RequestMapping(value = "/seatgrade")
 	public String resSeatGrade() {
-		log.info("한글테스트입니다.");
 		return "reservation/res_seat_grade";
 	}
 	
-	@RequestMapping(value = "/reservation/passengerinfo")
+	@RequestMapping(value = "/passengerinfo")
 	public String resPassengersInfo() {
-		log.info("한글테스트임니다.");
 		return "reservation/res_passengers_info";
 	}
 	
-	@RequestMapping(value = "/reservation/ticketconfirm")
+	@RequestMapping(value = "/ticketconfirm")
 	public String resTicketConfirm() {
-		log.info("[/resTicketConfirm] ������ ��û : ReservationController Ŭ������ resTicketConfirm() �޼ҵ� ȣ��");
 		return "reservation/res_ticket_confirm";
 	}
 	
-	@RequestMapping(value = "/reservation/seat")
+	@RequestMapping(value = "/seat")
 	public String resSeat() {
-		log.info("[/resSeat] ������ ��û : ReservationController Ŭ������ resSeat() �޼ҵ� ȣ��");
 		return "reservation/res_seat";
 	}	
 }
