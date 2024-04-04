@@ -17,7 +17,7 @@ public class ReservationController {
 	
 	@RequestMapping(value = "/reservation/passengerinfo")
 	public String resPassengersInfo() {
-		log.info("[/resPassengersInfo] ������ ��û : ReservationController Ŭ������ resPassengersInfo() �޼ҵ� ȣ��");
+		log.info("한글테스트임니다.");
 		return "reservation/res_passengers_info";
 	}
 	
