@@ -11,19 +11,19 @@ import lombok.extern.slf4j.Slf4j;
 public class SearchController {
 	@RequestMapping(value = "/reservation")
 	public String searchReservation() {
-		log.info("[/searchReservation] ÆäÀÌÁö ¿äÃ» : SearchController Å¬·¡½ºÀÇ searchReservation() ¸Ş¼Òµå È£Ãâ");
+		log.info("[/searchReservation] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» : SearchController Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ searchReservation() ï¿½Ş¼Òµï¿½ È£ï¿½ï¿½");
 		return "search/search_reservation";
 	}
 	
 	@RequestMapping(value = "/destination")
 	public String searchDestination() {
-		log.info("[/searchDestination] ÆäÀÌÁö ¿äÃ» : SearchController Å¬·¡½ºÀÇ searchDestination() ¸Ş¼Òµå È£Ãâ");
+		log.info("[/searchReservation] í˜ì´ì§€ ìš”ì²­ : SearchController í´ë˜ìŠ¤ì˜ searchReservation() ë©”ì†Œë“œ í˜¸ì¶œ");
 		return "search/search_destination";
 	}
 	
 	@RequestMapping(value = "/schedule")
 	public String searchSchedule() {
-		log.info("[/searchSchedule] ÆäÀÌÁö ¿äÃ» : SearchController Å¬·¡½ºÀÇ searchSchedule() ¸Ş¼Òµå È£Ãâ");
+		log.info("[/searchSchedule] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» : SearchController Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ searchSchedule() ï¿½Ş¼Òµï¿½ È£ï¿½ï¿½");
 		return "search/search_schedule";
 	}	
 }
