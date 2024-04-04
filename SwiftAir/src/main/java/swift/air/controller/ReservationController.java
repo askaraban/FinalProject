@@ -5,31 +5,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
 
-//ÆäÀÌÁö Å×½ºÆ®¿ë ReservationController
+//5252
 @Controller
 @Slf4j
 public class ReservationController {
 	@RequestMapping(value = "/reservation/seatgrade")
 	public String resSeatGrade() {
-		log.info("[/resSeatGrade] ÆäÀÌÁö ¿äÃ» : ReservationController Å¬·¡½ºÀÇ resSeatGrade() ¸Þ¼Òµå È£Ãâ");
+		log.info("[/resSeatGrade] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» : ReservationController Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ resSeatGrade() ï¿½Þ¼Òµï¿½ È£ï¿½ï¿½");
 		return "reservation/res_seat_grade";
 	}
 	
 	@RequestMapping(value = "/reservation/passengerinfo")
 	public String resPassengersInfo() {
-		log.info("[/resPassengersInfo] ÆäÀÌÁö ¿äÃ» : ReservationController Å¬·¡½ºÀÇ resPassengersInfo() ¸Þ¼Òµå È£Ãâ");
+		log.info("[/resPassengersInfo] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» : ReservationController Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ resPassengersInfo() ï¿½Þ¼Òµï¿½ È£ï¿½ï¿½");
 		return "reservation/res_passengers_info";
 	}
 	
 	@RequestMapping(value = "/reservation/ticketconfirm")
 	public String resTicketConfirm() {
-		log.info("[/resTicketConfirm] ÆäÀÌÁö ¿äÃ» : ReservationController Å¬·¡½ºÀÇ resTicketConfirm() ¸Þ¼Òµå È£Ãâ");
+		log.info("[/resTicketConfirm] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» : ReservationController Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ resTicketConfirm() ï¿½Þ¼Òµï¿½ È£ï¿½ï¿½");
 		return "reservation/res_ticket_confirm";
 	}
 	
 	@RequestMapping(value = "/reservation/seat")
 	public String resSeat() {
-		log.info("[/resSeat] ÆäÀÌÁö ¿äÃ» : ReservationController Å¬·¡½ºÀÇ resSeat() ¸Þ¼Òµå È£Ãâ");
+		log.info("[/resSeat] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» : ReservationController Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ resSeat() ï¿½Þ¼Òµï¿½ È£ï¿½ï¿½");
 		return "reservation/res_seat";
 	}	
 }
