@@ -16,4 +16,5 @@
 		작성된 컬럼명을 자동으로 카멜 표기법의 컬럼명으로 변환하여 검색하는 기능 제공 -->		
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
+	
 </configuration>

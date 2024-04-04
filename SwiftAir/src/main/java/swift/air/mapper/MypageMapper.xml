@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="xyz.itwill09.mapper.MypageMapper">
+<mapper namespace="swift.air.mapper.MypageMapper">
 	<!-- 마이페이지 메인 - 다가오는 일정 -->
 	<!-- 예약번호, 출발일자, 항공편명, 출발지, 도착지 -->
 	<select id="selectFutureJourney" resultType="map">
@@ -22,7 +22,7 @@
 	
 	<!-- 마이페이지 메인 - 보유 포인트 -->
 	<select id="selectMemberPoint" resultType="int">
-		select member_point from member where member_id = #{memberId}
+		select member_point from member where member_num = #{memberNum}
 	</select>
 	
 

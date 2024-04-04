@@ -63,7 +63,8 @@
 							<div class="card-profile-img py-6" style="text-align: center;">
 								<div style="margin: 10px;">
 									<h3>나의 등급</h3>
-									<a href="mgrade" class="btn btn-white btn-lg mb-3">
+									<!-- <a href="mgrade" class="btn btn-white btn-lg mb-3"> -->
+									<a href="<c:url value="/mypage/mgrade"/>?memberNum=1" class="btn btn-white btn-lg mb-3">
 										> BLUE</a>
 								</div>
 

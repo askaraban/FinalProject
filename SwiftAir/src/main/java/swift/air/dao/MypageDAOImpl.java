@@ -24,8 +24,8 @@ public class MypageDAOImpl implements MypageDAO {
 	}
 
 	@Override
-	public int selectMemberPoint(int memberId) {
-		return sqlSession.getMapper(MypageMapper.class).selectMemberPoint(memberId);
+	public int selectMemberPoint(int memberNum) {
+		return sqlSession.getMapper(MypageMapper.class).selectMemberPoint(memberNum);
 	}
 
 }
