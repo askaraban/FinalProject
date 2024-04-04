@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="swift.air.mapper.EventMapper">
+	<insert id="insertEvent">
+		<selectKey resultType="int" keyProperty="eventId" order="BEFORE">
+			select event_seq.nextval from dual
+		</selectKey>
+		insert into event values(#{eventId}, #{eventDate}, #{eventTitle}, #{eventContent}
+			, #{eventImg1}, #{eventImg2}, #{eventStart}, #{eventEnd}, #{eventNotice}, #{eventStatus})
+	</insert>
+	
+	<update id="updateEvent">
+		update event set event_date=#{eventDate}, event_title=#{eventTitle}, event_content=#{eventContent}
+			, event_img1=#{eventImg1}, event_img2=#{eventImg2}, event_start=#{eventStart} , event_end=#{eventEnd}
+			, event_notice=#{eventNotice}, event_status=#{eventStatus} where event_id=#{eventId}
+	</update>
+	
+	<delete id="deleteEvent">
+		delete from event where event_id=#{eventId}
+	</delete>
+	
+	<select id="selectEvent" resultType="Event">  
+		select event_id, event_date, event_title, event_content, event_img1, event_img2, event_start
+			, event_end, event_notice, event_status from event where evnet_id=#{eventId}
+	</select>
+	
+	<select id="selectEventCount" resultType="int">
+		select count(*) from event 
+	</select>
+	
+	<select id="selectEventList" resultType="Event">
+		select * from (select rownum rn, eventlist.* from (select event_id, event_date, event_title
+			, event_content, event_img1, event_img2, event_start, event_end, event_notice, event_status
+			from event order by event_id desc) eventlist) where rn between #{startRow} and #{endRow}
+	</select>
+</mapper>
