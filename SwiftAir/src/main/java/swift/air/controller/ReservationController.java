@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ReservationController {
 	@RequestMapping(value = "/reservation/seatgrade")
 	public String resSeatGrade() {
-		log.info("[/searchReservation] 페이지 요청 : SearchController 클래스의 searchReservation() 메소드 호출");
+		log.info("�ѱ��׽�Ʈ��");
 		return "reservation/res_seat_grade";
 	}
 	
