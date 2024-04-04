@@ -22,4 +22,5 @@ public class Point {
 	private String pointPaymentId;
 	private String pointDate;
 	private int pointSataus;
+	private int pointAmount;
 }

@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="xyz.itwill09.mapper.MypageMapper">
+	<!-- 마이페이지 메인 - 다가오는 일정 -->
 	<!-- 예약번호, 출발일자, 항공편명, 출발지, 도착지 -->
-	<select id="selectFutureJourney" resultType="">
+	<select id="selectFutureJourney" resultType="map">
 		select payment_id, schedule_departure_date, schedule_flight, route_departure, route_destination
 			from payment join schedule on payment_schedule_id=schedule_id
 			join route on schedule_route_id=route_id
-			where schedule_departure_date >= TO_CHAR(SYSDATE, 'YYYYMMDD'
+			where schedule_departure_date >= TO_CHAR(SYSDATE, 'YYYYMMDD')
 			and payment_member_num = #{paymentMemberNum}
 	</select>
 	
-	<select id="selectPastJourney" resultMap="">
+	<!-- 마이페이지 메인 - 지난 일정 -->
+	<select id="selectPastJourney" resultType="map">
 		select payment_id, schedule_departure_date, schedule_flight, route_departure, route_destination
 			from payment join schedule on payment_schedule_id=schedule_id
 			join route on schedule_route_id=route_id
-			where schedule_departure_date &lt; TO_CHAR(SYSDATE, 'YYYYMMDD'
+			where schedule_departure_date &lt; TO_CHAR(SYSDATE, 'YYYYMMDD')
 			and payment_member_num = #{paymentMemberNum}
 	</select>
 	
+	<!-- 마이페이지 메인 - 보유 포인트 -->
+	<select id="selectMemberPoint" resultType="int">
+		select member_point from member where member_id = #{memberId}
+	</select>
 	
 
 </mapper>

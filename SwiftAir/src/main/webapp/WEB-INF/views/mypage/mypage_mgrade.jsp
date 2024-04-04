@@ -53,7 +53,7 @@
 									<h6 class="fw-normal mb-4">항공권 결제 금액 적립</h6>
 									<h4 class="fw-normal mb-4">1,000원 당 7 포인트 비율로 적립</h4>
 								</div>
-							        <c:when test="${포인트가 4000~8999점 사이이면}">
+							        <c:when test="${pointAmount >=4000 && pointAmount <9000 }">
 							            <h6 class="fw-normal mb-4" style="color: gray;">무료 추가 수하물</h6>
 							            <h4 class="fw-normal mb-4" style="color: gray;">GOLD 승급 시 제공</h4>
 							        </c:when>
@@ -63,7 +63,7 @@
 							        </c:otherwise>
 						   		
 								<div style="margin: 10px;">
-							   		<c:when test="${포인트가 9000이상이면}">
+							   		<c:when test="${pointAmount >=9000}">
 										<h6 class="fw-normal mb-4 diamond" style="color: gray;">사전 좌석 구매</h6>
 										<h4 class="fw-normal mb-4 diamond" style="color: gray;">DIAMOND 승급 시 제공</h4>
 									</c:when>
@@ -77,7 +77,7 @@
 							<div class="col-md-5 col-lg-4">
 								<div class="card-profile-img py-6">
 									<div style="margin: 10px;">
-										<c:when test="${포인트가 9000이상이면}">
+										<c:when test="${pointAmount >=9000}">
 											<h6 class="fw-normal mb-4 diamond" style="color: gray;">좌석 업그레이드</h6>
 											<h4 class="fw-normal mb-4 diamond" style="color: gray;">DIAMOND 승급 시 제공</h4>
 										</c:when>
