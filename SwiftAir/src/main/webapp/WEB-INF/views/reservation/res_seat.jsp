@@ -52,7 +52,10 @@
 			<div class="airplane--div" id="sch1Airplane">
 				<div class="airplane--background" style="background-image: url('<c:url value="/img/seat/airplane_empty2.png"/>');">
 					<div class="b--seat">
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 15px; top: 590px;">
+						<c:forEach var="seatList" items="${seatList.seatName }" >
+							<img alt="image" src='<c:url value="/img/seat/business_not.png"/>' style="position: relative; left: 15px; top: 590px;">
+						</c:forEach>
+					
 						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 15px; top: 590px;">
 						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 80px; top: 590px;">
 						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 80px; top: 590px;">

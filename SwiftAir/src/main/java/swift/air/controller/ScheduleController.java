@@ -3,10 +3,10 @@ package swift.air.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 public class ScheduleController {
+	
 	@RequestMapping(value = "/schedule/add")
 	public String scheduleAdd() {
 		return "schedule/schedule_add";
@@ -21,4 +21,5 @@ public class ScheduleController {
 	public String scheduleList() {
 		return "schedule/schedule_list";
 	}	
+	
 }
