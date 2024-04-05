@@ -93,7 +93,7 @@
 						<!-- <div class="card-profile-img py-6" style="text-align: center;">  -->
 						<div style="text-align: center; margin-right: 50px;">
 							<h4 class="fw-normal mb-4">승급 스코어</h4>
-							<h2 class="fw-normal mb-4">${memberName}p</h2>
+							<h2 class="fw-normal mb-4">${memberPoint}p</h2>
 							<!-- <a href="pricing-table.html" class="btn btn-link btn mb-3">GOLD
 								승급 시 제공</a> -->
 						</div>

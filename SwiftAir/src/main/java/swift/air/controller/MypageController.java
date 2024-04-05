@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import swift.air.dto.Member;
 import swift.air.service.MypageService;
 
 
@@ -26,8 +27,10 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="/mgrade")
-	public String mygrade(@RequestParam int memberNum) {
-		mypageService.getMemberPoint(memberNum);
+	public String mygrade(@RequestParam int memberNum, Model model) {
+		int memberPoint =  mypageService.getMemberPoint(memberNum);
+		model.addAttribute("memberPoint",memberPoint);
+		
 		return "mypage/mypage_mgrade";
 	}
 	
