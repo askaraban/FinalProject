@@ -1,4 +1,4 @@
-package swift.air.mapper;
+package swift.air.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import swift.air.dao.EventDAO;
 import swift.air.dto.Event;
-import swift.air.service.EventService;
 import swift.air.util.Pager;
 
 @Service

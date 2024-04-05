@@ -7,13 +7,13 @@
 			select event_seq.nextval from dual
 		</selectKey>
 		insert into event values(#{eventId}, sysdate, #{eventTitle}, #{eventContent}
-			, #{eventImg1}, #{eventImg2}, sysdate, sysdate, #{eventNotice}, #{eventStatus})
+			, #{eventImg1}, #{eventImg2}, #{eventStart}, #{eventEnd}, #{eventNotice}, #{eventStatus})
 	</insert>
 	
 	<!-- 수정 메소드 -->
 	<update id="updateEvent">
 		update event set event_title=#{eventTitle}, event_content=#{eventContent}, event_img1=#{eventImg1}
-			, event_img2=#{eventImg2}, event_start=sysdate , event_end=sysdate
+			, event_img2=#{eventImg2}, event_start=#{eventTitle}, event_end=sysdate
 			, event_notice=#{eventNotice}, event_status=#{eventStatus} where event_id=#{eventId}
 	</update>
 	
