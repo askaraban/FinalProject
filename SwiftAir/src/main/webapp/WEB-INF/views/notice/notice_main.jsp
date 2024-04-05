@@ -84,7 +84,6 @@ border-collapse: collapse;
 		<div class="panel-body" style="text-align: center; vertical-align: middle;">
 			<div style="display: flex; justify-content: space-between;">
 				<div><h3 style="color: mediumaquamarine;">Notice</h3></div>
-				<div><span style="color: gray; font-size: 15px;">더보기</span></div>
 			</div>
 			<hr>
 			<table class="table" style="border-collapse: collapser">
