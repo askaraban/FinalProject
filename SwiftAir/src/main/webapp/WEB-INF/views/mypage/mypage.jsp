@@ -111,36 +111,18 @@
 													<th nowrap>여정</th>
 													<th nowrap>노선</th>
 													<th nowrap>일정</th>
-													<th nowrap>상태</th>
-													<th nowrap>체크인</th>
 												</tr>
 											</thead>
+											<c:forEach var="future" items="${futureJourneyList}">
 											<tbody>
 												<tr>
-													<td>1</td>
-													<td>다가오는 여정</td>
-													<td>Table cell</td>
-													<td>Table cell</td>
-													<td>Table cell</td>
-													<td>Table cell</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Table cell</td>
-													<td>Table cell</td>
-													<td>Table cell</td>
-													<td>Table cell</td>
-													<td>Table cell</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td>Table cell</td>
-													<td>Table cell</td>
-													<td>Table cell</td>
-													<td>Table cell</td>
-													<td>Table cell</td>
+													<td>${future.paymentId }</td>
+													<td>${future.scheduleFlight }</td>
+													<td>${future.routeDeparture } -> ${future.routeDestination } </td>
+													<td>${future.scheduleDepartureDate } -> ${future.scheduleArrivalDate } </td>
 												</tr>
 											</tbody>
+											</c:forEach>
 										</table>
 									</div>
 

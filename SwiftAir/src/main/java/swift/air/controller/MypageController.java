@@ -1,23 +1,29 @@
 package swift.air.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import swift.air.dto.Member;
+import lombok.RequiredArgsConstructor;
 import swift.air.service.MypageService;
 
 
 @Controller
 @RequestMapping("/mypage")
+@RequiredArgsConstructor
 public class MypageController {
-	@Autowired
-	private MypageService mypageService;
+	private final MypageService mypageService;
 	
 	@RequestMapping(value="/mypage")
-	public String mypage() {
+	public String myFutureJourney(@RequestParam int memberNum, @RequestParam(defaultValue = "1") int pageNum, Model model) {
+		Map<String, Object> futureJourney=mypageService.getFutureJourney(memberNum, pageNum);
+		
+		model.addAttribute("pager", futureJourney.get("pager"));
+		model.addAttribute("futureJourneyList", futureJourney.get("futureJourneyList"));
+				
 		return "mypage/mypage";
 	}
 	

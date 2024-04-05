@@ -4,8 +4,17 @@
 	<!-- 마이페이지 메인 - 다가오는 일정 -->
 	<!-- 예약번호, 출발일자, 항공편명, 출발지, 도착지 -->
 	<select id="selectFutureJourney" resultType="map">
-		select payment_id, schedule_departure_date, schedule_flight, route_departure, route_destination
+		select * from (select rownum rn, journey.* from
+			(select payment_id, schedule_departure_date, schedule_arrival_date, schedule_flight, route_departure, route_destination
 			from payment join schedule on payment_schedule_id=schedule_id
+			join route on schedule_route_id=route_id
+			where schedule_departure_date >= TO_CHAR(SYSDATE, 'YYYYMMDD')
+			and payment_member_num = #{paymentMemberNum}) journey)
+			where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="selectFutureJourneyCount" resultType="int">
+		select count(*) from payment join schedule on payment_schedule_id=schedule_id
 			join route on schedule_route_id=route_id
 			where schedule_departure_date >= TO_CHAR(SYSDATE, 'YYYYMMDD')
 			and payment_member_num = #{paymentMemberNum}
@@ -13,12 +22,20 @@
 	
 	<!-- 마이페이지 메인 - 지난 일정 -->
 	<select id="selectPastJourney" resultType="map">
-		select payment_id, schedule_departure_date, schedule_flight, route_departure, route_destination
+		select payment_id, schedule_departure_date, schedule_arrival_date, schedule_flight, route_departure, route_destination
 			from payment join schedule on payment_schedule_id=schedule_id
 			join route on schedule_route_id=route_id
 			where schedule_departure_date &lt; TO_CHAR(SYSDATE, 'YYYYMMDD')
 			and payment_member_num = #{paymentMemberNum}
 	</select>
+	
+	<select id="selectPastJourneyCount" resultType="int">
+		select count(*) from payment join schedule on payment_schedule_id=schedule_id
+			join route on schedule_route_id=route_id
+			where schedule_departure_date &lt; TO_CHAR(SYSDATE, 'YYYYMMDD')
+			and payment_member_num = #{paymentMemberNum}
+	</select>
+	
 	
 	<!-- 마이페이지 메인 - 보유 포인트 -->
 	<select id="selectMemberPoint" resultType="int">

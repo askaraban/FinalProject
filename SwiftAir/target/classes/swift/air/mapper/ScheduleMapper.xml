@@ -17,19 +17,19 @@
 		delete from schedule where schedule_id=#{scheduleId}
 	</delete>
 	
-	<select id="selectSchedule" resultMap="scheduleResultMap">  
+	<!-- <select id="selectSchedule" resultMap="scheduleResultMap">  
 		select schedule_id, schedule_departure_date, schedule_arrival_date, schedule_flight, schedule_route_id 
 			from schedule join route on schedule_route_id=route_id where schedule_id=#{scheduleId}
-	</select>
+	</select> -->
 	
 	<select id="selectScheduleCount" resultType="int">
 		select count(*) from schedule
 	</select>
 	
-	<select id="selectScheduleList" resultType="map">
+	<!-- <select id="selectScheduleList" resultType="map">
 		select * from (select rownum rn, schedulelist.* from (select schedule_id, schedule_departure_date
 			, schedule_arrival_date, schedule_flight, schedule_route_id from schedule join route on 
 			schedule_route_id=route_id where schedule_route_id=#{schedule_route_id} order by schedule_id desc)
 			schedulelist) where rn between #{startRow} and #{endRow}
-	</select>
+	</select> -->
 </mapper>
