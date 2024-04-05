@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@RequestMapping("/event")
 public class EventController {
 	@RequestMapping(value = "/event/add")
 	public String eventAdd() {

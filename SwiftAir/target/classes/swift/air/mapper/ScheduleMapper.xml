@@ -5,12 +5,11 @@
 		<selectKey resultType="int" keyProperty="scheduleId" order="BEFORE">
 			select schedule_seq.nextval from dual
 		</selectKey>
-		insert into schedule values(#{scheduleId}, #{scheduleDepartureDate}, #{scheduleArrivalDate}
-			, #{scheduleFlight}, #{scheduleRouteId})
+		insert into schedule values(#{scheduleId}, sysdate, sysdate, #{scheduleFlight}, #{scheduleRouteId})
 	</insert>
 	
 	<update id="updateSchedule">
-		update schedule set schedule_departure_date=#{scheduleDepartureDate}, schedule_arrival_date=#{scheduleArrivalDate}
+		update schedule set schedule_departure_date=sysdate, schedule_arrival_date=sysdate
 			, schedule_flight=#{scheduleFlight}, schedule_route_id=#{scheduleRouteId} where schedule_id=#{scheduleId}
 	</update>
 	
@@ -27,7 +26,7 @@
 		select count(*) from schedule
 	</select>
 	
-	<select id="selectScheduleList" resultMap="scheduleResultMap">
+	<select id="selectScheduleList" resultType="map">
 		select * from (select rownum rn, schedulelist.* from (select schedule_id, schedule_departure_date
 			, schedule_arrival_date, schedule_flight, schedule_route_id from schedule join route on 
 			schedule_route_id=route_id where schedule_route_id=#{schedule_route_id} order by schedule_id desc)

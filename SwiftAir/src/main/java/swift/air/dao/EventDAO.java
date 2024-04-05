@@ -1,11 +1,11 @@
-package swift.air.mapper;
+package swift.air.dao;
 
 import java.util.List;
 import java.util.Map;
 
 import swift.air.dto.Event;
 
-public interface EventMapper {
+public interface EventDAO {
 	int insertEvent(Event event);
 	int updateEvent(Event event);
 	int deleteEvent(int eventId);
@@ -14,3 +14,4 @@ public interface EventMapper {
 	List<Event> selectEventList(Map<String, Object> map);
 	List<Event> selectEventListByStatus(Map<String, Object> map);
 }
+
