@@ -25,6 +25,7 @@
 		select count(*) from notice
 	</select>
 	
+	<!-- 페이징처리 -->
 	<select id="selectNoticeList" resultType="Notice">
 		select * from (select rownum rn, noticelist.* from (select notice_id, notice_title, notice_content, notice_date from notice order by notie_id desc) noticelist) where rn between #{startRow} and #{endRow}
 	</select>
