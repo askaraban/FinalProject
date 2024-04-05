@@ -6,7 +6,7 @@
 		<selectKey resultType="int" keyProperty="noticeId" order="BEFORE">
 			select notice_seq.nextval from dual
 		</selectKey>
-		insert into notice values(#{noticeId}, #{noticeTitle} , #{noticeContent}, #{noticeDate})
+		insert into notice values(#{noticeId}, #{noticeTitle} , #{noticeContent}, sysdate)
 	</insert>
 
 	<update id="updateNotice">
