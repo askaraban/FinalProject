@@ -1,9 +1,10 @@
 package swift.air.mapper;
 
+import java.util.List;
 import java.util.Map;
 
 public interface MypageMapper {
-	Map<String, Object> selectFutureJourney(Map<String, Object> map);
+	List<Map<String, Object>> selectFutureJourney(Map<String, Object> map);
 	int selectFutureJourneyCount(int paymentMemberNum);
 	Map<String, Object> selectPastJourney(Map<String, Object> map);
 	int selectPastJourneyCount(int paymentMemberNum);

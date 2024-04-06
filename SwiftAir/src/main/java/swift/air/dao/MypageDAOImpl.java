@@ -1,5 +1,6 @@
 package swift.air.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,7 +15,7 @@ public class MypageDAOImpl implements MypageDAO {
 	private final SqlSession sqlSession;
 
 	@Override
-	public Map<String, Object> selectFutureJourney(Map<String, Object> map) {
+	public List<Map<String, Object>> selectFutureJourney(Map<String, Object> map) {
 		return sqlSession.getMapper(MypageMapper.class).selectFutureJourney(map);
 	}
 

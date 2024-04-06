@@ -114,12 +114,14 @@
 												</tr>
 											</thead>
 											<tbody>
-											<c:forEach var="future" items="${futureJourneyList}">
 												<c:if test="${empty futureJourneyList}">
-													다가오는 여정이 없습니다.
+													<tr>
+														<td colspan="4">다가오는 여정이 없습니다.</td>
+													</tr>
 												</c:if>
+											<c:forEach var="future" items="${futureJourneyList}">
 												<tr>
-													<td>${future.paymentId }</td>
+													<td>${future.paymentId}</td>
 													<td>${future.scheduleFlight }</td>
 													<td>${future.routeDeparture } -> ${future.routeDestination } </td>
 													<td>${future.scheduleDepartureDate } -> ${future.scheduleArrivalDate } </td>
@@ -134,16 +136,35 @@
 						</div>
 					</div>
 
-					<div>
-						<ul class="pagination pagination-sm m-t-0 m-b-10">
-							<li class="disabled"><a href="javascript:;">«</a></li>
-							<li class="active"><a href="javascript:;">1</a></li>
-							<li><a href="javascript:;">2</a></li>
-							<li><a href="javascript:;">3</a></li>
-							<li><a href="javascript:;">4</a></li>
-							<li><a href="javascript:;">5</a></li>
-							<li><a href="javascript:;">»</a></li>
-						</ul>
+					<div style="text-align: center;">
+						<%-- 페이지 번호 출력 --%>
+						<c:choose>
+							<c:when test="${pager.startPage > pager.blockSize }">
+								<a href="<c:url value="/file/list"/>?pageNum=${pager.prevPage}">[이전]</a>
+							</c:when>
+							<c:otherwise>
+								[이전]
+							</c:otherwise>
+						</c:choose>
+						
+						<c:forEach var="i" begin="${pager.startPage }" end="${pager.endPage }" step="1">
+							<c:choose>
+								<c:when test="${pager.pageNum != i }">
+									<a href="<c:url value="/file/list"/>?pageNum=${i}">[${i}]</a>
+								</c:when>
+								<c:otherwise>
+									[${i}]
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:choose>
+							<c:when test="${pager.endPage != pager.totalPage }">
+								<a href="<c:url value="/file/list"/>?pageNum=${pager.nextPage}">[다음]</a>
+							</c:when>
+							<c:otherwise> 
+								[다음]
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>

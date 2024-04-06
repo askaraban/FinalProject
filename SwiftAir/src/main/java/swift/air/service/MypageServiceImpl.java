@@ -1,6 +1,7 @@
 package swift.air.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class MypageServiceImpl implements MypageService {
 		pageMap.put("paymentMemberNum", paymentMemberNum);
 		pageMap.put("startRow", pager.getStartRow());
 		pageMap.put("endRow", pager.getEndRow());
-		Map<String, Object> futureJourneyList=mypageDAO.selectFutureJourney(pageMap);
+		List<Map<String, Object>> futureJourneyList=mypageDAO.selectFutureJourney(pageMap);
 		
 		 if (futureJourneyList == null || futureJourneyList.isEmpty()) {
 			 System.out.println("futureJourneyList에 내용이 없습니다.");
