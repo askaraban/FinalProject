@@ -8,14 +8,14 @@
 			(select payment_id, schedule_departure_date, schedule_arrival_date, schedule_flight, route_departure, route_destination
 			from payment join schedule on payment_schedule_id1=schedule_id
 			join route on schedule_route_id=route_id
-			where schedule_departure_date >= SYSDATE
+			where schedule_departure_date >= sysdate
 			and payment_member_num = #{paymentMemberNum}
-            UNION select payment_id, schedule_departure_date, schedule_arrival_date, schedule_flight, route_departure, route_destination
+            union select payment_id, schedule_departure_date, schedule_arrival_date, schedule_flight, route_departure, route_destination
 			from payment join schedule on payment_schedule_id2=schedule_id
 			join route on schedule_route_id=route_id
-			where schedule_departure_date >= SYSDATE
+			where schedule_departure_date >= sysdate
 			and payment_member_num = #{paymentMemberNum}) journey)
-			where rn between #{startRow} and #{endRow};
+			where rn between #{startRow} and #{endRow}
 	</select>
 	
 	<select id="selectFutureJourneyCount" resultType="int">
@@ -23,12 +23,12 @@
 			(select payment_id, schedule_departure_date, schedule_arrival_date, schedule_flight, route_departure, route_destination
 			from payment join schedule on payment_schedule_id1=schedule_id
 			join route on schedule_route_id=route_id
-			where schedule_departure_date >= SYSDATE
+			where schedule_departure_date >= sysdate
 			and payment_member_num = #{paymentMemberNum}
-            UNION select payment_id, schedule_departure_date, schedule_arrival_date, schedule_flight, route_departure, route_destination
+            union select payment_id, schedule_departure_date, schedule_arrival_date, schedule_flight, route_departure, route_destination
 			from payment join schedule on payment_schedule_id2=schedule_id
 			join route on schedule_route_id=route_id
-			where schedule_departure_date >= SYSDATE
+			where schedule_departure_date >= sysdate
 			and payment_member_num = #{paymentMemberNum}) journey)
 	</select>
 	

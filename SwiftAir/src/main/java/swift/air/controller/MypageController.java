@@ -18,8 +18,8 @@ public class MypageController {
 	private final MypageService mypageService;
 	
 	@RequestMapping(value="/mypage")
-	public String myFutureJourney(@RequestParam int memberNum, @RequestParam(defaultValue = "1") int pageNum, Model model) {
-		Map<String, Object> futureJourney=mypageService.getFutureJourney(memberNum, pageNum);
+	public String myFutureJourney(@RequestParam int paymentMemberNum, @RequestParam(defaultValue = "1") int pageNum, Model model) {
+		Map<String, Object> futureJourney=mypageService.getFutureJourney(paymentMemberNum, pageNum);
 		
 		model.addAttribute("pager", futureJourney.get("pager"));
 		model.addAttribute("futureJourneyList", futureJourney.get("futureJourneyList"));

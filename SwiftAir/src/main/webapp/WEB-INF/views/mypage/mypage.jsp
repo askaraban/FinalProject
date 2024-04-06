@@ -113,16 +113,19 @@
 													<th nowrap>일정</th>
 												</tr>
 											</thead>
-											<c:forEach var="future" items="${futureJourneyList}">
 											<tbody>
+											<c:forEach var="future" items="${futureJourneyList}">
+												<c:if test="${empty futureJourneyList}">
+													다가오는 여정이 없습니다.
+												</c:if>
 												<tr>
 													<td>${future.paymentId }</td>
 													<td>${future.scheduleFlight }</td>
 													<td>${future.routeDeparture } -> ${future.routeDestination } </td>
 													<td>${future.scheduleDepartureDate } -> ${future.scheduleArrivalDate } </td>
 												</tr>
-											</tbody>
 											</c:forEach>
+											</tbody>
 										</table>
 									</div>
 

@@ -25,9 +25,14 @@ public class MypageServiceImpl implements MypageService {
 		
 		//검색된 다가오는 일정
 		Map<String, Object> pageMap=new HashMap<String, Object>();
+		pageMap.put("paymentMemberNum", paymentMemberNum);
 		pageMap.put("startRow", pager.getStartRow());
 		pageMap.put("endRow", pager.getEndRow());
 		Map<String, Object> futureJourneyList=mypageDAO.selectFutureJourney(pageMap);
+		
+		 if (futureJourneyList == null || futureJourneyList.isEmpty()) {
+			 System.out.println("futureJourneyList에 내용이 없습니다.");
+		 }
 		
 		Map<String, Object> resultMap=new HashMap<String, Object>();
 		resultMap.put("pager", pager);
