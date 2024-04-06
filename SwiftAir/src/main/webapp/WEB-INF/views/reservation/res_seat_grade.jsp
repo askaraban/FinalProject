@@ -13,7 +13,7 @@
     <nav class="bg-transparent breadcrumb breadcrumb-2 px-0 mb-5" aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
       <h2 class="fw-normal mb-4 mb-md-0" style="font-size: 40px;">항공권 예매</h2>
       <ul class="list-unstyled d-flex p-0 m-0">
-        <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="">Home</a></li>
         <li class="breadcrumb-item">일정</li>
         <li class="breadcrumb-item">좌석</li>
       </ul>
@@ -114,10 +114,10 @@
 			<h5>2,345,678 원</h5>
 		</div>
 		<div class="col-sm-1 col-lg-1">
-			<button type="submit" class="btn btn-outline-primary w-100">이전</button>
+			<button onclick="history.back()" class="btn btn-outline-primary w-100">이전</button>
 		</div>
 		<div class="col-sm-1 col-lg-1">
-			<button type="submit" class="btn btn-primary w-100">다음</button>
+			<button type="submit" class="btn btn-primary w-100" onclick="location.href='<c:url value="/reservation/passengerinfo"/>';">다음</button>
 		</div>
 	</div>
 </nav>

@@ -11,7 +11,7 @@
     <nav class="bg-transparent breadcrumb breadcrumb-2 px-0 mb-5" aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
       <h2 class="fw-normal mb-4 mb-md-0" style="font-size: 40px;">항공권 예매</h2>
       <ul class="list-unstyled d-flex p-0 m-0">
-        <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="">Home</a></li>
         <li class="breadcrumb-item">일정</li>
       </ul>
     </nav>
@@ -28,7 +28,7 @@
 
         <!-- 항공권예매 검색박스 -->
         <div class="search-box-2">
-          <form class="row g-2 justify-content-center" method="GET" action="res_seat_option.html">
+          <form class="row g-2 justify-content-center" method="POST" action="<c:url value="/reservation/seatgrade" />">
 
             <div class="form-group col-md-3 col-lg-2 mb-0">
               <div class="select-default">

@@ -269,12 +269,28 @@
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.mindrot/jbcrypt -->
+		<!-- => 암호화 처리 기능을 제공하기 위한 라이브러리 -->
 		<dependency>
 		    <groupId>org.mindrot</groupId>
 		    <artifactId>jbcrypt</artifactId>
 		    <version>0.4</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<!-- => 파일 업로드 기능을 제공하기 위한 라이브러리 -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.5</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<!-- => Java 객체를 JSON 형식의 문자열로 변환하는 기능을 제공하기 위한 라이브러리 -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.17.0</version>
+		</dependency>
 		
 	</dependencies>
     <build>
