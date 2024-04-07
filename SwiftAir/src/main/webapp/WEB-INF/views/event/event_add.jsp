@@ -37,9 +37,8 @@
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">운영기간</div>
 						<div class="form-group col-md-3 col-lg-12 mb-0">
-							<input type="text" class="form-control double-date" id="daterange" name="daterange">
-							<input type="hidden" name="eventStart">
-                            <input type="hidden" name="eventEnd">
+							<input type="text" class="form-control" name="eventStart" value="${event.eventStart}">
+							<input type="text" class="form-control" name="eventEnd" value="${event.eventEnd}">
 						</div>
 					</div>
 					<div class="mb-4">
@@ -52,11 +51,11 @@
 					</div>
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">대표 이미지</div>
-						<input type="file" class="form-control" name="eventImg1">
+						<input type="file" class="form-control" name="eventFileList">
 					</div>
 					<div class="mb-2">
 						<div class="col-sm-2 mb-1 fw-bold">상세 이미지</div>
-						<input type="file" class="form-control" name="eventImg2">
+						<input type="file" class="form-control" name="eventFileList">
 					</div>
 				</div>
 			</div>

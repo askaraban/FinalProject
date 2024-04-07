@@ -29,8 +29,8 @@ public class Event {
 	private String eventDate;
 	private String eventTitle;
 	private String eventContent;
-	private MultipartFile eventImg1;
-	private MultipartFile eventImg2;
+	private String eventImg1;
+	private String eventImg2;
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private String eventStart;
 	@DateTimeFormat(pattern = "yyyy/MM/dd")

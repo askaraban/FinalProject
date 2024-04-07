@@ -2,7 +2,10 @@ package swift.air.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +27,6 @@ public class EventController {
 	private final WebApplicationContext context;
 	private final EventService eventService;
 	
-	/*
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String eventAdd() {
 		return "event/event_add"; 
@@ -32,33 +34,33 @@ public class EventController {
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String eventAdd(@ModelAttribute Event event
-			, @RequestParam(value = "dateRange", required = false) String dateRange
-			, @RequestParam(value = "file", required = false) MultipartFile eventFile) throws IOException {
-		if (dateRange.isEmpty() || dateRange.isBlank()) {
-			return "redirect:/event/add";
-        }
-		
-		// dateRange를 파싱하여 시작일과 종료일로 분리하여 이벤트 객체에 설정
-        String[] dates = dateRange.split(" - ");
-        String startDate = dates[0];
-        String endDate = dates[1];
-        event.setEventStart(startDate);
-        event.setEventEnd(endDate);
-		
+			, @RequestParam List<MultipartFile> eventFileList) throws IOException {
+
 		//전달파일을 저장하기 위한 서버 디렉토리의 시스템 경로를 반환받아 저장
-		String uploadDirectory=context.getServletContext().getRealPath("/img/event");
+		String uploadDirectory=context.getServletContext().getRealPath("/resources/asset/img/event");
 		
-		File file=new File(uploadDirectory);
+		//업로드 처리된 모든 파일의 이름을 저장하기 위한 List 객체 생성
+		List<String> eventnameList=new ArrayList<String>();
 		
-		//전달파일을 서버 디렉토리에 저장되도록 업로드 처리
-		eventFile.transferTo(file);
-		
-		//전달값을 EVENT 테이블의 행으로 삽입 처리
-		eventService.addEvent(event);
+		for(MultipartFile multipartFile : eventFileList) {
+			if(multipartFile.isEmpty() || !multipartFile.getContentType().equals("image/jpeg")) {
+				return "event/add";
+			}
+			
+			//전달파일을 서버 디렉토리에 저장되도록 업로드 처리
+			String eventFilename=UUID.randomUUID().toString()+"_"+multipartFile.getOriginalFilename();
+			File file=new File(uploadDirectory, eventFilename);
+			multipartFile.transferTo(file);
+			
+			//List 객체에 업로드 처리된 파일명을 요소값으로 추가하여 저장
+			eventnameList.add(eventFilename);
+		}
+	    
+	    // 전달값과 업로드 처리된 파일명을 FILE_BOARD 테이블의 행으로 삽입 처리
+	    eventService.addEvent(event);
 		
 		return "redirect:/event/list";
 	}
-	*/
 	
 	/*
 	@RequestMapping(value = "/modify")
@@ -92,8 +94,7 @@ public class EventController {
 	
 	@RequestMapping("/main")
 	public String eventMain(@RequestParam(defaultValue = "1") int pageNum, Model model) {
-		Map<String, Object> map=eventService.getEventListByStatus(pageNum);
-		
+		Map<String, Object> map=eventService.getEventList(pageNum);
 		
 		model.addAttribute("pager", map.get("pager"));
 		model.addAttribute("eventList", map.get("eventList"));

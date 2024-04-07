@@ -62,7 +62,7 @@
     	</div>
 
 		<div class="row">
-			<c:forEach var="event" items="${eventList}">
+			<c:forEach var="eventname" items="${eventnameList}">
 				<div class="col-md-6 col-lg-6">
 					<div class="card border-0 bg-transparent">
 						

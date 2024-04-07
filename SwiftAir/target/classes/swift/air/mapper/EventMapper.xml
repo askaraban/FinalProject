@@ -37,7 +37,7 @@
 	이벤트 게시글 목록을 반환하는 메소드 -->
 	<select id="selectEventList" resultType="Event">
 		select * from (select rownum rn, eventlist.* from (select event_id, event_title
-			, event_start, event_end, event_status
+			, event_img1, event_start, event_end, event_status
 			from event order by event_id) eventlist) where rn between #{startRow} and #{endRow}
 	</select>
 
