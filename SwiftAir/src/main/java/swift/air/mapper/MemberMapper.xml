@@ -7,7 +7,7 @@
 	</insert>
 	
 <select id="selectMember" resultType="Member">
-	select member_id, member_pswd, member_kor_Name, member_last_name, member_first_name, member_email, 
+	select member_num, member_id, member_pswd, member_kor_Name, member_last_name, member_first_name, member_email, 
 	member_phone, member_gender, member_birth, member_join_date, member_withdraw_date, member_point, 
 	member_status from member where member_id = #{memberId} 
 
