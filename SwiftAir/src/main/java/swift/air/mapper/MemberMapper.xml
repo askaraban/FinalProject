@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="swift.air.mapper.MemberMapper">
+	<insert id="insertMember">
+		insert into member values(member_seq.nextval,#{memberId}, #{memberPswd}, #{memberKorName}, #{memberLastName},
+		#{memberFirstName}, #{memberEmail}, #{memberPhone}, #{memberGender}, #{memberBirth}, SYSDATE, NULL, 0, 1)
+	</insert>
+	
+<select id="selectMember" resultType="Member">
+	select member_id, member_pswd, member_kor_Name, member_last_name, member_first_name, member_email, 
+	member_phone, member_gender, member_birth, member_join_date, member_withdraw_date, member_point, 
+	member_status from member where member_id = #{memberId} 
+
+</select>	
+	
+</mapper>	
