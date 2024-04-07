@@ -37,9 +37,9 @@
 						<div class="col-md-5 col-lg-4" style="margin: 10px;">
 							<div class="custom-file" style="text-align: left;">
 								<h4 class="fw-normal mb-4">
-									<strong>SUMIN KIM</strong> 님의 보유 포인트
+									<strong>${loginMember.memberFirstName} ${loginMember.memberLastName}</strong> 님의 보유 포인트
 								</h4>
-								<h3 class="fw-normal mb-4">0pp</h3>
+								<h3 class="fw-normal mb-4">${loginMember.memberPoint }p</h3>
 							</div>
 						</div>
 						<div class="col-md-5 col-lg-4" style="margin: 10px;">
@@ -81,34 +81,33 @@
 						style="margin: 5px;">
 						<div class="panel-heading">
 							<div class="btn-group my-n1">
-								<button type="button" class="btn btn-success btn-xs">전체</button>
+								<button type="button" class="btn btn-success btn-xs" style="color:white;">전체</button>
 								<button type="button"
 									class="btn btn-success btn-xs dropdown-toggle"
 									data-bs-toggle="dropdown">
 									<b class="caret"></b>
 								</button>
 								<div class="dropdown-menu dropdown-menu-end">
-									<a href="javascript:;" class="dropdown-item">전체</a> <a
-										href="javascript:;" class="dropdown-item">적립</a> <a
-										href="javascript:;" class="dropdown-item">사용</a> <a
-										href="javascript:;" class="dropdown-item">환불</a>
+									<a href="javascript:;" class="dropdown-item">전체</a> 
+									<a href="javascript:;" class="dropdown-item">적립</a>
+									<a href="javascript:;" class="dropdown-item">사용</a>
+									<a href="javascript:;" class="dropdown-item">환불</a>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="panel panel-inverse" data-sortable-id="ui-widget-2"
-						style="margin: 5px;">
+					<div class="panel panel-inverse" data-sortable-id="ui-widget-2" style="margin: 5px;">
 						<div class="panel-heading">
 							<div class="btn-group my-n1">
-								<button type="button" class="btn btn-success btn-xs">최신순</button>
+								<button type="button" class="btn btn-success btn-xs" style="color:white;">최신순</button>
 								<button type="button"
 									class="btn btn-success btn-xs dropdown-toggle"
 									data-bs-toggle="dropdown">
 									<b class="caret"></b>
 								</button>
 								<div class="dropdown-menu dropdown-menu-end">
-									<a href="javascript:;" class="dropdown-item">최신순</a> <a
-										href="javascript:;" class="dropdown-item">오래된순</a>
+									<a href="javascript:;" class="dropdown-item">최신순</a>
+									<a href="javascript:;" class="dropdown-item">오래된순</a>
 								</div>
 							</div>
 						</div>
@@ -172,13 +171,14 @@
 			<div id="유의사항">
 				<div class="card-body p-6" style="padding: 10px;">
 					<div class="col-md-5 col-lg-4" style="width: 100%;">
+						<p style="color: black;">🛈유의사항</p>
 						<p>
-							🛈유의사항<br> 적립 금액은 각종 프로모션, 쿠폰 적용 후의 항공권 결제 금액만을 기준으로 하며
-							유류할증료, 공항사용료, 세금, 부가서비스 결제 금액은 적립에서 제외됩니다.<br> 포인트로 구매한 항공권에
-							대해서는 포인트가 적립되지 않습니다.<br> 이벤트, 특가 항공권 등 포인트 적립이 되지 않는 클래스가
-							존재합니다.<br> 실제 탑승 후 탑승자 본인 명의의 계정으로 적립되며 탑승하지 않았을 경우 포인트는
-							적립되지 않습니다.<br> 좌석을 점유하지 않는 유아(0~2세)용 항공권은 포인트가 적립되지 않습니다.<br>
-							포인트의 유효기간은 탑승일 기준 3년입니다.
+							- 적립 금액은 각종 프로모션, 쿠폰 적용 후의 항공권 결제 금액만을 기준으로 하며
+							유류할증료, 공항사용료, 세금, 부가서비스 결제 금액은 적립에서 제외됩니다.<br> - 포인트로 구매한 항공권에
+							대해서는 포인트가 적립되지 않습니다.<br> - 이벤트, 특가 항공권 등 포인트 적립이 되지 않는 클래스가
+							존재합니다.<br> - 실제 탑승 후 탑승자 본인 명의의 계정으로 적립되며 탑승하지 않았을 경우 포인트는
+							적립되지 않습니다.<br> - 좌석을 점유하지 않는 유아(0~2세)용 항공권은 포인트가 적립되지 않습니다.<br>
+							- 포인트의 유효기간은 탑승일 기준 3년입니다.
 						</p>
 					</div>
 				</div>

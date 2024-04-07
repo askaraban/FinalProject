@@ -9,23 +9,21 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>나의 등급</title>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style type="text/css">
-<c:if test="${memberPoint<4000}">
+<c:if test="${loginMember.memberPoint<4000}">
 .table tr td:nth-child(2) {
 	background: #fafafa;
-	
-.gold h6,
-.gold h4,
-.diamond h6,
-.diamond h4 {
-	color: gray;
-}
-	
-}
 </c:if>
-<c:if test="${memberPoint<4000}">
 
+<c:if test="${loginMember.memberPoint >= 4000 && loginMember.memberPoint < 9000}">
+.table tr td:nth-child(3) {
+	background: #fafafa;
+</c:if>
+
+<c:if test="${loginMember.memberPoint>=9000}">
+.table tr td:nth-child(4) {
+	background: #fafafa;
 </c:if>
 </style>
 </head>
@@ -45,39 +43,48 @@
 			<div class="col-md-7 col-lg-8" style="width: 100%; margin-top: 20px;">
 				<div class="card">
 					<div class="card-body p-6"
-						style="display: flex; flex-direction: row; align-items: center; padding: 10px;">
+						style="display: flex; flex-direction: row; align-items: center; padding: 10px; color:black;">
 						<div class="col-md-5 col-lg-4" style="width: 30%">
 							<!-- <div class="card card-profile"> -->
 							<!-- <div class="card-profile-img py-6" style="text-align: center;">  -->
 							<div style="text-align: center; margin-right: 50px;">
-								<h4 class="fw-normal mb-4">SUMIN KIM 님의 등급</h4>
+								<h4 class="fw-normal mb-4">${loginMember.memberFirstName} ${loginMember.memberLastName} 님의 등급</h4>
+								<c:if test="${loginMember.memberPoint<4000}">
 								<h2 class="fw-normal mb-4">BLUE</h2>
+								</c:if>
+								<c:if test="${loginMember.memberPoint>=4000 && loginMember.memberPoint<9000}">
+								<h2 class="fw-normal mb-4">GOLD</h2>
+								</c:if>
+								<c:if test="${loginMember.memberPoint>=9000}">
+								<h2 class="fw-normal mb-4">DIAMOND</h2>
+								</c:if>
+								
 							</div>
 						</div>
 
 						<div class="col-md-5 col-lg-4" style="width: 70%"
 							style="display: flex; flex-direction: column;">
 							<!-- <div class="custom-file" style="display: flex; flex-direction: row;" > -->
-							<div style="display: flex; flex-direction: row;">
-								<div style="margin: 10px;" class="blue">
-									<h6 class="fw-normal mb-4">항공권 결제 금액 적립</h6>
-									<h4 class="fw-normal mb-4">1,000원 당 7 포인트 비율로 적립</h4>
+							<div style="display: flex; justify-content: space-between;">
+								<div style="margin: 10px;">
+									<h6 class="fw-normal mb-4 blue">항공권 결제 금액 적립</h6>
+									<h4 id="point" class="fw-normal mb-4 blue">1,000원 당 7 포인트 비율로 적립</h4>
 								</div>
-								<div style="margin: 10px;" class="gold">
-							            <h6 class="fw-normal mb-4" style="color: gray;">무료 추가 수하물</h6>
-							            <h4 class="fw-normal mb-4" style="color: gray;">GOLD 승급 시 제공</h4>
+								<div style="margin: 10px;">
+							            <h6 class="fw-normal mb-4">무료 추가 수하물</h6>
+							            <h4 id="luggage" class="fw-normal mb-4 gold">GOLD 승급 시 제공</h4>
 								</div>
-								<div style="margin: 10px;" class="diamond">
-										<h6 class="fw-normal mb-4 diamond" style="color: gray;">사전 좌석 구매</h6>
-										<h4 class="fw-normal mb-4 diamond" style="color: gray;">DIAMOND 승급 시 제공</h4>
+								<div style="margin: 10px;">
+										<h6 class="fw-normal mb-4">사전 좌석 구매</h6>
+										<h4 id="seatPurchase" class="fw-normal mb-4 diamond">DIAMOND 승급 시 제공</h4>
 								</div>
 							</div>
 
 							<div class="col-md-5 col-lg-4">
 								<div class="card-profile-img py-6">
-									<div style="margin: 10px;" class="diamond">
-										<h6 class="fw-normal mb-4 diamond" style="color: gray;">좌석 업그레이드</h6>
-										<h4 class="fw-normal mb-4 diamond" style="color: gray;">DIAMOND 승급 시 제공</h4>
+									<div style="margin: 10px;">
+										<h6 class="fw-normal mb-4">좌석 업그레이드</h6>
+										<h4 id="seatGrade" class="fw-normal mb-4 diamond">DIAMOND 승급 시 제공</h4>
 									</div>
 								</div>
 							</div>
@@ -87,26 +94,25 @@
 			</div>
 			<div class="card">
 				<div class="card-body p-6"
-					style="display: flex; flex-direction: row; align-items: center;">
+					style="display: flex; flex-direction: row; align-items: center; color:black;">
 					<div class="col-md-5 col-lg-4" style="width: 30%">
 						<!-- <div class="card card-profile"> -->
 						<!-- <div class="card-profile-img py-6" style="text-align: center;">  -->
-						<div style="text-align: center; margin-right: 50px;">
-							<h4 class="fw-normal mb-4">승급 스코어</h4>
-							<h2 class="fw-normal mb-4">${memberPoint}p</h2>
-							<!-- <a href="pricing-table.html" class="btn btn-link btn mb-3">GOLD
-								승급 시 제공</a> -->
+						<div id="memberPoint" data-value="${loginMember.memberPoint}" style="text-align: center; margin-right: 50px;">
+							<h4 class="fw-normal mb-4" id="highestScore">승급 스코어</h4>
+							<h2 class="fw-normal mb-4">${loginMember.memberPoint}p</h2>
+							 <p id="promotionScore" style="color:#43C4AE">4000포인트 달성 시 GOLD로 승급</p>	
 						</div>
 					</div>
 					<div class="col-md-5 col-lg-4" style="width: 70%">
 						<!-- animated -->
 						<div class="col-md-6"
 							style="width: 100%; background-color: #e5e5e5; border-radius: 20px;">
-							<div class="progress rounded-pill mb-2"
-								style="height: 30px; width: 25%">
+							<div class="progress rounded-pill mb-2" id="progressPill"
+								style="height: 30px; width:20px;">
 								<div
 									class="progress-bar bg-indigo progress-bar-striped progress-bar-animated rounded-pill fs-10px fw-bold"
-									style="width: 100%; background-color: #43C4AE;">1000pp</div>
+									style="width: 100%; background-color: #43C4AE;">${loginMember.memberPoint}p</div>
 							</div>
 						</div>
 					</div>
@@ -185,13 +191,14 @@
 			<div id="유의사항">
 				<div class="card-body p-6" style="padding: 10px;">
 					<div class="col-md-5 col-lg-4" style="width: 100%;">
+						<p style="color:black;">🛈회원 등급 유의사항</p>
 						<p>
-							🛈회원 등급 유의사항<br> 회원 등급의 승급, 유지, 강등 심사는 매일 진행되며, 직전 24개월간 항공권
-							탑승을 통해 적립한 점수(Score)을 통해 실시합니다.<br> 최근 24개월 동안 적립된 스코어가
+							- 회원 등급의 승급, 유지, 강등 심사는 매일 진행되며, 직전 24개월간 항공권
+							탑승을 통해 적립한 점수(Score)을 통해 실시합니다.<br> - 최근 24개월 동안 적립된 스코어가
 							4,000점 이상일 경우 GOLD/9,000점 이상일 경우 DIAMOND로 회원 등급이 승급됩니다.<br>
-							승급된 회원 등급은 24개월 동안 유지되며 24개월 후의 스코어 적립 실적에 따라 승급, 유지, 강등이 이루어집니다.<br>
-							GOLD, DIAMOND 회원은 등급이 유지되는 24개월 안에 승급에 필요한 스코어 기준을 달성할 경우 등급이
-							유지되며 아닐 경우 강등됩니다.<br> 프레미아 멤버스 정책에 따라 항공권 결제를 통해 적립된 스코어만 등급
+							- 승급된 회원 등급은 24개월 동안 유지되며 24개월 후의 스코어 적립 실적에 따라 승급, 유지, 강등이 이루어집니다.<br>
+							- GOLD, DIAMOND 회원은 등급이 유지되는 24개월 안에 승급에 필요한 스코어 기준을 달성할 경우 등급이
+							유지되며 아닐 경우 강등됩니다.<br> - 프레미아 멤버스 정책에 따라 항공권 결제를 통해 적립된 스코어만 등급
 							산정 기준에 포함됩니다.
 						</p>
 					</div>
@@ -199,5 +206,44 @@
 			</div>
 		</div>
 	</section>
+
+<script type="text/javascript">
+var memberPoint = $('#memberPoint').data('value');
+var goldElements = $('.gold');
+var diamondElements = $('.fw-normal.mb-4.diamond');
+var progressPill = $('#progressPill');
+
+if (0 <= memberPoint < 4000) { // BLUE 등급인 경우
+    goldElements.eq(0).css('color', 'gray');
+    goldElements.eq(1).css('color', 'gray');
+    diamondElements.css('color', 'gray');
+	
+    if(memberPoint <= 500) {
+    	progressPill.css('width', '12.5%');
+    } else {
+    var percentage = (memberPoint / 4000) * 100;
+    progressPill.css('width', percentage + '%');
+    }
+} else if (memberPoint >= 4000 && memberPoint < 9000) { // GOLD 등급인 경우
+    diamondElements.css('color', 'gray');
+    $('#point').text('1,000원 당 11 포인트 비율');
+	$('#luggage').text('무상 추가 2회');
+    $('#promotionScore').text('9000포인트 달성 시 DIAMOND로 승급');
+
+    var percentage = (memberPoint / 9000) * 100;
+    progressPill.css('width', percentage + '%');
+    
+} else {
+	$('#point').text('1,000원 당 15 포인트 비율');
+	$('#luggage').text('무상 추가 4회');
+	$('#seatPurchase').text('전 좌석 무상 지정 2회');
+	$('#seatGrade').text('좌석 업그레이드 2회');
+	
+    progressPill.css('width', '100%');
+    $('#highestScore').text('현재 스코어');
+    $('#promotionScore').text('현재 최고 등급입니다.');
+}
+
+</script>	
 </body>
 </html>

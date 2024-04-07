@@ -52,11 +52,10 @@
 						</div>
 						<div class="col-md-5 col-lg-4" style="margin: 10px;">
 							<div class="custom-file" style="text-align: left;">
-								<h2 class="fw-normal mb-4">SUMIN KIM</h2>
-								<h4 class="fw-normal mb-4">(회원번호:10004156970)</h4>
-								<h5 class="fw-normal mb-4" style="color: gray;">suumin0722@naver.com</h5>
-								<a href="pricing-table.html" class="btn btn-secondary btn mb-3">회원
-									정보 변경</a>
+								<h2 class="fw-normal mb-4">${loginMember.memberFirstName} ${loginMember.memberLastName}</h2>
+								<h4 class="fw-normal mb-4">(회원번호: ${loginMember.memberNum} )</h4>
+								<h5 class="fw-normal mb-4" style="color: gray;">${loginMember.memberEmail}</h5>
+								<a href="pricing-table.html" class="btn btn-secondary btn mb-3">회원 정보 변경</a>
 							</div>
 						</div>
 						<div class="col-md-5 col-lg-4">
@@ -64,14 +63,23 @@
 								<div style="margin: 10px;">
 									<h3>나의 등급</h3>
 									<!-- <a href="mgrade" class="btn btn-white btn-lg mb-3"> -->
-									<a href="<c:url value="/mypage/mgrade"/>?memberNum=1" class="btn btn-white btn-lg mb-3">
-										> BLUE</a>
+									<a href="<c:url value="/mypage/mgrade"/>" class="btn btn-white btn-lg mb-3">
+										<c:if test="${loginMember.memberPoint<4000}">
+										<span>> BLUE</span>
+										</c:if>
+										<c:if test="${loginMember.memberPoint>=4000 && loginMember.memberPoint<9000}">
+										<span>> GOLD</span>
+										</c:if>
+										<c:if test="${loginMember.memberPoint>=9000}">
+										<span>> DIAMOND</span>
+										</c:if>
+									</a>
 								</div>
 
 								<div style="margin: 10px;">
 									<h3>포인트</h3>
 									<a href="point" class="btn btn-white btn-lg mb-3">
-										> 10만P</a>
+										> ${loginMember.memberPoint }P</a>
 								</div>
 							</div>
 						</div>
