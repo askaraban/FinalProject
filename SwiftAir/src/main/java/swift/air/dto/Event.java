@@ -1,6 +1,10 @@
 package swift.air.dto;
 
-import lombok.Builder;
+import java.sql.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 /*
@@ -19,15 +23,17 @@ EVENT_STATUS           NUMBER(1)
 */
 
 @Data
-@Builder
 public class Event {
 	private int eventId;
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private String eventDate;
 	private String eventTitle;
 	private String eventContent;
-	private String eventImg1;
-	private String eventImg2;
+	private MultipartFile eventImg1;
+	private MultipartFile eventImg2;
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private String eventStart;
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private String eventEnd;
 	private String eventNotice;
 	private int eventStatus;

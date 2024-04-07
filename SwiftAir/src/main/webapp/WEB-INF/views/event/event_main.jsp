@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
@@ -61,177 +62,31 @@
     	</div>
 
 		<div class="row">
-			<div class="col-md-6 col-lg-6">
-				<div class="card border-0 bg-transparent">
-					<a href="detail">
-						<img class="card-img rounded-5" data-src=<c:url value="/img/event/BKsale.jpg"/> src=<c:url value="/img/event/BKsale.jpg"/> alt="Card image cap">
-					</a>
-					<div class="card-body p-0 pt-5">
-		            	<div class="form-label" style="display: flex; justify-content: space-between;">
-		              		<date class="meta-date" style="font-size: 0.875rem;">2024.03.25 ~ 2024.03.31</date>
-		              		<span class="badge text-bg-primary fs-6" style="line-height: 1.2">진행중</span>
-		            	</div>
-						<h5 class="card-title fw-bolder lh-base">
-							<a href="detail">
-								당장 떠나기 좋은 
-								<br> 
-								방콕 노선 임박 특가
-							</a>
-						</h5>
+			<c:forEach var="event" items="${eventList}">
+				<div class="col-md-6 col-lg-6">
+					<div class="card border-0 bg-transparent">
+						
+						<a href="detail">
+							<img class="card-img rounded-5" src="<c:url value="/img/event/${event.eventImg1}"/>">
+						</a>
+						
+						<div class="card-body p-0 pt-5">
+			            	<div class="form-label" style="display: flex; justify-content: space-between;">
+			              		<date class="meta-date" style="font-size: 0.875rem;">${event.eventStart}~${event.eventEnd}</date>
+			              		<span class="badge text-bg-primary fs-6" style="line-height: 1.2">${event.eventStatus}</span>
+			            	</div>
+							<h5 class="card-title fw-bolder lh-base">
+								<a href="detail">${event.eventTitle}</a>
+							</h5>
+						</div>
 					</div>
 				</div>
-			</div>
-			
-			<div class="col-md-6 col-lg-6">
-				<div class="card border-0 bg-transparent">
-					<a href="detail">
-						<img class="card-img rounded-5" data-src=<c:url value="/img/event/SFOsaleMarch.jpg"/> src=<c:url value="/img/event/SFOsaleMarch.jpg"/> alt="Card image cap">
-					</a>
-					<div class="card-body p-0 pt-5">
-		            	<div class="form-label" style="display: flex; justify-content: space-between;">
-		              		<date class="meta-date" style="font-size: 0.875rem;">2024.03.13 ~ 2024.03.31</date>
-		              		<span class="badge text-bg-primary fs-6" style="line-height: 1.2">진행중</span>
-		            	</div>
-						<h5 class="card-title fw-bolder lh-base">
-							<a href="detail">
-								스위프트에어가 준비한 
-								<br> 
-								샌프란시스코 20% 할인
-							</a>
-						</h5>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-md-6 col-lg-6">
-				<div class="card border-0 bg-transparent">
-					<a href="detail">
-						<img class="card-img rounded-5" data-src=<c:url value="/img/event/TKPEsale.jpg"/> src=<c:url value="/img/event/TKPEsale.jpg"/> alt="Card image cap">
-					</a>
-					<div class="card-body p-0 pt-5">
-		            	<div class="form-label" style="display: flex; justify-content: space-between;">
-		              		<date class="meta-date" style="font-size: 0.875rem;">2024.03.07 ~ 2024.03.31</date>
-		              		<span class="badge text-bg-primary fs-6" style="line-height: 1.2">진행중</span>
-		            	</div>
-						<h5 class="card-title fw-bolder lh-base">
-							<a href="detail">
-								설레는 봄, 벚꽃특가 
-								<br> 
-								도쿄 노선 15% 할인
-							</a>
-						</h5>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-6 col-lg-6">
-				<div class="card border-0 bg-transparent">
-					<a href="detail">
-						<img class="card-img rounded-5" data-src=<c:url value="/img/event/Event.jpg"/> src=<c:url value="/img/event/Event.jpg"/> alt="Card image cap">
-					</a>
-					<div class="card-body p-0 pt-5">
-		            	<div class="form-label" style="display: flex; justify-content: space-between;">
-		              		<date class="meta-date" style="font-size: 0.875rem;">2024.03.01 ~ 2024.03.31</date>
-		              		<span class="badge text-bg-primary fs-6" style="line-height: 1.2">진행중</span>
-		            	</div>
-						<h5 class="card-title fw-bolder lh-base">
-							<a href="detail">
-								누적 탑승객 100만명 기념
-								<br>
-								회원가입 이벤트
-							</a>
-						</h5>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-md-6 col-lg-6">
-				<div class="card border-0 bg-transparent">
-					<a href="detail">
-						<img class="card-img rounded-5" data-src=<c:url value="/img/event/SFOdeals.jpg"/> src=<c:url value="/img/event/SFOdeals.jpg"/> alt="Card image cap">
-					</a>
-					<div class="card-body p-0 pt-5">
-		            	<div class="form-label" style="display: flex; justify-content: space-between;">
-		              		<date class="meta-date" style="font-size: 0.875rem;">2024.02.14 ~ 2024.02.21</date>
-		              		<span class="badge bg-danger fs-6" style="line-height: 1.2">종료됨</span>
-		            	</div>
-						<h5 class="card-title fw-bolder lh-base">
-							<a href="detail">
-								스위프트에어
-								<br>
-								샌프란시스코 신규 취항 특가
-							</a>
-						</h5>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-6 col-lg-6">
-				<div class="card border-0 bg-transparent">
-					<a href="detail">
-						<img class="card-img rounded-5" data-src=<c:url value="/img/event/TK1yr.jpg"/> src=<c:url value="/img/event/TK1yr.jpg"/> alt="Card image cap">
-					</a>
-					<div class="card-body p-0 pt-5">
-		            	<div class="form-label" style="display: flex; justify-content: space-between;">
-		              		<date class="meta-date" style="font-size: 0.875rem;">2023.12.21 ~ 2023.12.27</date>
-		              		<span class="badge bg-danger fs-6" style="line-height: 1.2">종료됨</span>
-		            	</div>
-						<h5 class="card-title fw-bolder lh-base">
-							<a href="detail">
-								나리타 노선
-								<br> 
-								취항 1주년 기념 특가
-							</a>
-						</h5>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-6 col-lg-6">
-				<div class="card border-0 bg-transparent">
-					<a href="detail">
-						<img class="card-img rounded-5" data-src=<c:url value="/img/event/X-mas.jpg"/> src=<c:url value="/img/event/X-mas.jpg"/> alt="Card image cap">
-					</a>
-					<div class="card-body p-0 pt-5">
-		            	<div class="form-label" style="display: flex; justify-content: space-between;">
-		              		<date class="meta-date" style="font-size: 0.875rem;">2023.11.08 ~ 2023.11.15</date>
-		              		<span class="badge bg-danger fs-6" style="line-height: 1.2">종료됨</span>
-		            	</div>
-						<h5 class="card-title fw-bolder lh-base">
-							<a href="detail">
-								크리스마스를 제대로 즐기는 방법?
-								<br>
-								스위프트에어와 떠나자
-							</a>
-						</h5>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-6 col-lg-6">
-				<div class="card border-0 bg-transparent">
-					<a href="detail">
-						<img class="card-img rounded-5" data-src=<c:url value="/img/event/FRA.jpg"/> src=<c:url value="/img/event/FRA.jpg"/> alt="Card image cap">
-					</a>
-					<div class="card-body p-0 pt-5">
-		            	<div class="form-label" style="display: flex; justify-content: space-between;">
-		              		<date class="meta-date" style="font-size: 0.875rem;">2023.10.30 ~ 2023.11.06</date>
-		              		<span class="badge bg-danger fs-6" style="line-height: 1.2">종료됨</span>
-		            	</div>
-						<h5 class="card-title fw-bolder lh-base">
-							<a href="detail">
-								에어프레미아 특가
-								<br>
-								유럽 여행의 시작
-							</a>
-						</h5>
-					</div>
-				</div>
-			</div>
+			</c:forEach>		
 		</div>
     <!-- ====================================
 ———	pagination
 ===================================== -->
+<%--
 <section class="my-5">
   <nav aria-label="Page navigation example">
     <ul class="pagination" style="justify-content: center;">
@@ -253,6 +108,37 @@
     </ul>
   </nav>
 </section>
+--%>
+
+<%-- 페이지 번호 출력 --%>
+	<c:choose>
+		<c:when test="${pager.startPage > pager.blockSize }">
+			<a href="<c:url value="/event/main"/>?pageNum=${pager.prevPage}">[이전]</a>
+		</c:when>
+		<c:otherwise>
+			[이전]
+		</c:otherwise>
+	</c:choose>
+	
+	<c:forEach var="i" begin="${pager.startPage }" end="${pager.endPage }" step="1">
+		<c:choose>
+			<c:when test="${pager.pageNum != i }">
+				<a href="<c:url value="/event/main"/>?pageNum=${i}">[${i}]</a>
+			</c:when>
+			<c:otherwise>
+				[${i}]
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
+	
+	<c:choose>
+		<c:when test="${pager.endPage != pager.totalPage }">
+			<a href="<c:url value="/event/main"/>?pageNum=${pager.nextPage}">[다음]</a>
+		</c:when>
+		<c:otherwise>
+			[다음]
+		</c:otherwise>
+	</c:choose>
 
 	</div>
 </section>
