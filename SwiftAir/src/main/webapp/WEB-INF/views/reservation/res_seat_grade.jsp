@@ -5,6 +5,11 @@
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 <body id="body" class="up-scroll">
+<form id="addSeatGrade" action="<c:url value="/reservation/passengerinfo" />" method="POST">
+<input type="hidden" name="resDeparture" value="${resDeparture}">
+<input type="hidden" name="resDestination" value="${resDestination}">
+<input type="hidden" name="resDuration" value="${resDuration}">
+<input type="hidden" name="resNumofPassengers" value="${resNumofPassengers}">
 <!-- ====================================
 ———	HEADER
 ===================================== -->
@@ -29,56 +34,57 @@
 		<div class="">
 			<p>성인 1인 기준</p>
 		</div>
-	<div class="border rounded px-6 py-5 mb-6">
-		<div class="row">
-			<div class="col-sm-4">
-				<div class="row">
-					<div class="col-sm-4 text-center">
-						<h5><div>04. 01</div></h5>
-						<h3><span>12 : 50</span></h3>
+		<div class="border rounded px-6 py-5 mb-6">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="row">
+						<div class="col-sm-4 text-center">
+							<h5><div>04. 01</div></h5>
+							<h3><span>12 : 50</span></h3>
+						</div>
+						<div class="col-sm-4 text-center">
+							<p>11시간 30분</p>
+							<p>--------></p>
+						</div>
+						<div class="col-sm-4 text-center">
+							<h5><div>04. 01</div></h5>
+							<h3><span>08 : 20</span></h3>
+						</div>
 					</div>
-					<div class="col-sm-4 text-center">
-						<p>11시간 30분</p>
-						<p>--------></p>
-					</div>
-					<div class="col-sm-4 text-center">
-						<h5><div>04. 01</div></h5>
-						<h3><span>08 : 20</span></h3>
+					<div class="col-sm-12 text-center">
+						B787-9 YP101 여정정보
 					</div>
 				</div>
-				<div class="col-sm-12 text-center">
-					B787-9 YP101 여정정보
-				</div>
-			</div>
-
-			<div class="col-sm-8 align-items-center">
-				<div class="row">
-					<div class="border rounded col-sm-6">
-						<div class="form-check form-check-inline col-sm-12">
-							<input class="form-check-input me-5" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							<label class="form-check-label" for="inlineRadio1">
-								<div class="col">
-									<h5>이코노미석</h5>
-								</div>
-								<div class="col">
-									<h3>520,000원</h3>
-								</div>
-							</label>
-	              		</div>
-			  		</div>
-					<div class="border rounded col-sm-6">
-						<div class="form-check form-check-inline col-sm-12">
-							<input class="form-check-input me-5" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-							<label class="form-check-label" for="inlineRadio2">
-								<div class="col">
-									<h5>프리미엄석</h5>
-								</div>
-								<div class="col">
-									<h3>1,045,000원</h3>
-								</div>
-							</label>
-	              		</div>
-			  		</div>
+				
+				<div class="col-sm-8 align-items-center">
+					<div class="row">
+						<div class="border rounded col-sm-6">
+							<div class="form-check form-check-inline col-sm-12">
+								<input class="form-check-input me-5" type="radio" name="resSeatGrade" id="economy35" value="economy35">
+								<label class="form-check-label" for="economy35">
+									<div class="col">
+										<h5>이코노미석</h5>
+									</div>
+									<div class="col">
+										<h3>520,000원</h3>
+									</div>
+								</label>
+	              			</div>
+			  			</div>
+						<div class="border rounded col-sm-6">
+							<div class="form-check form-check-inline col-sm-12">
+								<input class="form-check-input me-5" type="radio" name="resSeatGrade" id="premia42" value="premia42">
+								<label class="form-check-label" for="premia42">
+									<div class="col">
+										<h5>프리미엄석</h5>
+									</div>
+									<div class="col">
+										<h3>1,045,000원</h3>
+									</div>
+								</label>
+	              			</div>
+			  			</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -117,9 +123,9 @@
 			<button onclick="history.back()" class="btn btn-outline-primary w-100">이전</button>
 		</div>
 		<div class="col-sm-1 col-lg-1">
-			<button type="submit" class="btn btn-primary w-100" onclick="location.href='<c:url value="/reservation/passengerinfo"/>';">다음</button>
+			<button type="submit" class="btn btn-primary w-100">다음</button>
 		</div>
 	</div>
 </nav>
-
+</form>
 </body>
