@@ -2,12 +2,15 @@ package swift.air.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
+import swift.air.dto.Member;
 import swift.air.service.MypageService;
 
 
@@ -17,9 +20,13 @@ import swift.air.service.MypageService;
 public class MypageController {
 	private final MypageService mypageService;
 	
-	@RequestMapping(value="/mypage")
-	public String myFutureJourney(@RequestParam int paymentMemberNum, @RequestParam(defaultValue = "1") int pageNum, Model model) {
-		Map<String, Object> futureJourney=mypageService.getFutureJourney(paymentMemberNum, pageNum);
+	@RequestMapping(value="/")
+	public String myFutureJourney(@RequestParam(defaultValue = "1")int pageNum
+			, Model model, HttpSession session) {
+		Member loginMember=(Member)session.getAttribute("loginMember");
+		int memberNum=loginMember.getMemberNum();
+		
+		Map<String, Object> futureJourney=mypageService.getFutureJourney(memberNum, pageNum);
 		
 		model.addAttribute("pager", futureJourney.get("pager"));
 		model.addAttribute("futureJourneyList", futureJourney.get("futureJourneyList"));
@@ -33,7 +40,10 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="/mgrade")
-	public String mygrade(@RequestParam int memberNum, Model model) {
+	public String mygrade(Model model, HttpSession session) {
+		Member loginMember=(Member)session.getAttribute("loginMember");
+		int memberNum=loginMember.getMemberNum();
+		
 		int memberPoint =  mypageService.getMemberPoint(memberNum);
 		model.addAttribute("memberPoint",memberPoint);
 		
