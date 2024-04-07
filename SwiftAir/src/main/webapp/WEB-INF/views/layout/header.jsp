@@ -29,7 +29,7 @@
 		<a class="btn btn-outline-primary" href="<c:url value='/member/join'/>"><span>회원가입</span></a>
         </div>
           <%} else { %>
-        <span style="font-weight: bold;">[<%=loginMember.getMemberKorName() %>님, 환영합니다.]</span>&nbsp;&nbsp;
+        <span style="font-weight: bold;">[<a href="../mypage/mypage" style="color: #43C4AE;">${loginMember.memberKorName}</a>님, 환영합니다.]</span>&nbsp;&nbsp;
         <a href="<c:url value = '/member/logout'/>">로그아웃</a>&nbsp;&nbsp;
         <%} %>
         <ul class="menuzord-menu menuzord-right">
