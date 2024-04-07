@@ -98,13 +98,13 @@ $(document).ready(function() {
             return false;
         }
         
-     <!--
+     /*
         if (!idRegex.test(id)) {
             alert("아이디는 영문자로 시작하는 영문자와 숫자를 포함한 6~20자리로 입력해야 합니다.");
             $('#memberId').focus();
             return false;
         }
-     -->
+     */
         
         if ($('#memberPswd').val() === "") {
             alert("비밀번호를 입력하세요.");
@@ -112,14 +112,14 @@ $(document).ready(function() {
             return false;
         }
         
-        <!--
+        /*
         
         if (!passwordRegex.test(password)) {
             alert("비밀번호는 영문자, 숫자, 특수문자를 각각 하나 이상 포함한 6~20자리로 입력해야 합니다.");
             $('#memberPswd').focus();
             return false;
         }
-        -->
+        */
         
         if ($('#memberKorName').val() === "") {
             alert("이름을 입력하세요.");
