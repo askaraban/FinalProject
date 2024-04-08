@@ -3,6 +3,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+
 <style type="text/css">
 .airplane--div {
 	overflow: auto;
@@ -22,9 +25,8 @@
 	width: 47px;
 	height: 47px;
 }
-
 </style>
-    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>    
     
 <section class="bg-light py-8">
   <div class="container">
@@ -52,53 +54,68 @@
 			<div class="airplane--div" id="sch1Airplane">
 				<div class="airplane--background" style="background-image: url('<c:url value="/img/seat/airplane_empty2.png"/>');">
 					<div class="b--seat">
-						<c:forEach var="seatList" items="${seatList.seatName }" >
-							<img alt="image" src='<c:url value="/img/seat/business_not.png"/>' style="position: relative; left: 15px; top: 590px;">
+					<!-- 프레미아42 등급 좌석 -->
+						<c:set var="b" value="1" />
+						<c:forEach var="seatList" items="${seatList }" varStatus="status" begin="0" end="17">
+							<c:choose>
+								<c:when test="${seatList.seatGrade eq '프레미아42' }">
+									<c:forEach var="reserved" items="${reservedSeatList }">
+									
+										<!-- 예매된 좌석을 확인하기 -->
+										<c:set var="seatName" value="${seatList.seatName }"/>
+										<c:choose>
+											<c:when test="${reserved eq seatName}">
+												<img alt="image" src='<c:url value="/img/seat/business_pre.png"/>' style="position: relative; left: 100px; top: 590px; width: 55px;">
+											</c:when>
+											<c:otherwise>
+												<img alt="image" src='<c:url value="/img/seat/business_not.png"/>' style="position: relative; left: 100px; top: 590px; width: 55px;">
+											</c:otherwise>
+										</c:choose>
+										
+									</c:forEach>
+								</c:when>
+							</c:choose>
+					<%-- 좌석별 여백 --%>
+							<c:choose>
+								<c:when test="${b % 6 == 0}">
+									<div style="height: 53px;">
+									</div>
+								</c:when>
+								<c:when test="${b % 2 == 0}">
+									<span style="margin: 37px;"> </span>
+								</c:when>
+								<c:when test="${b % 2 == 1}">
+									<span style="margin: 1px;"> </span>
+								</c:when>
+							</c:choose>
+							<c:set var="b" value="${b + 1}" />
 						</c:forEach>
-					
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 15px; top: 590px;">
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 80px; top: 590px;">
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 80px; top: 590px;">
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 145px; top: 590px;">
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 145px; top: 590px;">
-					</div>
-					<div class="b--seat">
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 15px; top: 640px;">
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 15px; top: 640px;">
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 85px; top: 640px;">
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 85px; top: 640px;">
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 145px; top: 640px;">
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 145px; top: 640px;">
-					</div>
-					<div class="b--seat">
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 15px; top: 690px;">
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 15px; top: 690px;">
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 85px; top: 690px;">
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 85px; top: 690px;">
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 145px; top: 690px;">
-						<img alt="image" src="../assets/img/seat/business_not.png" style="position: relative; left: 145px; top: 690px;">
-					</div>
-					<div class="e--seat">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 15px; top: 1990px;">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 15px; top: 1990px;">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 15px; top: 1990px;">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 55px; top: 1990px;">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 55px; top: 1990px;">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 55px; top: 1990px;">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 95px; top: 1990px;">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 95px; top: 1990px;">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 95px; top: 1990px;">
-					</div>
-					<div class="e--seat">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 15px; top: 2020px;">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 15px; top: 2020px;">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 15px; top: 2020px;">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 55px; top: 2020px;">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 55px; top: 2020px;">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 55px; top: 2020px;">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 95px; top: 2020px;">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 95px; top: 2020px;">
-						<img alt="image" src="../assets/img/seat/economy_not.png" style="position: relative; left: 95px; top: 2020px;">
+						
+						<!-- 이코노미35 좌석 -->
+						<c:set var="e" value="1" />
+						<c:forEach var="seatList" items="${seatList }" varStatus="status">
+							<c:choose>
+								<c:when test="${seatList.seatGrade eq '이코노미35' }">
+									<c:forEach var="reserved" items="${reservedSeatList }">
+										<c:set var="seatName" value="${seatList.seatName }"/>
+										<c:if test="${reserved eq seatName}">
+											<img alt="image" src='<c:url value="/img/seat/economy_pre.png"/>' style="position: relative; left: 87.5px; top:735px; width: 45px;">
+										</c:if>
+									</c:forEach>
+									<img alt="image" src='<c:url value="/img/seat/economy_not.png"/>' style="position: relative; left: 87.5px; top:735px; width: 45px;">
+								</c:when>
+							</c:choose>
+						<%-- 좌석별 여백 --%>	
+							<c:choose>
+								<c:when test="${e % 9 == 0}">
+									<div style="height: 28.5px;"></div>
+								</c:when>
+								<c:when test="${e % 3 == 0}">
+									<span style="margin: 25px;"> </span>
+								</c:when>
+							</c:choose>
+							<c:set var="e" value="${e + 1}" />
+						</c:forEach>
 					</div>
 				</div>	
 			</div>
@@ -156,3 +173,14 @@
 		</div>
 	</div>
 </nav>
+
+<script type="text/javascript">
+
+	/* 클릭 시 예약좌석 선택 */
+	function clickReserved() {
+		$.ajax({
+			type : "post",
+			url : <c:url value=''
+		})
+	}
+</script>

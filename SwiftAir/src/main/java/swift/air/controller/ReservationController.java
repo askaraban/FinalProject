@@ -69,6 +69,7 @@ public class ReservationController {
 	@RequestMapping(value = "/seat")
 	public String resSeat(Model model) {
 		model.addAttribute("seatList",seatService.getSeatList());
+		model.addAttribute("reservedSeatList",seatService.getReservedSeatList());
 		return "reservation/res_seat";
 	}	
 	
