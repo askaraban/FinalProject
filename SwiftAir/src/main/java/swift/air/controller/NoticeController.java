@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -65,9 +66,22 @@ public class NoticeController {
 	}
 	
 	
-	@RequestMapping(value = "/modify")
-	public String noticeModify() {
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public String noticeModify(@RequestParam int noticeId, Model model) {
+		Notice noticemodify= noticeService.getNotice(noticeId);
+		model.addAttribute("noticemodify", noticemodify);
 		return "notice/notice_modify";
 	}
+	
+	
+	
+
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String noticeModify(@ModelAttribute Notice notice) {
+		noticeService.modifyNotice(notice);
+		return "redirect:/notice/list";
+	}
+
+
 
 }
