@@ -65,10 +65,12 @@
 										<c:set var="seatName" value="${seatList.seatName }"/>
 										<c:choose>
 											<c:when test="${reserved eq seatName}">
-												<img alt="image" src='<c:url value="/img/seat/business_pre.png"/>' style="position: relative; left: 100px; top: 590px; width: 55px;">
+												<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/business_pre.png"/>'
+												 style="position: relative; left: 100px; top: 590px; width: 55px;">
 											</c:when>
 											<c:otherwise>
-												<img alt="image" src='<c:url value="/img/seat/business_not.png"/>' style="position: relative; left: 100px; top: 590px; width: 55px;">
+												<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/business_not.png"/>'
+												 style="position: relative; left: 100px; top: 590px; width: 55px;" class="pre_business" title="on">
 											</c:otherwise>
 										</c:choose>
 										
@@ -97,12 +99,16 @@
 							<c:choose>
 								<c:when test="${seatList.seatGrade eq '이코노미35' }">
 									<c:forEach var="reserved" items="${reservedSeatList }">
+									
+										<!-- 예매된 좌석을 확인하기 -->
 										<c:set var="seatName" value="${seatList.seatName }"/>
 										<c:if test="${reserved eq seatName}">
-											<img alt="image" src='<c:url value="/img/seat/economy_pre.png"/>' style="position: relative; left: 87.5px; top:735px; width: 45px;">
+											<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/economy_pre.png"/>'
+											 style="position: relative; left: 87.5px; top:735px; width: 45px;">
 										</c:if>
 									</c:forEach>
-									<img alt="image" src='<c:url value="/img/seat/economy_not.png"/>' style="position: relative; left: 87.5px; top:735px; width: 45px;">
+									<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/economy_not.png"/>'
+									 style="position: relative; left: 87.5px; top:735px; width: 45px;" class="pre_economy" title="on"">
 								</c:when>
 							</c:choose>
 						<%-- 좌석별 여백 --%>	
@@ -177,10 +183,73 @@
 <script type="text/javascript">
 
 	/* 클릭 시 예약좌석 선택 */
-	function clickReserved() {
+	$(".pre_economy").click(function () {
+		var pre = $(this).attr("id");
+		/* 
+		$("#"+pre).attr("src", "<c:url value="/img/seat/economy_sel.png"/>")
+		$("#"+pre).attr("title", "off")
+		
+		if($("#"+pre).attr("title")=="off"){
+			title = "off";
+		}
+		 */
 		$.ajax({
-			type : "get",
-			url : <c:url value=''
-		})
-	}
+			type: "get",
+			url: "<c:url value="/reservation/select_seat"/>/"+pre,
+			data: {"pre":pre},
+			dataType: "text",
+			//JSON 형식의 문자열을 제공받아 Javascipt 객체로 변환하여 매개변수에 저장
+			success: function(result) {
+				
+				if($("#"+pre).attr("title")=="on"){
+					$("#"+pre).attr("src", "<c:url value="/img/seat/economy_sel.png"/>")
+					$("#"+pre).attr("title", "off")
+				} else {
+					$("#"+pre).attr("src", "<c:url value="/img/seat/economy_not.png"/>")
+					$("#"+pre).attr("title", "on")
+				}
+				
+			},
+			error: function(xhr) {
+				alert("에러코드(좌석 선택) = "+xhr.status);
+			}
+		});
+	});
+	/* 클릭 시 예약좌석 선택 */
+	$(".pre_business").click(function () {
+		var pre = $(this).attr("id");
+		/* 
+		선택하기 -> 이미 좌석을 골랐는데 다른 좌석을 누른다면 경고메세지 주기
+		선택된 좌석 다시 누를 시 다시 돌아가도록 하기
+		*/
+		
+		$.ajax({
+			type: "get",
+			url: "<c:url value="/reservation/select_seat"/>/"+pre,
+			data: {"pre":pre},
+			dataType: "text",
+			//JSON 형식의 문자열을 제공받아 Javascipt 객체로 변환하여 매개변수에 저장
+			success: function(result) {
+				if($(".pre_business").attr("title")!="off"){
+					
+				} else {
+					alert("이미 좌석을 선택하셨습니다.");
+				}
+				
+				if($("#"+pre).attr("title")=="on"){
+					$("#"+pre).attr("src", "<c:url value="/img/seat/business_sel.png"/>")
+					$("#"+pre).attr("title", "off")
+				} else {
+					$("#"+pre).attr("src", "<c:url value="/img/seat/business_not.png"/>")
+					$("#"+pre).attr("title", "on")
+				}
+				
+			},
+			error: function(xhr) {
+				alert("에러코드(좌석 선택) = "+xhr.status);
+			}
+		});
+	});
+	
+	
 </script>
