@@ -22,13 +22,14 @@
         <c:choose>
             <c:when test="${empty loginMember}">
                 <div class="float-right btn-wrapper">
-                    <a class="btn btn-outline-primary" href="<c:url value='/member/login'/>"><span>로그인</span></a>
-		            <a class="btn btn-outline-primary" href="<c:url value='/member/join'/>"><span>회원가입</span></a>
+                    <a class="btn btn-outline-primary" href="<c:url value='/member/login'/>"><span>로그인/회원가입</span></a>
                 </div>
             </c:when>
             <c:otherwise>
-                <span style="font-weight: bold;">[<a href="../mypage/" style="color: #43C4AE;">${loginMember.memberKorName}</a>님, 환영합니다.]</span>&nbsp;&nbsp;
-                <a href="<c:url value = '/member/logout'/>">로그아웃</a>&nbsp;&nbsp;
+            	<div class="float-right btn-wrapper" style="padding-top: 10px;">
+	                <span style="font-weight: bold;">[<a href="../mypage/" style="color: #43C4AE;">${loginMember.memberKorName}</a>님, 환영합니다.]</span>&nbsp;&nbsp;
+	                <a href="<c:url value = '/member/logout'/>">로그아웃</a>&nbsp;&nbsp;
+                </div>
             </c:otherwise>
         </c:choose>
         <ul class="menuzord-menu menuzord-right">

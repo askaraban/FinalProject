@@ -11,41 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NOTICE - detail</title>
 
-    <!-- PLUGINS CSS STYLE -->
-    <link href='../assets/plugins/fontawesome-5.15.2/css/all.min.css' rel='stylesheet'>
-    <link href='../assets/plugins/fontawesome-5.15.2/css/fontawesome.min.css' rel='stylesheet'>
-    <link href='../assets/plugins/listtyicons/style.css' rel='stylesheet'>
-    <link href='../assets/plugins/menuzord/css/menuzord.css' rel='stylesheet'>
-
-    <link href='../assets/plugins/selectric/selectric.css' rel='stylesheet'>
-    
-    <link href='../assets/plugins/fancybox/jquery.fancybox.min.css' rel='stylesheet'>
-    <link href='../assets/plugins/owl-carousel/assets/owl.carousel.min.css' rel='stylesheet'>
-    <link href='../assets/plugins/owl-carousel/assets/owl.theme.default.min.css' rel='stylesheet'>
-    
-    <link href='../assets/plugins/map/css/map.css' rel='stylesheet'>
-    <link href='../assets/plugins/rateyo/jquery.rateyo.min.css' rel='stylesheet'>
-    
-    
-    <link href='../assets/plugins/daterangepicker/daterangepicker.css' rel='stylesheet'>
-
-    <!-- GOOGLE FONT --><!-- font-family: 'Mulish', sans-serif; --><!-- font-family: 'Poppins', sans-serif; -->
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- CUSTOM CSS -->
-    <link href="../assets/css/style.css" rel="stylesheet" id="option_style">
-
-    <!-- <link rel="stylesheet" href="assets/css/default.css" id="option_color"> -->
-
-    <!-- FAVICON -->
-    <link href="../assets/img/favicon.png" rel="shortcut icon">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
  
   </head>
 

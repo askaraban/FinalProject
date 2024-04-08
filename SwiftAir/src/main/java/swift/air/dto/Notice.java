@@ -17,6 +17,6 @@ NOTICE_DATE             DATE
 public class Notice {
 	private int noticeId;
 	private String noticeTitle;
-	private String noticeContent;
+	private String noticeContent; 
 	private String noticeDate;
 }

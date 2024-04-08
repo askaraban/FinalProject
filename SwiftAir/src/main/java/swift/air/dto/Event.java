@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.Data;
 
 /*
-이름            널?       유형             
+�씠由�            �꼸?       �쑀�삎             
 ------------- -------- -------------- 
 EVENT_ID      NOT NULL NUMBER         
 EVENT_DATE             DATE           
