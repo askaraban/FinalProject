@@ -37,15 +37,15 @@ public class NoticeController {
 	
 	
 	
-	
-	
 	@RequestMapping(value = "/detail")
-	public String noticeDetail() {
+	public String noticeDetail(@RequestParam int noticeId, Model model) {
+		Notice noticedetail= noticeService.getNotice(noticeId);
+		model.addAttribute("noticedetail", noticedetail);
 		return "notice/notice_detail";
 	}
 	
 	@RequestMapping(value = "/list")
-	public String noticeList(@RequestParam(defaultValue = "1") int pageNum, Model model) {
+	public String noticeList(@RequestParam(defaultValue = "1") int pageNum,Model model) {
 		Map<String, Object> map=noticeService.getNoticeList(pageNum);
 		
 		model.addAttribute("pager", map.get("pager"));

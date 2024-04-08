@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html lang="en">
 <style>
@@ -88,37 +89,51 @@ border-collapse: collapse;
 			<hr>
 			<table class="table" style="border-collapse: collapser">
 			    <tbody>
+			   		<c:forEach var="notice" items="${noticeList}">
 			        <tr>
 			            <td style="text-align: left; border-bottom: 1px solid #C0C0C0;">
-							<h4>국제선 운임 안내 (2024년 4월)</h4>
-				            <p style="font-size: 0.9375rem; color: grey;">누구나 누릴 수 있는 편안함, 에어프레미아에서 국제선 운임을 안내드립니다.</p>
+							<h4><a href="<c:url value="/notice/detail"/>?noticeId=${notice.noticeId}">${notice.noticeTitle}</a></h4>
+				            <%-- <p style="font-size: 0.9375rem; color: grey;">${notice.noticeContent}</p> --%>
 				        </td>
-			            <td style="border-bottom: 1px solid #C0C0C0;">2024.03.19</td>
+			            <td style="border-bottom: 1px solid #C0C0C0;">${notice.noticeDate}</td>
 			        </tr>
-			        <tr>
-			            <td style="text-align: left; border-bottom: 1px solid #C0C0C0;">
-							<h4>2024년 4월 국제선 유류할증료 안내</h4>
-				            <p style="font-size: 0.9375rem; color: grey;">에어프레미아에서 2024년 4월 국제선 유류할증료 안내드립니다.</p>
-				        </td>
-			            <td style="border-bottom: 1px solid #C0C0C0;">2024.03.19</td>
-			        </tr>
-			        <tr>
-			            <td style="text-align: left; border-bottom: 1px solid #C0C0C0;">
-							<h4>2024년 05월 20일 인천(ICN) ↔ 샌프란시스코(SFO) YP111/112편 스케줄 변경 안내</h4>
-				            <p style="font-size: 0.9375rem; color: grey;">2024년 05월 20일 인천(ICN) ↔ 샌프란시스코(SFO) YP111/112편 스케줄 변경 안내드립니다.</p>
-				        </td>
-			            <td style="border-bottom: 1px solid #C0C0C0;">2024.03.08</td>
-			        </tr>
-			        <tr>
-			            <td style="text-align: left; border-bottom: 1px solid #C0C0C0;">
-							<h4>2024년 05월 18,20,25일 인천(ICN) ↔ 도쿄/나리타(NRT) YP731/732편 스케줄 변경 안내</h4>
-				            <p style="font-size: 0.9375rem; color: grey;">2024년 05월 18,20,25일 인천(ICN) ↔ 도쿄/나리타(NRT) YP731/732편 스케줄 변경 안내드립니다.</p>
-				        </td>
-			            <td style="border-bottom: 1px solid #C0C0C0;">2024.03.07</td>
-			        </tr>
+			        </c:forEach>
 			    </tbody>
 			</table>
 		</div>
+		
+		<div style="text-align: center;">
+						<%-- 페이지 번호 출력 --%>
+						<c:choose>
+							<c:when test="${pager.startPage > pager.blockSize }">
+								<a href="<c:url value="/file/list"/>?pageNum=${pager.prevPage}">[이전]</a>
+							</c:when>
+							<c:otherwise>
+								[이전]
+							</c:otherwise>
+						</c:choose>
+						
+						<c:forEach var="i" begin="${pager.startPage }" end="${pager.endPage }" step="1">
+							<c:choose>
+								<c:when test="${pager.pageNum != i }">
+									<a href="<c:url value="/file/list"/>?pageNum=${i}">[${i}]</a>
+								</c:when>
+								<c:otherwise>
+									[${i}]
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:choose>
+							<c:when test="${pager.endPage != pager.totalPage }">
+								<a href="<c:url value="/file/list"/>?pageNum=${pager.nextPage}">[다음]</a>
+							</c:when>
+							<c:otherwise> 
+								[다음]
+							</c:otherwise>
+						</c:choose>
+					</div>
+					
+					
 	</div>
 </section>
 
