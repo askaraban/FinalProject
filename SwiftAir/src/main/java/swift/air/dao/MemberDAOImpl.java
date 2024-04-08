@@ -23,4 +23,9 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.getMapper(MemberMapper.class).selectMember(memberid);
 	}
 
+	@Override
+	public int selectMemberId(String memberId) {
+		return sqlSession.getMapper(MemberMapper.class).selectMemberId(memberId);
+	}
+
 }

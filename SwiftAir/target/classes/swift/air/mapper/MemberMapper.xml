@@ -12,5 +12,12 @@
 	member_status from member where member_id = #{memberId} 
 
 </select>	
+
+<select id = "selectMemberId" resultType="int">
+
+select count(*) from member where member_id = #{memberId}
+
+
+</select>
 	
 </mapper>	
