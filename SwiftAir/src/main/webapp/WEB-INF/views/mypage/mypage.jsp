@@ -92,12 +92,10 @@
 				<ul class="nav nav-pills">
 					<li class="active" style="margin: 5px;"><a
 						href="#nav-pills-tab-1" data-bs-toggle="tab"
-						class="nav-link active" style="background-color: #43C4AE;">다가오는
-							여정</a></li>
+						class="nav-link active" style="background-color: #43C4AE;">다가오는 여정</a></li>
 					<li class="nav-item" style="margin: 5px;"><a
 						href="#nav-pills-tab-2" data-bs-toggle="tab"
-						class="nav-link active" style="background-color: #43C4AE;">지난
-							여정</a></li>
+						class="nav-link active" style="background-color: #43C4AE;">지난 여정</a></li>
 					<!-- 		
 					<li class="nav-item" style="margin: 5px;"><a
 						href="#nav-pills-tab-3" data-bs-toggle="tab"
@@ -127,12 +125,12 @@
 														<td colspan="4">다가오는 여정이 없습니다.</td>
 													</tr>
 												</c:if>
-											<c:forEach var="future" items="${futureJourneyList}">
+											<c:forEach var="map" items="${futureJourneyList}">
 												<tr>
-													<td>${future.paymentId}</td>
-													<td>${future.scheduleFlight }</td>
-													<td>${future.routeDeparture } -> ${future.routeDestination } </td>
-													<td>${future.scheduleDepartureDate } -> ${future.scheduleArrivalDate } </td>
+													<td>${map.PAYMENT_ID}</td>
+													<td>${map.SCHEDULE_FLIGHT }</td>
+													<td>${map.ROUTE_DESTINATION } -> ${map.ROUTE_DESTINATION } </td>
+													<td>${map.SCHEDULE_DEPARTURE_DATE } -> ${map.SCHEDULE_ARRIVAL_DATE  } </td>
 												</tr>
 											</c:forEach>
 											</tbody>

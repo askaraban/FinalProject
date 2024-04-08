@@ -30,7 +30,7 @@ public class MypageController {
 		
 		model.addAttribute("pager", futureJourney.get("pager"));
 		model.addAttribute("futureJourneyList", futureJourney.get("futureJourneyList"));
-				
+		
 		return "mypage/mypage";
 	}
 	
