@@ -31,9 +31,8 @@ public class NoticeController {
 	
 	@RequestMapping(value = "/add" , method = RequestMethod.POST)
 	public String noticeAdd(@ModelAttribute Notice notice) {
-		System.out.println("!!!!!!!!!!!!!!!!!!"+notice);
 		noticeService.addNotice(notice);
-		return "redirect:notice/notice_list";
+		return "redirect:/notice/list";
 	}	
 	
 	

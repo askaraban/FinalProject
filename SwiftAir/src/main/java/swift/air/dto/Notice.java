@@ -1,6 +1,5 @@
 package swift.air.dto;
 
-import lombok.Builder;
 import lombok.Data;
 
 /*
@@ -13,7 +12,6 @@ NOTICE_DATE             DATE
 */
 
 @Data
-@Builder
 public class Notice {
 	private int noticeId;
 	private String noticeTitle;

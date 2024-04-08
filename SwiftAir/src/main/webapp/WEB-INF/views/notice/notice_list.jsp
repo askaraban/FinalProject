@@ -4,7 +4,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html lang="en">
-
+<style>
+.table-data-default tbody td:first-child {
+    border-left: 1px solid #e5e5e5;
+    padding-left: 0px;
+}
+</style>
   <head>
  
     <!-- SITE TITTLE -->
@@ -31,18 +36,18 @@
     <table id="my-booking" class="display nowrap table-data-default" style="width:100%">
       <thead style="text-align:center">
         <tr>
-          <th>번호<th>
-          <th>제목</th>
-          <th>작성일</th>
-          <th>편집</th>
+			<td>번호</td>
+			<td>제목</td>
+			<td>작성일</td>
+			<td>편집</td>
         </tr>
       </thead>
-      <tbody>
+      <tbody style="text-align:center">
 		<c:forEach var="notice" items="${noticeList}">
         <tr>
           <td class="text-capitalize">${notice.noticeId}</td>
           <td class="text-capitalize">${notice.noticeTitle}</td>
-          <td class="text-capitalize" style="text-align:center">${notice.noticeDate}</td>
+          <td class="text-capitalize">${notice.noticeDate}</td>
           <td class="td-buttons-2">
             <div class="d-flex justify-content-center flex-column flex-lg-row">
 	              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" onclick="noticeModify(${notice.noticeId});">
