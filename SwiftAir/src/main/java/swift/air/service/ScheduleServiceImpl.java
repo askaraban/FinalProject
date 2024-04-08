@@ -1,0 +1,71 @@
+package swift.air.service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import lombok.RequiredArgsConstructor;
+import swift.air.dao.ScheduleDAO;
+import swift.air.dto.Event;
+import swift.air.dto.Schedule;
+import swift.air.util.Pager;
+
+@Service
+@RequiredArgsConstructor
+public class ScheduleServiceImpl implements ScheduleService{
+	private final ScheduleDAO scheduleDAO;
+
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void addSchedule(Schedule schedule) {
+		scheduleDAO.insertSchedule(schedule);
+	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void modifySchedule(Schedule schedule) {
+		scheduleDAO.updateSchedule(schedule);
+	}
+	
+	@Transactional
+	@Override
+	public void removeSchedule(int scheduleId) {
+		if(scheduleDAO.selectSchedule(scheduleId) == null) {
+			throw new RuntimeException("게시글을 찾을 수 없습니다.");
+		}
+		
+		scheduleDAO.deleteSchedule(scheduleId);
+	}
+
+	@Override
+	public Schedule getSchedule(int scheduleId) {
+		Schedule schedule=scheduleDAO.selectSchedule(scheduleId);
+		if(schedule == null) {
+			throw new RuntimeException("게시글을 찾을 수 없습니다.");
+		}
+		return schedule;
+	}
+
+	@Override
+	public Map<String, Object> getScheduleList(int pageNum) {
+		int totalSize=scheduleDAO.selectScheduleCount();
+		
+		Pager pager=new Pager(pageNum, totalSize, 5, 5);
+		
+		Map<String, Object> pageMap=new HashMap<String, Object>();
+		pageMap.put("startRow", pager.getStartRow());
+		pageMap.put("endRow", pager.getEndRow());
+		
+		List<Schedule> scheduleList=scheduleDAO.selectScheduleList(pageMap);
+		
+		Map<String, Object> resultMap=new HashMap<String, Object>();
+		resultMap.put("pager", pager);
+		resultMap.put("scheduleList", scheduleList);
+		
+		return resultMap;
+	}
+	
+}

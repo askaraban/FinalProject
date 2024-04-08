@@ -17,19 +17,39 @@
 		delete from schedule where schedule_id=#{scheduleId}
 	</delete>
 	
-	<!-- <select id="selectSchedule" resultMap="scheduleResultMap">  
+	<resultMap type="Schedule" id="scheduleResultMap" >
+		<id column="schedule_id" property="scheduleId" />
+		
+    	<association javaType="Schedule" property="schedule">
+	    	<id column="schedule_id" property="scheduleId" />
+	    	<result column="schedule_departure_date" property="departureDate"/>
+	    	<result column="schedule_arrival_date" property="arrivalDate"/>
+	    	<result column="schedule_flight" property="flight"/>
+	    	<result column="schedule_route_id" property="scheduleRouteId"/>
+   		</association>	
+    	
+    	<association javaType="Route" property="route">
+        	<id column="route_id" property="routeId"/>
+        	<result column="route_departure" property="routeDeparture"/>
+        	<result column="route_destination" property="routeDestination"/>
+        	<result column="route_time" property="routeTime"/>
+        	<result column="route_price" property="routePrice"/>
+   		</association>	
+	</resultMap>
+
+	<select id="selectSchedule" parameterType="int" resultMap="scheduleResultMap"> 
 		select schedule_id, schedule_departure_date, schedule_arrival_date, schedule_flight, schedule_route_id 
 			from schedule join route on schedule_route_id=route_id where schedule_id=#{scheduleId}
-	</select> -->
-	
+	</select>
+	 
 	<select id="selectScheduleCount" resultType="int">
 		select count(*) from schedule
 	</select>
 	
-	<!-- <select id="selectScheduleList" resultType="map">
+	<select id="selectScheduleList" resultMap="scheduleResultMap">
 		select * from (select rownum rn, schedulelist.* from (select schedule_id, schedule_departure_date
 			, schedule_arrival_date, schedule_flight, schedule_route_id from schedule join route on 
-			schedule_route_id=route_id where schedule_route_id=#{schedule_route_id} order by schedule_id desc)
+			schedule_route_id=route_id order by schedule_id desc)
 			schedulelist) where rn between #{startRow} and #{endRow}
-	</select> -->
+	</select>
 </mapper>
