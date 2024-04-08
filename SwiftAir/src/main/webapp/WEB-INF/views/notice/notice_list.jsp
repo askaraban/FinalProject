@@ -54,10 +54,10 @@
 	                <i class="fa fa-edit"></i>
 	                수정</a>
 	             
-	              <button type="button" class="btn btn-outline-danger btn-sm" onclick="noticeDelete(${notice.noticeId});">
+	              <a class="btn btn-outline-danger btn-sm" href="<c:url value="/notice/delete"/>?noticeId=${notice.noticeId}">
 	                <i class="fa fa-times" aria-hidden="true"></i>
 	                삭제
-	              </button>
+	              </a>
 	         </div>
           </td>
         </tr>

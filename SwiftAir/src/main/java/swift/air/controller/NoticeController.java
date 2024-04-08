@@ -73,8 +73,6 @@ public class NoticeController {
 		return "notice/notice_modify";
 	}
 	
-	
-	
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String noticeModify(@ModelAttribute Notice notice) {
@@ -83,5 +81,10 @@ public class NoticeController {
 	}
 
 
+	@RequestMapping(value="/delete")
+	public String noticeDelete(@RequestParam int noticeId) {
+		noticeService.removeNotice(noticeId);
+		return "redirect:/notice/list";
+	}
 
 }
