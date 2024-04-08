@@ -18,7 +18,6 @@ PASSENGER_PASSPORT_EXP    DATE
 PASSENGER_SEAT_NAME       VARCHAR2(10)
 */
 
-@Builder
 @Data
 public class Passenger {
 	private String passengerLastName; 

@@ -17,7 +17,6 @@ PAYMENT_STATUS               NUMBER(1)
 PAYMENT_METHOD               NUMBER 
 */
 
-@Builder
 @Data
 public class Payment {
 	private String paymentId; 
