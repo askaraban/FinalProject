@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 
@@ -49,6 +50,7 @@
 ===================================== -->
 <section class="py-7 py-md-10">
 	<div class="container">
+		<form action="<c:url value="/notice/add"/>" method="post">
 		<h2 class="fw-normal mb-4 mb-md-5">NOTICE 등록</h2>
 		<div class="col-12">
 
@@ -63,22 +65,23 @@
           
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">제목</div>
-						<input type="text" class="form-control" required>
+						<input type="text" class="form-control" name="noticeTitle" value="${notice.noticeTitle}">
 					</div>
 
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">내용</div>
-						<textarea class="form-control" rows="5" required></textarea>
+						<textarea class="form-control" rows="5" name="noticeContent">${notice.noticeContent}</textarea>
 					</div>
 				</div>
 			</div>
 		</div>
 		</div>
 		<div style="float: right">
-			<button type="submit" class="btn btn-primary ms-1">목록</button>
-			<button type="submit" class="btn btn-primary ms-1">취소</button>
-			<button type="submit" class="btn btn-primary ms-1">등록</button>
+			<button type="button" class="btn btn-primary ms-1" onclick="location.href='/notice/list';">목록</button>
+			<button type="button" class="btn btn-primary ms-1" onclick="location.href='/notice/list';">취소</button>
+			<button type="submit" class="btn btn-primary ms-1" >등록</button>
 		</div>
+		</form>
 	</div>
 </section>
 

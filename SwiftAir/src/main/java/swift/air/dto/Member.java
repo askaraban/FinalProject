@@ -20,7 +20,7 @@ MEMBER_WITHDRAW_DATE          DATE
 MEMBER_POINT                  NUMBER       
 MEMBER_STATUS                 NUMBER(1)  
  */
-
+ 
 @Data
 public class Member {
 	private int memberNum;
