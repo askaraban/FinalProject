@@ -6,6 +6,17 @@
 
 <body id="body" class="up-scroll">
 
+<c:set var="passengerInfo" value="${resInfo.resNumofPassengers}" />
+
+<c:set var="adultIndex" value="${passengerInfo.indexOf('성인')}" />
+<c:set var="adultCount" value="${passengerInfo.substring(adultIndex + 4, passengerInfo.indexOf(',', adultIndex))}" />
+
+<c:set var="childIndex" value="${passengerInfo.indexOf('소아')}" />
+<c:set var="childCount" value="${passengerInfo.substring(childIndex + 4)}" />
+
+
+
+
 <!-- ====================================
 ———	HEADER
 ===================================== -->
@@ -67,6 +78,8 @@
 				<div class="col-sm-4">
 					<h5>탑승자 정보입력</h5>
 					<h5>성인 1</h5>
+					<h5>Adult Count: ${adultCount}</h5>
+					<h5>Child Count: ${childCount}</h5>
 					<p>여권 상 표기된 이름과 동일하게 입력해주세요.</p>
 					<p>예약 완료 후 이름 변경 시 항공권 재발행 수수료가 부과될 수 있습니다.</p>
 				</div>
@@ -83,35 +96,6 @@
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">생년월일</div>
 		            		<input type="text" class="form-control" placeholder="예): 20180823" required>
-		            	</div>
-		            	<div class="input-group mb-2">
-		            		<div class="input-group-text col-sm-2 text-center">국적</div>
-		            		<input type="text" class="form-control" value="대한민국" required>
-		            	</div>
-		            </div>
-		            	<div class="input-group mb-2">
-		            		<div class="input-group-text col-sm-2 text-center">휴대폰 번호</div>
-		            		<input type="text" class="form-control" placeholder="휴대폰 번호를 입력해주세요." required>
-		            	</div>
-		            	<div class="input-group mb-2">
-		            		<div class="input-group-text col-sm-2 text-center">체류 국가</div>
-		            		<input type="text" class="form-control" value="미국" required>
-		            	</div>
-		            	<div class="input-group mb-2">
-		            		<div class="input-group-text col-sm-2 text-center">주소</div>
-		            		<input type="text" class="form-control" placeholder="영문으로 입력해주세요." required>
-		            	</div>
-		            	<div class="input-group mb-2">
-		            		<div class="input-group-text col-sm-2 text-center">도시</div>
-		            		<input type="text" class="form-control" placeholder="영문으로 입력해주세요." required>
-		            	</div>
-		            	<div class="input-group mb-2">
-		            		<div class="input-group-text col-sm-2 text-center">우편번호</div>
-		            		<input type="text" class="form-control" placeholder="숫자를 입력해주세요." required>
-		            	</div>
-		            	<div class="input-group mb-2">
-		            		<div class="input-group-text col-sm-2 text-center">주</div>
-		            		<input type="text" class="form-control" placeholder="영문으로 입력해주세요." required>
 		            	</div>
 		            </div>
 				</div>

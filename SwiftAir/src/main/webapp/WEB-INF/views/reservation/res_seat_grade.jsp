@@ -5,11 +5,19 @@
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 <body id="body" class="up-scroll">
-<form id="addSeatGrade" action="<c:url value="/reservation/passengerinfo" />" method="POST">
+<form id="addSeatGrade" action="<c:url value="/reservation/seatGradeAction" />" method="POST">
+
+<c:set var="duration" value="${resInfo.resDuration}" />
+<c:set var="hyphenIndex" value="${duration.indexOf('-')}" />
+<c:set var="startDate" value="${duration.substring(0, hyphenIndex)}" />
+<c:set var="endDate" value="${duration.substring(hyphenIndex + 1)}" />
+
+<!-- 
 <input type="hidden" name="resDeparture" value="${resDeparture}">
 <input type="hidden" name="resDestination" value="${resDestination}">
 <input type="hidden" name="resDuration" value="${resDuration}">
 <input type="hidden" name="resNumofPassengers" value="${resNumofPassengers}">
+ -->
 <!-- ====================================
 ———	HEADER
 ===================================== -->
@@ -39,7 +47,7 @@
 				<div class="col-sm-4">
 					<div class="row">
 						<div class="col-sm-4 text-center">
-							<h5><div>04. 01</div></h5>
+							<h5><div>${startDate}</div></h5>
 							<h3><span>12 : 50</span></h3>
 						</div>
 						<div class="col-sm-4 text-center">
@@ -47,12 +55,12 @@
 							<p>--------></p>
 						</div>
 						<div class="col-sm-4 text-center">
-							<h5><div>04. 01</div></h5>
+							<h5><div>${endDate}</div></h5>
 							<h3><span>08 : 20</span></h3>
 						</div>
 					</div>
 					<div class="col-sm-12 text-center">
-						B787-9 YP101 여정정보
+						${resInfo.resDeparture} > ${resInfo.resDestination} B787-9 YP101 여정정보
 					</div>
 				</div>
 				
