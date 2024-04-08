@@ -179,7 +179,7 @@
 	/* 클릭 시 예약좌석 선택 */
 	function clickReserved() {
 		$.ajax({
-			type : "post",
+			type : "get",
 			url : <c:url value=''
 		})
 	}
