@@ -53,10 +53,8 @@ public class ReservationController {
 		
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
 		
-		if (resInfo != null) {
-			resInfo.put("resSeatGrade", addSeatGrade.get("resSeatGrade"));
-			model.addAttribute("resInfo", resInfo);
-		}
+		resInfo.put("resSeatGrade", addSeatGrade.get("resSeatGrade"));
+		model.addAttribute("resInfo", resInfo);
 		
 		System.out.println("Reservation Information: " + resInfo);
 		
@@ -68,55 +66,18 @@ public class ReservationController {
 		return "reservation/res_passengers_info";
 	}
 	
-	/*
-	@RequestMapping(value = "/seatgrade")
-	public String resSeatGrade(Model model,
-			@ModelAttribute("resDeparture") String resDeparture,
-			@ModelAttribute("resDestination") String resDestination, 
-			@ModelAttribute("resDuration") String resDuration,
-			@ModelAttribute("resNumofPassengers") String resNumofPassengers) {
-	    
-		model.addAttribute("resDeparture", resDeparture);
-		model.addAttribute("resDestination", resDestination);
-		model.addAttribute("resDuration", resDuration);
-		model.addAttribute("resNumofPassengers", resNumofPassengers);
+	@RequestMapping(value = "/passengerInfoAction")
+	public String getResPassengersInfo(@RequestParam Map<String, Object> addPassengerInfo, Model model) {
 		
-		System.out.println("resDeparture: " + resDeparture);
-		System.out.println("resDestination: " + resDestination);
-		System.out.println("resDuration: " + resDuration);
-		System.out.println("resNumofPassengers: " + resNumofPassengers);
+		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
 		
-		return "reservation/res_seat_grade";
+		resInfo.putAll(addPassengerInfo);
+		model.addAttribute("resInfo", resInfo);
+		
+		System.out.println("Reservation Information: " + resInfo);
+		
+	    return "redirect:/reservation/seat";
 	}
-	
-	@RequestMapping(value = "/passengerinfo")
-	public String resPassengersInfo(Model model,
-			@ModelAttribute("resDeparture") String resDeparture,
-			@ModelAttribute("resDestination") String resDestination, 
-			@ModelAttribute("resDuration") String resDuration,
-			@ModelAttribute("resNumofPassengers") String resNumofPassengers,
-			@ModelAttribute("resSeatGrade") String resSeatGrade) {
-		
-		model.addAttribute("resDeparture", resDeparture);
-		model.addAttribute("resDestination", resDestination);
-		model.addAttribute("resDuration", resDuration);
-		model.addAttribute("resNumofPassengers", resNumofPassengers);
-		model.addAttribute("resSeatGrade", resSeatGrade);
-
-		System.out.println("resDeparture: " + resDeparture);
-		System.out.println("resDestination: " + resDestination);
-		System.out.println("resDuration: " + resDuration);
-		System.out.println("resNumofPassengers: " + resNumofPassengers);
-		System.out.println("resSeatGrade: " + resSeatGrade);
-		
-		return "reservation/res_passengers_info";
-	}
-	
-	@RequestMapping(value = "/ticketconfirm")
-	public String resTicketConfirm() {
-		return "reservation/res_ticket_confirm";
-	}
-	*/
 	
 	@RequestMapping(value = "/seat")
 	public String resSeat(Model model) {
