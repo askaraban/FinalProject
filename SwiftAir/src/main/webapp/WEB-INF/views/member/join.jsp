@@ -79,9 +79,24 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 <script type="text/javascript">
+
+$(function() {
+	  $('#memberBirth').daterangepicker({
+	    singleDatePicker: true,
+	    showDropdowns: true,
+	    minYear: 1900,
+	    maxYear: parseInt(moment().format('YYYY'),10),
+	    locale: {
+	      format: 'YYYY-MM-DD'
+	    }
+	  });
+	});
+
+
+
 $(document).ready(function() {
     $('#join').submit(function(e) {
     	   var idRegex = /^[a-zA-Z]\w{5,19}$/g;

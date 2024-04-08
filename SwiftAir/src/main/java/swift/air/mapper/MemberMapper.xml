@@ -3,7 +3,7 @@
 <mapper namespace="swift.air.mapper.MemberMapper">
 	<insert id="insertMember">
 		insert into member values(member_seq.nextval,#{memberId}, #{memberPswd}, #{memberKorName}, #{memberLastName},
-		#{memberFirstName}, #{memberEmail}, #{memberPhone}, #{memberGender}, #{memberBirth}, SYSDATE, NULL, 0, 1)
+		#{memberFirstName}, #{memberEmail}, #{memberPhone}, #{memberGender}, #{memberBirth}, SYSDATE, NULL, 0, 0)
 	</insert>
 	
 <select id="selectMember" resultType="Member">
