@@ -48,10 +48,26 @@
 			and payment_member_num = #{paymentMemberNum}
 	</select>
 	
-	
 	<!-- 마이페이지 메인 - 보유 포인트 -->
 	<select id="selectMemberPoint" resultType="int">
 		select member_point from member where member_num = #{memberNum}
+	</select>
+	
+	<!-- 마이페이지 포인트 - 포인트 상세 내역 -->
+	<select id="selectPointDetail" resultType="Point">
+		select point_id, point_member_num, point_payment_id, point_date, point_status, point_amount, route_departure, route_destination from point
+		    join payment on payment_id=point_payment_id
+		    join schedule on payment_schedule_id1=schedule_id
+		    join route on schedule_route_id=route_id where point_member_num = #{pointMemberNum}
+		    <choose>
+		    	<when test="">
+		    	
+		    	</when>
+		    	<when test ="">
+		    	
+		    	</when>
+		    </choose>
+		    
 	</select>
 	
 

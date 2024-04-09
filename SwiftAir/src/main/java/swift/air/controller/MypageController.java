@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import swift.air.dto.Member;
@@ -35,9 +36,15 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="/point")
-	public String myPoint() {
+	@ResponseBody
+	public String myPoint(@RequestParam int pointStatus, @RequestParam int sortNum
+			, Model model, HttpSession session) {
+		Member loginMember=(Member)session.getAttribute("loginMember");
+		model.addAttribute("pointDetail", mypageService.getPointDetail(loginMember.getMemberNum()));
+		
 		return "mypage/mypage_point";
 	}
+	
 	
 	@RequestMapping(value="/mgrade")
 	public String mygrade(Model model, HttpSession session) {

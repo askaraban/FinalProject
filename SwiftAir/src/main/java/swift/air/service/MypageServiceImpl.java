@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import swift.air.dao.MypageDAO;
+import swift.air.dto.Point;
 import swift.air.util.Pager;
 
 @Service
@@ -52,6 +53,11 @@ public class MypageServiceImpl implements MypageService {
 		int memberPoint = mypageDAO.selectMemberPoint(memberNum);
 		
 		return memberPoint;
+	}
+
+	@Override
+	public List<Point> getPointDetail(int pointMemberNum) {
+		return mypageDAO.selectPointDetail(pointMemberNum);
 	}
 
 }

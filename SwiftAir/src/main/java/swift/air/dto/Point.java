@@ -11,4 +11,6 @@ public class Point {
 	private String pointDate;
 	private int pointStatus;
 	private int pointAmount;
+	private	String routeDeparture;
+	private	String routeDestination;
 }

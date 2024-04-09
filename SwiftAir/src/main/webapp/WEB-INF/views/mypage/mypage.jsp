@@ -90,17 +90,17 @@
 
 			<div>
 				<ul class="nav nav-pills">
-					<li class="active" style="margin: 5px;"><a
-						href="#nav-pills-tab-1" data-bs-toggle="tab"
-						class="nav-link active" style="background-color: #43C4AE;">다가오는 여정</a></li>
-					<li class="nav-item" style="margin: 5px;"><a
-						href="#nav-pills-tab-2" data-bs-toggle="tab"
-						class="nav-link active" style="background-color: #43C4AE;">지난 여정</a></li>
+					<li class="active" style="margin: 5px;">
+						<!-- <a href="#nav-pills-tab-1" data-bs-toggle="tab" class="nav-link active" style="background-color: #43C4AE;">다가오는 여정</a> -->
+						<a href="#" onclick="upcomingJourney()" style="background-color: #43C4AE;">다가오는 여정</a>
+					</li>
+					<li class="nav-item" style="margin: 5px;">
+						<a href="#" onclick="pastJourney()" style="background-color: #43C4AE;">지난 여정</a>
+					</li>
 					<!-- 		
 					<li class="nav-item" style="margin: 5px;"><a
 						href="#nav-pills-tab-3" data-bs-toggle="tab"
-						class="nav-link active" style="background-color: #43C4AE;">나의
-							분실물 내역</a></li>
+						class="nav-link active" style="background-color: #43C4AE;">나의 분실물 내역</a></li>
 					 -->
 				</ul>
 
@@ -110,7 +110,7 @@
 							<div class="panel panel-inverse" data-sortable-id="table-basic-4">
 								<div class="panel-body">
 									<div class="table-responsive">
-										<table class="table">
+										<table class="table" style="text-align: center;">
 											<thead>
 												<tr>
 													<th>예약번호</th>
@@ -141,6 +141,44 @@
 							</div>
 						</div>
 					</div>
+					
+					<div class="tab-pane fade active show" id="#nav-pills-tab-2">
+						<div class="table-responsive">
+							<div class="panel panel-inverse" data-sortable-id="table-basic-4">
+								<div class="panel-body">
+									<div class="table-responsive">
+										<table class="table" style="text-align: center;">
+											<thead>
+												<tr>
+													<th>예약번호(지난여정)</th>
+													<th nowrap>여정</th>
+													<th nowrap>노선</th>
+													<th nowrap>일정</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:if test="${empty futureJourneyList}">
+													<tr>
+														<td colspan="4">지난 여정이 없습니다.</td>
+													</tr>
+												</c:if>
+											<c:forEach var="map" items="${futureJourneyList}">
+												<tr>
+													<td>${map.PAYMENT_ID}</td>
+													<td>${map.SCHEDULE_FLIGHT }</td>
+													<td>${map.ROUTE_DESTINATION } -> ${map.ROUTE_DESTINATION } </td>
+													<td>${map.SCHEDULE_DEPARTURE_DATE } -> ${map.SCHEDULE_ARRIVAL_DATE  } </td>
+												</tr>
+											</c:forEach>
+											</tbody>
+										</table>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
 					<div style="text-align: center;">
 						<%-- 페이지 번호 출력 --%>
@@ -172,9 +210,30 @@
 							</c:otherwise>
 						</c:choose>
 					</div>
-				</div>
 			</div>
 		</div>
 	</section>
+	
+	 <script>
+        // jQuery를 사용하여 a 태그 클릭 이벤트 처리
+           function upcomingJourney() {
+                e.preventDefault(); // 기본 동작 방지
+
+                // 서버에 데이터를 요청하는 AJAX 요청
+                $.ajax({
+                    url: "mypage.jsp", // 데이터를 반환할 JSP 페이지의 URL
+                    type: "GET", // GET 방식 요청
+                    success: function(response){
+                        // 요청이 성공했을 때, 반환된 데이터를 출력하는 div에 추가
+                        $("#tableDisplay").html(response);
+                    },
+                    error: function(){
+                        // 요청이 실패했을 때, 오류 메시지 출력
+                        $("#tableDisplay").html("Failed to load table data.");
+                    }
+                });
+            });
+    </script>
+	
 </body>
 </html>

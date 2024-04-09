@@ -106,10 +106,8 @@
 					</div>
 					<div class="col-md-5 col-lg-4" style="width: 70%">
 						<!-- animated -->
-						<div class="col-md-6"
-							style="width: 100%; background-color: #e5e5e5; border-radius: 20px;">
-							<div class="progress rounded-pill mb-2" id="progressPill"
-								style="height: 30px; width:20px;">
+						<div class="col-md-6" style="width: 100%; background-color: #e5e5e5; border-radius: 20px;">
+							<div class="progress rounded-pill mb-2" id="progressPill" style="height: 30px; width:20px;">
 								<div
 									class="progress-bar bg-indigo progress-bar-striped progress-bar-animated rounded-pill fs-10px fw-bold"
 									style="width: 100%; background-color: #43C4AE;">${loginMember.memberPoint}p</div>
@@ -213,7 +211,8 @@ var goldElements = $('.gold');
 var diamondElements = $('.fw-normal.mb-4.diamond');
 var progressPill = $('#progressPill');
 
-if (0 <= memberPoint < 4000) { // BLUE 등급인 경우
+ 
+if (memberPoint >= 0 && memberPoint < 4000) { // BLUE 등급인 경우
     goldElements.eq(0).css('color', 'gray');
     goldElements.eq(1).css('color', 'gray');
     diamondElements.css('color', 'gray');
@@ -233,7 +232,7 @@ if (0 <= memberPoint < 4000) { // BLUE 등급인 경우
     var percentage = (memberPoint / 9000) * 100;
     progressPill.css('width', percentage + '%');
     
-} else {
+} else {//DIAMOND 등급인 경우
 	$('#point').text('1,000원 당 15 포인트 비율');
 	$('#luggage').text('무상 추가 4회');
 	$('#seatPurchase').text('전 좌석 무상 지정 2회');
@@ -243,7 +242,6 @@ if (0 <= memberPoint < 4000) { // BLUE 등급인 경우
     $('#highestScore').text('현재 스코어');
     $('#promotionScore').text('현재 최고 등급입니다.');
 }
-
 </script>	
 </body>
 </html>

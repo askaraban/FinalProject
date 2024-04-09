@@ -88,10 +88,10 @@
 									<b class="caret"></b>
 								</button>
 								<div class="dropdown-menu dropdown-menu-end">
-									<a href="javascript:;" class="dropdown-item">전체</a> 
-									<a href="javascript:;" class="dropdown-item">적립</a>
-									<a href="javascript:;" class="dropdown-item">사용</a>
-									<a href="javascript:;" class="dropdown-item">환불</a>
+									<a href="javascript:;" class="dropdown-item"  >전체</a> 
+									<a href="javascript:;" class="dropdown-item" onclick="filterPoints(0)">적립</a>
+									<a href="javascript:;" class="dropdown-item" onclick="filterPoints(1)">사용</a>
+									<a href="javascript:;" class="dropdown-item" onclick="filterPoints(2)">환불</a>
 								</div>
 							</div>
 						</div>
@@ -100,14 +100,12 @@
 						<div class="panel-heading">
 							<div class="btn-group my-n1">
 								<button type="button" class="btn btn-success btn-xs" style="color:white;">최신순</button>
-								<button type="button"
-									class="btn btn-success btn-xs dropdown-toggle"
-									data-bs-toggle="dropdown">
+								<button type="button" class="btn btn-success btn-xs dropdown-toggle" data-bs-toggle="dropdown">
 									<b class="caret"></b>
 								</button>
 								<div class="dropdown-menu dropdown-menu-end">
-									<a href="javascript:;" class="dropdown-item">최신순</a>
-									<a href="javascript:;" class="dropdown-item">오래된순</a>
+									<a href="javascript:;" class="dropdown-item" onclick="sortBy(0)">최신순</a>
+									<a href="javascript:;" class="dropdown-item" onclick="sortBy(1)">오래된순</a>
 								</div>
 							</div>
 						</div>
@@ -132,31 +130,25 @@
 												<td></td>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody id="pointDetail">
+										<c:forEach var="point" items="${pointDetail}">
 											<tr>
-												<td>2023.01.01</td>
-												<td>ICN - SFO</td>
-												<td>+3000PP</td>
-												<td>적립</td>
+												<td>${point.pointDate.substring(0,10) }</td>
+												<td>${point.routeDeparture } - ${point.routeDestination }(왕복)</td>
+												<td>${point.pointAmount}</td>
+												<c:choose>
+													<c:when test="${point.pointStatus == 0}">
+														<td>적립</td>
+													</c:when>
+													<c:when test="${point.pointStatus == 1}">
+														<td>사용</td>
+													</c:when>
+													<c:otherwise>
+														<td>소멸</td>
+													</c:otherwise>
+												</c:choose>
 											</tr>
-											<tr>
-												<td>2022.01.01</td>
-												<td>LAX - ICN</td>
-												<td>-200PP</td>
-												<td>사용</td>
-											</tr>
-											<tr>
-												<td>2021.01.01</td>
-												<td>ICN - LAX</td>
-												<td>-1000PP</td>
-												<td>환불</td>
-											</tr>
-											<tr>
-												<td>2019.01.01</td>
-												<td>SFO - ICN</td>
-												<td>100000PP</td>
-												<td>적립</td>
-											</tr>
+										</c:forEach>
 										</tbody>
 									</table>
 								</div>
@@ -189,7 +181,7 @@
 
 	<!-- #modal-without-animation -->
 	<!-- <div class="modal" id="modal-without-animation" style="background-color: rgba(0,0,0,0.4);"> -->
-	<div class="modal" id="modal-without-animation">
+	<!-- <div class="modal" id="modal-without-animation">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -204,6 +196,40 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
+	
+<script>
+function filterPoints(pointStatus) {
+    $.ajax({
+        url: "<c:url value="/mypage/point"/>",
+        type: 'GET',
+        data: { pointStatus: pointStatus },
+        success: function(result) {
+            // 성공 시 결과 처리
+
+            // 여기서는 서버로부터 받은 데이터를 처리하여 화면에 출력하는 등의 작업을 수행합니다.
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr, status, error); 
+        }
+    });
+}
+
+function sortBy(sortNum) {
+    $.ajax({
+        url: "<c:url value="/mypage/point"/>",
+        type: 'GET',
+        data: { sortNum: sortNum },
+        success: function(result) {
+            // 성공 시 결과 처리
+            
+            // 여기서는 서버로부터 받은 데이터를 처리하여 화면에 출력하는 등의 작업을 수행합니다.
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr, status, error);
+        }
+    });
+}
+</script>
 </body>
 </html>
