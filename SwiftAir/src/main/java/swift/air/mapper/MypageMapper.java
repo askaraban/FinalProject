@@ -11,5 +11,5 @@ public interface MypageMapper {
 	Map<String, Object> selectPastJourney(Map<String, Object> map);
 	int selectPastJourneyCount(int paymentMemberNum);
 	int selectMemberPoint(int memberNum);
-	List<Point> selectPointDetail(int pointMemberNum);
+	List<Point> selectPointDetail(Map<String, Object> map);
 }

@@ -9,6 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>포인트 상세</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <style>
 .img {
@@ -88,10 +89,10 @@
 									<b class="caret"></b>
 								</button>
 								<div class="dropdown-menu dropdown-menu-end">
-									<a href="javascript:;" class="dropdown-item"  >전체</a> 
-									<a href="javascript:;" class="dropdown-item" onclick="filterPoints(0)">적립</a>
-									<a href="javascript:;" class="dropdown-item" onclick="filterPoints(1)">사용</a>
-									<a href="javascript:;" class="dropdown-item" onclick="filterPoints(2)">환불</a>
+									<a href="javascript:filterPoints(-1);" class="dropdown-item">전체</a> 
+									<a href="javascript:filterPoints(0);" class="dropdown-item">적립</a>
+									<a href="javascript:filterPoints(1);" class="dropdown-item">사용</a>
+									<a href="javascript:filterPoints(2);" class="dropdown-item">환불</a>
 								</div>
 							</div>
 						</div>
@@ -104,8 +105,8 @@
 									<b class="caret"></b>
 								</button>
 								<div class="dropdown-menu dropdown-menu-end">
-									<a href="javascript:;" class="dropdown-item" onclick="sortBy(0)">최신순</a>
-									<a href="javascript:;" class="dropdown-item" onclick="sortBy(1)">오래된순</a>
+									<a href="javascript:filterPoints(3);" class="dropdown-item">최신순</a>
+									<a href="javascript:filterPoints(4);" class="dropdown-item">오래된순</a>
 								</div>
 							</div>
 						</div>
@@ -120,8 +121,8 @@
 
 							<div class="panel-body">
 
-								<div class="table-responsive">
-									<table class="table">
+								<div class="table-responsive" id="pointTableDiv">
+									<table class="table" id="pointTable">
 										<thead>
 											<tr>
 												<td></td>
@@ -130,7 +131,7 @@
 												<td></td>
 											</tr>
 										</thead>
-										<tbody id="pointDetail">
+										<tbody>
 										<c:forEach var="point" items="${pointDetail}">
 											<tr>
 												<td>${point.pointDate.substring(0,10) }</td>
@@ -199,37 +200,75 @@
 	</div> -->
 	
 <script>
-function filterPoints(pointStatus) {
-    $.ajax({
-        url: "<c:url value="/mypage/point"/>",
-        type: 'GET',
-        data: { pointStatus: pointStatus },
-        success: function(result) {
-            // 성공 시 결과 처리
+var pointStatus=-1;
+var sort="point_date desc";
 
-            // 여기서는 서버로부터 받은 데이터를 처리하여 화면에 출력하는 등의 작업을 수행합니다.
+function filterPoints(status) {
+	if(status >= -1 && status <= 2) {
+		pointStatus=status;
+	} else if(status == 3) {
+		sort="point_date desc";
+	} else if(status == 4) {
+		sort="point_date asc";
+	}
+	
+    $.ajax({
+        url: "<c:url value="/mypage/pointDetail"/>",
+        type: 'post',
+        data: { "pointStatus": pointStatus, "sort" : sort },
+        dataType: "json",
+        success: function(result) {
+        	if(result.length == 0) {//검색된 포인트 내역이 없는 경우
+				var html="<table class='table' id='pointTable'>";
+				html+="<tr>";
+				html+="<th width='800'>포인트 이용 내역이 없습니다.</th>";
+				html+="</tr>";
+				html+="</table>"
+				$("#pointTableDiv").html(html);
+				return;
+			}	
+        	
+        	var html="<table class='table' id='pointTable'>";
+			html+="<thead>";
+			html+="<tr>";
+			html+="<th></th>";
+			html+="<th></th>";
+			html+="<th></th>";
+			html+="<th></th>";
+			html+="</tr>";
+			html+="</thead>";
+			
+			
+			$(result).each(function() {
+				html+="<tbody>";
+				html+="<tr>";
+				html+="<td>"+this.pointDate.substring(0, 10)+"</td>";
+				html+="<td>"+this.routeDeparture+" - "+this.routeDestination+"(왕복))</td>";
+				html+="<td>"+this.pointAmount+"</td>";
+				 if (this.pointStatus == 0) { 
+				        html += "<td>적립</td>";
+				    } else if (this.pointStatus == 1) {
+				        html += "<td>사용</td>";
+				    } else {
+				        html += "<td>환불</td>";
+				    }
+				 html+="</tr>";
+				 html+="</tbody>";
+			});
+			html+="</table>";
+
+			$("#pointTableDiv").html(html);
+			
+			//페이지 번호를 출력하는 함수 호출
+			//pageNumberDisplay(result.pager);
         },
-        error: function(xhr, status, error) {
-            console.error(xhr, status, error); 
+        error: function(xhr) {
+            alert(xhr.status) 
         }
     });
+
 }
 
-function sortBy(sortNum) {
-    $.ajax({
-        url: "<c:url value="/mypage/point"/>",
-        type: 'GET',
-        data: { sortNum: sortNum },
-        success: function(result) {
-            // 성공 시 결과 처리
-            
-            // 여기서는 서버로부터 받은 데이터를 처리하여 화면에 출력하는 등의 작업을 수행합니다.
-        },
-        error: function(xhr, status, error) {
-            console.error(xhr, status, error);
-        }
-    });
-}
 </script>
 </body>
 </html>

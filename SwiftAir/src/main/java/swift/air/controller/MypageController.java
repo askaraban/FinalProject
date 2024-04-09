@@ -1,17 +1,21 @@
 package swift.air.controller;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import swift.air.dto.Member;
+import swift.air.dto.Point;
 import swift.air.service.MypageService;
 
 
@@ -35,13 +39,27 @@ public class MypageController {
 		return "mypage/mypage";
 	}
 	
-	@RequestMapping(value="/point")
+	@PostMapping(value="/pointDetail")
 	@ResponseBody
-	public String myPoint(@RequestParam int pointStatus, @RequestParam int sortNum
-			, Model model, HttpSession session) {
+	public List<Point> myPointDetail(@RequestParam Map<String, Object> map, HttpSession session) {
 		Member loginMember=(Member)session.getAttribute("loginMember");
-		model.addAttribute("pointDetail", mypageService.getPointDetail(loginMember.getMemberNum()));
+		map.put("pointMemberNum", loginMember.getMemberNum());
+
+		List<Point> pointDetail =  mypageService.getPointDetail(map);
 		
+		return pointDetail;          
+	}
+	
+	@RequestMapping(value="/point")
+	public String myPoint(Model model, HttpSession session) {
+		Member loginMember=(Member)session.getAttribute("loginMember");
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("pointMemberNum", loginMember.getMemberNum());
+		map.put("pointStatus", -1);
+		map.put("sort", "point_date desc");
+		
+		model.addAttribute("pointDetail", mypageService.getPointDetail(map));
+
 		return "mypage/mypage_point";
 	}
 	

@@ -41,8 +41,7 @@ public class MypageDAOImpl implements MypageDAO {
 	}
 
 	@Override
-	public List<Point> selectPointDetail(int pointMemberNum) {
-		return sqlSession.getMapper(MypageMapper.class).selectPointDetail(pointMemberNum);
+	public List<Point> selectPointDetail(Map<String, Object> map) {
+		return sqlSession.getMapper(MypageMapper.class).selectPointDetail(map);
 	}
-
 }

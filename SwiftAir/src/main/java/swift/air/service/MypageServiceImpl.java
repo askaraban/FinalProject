@@ -56,8 +56,8 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public List<Point> getPointDetail(int pointMemberNum) {
-		return mypageDAO.selectPointDetail(pointMemberNum);
+	public List<Point> getPointDetail(Map<String, Object> map) {
+		return mypageDAO.selectPointDetail(map);
 	}
 
 }
