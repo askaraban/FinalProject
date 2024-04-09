@@ -1,6 +1,5 @@
 package swift.air.dto;
 
-import lombok.Builder;
 import lombok.Data;
 
 /*
@@ -14,7 +13,6 @@ ROUTE_PRICE                NUMBER
  */
 
 @Data
-@Builder
 public class Route {
 	private int routeId;
 	private String routeDeparture;

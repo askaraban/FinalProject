@@ -36,6 +36,11 @@ public class ScheduleDAOImpl implements ScheduleDAO{
 	}
 
 	@Override
+	public Schedule selectScheduleByFlight(String scheduleFlight) {
+		return sqlSession.getMapper(ScheduleMapper.class).selectScheduleByFlight(scheduleFlight);
+	}
+
+	@Override
 	public int selectScheduleCount() {
 		return sqlSession.getMapper(ScheduleMapper.class).selectScheduleCount();
 	}
@@ -45,4 +50,4 @@ public class ScheduleDAOImpl implements ScheduleDAO{
 		return sqlSession.getMapper(ScheduleMapper.class).selectScheduleList(map);
 	}
 
-}	
+}

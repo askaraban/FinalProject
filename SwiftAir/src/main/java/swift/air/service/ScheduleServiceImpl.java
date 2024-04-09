@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import swift.air.dao.ScheduleDAO;
-import swift.air.dto.Event;
 import swift.air.dto.Schedule;
 import swift.air.util.Pager;
 
@@ -42,11 +41,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 
 	@Override
 	public Schedule getSchedule(int scheduleId) {
-		Schedule schedule=scheduleDAO.selectSchedule(scheduleId);
-		if(schedule == null) {
-			throw new RuntimeException("게시글을 찾을 수 없습니다.");
-		}
-		return schedule;
+		return scheduleDAO.selectSchedule(scheduleId);
 	}
 
 	@Override

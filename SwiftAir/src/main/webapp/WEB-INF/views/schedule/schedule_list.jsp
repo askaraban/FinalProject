@@ -48,14 +48,15 @@
           <td class="text-capitalize" style="text-align:center">${schedule.scheduleArrivalDate}</td>
           <td class="td-buttons-2">
             <div class="d-flex justify-content-center flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="<c:url value="/schedule/modify"/>?scheduleId=${notice.noticeId}">
+            	<a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="<c:url value="/schedule/modify"/>?scheduleId=${schedule.scheduleId}">
 	                <i class="fa fa-edit"></i>
-	                수정</a>
+	                수정
+                </a>
 	                
-              <button class="btn btn-outline-danger btn-sm" onclick="scheduleDelete(${schedule.scheduleId});">
-                <i class="fa fa-times" aria-hidden="true"></i>
-                삭제
-              </button>
+             	<a class="btn btn-outline-danger btn-sm" href="<c:url value="/schedule/delete"/>?scheduleId=${schedule.scheduleId}">
+	                <i class="fa fa-times" aria-hidden="true"></i>
+	                삭제
+	             </a>
             </div>
           </td>
         </tr>
