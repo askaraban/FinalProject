@@ -68,7 +68,7 @@
           <li class="">
             <a href="javascript:0">서비스 안내</a>
             <ul class="dropdown">
-              <li><a href="index.html">공지사항</a></li>
+              <li><a href="/java/notice/main">공지사항</a></li>
               <li><a href="index-2.html">자주 묻는 질문</a></li>
               <li><a href="index-2.html">출입국 규정 정보</a></li>
             </ul>
