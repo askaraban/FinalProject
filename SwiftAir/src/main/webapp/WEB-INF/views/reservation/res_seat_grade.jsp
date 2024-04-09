@@ -5,7 +5,7 @@
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 <body id="body" class="up-scroll">
-<form id="addSeatGrade" action="<c:url value="/reservation/seatGradeAction" />" method="POST">
+<form id="addSeatGrade" action="<c:url value="/reservation/passengersinfo" />" method="POST">
 
 <c:set var="duration" value="${resInfo.resDuration}" />
 <c:set var="hyphenIndex" value="${duration.indexOf('-')}" />

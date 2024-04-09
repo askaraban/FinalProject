@@ -28,7 +28,7 @@
 
         <!-- 항공권예매 검색박스 -->
         <div class="search-box-2">
-          <form class="row g-2 justify-content-center" id="resScheduleSellection" action="<c:url value="/reservation/scheduleAction" />" method="POST">
+          <form class="row g-2 justify-content-center" id="resScheduleSellection" action="<c:url value="/reservation/seatgrade" />" method="POST">
 
             <div class="form-group col-md-3 col-lg-2 mb-0">
               <div class="select-default">
@@ -59,7 +59,9 @@
 			</div>
 			
             <div class="form-group col-md-3 col-lg-2 mb-0">
-				<input type="text" class="form-control" name="resNumofPassengers" id="resNumofPassengers" value="성인 : 1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				<input type="text" class="form-control" id="resNumofPassengers" value="성인 : 1, 소아 : 0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				<input type="hidden" name="resAdultCnt" id="resAdultCnt" value="">
+				<input type="hidden" name="resChildCnt" id="resChildCnt" value="">
             </div>
             
             <div class="form-group col-md-3 col-lg-2 mb-0">
@@ -129,6 +131,10 @@ $('#applyPpl').click(function() {
     var adultCntValue = $('#adultCnt').val();
     var childCntValue = $('#childCnt').val();
     $('#resNumofPassengers').val('성인 : ' + adultCntValue + ', 소아 : ' + childCntValue);
+    
+    // 성인, 소아 각각 인원수 입력
+    $('#resAdultCnt').val(adultCntValue);
+    $('#resChildCnt').val(childCntValue);
     
     $('#exampleModal').modal('hide');
 });
