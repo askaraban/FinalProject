@@ -14,6 +14,6 @@
 	<!-- 모든 좌석 리스트를 출력하는 sql -->
 	
 	<select id="selectSeatList" resultType="Seat">
-		select seat_name, seat_grade, seat_price from seat
+		select seat_name, seat_grade, seat_price from seat order by seat_name
 	</select>
 </mapper>

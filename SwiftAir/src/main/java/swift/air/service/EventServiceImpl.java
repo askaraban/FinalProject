@@ -34,6 +34,10 @@ public class EventServiceImpl implements EventService{
 	@Transactional
 	@Override
 	public void removeEvent(int eventId) {
+		if(eventDAO.selectEvent(eventId) == null) {
+			throw new RuntimeException("게시글을 찾을 수 없습니다.");
+		}
+		
 		eventDAO.deleteEvent(eventId);
 		
 	}

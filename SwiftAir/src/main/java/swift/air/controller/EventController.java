@@ -82,7 +82,7 @@ public class EventController {
 	@RequestMapping("/delete")
 	public String eventDelete(@RequestParam int eventId) {
 		//삭제될 게시글을 반환받아 저장 - 파일명을 제공받기 위해 사용
-		Event event=eventService.getEvent(eventId);
+		//Event event=eventService.getEvent(eventId);
 		//String uploadDirectory=context.getServletContext().getRealPath("/img/event");
 		//서버 디렉토리에 저장된 게시글의 파일 삭제 처리
 		//new File(uploadDirectory).delete();		

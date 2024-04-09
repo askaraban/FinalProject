@@ -2,10 +2,13 @@ package swift.air.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import swift.air.dto.Member;
@@ -51,6 +54,27 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/member/login";	
 	}
+	
+	@RequestMapping(value = "/confirmId")
+	@ResponseBody
+	public ResponseEntity<Boolean> confirmId(String memberId) {
+		
+		boolean result = true;
+		
+		if(memberId.trim().isEmpty()) {
+			result = false;
+		} else {
+			int cnt = memberService.selectMemberId(memberId);
+			if (cnt == 0) {
+				result = true;
+			} else {
+				result = false;
+			}
+		}
+		
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
 	
 	
 	

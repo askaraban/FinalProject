@@ -22,8 +22,9 @@
 		            	<div class="input-group mb-2">
 		            	
 		            		<div class="input-group-text col-sm-2 text-center">아이디</div>
-		            		<input type="text" class="form-control" name = "memberId" id = "memberId">
+		            		<input type="text" class="form-control" name = "memberId" id = "memberId" >
 		            	</div>
+		            	<label id="idCheck"></label>
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">비밀번호</div>
 		            		<input type="password" class="form-control" name = "memberPswd" id = "memberPswd">
@@ -83,10 +84,35 @@
 
 <script type="text/javascript">
 
+$(document).ready(function() {
+	
+	$("#memberId").on("focusout", function() {
+	
+		var memberId = $("#memberId").val();
+		
+    	$.ajax({
+    		url : '<c:url value="/member/confirmId"/>',
+    		data : {
+    			memberId : memberId
+    		},
+    		type : 'POST',
+    		dataType : 'json',
+    		success : function(result) {
+    			if (result == true) {
+    				$("#idCheck").css("color", "black").text("사용 가능한 ID 입니다.");
+    			} else{
+    				$("#idCheck").css("color", "red").text("사용 불가능한 ID 입니다.");
+    				$("#memberId").val('');
+    			}
+    		}
+    	}); 
+});
+
+
 $(function() {
 	  $('#memberBirth').daterangepicker({
-	    singleDatePicker: true,
 	    showDropdowns: true,
+	    singleDatePicker: true,
 	    minYear: 1900,
 	    maxYear: parseInt(moment().format('YYYY'),10),
 	    locale: {
@@ -94,10 +120,8 @@ $(function() {
 	    }
 	  });
 	});
-
-
-
-$(document).ready(function() {
+	
+	
     $('#join').submit(function(e) {
     	   var idRegex = /^[a-zA-Z]\w{5,19}$/g;
            var passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*_-]).{6,20}$/g;
@@ -152,9 +176,16 @@ $(document).ready(function() {
             $('#memberPhone').focus();
             return false;
         }
+      
        
        
         return true;
     });
 });
 </script>
+
+
+
+
+
+

@@ -5,23 +5,25 @@
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
   <body id="body" class="body-wrapper boxed-menu">
-      <div class="main-wrapper">
-
 <!-- ====================================
 ———	MY BOOKINGS
 ===================================== -->
-<section class="pb-8 pt-5 bg-light height100vh">
+<section class="bg-light py-8">
   <div class="container">
-
-    <!-- Breadcrumb -->
-    <nav class="bg-transparent breadcrumb breadcrumb-2 px-0 mb-5" aria-label="breadcrumb">
-      <h2 class="fw-normal mb-4 mb-md-0">운항일정 목록</h2>
+	<nav class="bg-transparent breadcrumb breadcrumb-2 px-0 mb-5" aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
+      <h2 class="fw-normal mb-4 mb-md-0" style="font-size: 40px;">운항일정 목록</h2>
     </nav>
-
+  </div>
+</section>
+	
+<div class="main-wrapper">
+<section class="pb-8 pt-5 mt-9 height100vh">
+  <div class="container">
     <!-- My Bookings -->
     <table id="my-booking" class="display nowrap table-data-default" style="width:100%">
       <thead style="text-align:center">
         <tr>
+          <th>번호</th>	
           <th>항공기명</th>
           <th>출발지</th>
           <th>도착지</th>
@@ -33,187 +35,80 @@
         </tr>
       </thead>
       <tbody>
-
+	  <%-- 게시글 목록 출력 --%> 
+       	<c:forEach var="schedule" items="${scheduleList}">
         <tr>
-          <td class="text-capitalize" style="text-align:center">SW1011</td>
-          <td class="text-capitalize" style="text-align:center">서울/인천(ICN)</td>
-          <td class="text-capitalize" style="text-align:center">로스앤젤레스(LAX)</td>
-          <td class="text-capitalize" style="text-align:center">00시간 00분</td>
-          <td class="text-capitalize" style="text-align:center">500,000원</td>
-          <td class="text-capitalize" style="text-align:center">2024.02.10</td>
-          <td class="text-capitalize" style="text-align:center">2024.02.11</td>
+          <td class="text-capitalize" style="text-align:center">${schedule.scheduleId}</td>
+          <td class="text-capitalize" style="text-align:center">${schedule.scheduleFlight}</td>
+          <td class="text-capitalize" style="text-align:center">${schedule.routeDeparture}</td>
+          <td class="text-capitalize" style="text-align:center">${schedule.routeDestination}</td>
+          <td class="text-capitalize" style="text-align:center">${schedule.routeTime}</td>
+          <td class="text-capitalize" style="text-align:center">${schedule.routePrice}</td>
+          <td class="text-capitalize" style="text-align:center">${schedule.scheduleDepartureDate}</td>
+          <td class="text-capitalize" style="text-align:center">${schedule.scheduleArrivalDate}</td>
           <td class="td-buttons-2">
             <div class="d-flex justify-content-center flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="modify">
-                <i class="fa fa-edit"></i>
-                수정
-              </a>
-              <button class="btn btn-outline-danger btn-sm">
+              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="<c:url value="/schedule/modify"/>?scheduleId=${notice.noticeId}">
+	                <i class="fa fa-edit"></i>
+	                수정</a>
+	                
+              <button class="btn btn-outline-danger btn-sm" onclick="scheduleDelete(${schedule.scheduleId});">
                 <i class="fa fa-times" aria-hidden="true"></i>
                 삭제
               </button>
             </div>
           </td>
         </tr>
-
-        <tr>
-          <td class="text-capitalize" style="text-align:center">SW1012</td>
-          <td class="text-capitalize" style="text-align:center">로스앤젤레스(LAX)</td>
-          <td class="text-capitalize" style="text-align:center">서울/인천(ICN)</td>
-          <td class="text-capitalize" style="text-align:center">00시간 00분</td>
-          <td class="text-capitalize" style="text-align:center">500,000원</td>
-          <td class="text-capitalize" style="text-align:center">2024.02.10</td>
-          <td class="text-capitalize" style="text-align:center">2024.02.11</td>
-          <td class="td-buttons-2">
-            <div class="d-flex justify-content-center flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="modify">
-                <i class="fa fa-edit"></i>
-                수정
-              </a>
-              <button class="btn btn-outline-danger btn-sm">
-                <i class="fa fa-times" aria-hidden="true"></i>
-                삭제
-              </button>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="text-capitalize" style="text-align:center">SW2011</td>
-          <td class="text-capitalize" style="text-align:center">서울/인천(ICN)</td>
-          <td class="text-capitalize" style="text-align:center">방콕(BKK)</td>
-          <td class="text-capitalize" style="text-align:center">00시간 00분</td>
-          <td class="text-capitalize" style="text-align:center">500,000원</td>
-          <td class="text-capitalize" style="text-align:center">2024.02.10</td>
-          <td class="text-capitalize" style="text-align:center">2024.02.11</td>
-          <td class="td-buttons-2">
-            <div class="d-flex justify-content-center flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="modify">
-                <i class="fa fa-edit"></i>
-                수정
-              </a>
-              <button class="btn btn-outline-danger btn-sm">
-                <i class="fa fa-times" aria-hidden="true"></i>
-                삭제
-              </button>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="text-capitalize" style="text-align:center">SW2012</td>
-          <td class="text-capitalize" style="text-align:center">방콕(BKK)</td>
-          <td class="text-capitalize" style="text-align:center">서울/인천(ICN)</td>
-          <td class="text-capitalize" style="text-align:center">00시간 00분</td>
-          <td class="text-capitalize" style="text-align:center">500,000원</td>
-          <td class="text-capitalize" style="text-align:center">2024.02.10</td>
-          <td class="text-capitalize" style="text-align:center">2024.02.11</td>
-          <td class="td-buttons-2">
-            <div class="d-flex justify-content-center flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="modify">
-                <i class="fa fa-edit"></i>
-                수정
-              </a>
-              <button class="btn btn-outline-danger btn-sm">
-                <i class="fa fa-times" aria-hidden="true"></i>
-                삭제
-              </button>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="text-capitalize" style="text-align:center">SW3011</td>
-          <td class="text-capitalize" style="text-align:center">서울/인천(ICN)</td>
-          <td class="text-capitalize" style="text-align:center">도쿄/나리타(NRT)</td>
-          <td class="text-capitalize" style="text-align:center">00시간 00분</td>
-          <td class="text-capitalize" style="text-align:center">500,000원</td>
-          <td class="text-capitalize" style="text-align:center">2024.02.10</td>
-          <td class="text-capitalize" style="text-align:center">2024.02.11</td>
-          <td class="td-buttons-2">
-            <div class="d-flex justify-content-center flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="modify">
-                <i class="fa fa-edit"></i>
-                수정
-              </a>
-              <button class="btn btn-outline-danger btn-sm">
-                <i class="fa fa-times" aria-hidden="true"></i>
-                삭제
-              </button>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="text-capitalize" style="text-align:center">SW3012</td>
-          <td class="text-capitalize" style="text-align:center">도쿄/나리타(NRT)</td>
-          <td class="text-capitalize" style="text-align:center">서울/인천(ICN)</td>
-          <td class="text-capitalize" style="text-align:center">00시간 00분</td>
-          <td class="text-capitalize" style="text-align:center">500,000원</td>
-          <td class="text-capitalize" style="text-align:center">2024.02.10</td>
-          <td class="text-capitalize" style="text-align:center">2024.02.11</td>
-          <td class="td-buttons-2">
-            <div class="d-flex justify-content-center flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="modify">
-                <i class="fa fa-edit"></i>
-                수정
-              </a>
-              <button class="btn btn-outline-danger btn-sm">
-                <i class="fa fa-times" aria-hidden="true"></i>
-                삭제
-              </button>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="text-capitalize" style="text-align:center">SW1011</td>
-          <td class="text-capitalize" style="text-align:center">서울/인천(ICN)</td>
-          <td class="text-capitalize" style="text-align:center">로스앤젤레스(LAX)</td>
-          <td class="text-capitalize" style="text-align:center">00시간 00분</td>
-          <td class="text-capitalize" style="text-align:center">500,000원</td>
-          <td class="text-capitalize" style="text-align:center">2024.02.10</td>
-          <td class="text-capitalize" style="text-align:center">2024.02.11</td>
-          <td class="td-buttons-2">
-            <div class="d-flex justify-content-center flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="modify">
-                <i class="fa fa-edit"></i>
-                수정
-              </a>
-              <button class="btn btn-outline-danger btn-sm">
-                <i class="fa fa-times" aria-hidden="true"></i>
-                삭제
-              </button>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="text-capitalize" style="text-align:center">SW1012</td>
-          <td class="text-capitalize" style="text-align:center">로스앤젤레스(LAX)</td>
-          <td class="text-capitalize" style="text-align:center">서울/인천(ICN)</td>
-          <td class="text-capitalize" style="text-align:center">00시간 00분</td>
-          <td class="text-capitalize" style="text-align:center">500,000원</td>
-          <td class="text-capitalize" style="text-align:center">2024.02.10</td>
-          <td class="text-capitalize" style="text-align:center">2024.02.11</td>
-          <td class="td-buttons-2">
-            <div class="d-flex justify-content-center flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="modify">
-                <i class="fa fa-edit"></i>
-                수정
-              </a>
-              <button class="btn btn-outline-danger btn-sm">
-                <i class="fa fa-times" aria-hidden="true"></i>
-                삭제
-              </button>
-            </div>
-          </td>
-        </tr>
+		</c:forEach>
       </tbody>
     </table>
   </div>
+
+  <%-- 페이지 번호 출력 --%>
+<section class="my-5">	
+	<nav aria-label="Page navigation example">
+    	<ul class="pagination" style="justify-content: center;">
+			<li class="page-item me-2">
+				<c:choose>
+					<c:when test="${pager.startPage > pager.blockSize }">
+						<a href="<c:url value="/schedule/list"/>?pageNum=${pager.prevPage}">[이전]
+							<i class="fa fa-angle-left" aria-hidden="true"></i>
+						</a>	
+					</c:when>
+					<c:otherwise>
+						[이전]
+					</c:otherwise>
+				</c:choose>
+			</li>	
+				<c:forEach var="i" begin="${pager.startPage }" end="${pager.endPage }" step="1">
+					<c:choose>
+						<c:when test="${pager.pageNum != i }">
+							<a href="<c:url value="/schedule/list"/>?pageNum=${i}">[${i}]</a>
+						</c:when>
+						<c:otherwise>
+							[${i}]
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				
+			<li class="page-item">	
+				<c:choose>
+					<c:when test="${pager.endPage != pager.totalPage }">
+						<a href="<c:url value="/schedule/list"/>?pageNum=${pager.nextPage}">[다음]
+							 <i class="fa fa-angle-right" aria-hidden="true"></i>
+						</a>	 
+					</c:when>
+					<c:otherwise>
+						[다음]
+					</c:otherwise>
+				</c:choose>
+			</li>
+		</ul>
+	</nav>			
+</section>
 </section>
 
 
-    </div> <!-- element wrapper ends -->
-  </body>
+</div> <!-- element wrapper ends -->
+
+</body>
