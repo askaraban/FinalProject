@@ -32,7 +32,7 @@
 	    SELECT * FROM (
 	        SELECT rownum rn, faq.*
 	        FROM (
-	            SELECT faq_id, faq_title, faq_content, faq_date, faq_cate, faq_cate_name
+	            SELECT faq_id, faq_title, faq_content, faq_date, faq_cate
 	            FROM faq JOIN faq_cate ON faq.faq_cate = faqcate.faq_cate_id
 	            WHERE faq_cate_id = #{categoryId} ORDER BY faq_id DESC 
 	        ) faq
