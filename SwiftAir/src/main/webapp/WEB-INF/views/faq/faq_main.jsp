@@ -167,12 +167,10 @@ ul {
               <div class="tabBtn" style="margin-top: 50px;">
 	             <input type="hidden" id="category" value="">
 	             <button class="btn on" onclick="fn_changeCategory(this.value);" value="">전체</button>
-	             <button class="btn" onclick="fn_changeCategory(this.value);" value="bs">유아,소아 좌석관련</button>
-	             <button class="btn" onclick="fn_changeCategory(this.value);" value="bk">예약관련</button>
-	             <button class="btn" onclick="fn_changeCategory(this.value);" value="pm">결제관련</button>
-	             <button class="btn" onclick="fn_changeCategory(this.value);" value="cc">변경 및 취소 관련</button>
-	             <button class="btn" onclick="fn_changeCategory(this.value);" value="bg">수하물관련</button>
-	             <button class="btn" onclick="fn_changeCategory(this.value);" value="ap">공항관련</button>
+	             <button class="btn" onclick="fn_changeCategory(this.value);" value="bs">예약</button>
+	             <button class="btn" onclick="fn_changeCategory(this.value);" value="bk">결제</button>
+	             <button class="btn" onclick="fn_changeCategory(this.value);" value="pm">변경취소</button>
+	             <button class="btn" onclick="fn_changeCategory(this.value);" value="cc">공항</button>
               </div>
             </div>
             

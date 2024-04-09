@@ -1,6 +1,9 @@
 eclipse.preferences.version=1
 encoding//src/main/java/swift/air/controller/HelloController.java=UTF-8
+encoding//src/main/java/swift/air/dto/Airport.java=UTF-8
 encoding//src/main/java/swift/air/dto/Event.java=UTF-8
+encoding//src/main/java/swift/air/dto/Passenger.java=UTF-8
+encoding//src/main/java/swift/air/dto/Payment.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/event/event_modify.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/faq/faq_add.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/faq/faq_list.jsp=UTF-8
