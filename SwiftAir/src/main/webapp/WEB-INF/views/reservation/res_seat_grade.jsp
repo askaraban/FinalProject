@@ -7,17 +7,6 @@
 <body id="body" class="up-scroll">
 <form id="addSeatGrade" action="<c:url value="/reservation/passengersinfo" />" method="POST">
 
-<c:set var="duration" value="${resInfo.resDuration}" />
-<c:set var="hyphenIndex" value="${duration.indexOf('-')}" />
-<c:set var="startDate" value="${duration.substring(0, hyphenIndex)}" />
-<c:set var="endDate" value="${duration.substring(hyphenIndex + 1)}" />
-
-<!-- 
-<input type="hidden" name="resDeparture" value="${resDeparture}">
-<input type="hidden" name="resDestination" value="${resDestination}">
-<input type="hidden" name="resDuration" value="${resDuration}">
-<input type="hidden" name="resNumofPassengers" value="${resNumofPassengers}">
- -->
 <!-- ====================================
 ———	HEADER
 ===================================== -->

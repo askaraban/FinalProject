@@ -55,13 +55,15 @@
             </div>
 
 			<div class="form-group col-md-3 col-lg-4 mb-0">
-				<input type="text" class="form-control double-date" name="resDuration">
+				<input type="text" class="form-control double-date" id="resDuration">
+				
+				<input type="hidden" name="resDepartDate" id="resDepartDate">
+				<input type="hidden" name="resReturnDate" id="resReturnDate">
 			</div>
 			
             <div class="form-group col-md-3 col-lg-2 mb-0">
-				<input type="text" class="form-control" id="resNumofPassengers" value="성인 : 1, 소아 : 0" data-bs-toggle="modal" data-bs-target="#exampleModal">
-				<input type="hidden" name="resAdultCnt" id="resAdultCnt" value="">
-				<input type="hidden" name="resChildCnt" id="resChildCnt" value="">
+				<input type="text" class="form-control" id="resNumofPassengers" value="탑승인원 : " data-bs-toggle="modal" data-bs-target="#exampleModal">
+				<input type="hidden" name="resPassengerCnt" id="resPassengerCnt">
             </div>
             
             <div class="form-group col-md-3 col-lg-2 mb-0">
@@ -88,22 +90,14 @@
       <div class="modal-body">
       	<div class="form-group mb-6">
       		<div class="d-flex justify-content-between align-items-center flex-wrap mb-5">
-      			<span class="font-weight-bold">성인</span>
+      			<span class="font-weight-bold">탑승인원 : </span>
       				<div class="count-input">
       					<a class="incr-btn" data-action="decrease" href="#">–</a>
-      						<input class="quantity" type="text" id="adultCnt" value="1">
+      						<input class="quantity" type="text" id="passengerCnt" value="1" min="1" max="10">
                 		<a class="incr-btn" data-action="increase" href="#">+</a>
               		</div>
             </div>
-        	<div class="d-flex justify-content-between align-items-center flex-wrap mb-5">
-	            <span class="font-weight-bold">소아</span>
-	              	<div class="count-input">
-	                	<a class="incr-btn" data-action="decrease" href="#">–</a>
-	                		<input class="quantity" type="text" id="childCnt" value="0">
-	                	<a class="incr-btn" data-action="increase" href="#">+</a>
-	              	</div>
-            </div>
-          </div>
+         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
@@ -121,22 +115,27 @@
 $('#exampleModal').on('show.bs.modal', function (e) {
     // 모달 외부 입력값을 가져와서 모달 내 입력값으로 설정
     var resNumofPassengersValue = $('#resNumofPassengers').val();
-    $('#adultCnt').val(resNumofPassengersValue);
-    $('#childCnt').val(resNumofPassengersValue);
+    $('#passengerCnt').val(resNumofPassengersValue);
 });
 
 // 적용 버튼 클릭 시 실행
 $('#applyPpl').click(function() {
     // 모달 내 입력값을 가져와서 모달 외부 입력값으로 설정
-    var adultCntValue = $('#adultCnt').val();
-    var childCntValue = $('#childCnt').val();
-    $('#resNumofPassengers').val('성인 : ' + adultCntValue + ', 소아 : ' + childCntValue);
-    
-    // 성인, 소아 각각 인원수 입력
-    $('#resAdultCnt').val(adultCntValue);
-    $('#resChildCnt').val(childCntValue);
+    var passengerCntValue = $('#passengerCnt').val();
+    $('#resNumofPassengers').val('탑승인원 : ' + passengerCntValue);
+    $('#resPassengerCnt').val(passengerCntValue);
     
     $('#exampleModal').modal('hide');
+	
+    //여정 정보 끼워넣음..
+    var resDurationValue = $('#resDuration').val();
+	var values = resDurationValue.split(" - ")
+	
+	var value1 = values[0];
+	var value2 = values[1];
+	$('#resDepartDate').val(value1);
+	$('#resReturnDate').val(value2);
 });
+
 </script>
 </body>

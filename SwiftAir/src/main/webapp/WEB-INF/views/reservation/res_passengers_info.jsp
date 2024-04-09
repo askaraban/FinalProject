@@ -42,19 +42,19 @@
 		            <div class="form-group col-sm-12">
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">영문 성</div>
-		            		<input type="text" class="form-control" name="resMemLast" placeholder="여권에 표시된 언어로 성을 입력해주세요." required>
+		            		<input type="text" class="form-control" name="resMemLast" value="${loginMember.memberLastName}" placeholder="여권에 표시된 언어로 성을 입력해주세요." required>
 		            	</div>
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">영문 이름</div>
-		            		<input type="text" class="form-control" name="resMemFirst" placeholder="여권에 표시된 언어로 이름을 입력해주세요." required>
+		            		<input type="text" class="form-control" name="resMemFirst" value="${loginMember.memberFirstName}" placeholder="여권에 표시된 언어로 이름을 입력해주세요." required>
 		            	</div>
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">이메일 주소</div>
-		            		<input type="text" class="form-control" name="resMemEmail" placeholder="이메일을 입력해주세요." required>
+		            		<input type="text" class="form-control" name="resMemEmail" value="${loginMember.memberEmail}" placeholder="이메일을 입력해주세요." required>
 		            	</div>
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">휴대폰 번호</div>
-		            		<input type="text" class="form-control" name="resMemPhone" placeholder="휴대폰 번호를 입력해주세요." required>
+		            		<input type="text" class="form-control" name="resMemPhone" value="${loginMember.memberPhone}" placeholder="휴대폰 번호를 입력해주세요." required>
 		            	</div>
 		            </div>
 				</div>
@@ -63,7 +63,9 @@
 
         <!-- 탑승자 정보입력 -->
         <!-- 여러명일 경우 탑승자 * n (성인, 소인 구분 x) -->
-        <c:forEach var="i" begin="1" end="${resInfo.resAdultCnt}">
+        <input type="hidden" id="passengerCount" value="${resInfo.resPassengerCnt}">
+        <input type="hidden" name="passengersList" id="passengersList">
+        <c:forEach var="i" begin="1" end="${resInfo.resPassengerCnt}">
         <div class="border rounded px-6 py-5 mb-6">
 			<div class="row">
 				<div class="col-sm-4">
@@ -76,53 +78,22 @@
 		            <div class="form-group col-sm-12">
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">영문 성</div>
-		            		<input type="text" class="form-control" name="resAdultLast${i}" placeholder="여권에 표시된 언어로 성을 입력해주세요." required>
+		            		<input type="text" class="form-control" id="resPassengerLastName${i}" placeholder="여권에 표시된 언어로 성을 입력해주세요." required>
 		            	</div>
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">영문 이름</div>
-		            		<input type="text" class="form-control" name="resAdultFirst${i}" placeholder="여권에 표시된 언어로 이름을 입력해주세요." required>
+		            		<input type="text" class="form-control" id="resPassengerFirstName${i}" placeholder="여권에 표시된 언어로 이름을 입력해주세요." required>
 		            	</div>
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">생년월일</div>
-		            		<input type="text" class="form-control" name="resAdultBirth${i}" placeholder="예): 20180823" required>
+		            		<input type="text" class="form-control" id="resPassengerBirth${i}" placeholder="예): 20180823" required>
 		            	</div>
 		            </div>
 				</div>
 			</div>
  		</div>
  		</c:forEach>
- 		
- 		<c:if test="${resInfo.resChildCnt > 0}">
-	 		<c:forEach var="j" begin="1" end="${resInfo.resChildCnt}">
-	        <div class="border rounded px-6 py-5 mb-6">
-				<div class="row">
-					<div class="col-sm-4">
-						<h5>탑승자 정보입력</h5>
-						<h5>소아 탑승객 ${j}</h5>
-						<p>여권 상 표기된 이름과 동일하게 입력해주세요.</p>
-						<p>예약 완료 후 이름 변경 시 항공권 재발행 수수료가 부과될 수 있습니다.</p>
-					</div>
-					<div class="col-sm-8">
-			            <div class="form-group col-sm-12">
-			            	<div class="input-group mb-2">
-			            		<div class="input-group-text col-sm-2 text-center">영문 성</div>
-			            		<input type="text" class="form-control" name="resChildLast${j}" placeholder="여권에 표시된 언어로 성을 입력해주세요." required>
-			            	</div>
-			            	<div class="input-group mb-2">
-			            		<div class="input-group-text col-sm-2 text-center">영문 이름</div>
-			            		<input type="text" class="form-control" name="resChildFirst${j}" placeholder="여권에 표시된 언어로 이름을 입력해주세요." required>
-			            	</div>
-			            	<div class="input-group mb-2">
-			            		<div class="input-group-text col-sm-2 text-center">생년월일</div>
-			            		<input type="text" class="form-control" name="resChildBirth${j}" placeholder="예): 20180823" required>
-			            	</div>
-			            </div>
-					</div>
-				</div>
-	 		</div>
-	 		</c:forEach>
-	 	</c:if>
-
+ 		 
       </div>
     </div>
 </section>
@@ -141,9 +112,33 @@
 			<button onclick="history.back()" class="btn btn-outline-primary w-100">이전</button>
 		</div>
 		<div class="col-sm-1 col-lg-1">
-			<button type="submit" class="btn btn-primary w-100">다음</button>
+			<button type="submit" class="btn btn-primary w-100" id="toSeat">다음</button>
 		</div>
 	</div>
 </nav>
 </form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+//탑승자 n의 List 생성
+$('#toSeat').click(function() {
+	var passengerList = [];
+	
+	var pasCount = $('#passengerCount').val();
+	for (var i = 1; i <= pasCount; i++) {
+		var lastName = $('#resPassengerLastName' + i).val();
+           var firstName = $('#resPassengerFirstName' + i).val();
+           var birth = $('#resPassengerBirth' + i).val();
+		
+		var arr = {
+			lastName: lastName,
+			firstName: firstName,
+			birth: birth
+		};
+		
+		passengerList.push(arr);
+	};
+	$('#passengersList').val(JSON.stringify(passengerList));
+});
+</script>
 </body>
