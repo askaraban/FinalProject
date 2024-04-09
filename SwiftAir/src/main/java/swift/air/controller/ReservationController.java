@@ -62,9 +62,10 @@ public class ReservationController {
 	    return "reservation/res_passengers_info";
 	}
 	
-	@RequestMapping(value = "/seatT")
+	@RequestMapping(value = "/seat")
 	public String getResPassengersInfo(@RequestParam Map<String, Object> addPassengerInfo, Model model) {
-		
+		model.addAttribute("seatList",seatService.getSeatList());
+		model.addAttribute("reservedSeatList",seatService.getReservedSeatList());
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
 		
 		resInfo.putAll(addPassengerInfo);
@@ -75,13 +76,14 @@ public class ReservationController {
 	    //return "redirect:/reservation/seat";
 	    return "reservation/res_seat";
 	}
-	
+	/*
 	@RequestMapping(value = "/seat")
 	public String resSeat(Model model) {
 		model.addAttribute("seatList",seatService.getSeatList());
 		model.addAttribute("reservedSeatList",seatService.getReservedSeatList());
 		return "reservation/res_seat";
 	}	
+	*/
 	
 	
 }

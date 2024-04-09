@@ -5,7 +5,7 @@
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 <body id="body" class="up-scroll">
-<form id="addPassengerInfo" action="<c:url value="/reservation/seatT" />" method="POST">
+<form id="addPassengerInfo" action="<c:url value="/reservation/seat" />" method="POST">
 
 <!-- ====================================
 ———	HEADER
