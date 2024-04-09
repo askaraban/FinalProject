@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper></mapper>
+<mapper namespace="swift.air.mapper.FaqMapper">
+
+	<insert id="insertNotice">
+		<selectKey resultType="int" keyProperty="noticeId" order="BEFORE">
+			select notice_seq.nextval from dual
+		</selectKey>
+		insert into notice values(#{noticeId}, #{noticeTitle} , #{noticeContent}, sysdate)
+	</insert>
+	
+</mapper>
