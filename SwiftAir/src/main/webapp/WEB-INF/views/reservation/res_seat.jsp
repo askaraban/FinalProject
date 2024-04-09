@@ -54,6 +54,7 @@
 			<div class="airplane--div" id="sch1Airplane">
 				<div class="airplane--background" style="background-image: url('<c:url value="/img/seat/airplane_empty2.png"/>');">
 					<div class="b--seat">
+					
 					<!-- 프레미아42 등급 좌석 -->
 						<c:set var="b" value="1" />
 						<c:forEach var="seatList" items="${seatList }" varStatus="status" begin="0" end="17">
@@ -153,6 +154,9 @@
         </div>
         <div class="mb-6">
           <div class="border border-subtle rounded" style="padding: 0.75rem 1.5rem; font-size: 15px; font-weight: bold; color: black;">탑승객
+          	<c:forEach var="i" begin="1" end="${resInfo.resAdultCnt }">
+			  <div class="border border-primary rounded" style="padding: 0.75rem 1.5rem; margin-top: 1.2rem;">${resInfo.resAdultFirst1}${i }</div>
+          	</c:forEach>
 			  <div class="border border-primary rounded" style="padding: 0.75rem 1.5rem; margin-top: 1.2rem;">heesoo cho</div>
 		  </div>
         </div>
@@ -182,38 +186,34 @@
 
 <script type="text/javascript">
 
+var seatCount = 2;
+var selectSeat = 0;
+	
+
 	/* 클릭 시 예약좌석 선택 */
 	$(".pre_economy").click(function () {
 		var pre = $(this).attr("id");
-		/* 
-		$("#"+pre).attr("src", "<c:url value="/img/seat/economy_sel.png"/>")
-		$("#"+pre).attr("title", "off")
 		
-		if($("#"+pre).attr("title")=="off"){
-			title = "off";
-		}
-		 */
-		$.ajax({
-			type: "get",
-			url: "<c:url value="/reservation/select_seat"/>/"+pre,
-			data: {"pre":pre},
-			dataType: "text",
-			//JSON 형식의 문자열을 제공받아 Javascipt 객체로 변환하여 매개변수에 저장
-			success: function(result) {
-				
-				if($("#"+pre).attr("title")=="on"){
-					$("#"+pre).attr("src", "<c:url value="/img/seat/economy_sel.png"/>")
-					$("#"+pre).attr("title", "off")
-				} else {
-					$("#"+pre).attr("src", "<c:url value="/img/seat/economy_not.png"/>")
-					$("#"+pre).attr("title", "on")
-				}
-				
-			},
-			error: function(xhr) {
-				alert("에러코드(좌석 선택) = "+xhr.status);
+		if($("#"+pre).attr("title")=="on"){
+			
+			if(seatCount<=0){
+				return;
+			} else {
+				$("#"+pre).attr("src", "<c:url value="/img/seat/economy_sel.png"/>")
+				$("#"+pre).attr("title", "off")
+				seatCount--;
 			}
-		});
+			
+		} else {
+			
+			if($("#"+pre).attr("title")=="off" && $("#"+pre).attr("src")=="<c:url value="/img/seat/economy_sel.png"/>"){
+				console.log(seatCount);
+			}
+			
+			$("#"+pre).attr("src", "<c:url value="/img/seat/economy_not.png"/>")
+			$("#"+pre).attr("title", "on")
+			seatCount++;
+		}
 	});
 	/* 클릭 시 예약좌석 선택 */
 	$(".pre_business").click(function () {
@@ -222,34 +222,29 @@
 		선택하기 -> 이미 좌석을 골랐는데 다른 좌석을 누른다면 경고메세지 주기
 		선택된 좌석 다시 누를 시 다시 돌아가도록 하기
 		*/
-		
-		$.ajax({
-			type: "get",
-			url: "<c:url value="/reservation/select_seat"/>/"+pre,
-			data: {"pre":pre},
-			dataType: "text",
-			//JSON 형식의 문자열을 제공받아 Javascipt 객체로 변환하여 매개변수에 저장
-			success: function(result) {
-				if($(".pre_business").attr("title")!="off"){
-					
-				} else {
-					alert("이미 좌석을 선택하셨습니다.");
-				}
-				
-				if($("#"+pre).attr("title")=="on"){
-					$("#"+pre).attr("src", "<c:url value="/img/seat/business_sel.png"/>")
-					$("#"+pre).attr("title", "off")
-				} else {
-					$("#"+pre).attr("src", "<c:url value="/img/seat/business_not.png"/>")
-					$("#"+pre).attr("title", "on")
-				}
-				
-			},
-			error: function(xhr) {
-				alert("에러코드(좌석 선택) = "+xhr.status);
+		if($("#"+pre).attr("title")=="on"){
+			
+			if(seatCount<=0){
+				return;
+			} else {
+				$("#"+pre).attr("src", "<c:url value="/img/seat/business_sel.png"/>")
+				$("#"+pre).attr("title", "off")
+				seatCount--;
 			}
-		});
+			
+		} else {
+			
+			if($("#"+pre).attr("title")=="off" && $("#"+pre).attr("src")=="<c:url value="/img/seat/business_sel.png"/>"){
+				console.log(seatCount);
+			}
+			
+			$("#"+pre).attr("src", "<c:url value="/img/seat/business_not.png"/>")
+			$("#"+pre).attr("title", "on")
+			seatCount++;
+		}
 	});
+	
+	
 	
 	
 </script>

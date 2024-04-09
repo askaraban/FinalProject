@@ -5,14 +5,7 @@
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 <body id="body" class="up-scroll">
-<form id="addPassengerInfo" action="<c:url value="/reservation/passengerInfoAction" />" method="POST">
-<c:set var="passengerInfo" value="${resInfo.resNumofPassengers}" />
-
-<c:set var="adultIndex" value="${passengerInfo.indexOf('성인')}" />
-<c:set var="adultCount" value="${passengerInfo.substring(adultIndex + 4, passengerInfo.indexOf(',', adultIndex))}" />
-
-<c:set var="childIndex" value="${passengerInfo.indexOf('소아')}" />
-<c:set var="childCount" value="${passengerInfo.substring(childIndex + 4)}" />
+<form id="addPassengerInfo" action="<c:url value="/reservation/seat" />" method="POST">
 
 <!-- ====================================
 ———	HEADER
@@ -70,7 +63,7 @@
 
         <!-- 탑승자 정보입력 -->
         <!-- 여러명일 경우 탑승자 * n (성인, 소인 구분 x) -->
-        <c:forEach var="i" begin="1" end="${adultCount}">
+        <c:forEach var="i" begin="1" end="${resInfo.resAdultCnt}">
         <div class="border rounded px-6 py-5 mb-6">
 			<div class="row">
 				<div class="col-sm-4">
@@ -99,34 +92,36 @@
  		</div>
  		</c:forEach>
  		
- 		<c:forEach var="j" begin="1" end="${childCount}">
-        <div class="border rounded px-6 py-5 mb-6">
-			<div class="row">
-				<div class="col-sm-4">
-					<h5>탑승자 정보입력</h5>
-					<h5>소아 탑승객 ${j}</h5>
-					<p>여권 상 표기된 이름과 동일하게 입력해주세요.</p>
-					<p>예약 완료 후 이름 변경 시 항공권 재발행 수수료가 부과될 수 있습니다.</p>
+ 		<c:if test="${resInfo.resChildCnt > 0}">
+	 		<c:forEach var="j" begin="1" end="${resInfo.resChildCnt}">
+	        <div class="border rounded px-6 py-5 mb-6">
+				<div class="row">
+					<div class="col-sm-4">
+						<h5>탑승자 정보입력</h5>
+						<h5>소아 탑승객 ${j}</h5>
+						<p>여권 상 표기된 이름과 동일하게 입력해주세요.</p>
+						<p>예약 완료 후 이름 변경 시 항공권 재발행 수수료가 부과될 수 있습니다.</p>
+					</div>
+					<div class="col-sm-8">
+			            <div class="form-group col-sm-12">
+			            	<div class="input-group mb-2">
+			            		<div class="input-group-text col-sm-2 text-center">영문 성</div>
+			            		<input type="text" class="form-control" name="resChildLast${j}" placeholder="여권에 표시된 언어로 성을 입력해주세요." required>
+			            	</div>
+			            	<div class="input-group mb-2">
+			            		<div class="input-group-text col-sm-2 text-center">영문 이름</div>
+			            		<input type="text" class="form-control" name="resChildFirst${j}" placeholder="여권에 표시된 언어로 이름을 입력해주세요." required>
+			            	</div>
+			            	<div class="input-group mb-2">
+			            		<div class="input-group-text col-sm-2 text-center">생년월일</div>
+			            		<input type="text" class="form-control" name="resChildBirth${j}" placeholder="예): 20180823" required>
+			            	</div>
+			            </div>
+					</div>
 				</div>
-				<div class="col-sm-8">
-		            <div class="form-group col-sm-12">
-		            	<div class="input-group mb-2">
-		            		<div class="input-group-text col-sm-2 text-center">영문 성</div>
-		            		<input type="text" class="form-control" name="resChildLast${j}" placeholder="여권에 표시된 언어로 성을 입력해주세요." required>
-		            	</div>
-		            	<div class="input-group mb-2">
-		            		<div class="input-group-text col-sm-2 text-center">영문 이름</div>
-		            		<input type="text" class="form-control" name="resChildFirst${j}" placeholder="여권에 표시된 언어로 이름을 입력해주세요." required>
-		            	</div>
-		            	<div class="input-group mb-2">
-		            		<div class="input-group-text col-sm-2 text-center">생년월일</div>
-		            		<input type="text" class="form-control" name="resChildBirth${j}" placeholder="예): 20180823" required>
-		            	</div>
-		            </div>
-				</div>
-			</div>
- 		</div>
- 		</c:forEach>
+	 		</div>
+	 		</c:forEach>
+	 	</c:if>
 
       </div>
     </div>

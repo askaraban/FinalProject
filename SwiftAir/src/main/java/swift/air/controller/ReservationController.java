@@ -29,27 +29,27 @@ public class ReservationController {
         return new HashMap<>();
     }
 	
-	@RequestMapping(value = "/scheduleAction")
-	public String getResSchedule(@RequestParam Map<String, Object> resScheduleSellection, Model model) {
+	@RequestMapping(value = "/seatgrade")
+	public String resSeatGrade(@RequestParam Map<String, Object> resScheduleSellection, Model model) {
 		
-		Map<String, Object> resInfo = (Map<String, Object>) model.asMap().get("resInfo");
+		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
 		
-		resInfo.put("resDeparture", resScheduleSellection.get("resDeparture"));
-		resInfo.put("resDestination", resScheduleSellection.get("resDestination"));
-		resInfo.put("resDuration", resScheduleSellection.get("resDuration"));
-		resInfo.put("resNumofPassengers", resScheduleSellection.get("resNumofPassengers"));
+		//resInfo.put("resDeparture", resScheduleSellection.get("resDeparture"));
+		//resInfo.put("resDestination", resScheduleSellection.get("resDestination"));
+		//resInfo.put("resDuration", resScheduleSellection.get("resDuration"));
+		//resInfo.put("resNumofPassengers", resScheduleSellection.get("resNumofPassengers"));
+		resInfo.putAll(resScheduleSellection);
 		model.addAttribute("resInfo", resInfo);
 		
-		return "redirect:/reservation/seatgrade";
-	}
-	
-	@RequestMapping(value = "seatgrade")
-	public String resSeatGrade() {
+		
+		System.out.println("Reservation Information: " + resInfo);
+		
+		//return "redirect:/reservation/seatgrade";
 		return "reservation/res_seat_grade";
 	}
 	
-	@RequestMapping(value = "/seatGradeAction")
-	public String getResSeatGrade(@RequestParam Map<String, Object> addSeatGrade, Model model) {
+	@RequestMapping(value = "/passengersinfo")
+	public String resPassengersInfo(@RequestParam Map<String, Object> addSeatGrade, Model model) {
 		
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
 		
@@ -58,17 +58,14 @@ public class ReservationController {
 		
 		System.out.println("Reservation Information: " + resInfo);
 		
-	    return "redirect:/reservation/respassengersinfo";
+		//return "redirect:/reservation/passengersinfo";
+	    return "reservation/res_passengers_info";
 	}
 	
-	@RequestMapping(value = "/respassengersinfo")
-	public String resPassengersInfo() {
-		return "reservation/res_passengers_info";
-	}
-	
-	@RequestMapping(value = "/passengerInfoAction")
+	@RequestMapping(value = "/seat")
 	public String getResPassengersInfo(@RequestParam Map<String, Object> addPassengerInfo, Model model) {
-		
+		model.addAttribute("seatList",seatService.getSeatList());
+		model.addAttribute("reservedSeatList",seatService.getReservedSeatList());
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
 		
 		resInfo.putAll(addPassengerInfo);
@@ -76,15 +73,17 @@ public class ReservationController {
 		
 		System.out.println("Reservation Information: " + resInfo);
 		
-	    return "redirect:/reservation/seat";
+	    //return "redirect:/reservation/seat";
+	    return "reservation/res_seat";
 	}
-	
+	/*
 	@RequestMapping(value = "/seat")
 	public String resSeat(Model model) {
 		model.addAttribute("seatList",seatService.getSeatList());
 		model.addAttribute("reservedSeatList",seatService.getReservedSeatList());
 		return "reservation/res_seat";
 	}	
+	*/
 	
 	
 }

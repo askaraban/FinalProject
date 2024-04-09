@@ -1,0 +1,15 @@
+package swift.air.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import swift.air.dto.Faq;
+
+public interface FaqDAO {
+	int insertFaq(Faq faq);
+	int updateFaq(Faq faq);
+	int deleteFaq(int faqId);
+	int selectFaqCount();
+	/* List<Map<String, Object>> selectFaqList(Map<String, Object> map); */
+	 List<Faq> selectFaqList(Map<String, Object> map); 
+}
