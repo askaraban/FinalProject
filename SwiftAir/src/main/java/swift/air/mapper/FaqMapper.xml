@@ -28,7 +28,7 @@
 	</select>
 	
 	<!-- ============ 페이징 처리 ============  -->
-	<select id="selectFaqList" resultType="Map">
+	<select id="selectFaqList" resultType="Faq">
 	    SELECT * FROM (
 	        SELECT rownum rn, faq.*
 	        FROM (
