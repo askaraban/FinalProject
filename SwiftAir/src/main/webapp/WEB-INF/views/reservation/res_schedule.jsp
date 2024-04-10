@@ -136,6 +136,5 @@ $('#applyPpl').click(function() {
 	$('#resDepartDate').val(value1);
 	$('#resReturnDate').val(value2);
 });
-
 </script>
 </body>

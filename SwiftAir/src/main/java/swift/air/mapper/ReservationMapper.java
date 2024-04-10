@@ -1,5 +1,7 @@
 package swift.air.mapper;
 
+import swift.air.dto.Schedule;
+
 //PaymentMapper : 
 
 // Reservation/schedule : 출발지, 도착지, 가는여정 출발일, 돌아오는여정 출발일, 인원 전송
@@ -17,6 +19,6 @@ package swift.air.mapper;
 // Reservation/ticket_confirm : 정보 받아서 보여주기
 
 // Reservation/payment : 다 받아와서 결제할때 insert
-public interface PaymentMapper {
-	
+public interface ReservationMapper {
+	//
 }
