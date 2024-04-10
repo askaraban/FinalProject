@@ -36,7 +36,7 @@
 				<div class="col-sm-4">
 					<div class="row">
 						<div class="col-sm-4 text-center">
-							<h5><div>${startDate}</div></h5>
+							<h5><div>${resInfo.DepartDate}</div></h5>
 							<h3><span>12 : 50</span></h3>
 						</div>
 						<div class="col-sm-4 text-center">

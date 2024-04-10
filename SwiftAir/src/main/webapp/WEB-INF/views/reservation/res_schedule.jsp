@@ -55,14 +55,14 @@
             </div>
 
 			<div class="form-group col-md-3 col-lg-4 mb-0">
-				<input type="text" class="form-control double-date" id="resDuration">
+				<input type="text" class="form-control double-date" id="resDuration" required>
 				
 				<input type="hidden" name="resDepartDate" id="resDepartDate">
 				<input type="hidden" name="resReturnDate" id="resReturnDate">
 			</div>
 			
             <div class="form-group col-md-3 col-lg-2 mb-0">
-				<input type="text" class="form-control" id="resNumofPassengers" value="탑승인원 : " data-bs-toggle="modal" data-bs-target="#exampleModal">
+				<input type="text" class="form-control" id="resNumofPassengers" placeholder="탑승인원 : " data-bs-toggle="modal" data-bs-target="#exampleModal" required>
 				<input type="hidden" name="resPassengerCnt" id="resPassengerCnt">
             </div>
             
