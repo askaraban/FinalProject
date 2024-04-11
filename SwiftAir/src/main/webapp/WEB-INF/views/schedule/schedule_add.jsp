@@ -45,28 +45,28 @@
 						</div>
 		            	<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">출발지</div>
-							<input type="text" class="form-control" name="routeDeparture" value="${shedule.routeDeparture}">
+							<input type="text" class="form-control" name="routeDeparture" id="routeDeparture">
 		            	</div>
 		            	<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">도착지</div>
-							<input type="text" class="form-control" name="routeDestination" value="${shedule.routeDestination}">
+							<input type="text" class="form-control" name="routeDestination" id="routeDestination">
 		            	</div>
 		            	<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">운항시간</div>
 							<div class="row">
 								<div class="col-sm-5">
-									<input type="number" class="form-control" name="routeTime" value="${shedule.routeTime}">
+									<input type="text" class="form-control" name="routeTime" id="routeTime">
 								</div>
 								<div class="col-sm-1 mt-2 ms-n3">시간</div>
 								<div class="col-sm-5">
-									<input type="number" class="form-control" name="routeTime" value="${shedule.routeTime}">
+									<input type="text" class="form-control" name="routeTime" id="routeTime">
 								</div>
 								<div class="col-sm-1 mt-2 ms-n3">분</div>
 							</div>
 						</div>
 						<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">가격</div>
-							<input type="text" class="form-control" name="routePrice" value="${shedule.routePrice}">
+							<input type="number" class="form-control" name="routePrice" id="routePrice">
 		            	</div>
 						<div class="mb-2">
 							<div class="col-sm-2 mb-1 fw-bold">운항일자</div>
@@ -87,8 +87,24 @@
 	</div>
 </section>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-$("#scheduleFlight").val();
+$(document).ready(function(){
+    $('#scheduleFlight').on('change', function(){
+        var selectedFlight = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: '/schedule/getRouteData',
+            data: { flight: selectedFlight },
+            success: function(response) {
+            	 $('#routeDeparture').val(response.routeDeparture);
+                 $('#routeDestination').val(response.routeDestination);
+                 $('#routeTime').val(response.routeTime);
+                 $('#routePrice').val(response.routePrice);
+            }
+        });
+    });
+});
 </script>
 
 </body>

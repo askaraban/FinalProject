@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import swift.air.dao.ScheduleDAO;
+import swift.air.dto.Route;
 import swift.air.dto.Schedule;
 import swift.air.util.Pager;
 
@@ -17,19 +18,23 @@ import swift.air.util.Pager;
 public class ScheduleServiceImpl implements ScheduleService{
 	private final ScheduleDAO scheduleDAO;
 
-	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public void addSchedule(Schedule schedule) {
-		scheduleDAO.insertSchedule(schedule);
-	}
-	
-	@Transactional(rollbackFor = Exception.class)
+//		String routeFlight = schedule.getScheduleFlight(); // 스케줄에서 항공편 정보 가져오기
+       //Route route = findRouteByFlight(routeFlight); // 항공편 정보를 기반으로 노선 조회
+//        //if (route != null) {
+  //          schedule.setScheduleRouteId(route.getRouteId()); // 스케줄에 노선 ID 설정
+    //        scheduleDAO.insertSchedule(schedule); // 스케줄 삽입
+  //      } else {
+            // 항공편에 해당하는 노선이 없을 경우 예외처리 또는 에러 처리를 수행할 수 있습니다.
+            // 예를 들어, 사용자에게 메시지를 표시하거나 로깅하는 등의 작업을 수행할 수 있습니다.
+    }
+
 	@Override
 	public void modifySchedule(Schedule schedule) {
 		scheduleDAO.updateSchedule(schedule);
 	}
 	
-	@Transactional
 	@Override
 	public void removeSchedule(int scheduleId) {
 		if(scheduleDAO.selectSchedule(scheduleId) == null) {

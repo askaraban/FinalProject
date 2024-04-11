@@ -5,7 +5,9 @@
 		<selectKey resultType="int" keyProperty="scheduleId" order="BEFORE">
 			select schedule_seq.nextval from dual
 		</selectKey>
-		insert into schedule values(#{scheduleId}, #{scheduleDepartureDate}, #{scheduleArrivalDate}, #{scheduleFlight}, #{scheduleRouteId})
+		insert into schedule (schedule_id, schedule_Departure_date, schedule_arrival_date, schedule_flight, schedule_route_id)
+			select #{scheduleId}, #{scheduleDepartureDate}, #{scheduleArrivalDate}, #{routeFlight}, #{routeId}
+			from route where route_flight = #{routeFlight};
 	</insert>
 	
 	<update id="updateSchedule">
