@@ -32,22 +32,23 @@ public class MypageController {
 		Member loginMember=(Member)session.getAttribute("loginMember");
 		int memberNum=loginMember.getMemberNum();
 		
-		Map<String, Object> futureJourney=mypageService.getFutureJourney(memberNum, pageNum);
-		Map<String, Object> pastJourney=mypageService.getPastJourney(memberNum, pageNum);
+		model.addAttribute("memberNum", memberNum);
+		//Map<String, Object> futureJourney=mypageService.getFutureJourney(memberNum, pageNum);
+		//Map<String, Object> pastJourney=mypageService.getPastJourney(memberNum, pageNum);
 		
-		model.addAttribute("pager", futureJourney.get("pager"));
-		model.addAttribute("futureJourneyList", futureJourney.get("futureJourneyList"));
+		//model.addAttribute("pager", futureJourney.get("pager"));
+		//model.addAttribute("futureJourneyList", futureJourney.get("futureJourneyList"));
 		
-		model.addAttribute("pager1", pastJourney.get("pager"));
-		model.addAttribute("pastJourneyList", pastJourney.get("pastJourneyList"));
+		//model.addAttribute("pager1", pastJourney.get("pager"));
+		//model.addAttribute("pastJourneyList", pastJourney.get("pastJourneyList"));
 		
 		return "mypage/mypage";
 	}
 	
 	@GetMapping(value="/journeyTable")
 	@ResponseBody
-	public Map<String, Object> myFutureJourney(@RequestParam(defaultValue = "1")int pageNum
-			, @RequestParam(defaultValue = "1")int journey, Model model, HttpSession session) {
+	public Map<String, Object> myJourney(@RequestParam(defaultValue = "1")int pageNum
+			, @RequestParam int journey, Model model, HttpSession session) {
 		Member loginMember=(Member)session.getAttribute("loginMember");
 		int memberNum=loginMember.getMemberNum();
 		

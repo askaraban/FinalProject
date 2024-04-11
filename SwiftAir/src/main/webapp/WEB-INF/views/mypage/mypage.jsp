@@ -92,10 +92,10 @@
 				<ul class="nav nav-pills">
 					<li class="active" style="margin: 5px;">
 						<!-- <a href="#nav-pills-tab-1" data-bs-toggle="tab" class="nav-link active" style="background-color: #43C4AE;">다가오는 여정</a> -->
-						<a href="<c:url value="/mypage/journeyTable?journey=1"/>" style="background-color: #43C4AE;">다가오는 여정</a>
+						<a href="<c:url value="/mypage/journeyTable"/>?journey=1" style="background-color: #43C4AE;">다가오는 여정</a>
 					</li>
 					<li class="nav-item" style="margin: 5px;">
-						<a href="<c:url value="/mypage/journeyTable?journey=2"/>" style="background-color: #43C4AE;">지난 여정</a>
+						<a href="<c:url value="/mypage/journeyTable"/>?journey=2"" style="background-color: #43C4AE;">지난 여정</a>
 					</li>
 					<!-- 		
 					<li class="nav-item" style="margin: 5px;"><a
@@ -140,7 +140,6 @@
 									</div>
 									<div style="text-align: center;">
 									 -->
-									 <div id="pageNumDiv"></div>
 										<%-- 페이지 번호 출력 --%>
 										<%-- <c:choose>
 											<c:when test="${pager.startPage > pager.blockSize }">
@@ -260,18 +259,19 @@ function pastJourney() {
 }; */
 
 var page=1;
-
-journeyTableDisplay(page);
+var journeyNum=1;
+journeyTableDisplay(page, journeyNum);
 
 function journeyTableDisplay(pageNum, journey) {
 	page=pageNum;
+	journeyNum=journey;
     $.ajax({
-        url: "<c:url value="/mypage/journeyTable"/>",
+        url: '<c:url value="/mypage/journeyTable"/>',
         type: 'get',
         data: { "pageNum" : pageNum, "journey" : journey},
         dataType: "json",
-        success: function(result) {
-        	if(result.futureJourneyList.length == 0) {//검색된 여정이 없는 경우
+        success: function(journeyData) {
+        	if(journeyData.futureJourneyList.length == 0 ) {//검색된 여정이 없는 경우
 				var html="<table class='table' style='text-align: center;' id='journeyTable'>";
 				html+="<thead>";
 				html+="<tr>";
@@ -301,8 +301,8 @@ function journeyTableDisplay(pageNum, journey) {
 			html+="</tr>";
 			html+="</thead>";
 			
-			if(journey = 1) {
-			$(result.futureJourneyList).each(function() {
+			if(journey == 1) {
+			$(journeyData.futureJourneyList).each(function() {
 				html+="<tbody>";
 				html+="<tr>";
 				html+="<td>"+this.PAYMENT_ID+"</td>";
@@ -312,8 +312,8 @@ function journeyTableDisplay(pageNum, journey) {
 				html+="</tr>";
 				html+="</tbody>";
 			});
-			} else {
-				$(result.pastJourneyList).each(function() {
+			} else if(journey == 2) {
+				$(journeyData.pastJourneyList).each(function() {
 					html+="<tbody>";
 					html+="<tr>";
 					html+="<td>"+this.PAYMENT_ID+"</td>";
@@ -323,27 +323,26 @@ function journeyTableDisplay(pageNum, journey) {
 					html+="</tr>";
 					html+="</tbody>";
 				});
-				
 			}
 			html+="</table>";
 			
 			html+="<div id='pageNumDiv' style='text-align:center;'>"
-			if(result.pager.startPage > result.pager.blockSize) {
-				html+="<a href='javascript:journeyTableDisplay("+result.pager.prevPage+");'>[이전]</a>";
+			if(journeyData.pager.startPage > journeyData.pager.blockSize) {
+				html+="<a href='javascript:journeyTableDisplay("+journeyData.pager.prevPage+");'>[이전]</a>";
 			} else {
 				html+="[이전]";
 			}
 			
-			for(i = result.pager.startPage ; i <= result.pager.endPage ; i++) {
-				if(result.pager.pageNum != i) {
+			for(i = journeyData.pager.startPage ; i <= journeyData.pager.endPage ; i++) {
+				if(journeyData.pager.pageNum != i) {
 					html+="<a href='javascript:journeyTableDisplay("+i+");'>["+i+"]</a>";
 				} else {
 					html+="["+i+"]";
 				}
 			}
 			
-			if(result.pager.endPage != result.pager.totalPage) {
-				html+="<a href='javascript:journeyTableDisplay("+result.pager.nextPage+");'>[다음]</a>";
+			if(journeyData.pager.endPage != journeyData.pager.totalPage) {
+				html+="<a href='javascript:journeyTableDisplay("+journeyData.pager.nextPage+");'>[다음]</a>";
 			} else {
 				html+="[다음]";
 			}
