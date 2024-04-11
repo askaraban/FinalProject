@@ -4,6 +4,8 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
+
 
 <style>
 .tapBtn {
@@ -62,12 +64,12 @@
     	</div>
 
 		<div class="row">
-			<c:forEach var="eventname" items="${eventnameList}">
+			<c:forEach var="event" items="${eventList}">
 				<div class="col-md-6 col-lg-6">
 					<div class="card border-0 bg-transparent">
 						
-						<a href="detail">
-							<img class="card-img rounded-5" src="<c:url value="/img/event/${event.eventImg1}"/>">
+						<a href="<c:url value="/event/detail"/>?eventId=${event.eventId}">
+							<img class="card-img rounded-5" src="<c:url value='/img/event/${fn:split(event.eventImg1, \"_\")[1]}'/>">
 						</a>
 						
 						<div class="card-body p-0 pt-5">
@@ -76,7 +78,7 @@
 			              		<span class="badge text-bg-primary fs-6" style="line-height: 1.2">${event.eventStatus}</span>
 			            	</div>
 							<h5 class="card-title fw-bolder lh-base">
-								<a href="detail">${event.eventTitle}</a>
+								<a href="<c:url value="/event/detail"/>?eventId=${event.eventId}">${event.eventTitle}</a>
 							</h5>
 						</div>
 					</div>

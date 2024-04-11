@@ -48,14 +48,13 @@
 	          </td>
 	          <td class="td-buttons-2">
 	            <div class="d-flex justify-content-center flex-column flex-lg-row">
-	              <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" onclick="eventModify(${event.eventId});">
+	               <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="<c:url value="/event/modify"/>?eventId=${event.eventId}">
 	                <i class="fa fa-edit"></i>
-	                수정
-	              </a>
-	              <button type="button" class="btn btn-outline-danger btn-sm" onclick="eventDelete(${event.eventId});">
+	                수정</a>
+	               <a class="btn btn-outline-danger btn-sm" href="<c:url value="/event/delete"/>?eventId=${event.eventId}">
 	                <i class="fa fa-times" aria-hidden="true"></i>
 	                삭제
-	              </button>
+	              </a>
 	            </div>
 	          </td>
 	        </tr>

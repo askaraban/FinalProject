@@ -19,7 +19,7 @@
 ===================================== -->
 <section class="py-7 py-md-10">
 	<div class="container">
-		<form action="<c:url value="/event/add"/>" method="post" enctype="multipart/form-data">
+		<form action="<c:url value="/event/add"/>" id="eventImgUpload" method="post" enctype="multipart/form-data">
 		<div class="col-12">
 		
         <!-- 이벤트 정보 -->
@@ -51,11 +51,11 @@
 					</div>
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">대표 이미지</div>
-						<input type="file" class="form-control" name="eventFileList">
+						<input type="file" class="form-control" name="multipartFile" id="eventImg1">
 					</div>
 					<div class="mb-2">
 						<div class="col-sm-2 mb-1 fw-bold">상세 이미지</div>
-						<input type="file" class="form-control" name="eventFileList">
+						<input type="file" class="form-control" name="multipartFile2" id="eventImg2">
 					</div>
 				</div>
 			</div>
@@ -71,17 +71,7 @@
 </section>
 
 <script>
-	
-	
-    $(function() {
-        $('#daterange').daterangepicker({
-            opens: 'left'
-        }, function(start, end, label) {
-            // 선택한 날짜 범위를 각각의 input 요소에 설정
-            $('input[name="eventStart"]').val(start.format('YYYY-MM-DD'));
-            $('input[name="eventEnd"]').val(end.format('YYYY-MM-DD'));
-        });
-    });
+  
 	
 </script>
 

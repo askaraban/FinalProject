@@ -28,38 +28,31 @@ public class EventController {
 	private final EventService eventService;
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String eventAdd() {
+	public String eventAdd(Model model) {
+		model.addAttribute("event", new Event());
 		return "event/event_add"; 
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String eventAdd(@ModelAttribute Event event
-			, @RequestParam List<MultipartFile> eventFileList) throws IOException {
-
-		//전달파일을 저장하기 위한 서버 디렉토리의 시스템 경로를 반환받아 저장
-		String uploadDirectory=context.getServletContext().getRealPath("/resources/asset/img/event");
-		
-		//업로드 처리된 모든 파일의 이름을 저장하기 위한 List 객체 생성
-		List<String> eventnameList=new ArrayList<String>();
-		
-		for(MultipartFile multipartFile : eventFileList) {
-			if(multipartFile.isEmpty() || !multipartFile.getContentType().equals("image/jpeg")) {
-				return "event/add";
-			}
-			
-			//전달파일을 서버 디렉토리에 저장되도록 업로드 처리
-			String eventFilename=UUID.randomUUID().toString()+"_"+multipartFile.getOriginalFilename();
-			File file=new File(uploadDirectory, eventFilename);
-			multipartFile.transferTo(file);
-			
-			//List 객체에 업로드 처리된 파일명을 요소값으로 추가하여 저장
-			eventnameList.add(eventFilename);
+	public String eventAdd(@ModelAttribute Event event, @RequestParam MultipartFile multipartFile, 
+			@RequestParam MultipartFile multipartFile2) throws IOException {
+		if(multipartFile.isEmpty()) {
+			return "event/event_add";
 		}
-	    
-	    // 전달값과 업로드 처리된 파일명을 FILE_BOARD 테이블의 행으로 삽입 처리
-	    eventService.addEvent(event);
 		
-		return "redirect:/event/list";
+		String uploadDirectory=context.getServletContext().getRealPath("/resources/assets/img/event");
+
+		event.setEventImg1(UUID.randomUUID().toString()+"_"+multipartFile.getOriginalFilename());
+		event.setEventImg2(UUID.randomUUID().toString()+"_"+multipartFile2.getOriginalFilename());
+
+		//전달파일을 서버 디렉토리에 저장되도록 업로드 처리
+		multipartFile.transferTo(new File(uploadDirectory, event.getEventImg1()));
+		multipartFile2.transferTo(new File(uploadDirectory, event.getEventImg2()));
+		
+		//전달값과 업로드 처리된 파일명을 FILE_BOARD 테이블의 행으로 삽입 처리
+		eventService.addEvent(event);
+
+        return "redirect:/event/list";
 	}
 	
 	/*
@@ -82,10 +75,11 @@ public class EventController {
 	@RequestMapping("/delete")
 	public String eventDelete(@RequestParam int eventId) {
 		//삭제될 게시글을 반환받아 저장 - 파일명을 제공받기 위해 사용
-		//Event event=eventService.getEvent(eventId);
-		//String uploadDirectory=context.getServletContext().getRealPath("/img/event");
+		Event event=eventService.getEvent(eventId);
+		String uploadDirectory=context.getServletContext().getRealPath("/resources/assets/img/event");
 		//서버 디렉토리에 저장된 게시글의 파일 삭제 처리
-		//new File(uploadDirectory).delete();		
+		new File(uploadDirectory, event.getEventImg1()).delete();		
+		new File(uploadDirectory, event.getEventImg2()).delete();		
 		
 		eventService.removeEvent(eventId);
 		return "redirect:/event/list";
@@ -103,7 +97,9 @@ public class EventController {
 	}
 	
 	@RequestMapping(value = "/detail")
-	public String eventDetail() {
+	public String eventDetail(@RequestParam int eventId, Model model) {
+		Event eventdetail= eventService.getEvent(eventId);
+		model.addAttribute("eventdetail", eventdetail);
 		return "event/event_detail";
 	}
 	
