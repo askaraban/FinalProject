@@ -49,8 +49,8 @@ public class MemberServiceImpl implements MemberService {
 		if(memberId != null) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setTo(memberEmail);
-		message.setSubject(memberKorName+"ë‹˜ì˜ ì•„ì´ë”” ì°¾ê¸° ê²°ê³¼ì…ë‹ˆë‹¤");
-		message.setText(memberKorName+"ë‹˜ì˜ ì•„ì´ë””ëŠ” " + memberId + "ì…ë‹ˆë‹¤");
+		message.setSubject(memberKorName+"´ÔÀÇ ¾ÆÀÌµğ Ã£±â °á°úÀÔ´Ï´Ù");
+		message.setText(memberKorName+"´ÔÀÇ ¾ÆÀÌµğ´Â " + memberId + "ÀÔ´Ï´Ù");
 		javaMailSender.send(message);
 
 		}
@@ -63,8 +63,8 @@ public class MemberServiceImpl implements MemberService {
 		member.setMemberPswd(newPasswd);
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setTo(member.getMemberEmail());
-		message.setSubject(member.getMemberId()+"ë‹˜ì˜ ìƒˆ ë¹„ë°€ë²ˆí˜¸ê°€ ë°œê¸‰ë˜ì—ˆìŠµë‹ˆë‹¤.");
-		message.setText(member.getMemberId()+"ë‹˜ì˜ ìƒˆ ë¹„ë°€ë²ˆí˜¸ëŠ” " + member.getMemberPswd() + "ì…ë‹ˆë‹¤");
+		message.setSubject(member.getMemberId()+"´ÔÀÇ »õ ºñ¹Ğ¹øÈ£°¡ ¹ß±ŞµÇ¾ú½À´Ï´Ù.");
+		message.setText(member.getMemberId()+"´ÔÀÇ »õ ºñ¹Ğ¹øÈ£´Â " + member.getMemberPswd() + "ÀÔ´Ï´Ù");
 		javaMailSender.send(message);
 		String hashedPassword = BCrypt.hashpw(member.getMemberPswd(),BCrypt.gensalt());
 		member.setMemberPswd(hashedPassword);
