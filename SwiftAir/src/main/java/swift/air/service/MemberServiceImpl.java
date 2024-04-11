@@ -16,10 +16,6 @@ import swift.air.mapper.MemberMapper;
 public class MemberServiceImpl implements MemberService {
 	private final MemberDAO memberDAO;
 	
-	@NotNull
-	MemberMapper memberMapper;
-	
-	
 	
 	@Override
 	public void addMember(Member member) {
