@@ -107,7 +107,7 @@
 			<h5>2,345,678 원</h5>
 		</div>
 		<div class="col-sm-2 col-lg-2">
-			<button type="submit" class="btn btn-primary w-75">다음</button>
+			<button type="submit" class="btn btn-primary w-75" id="toSeat">다음</button>
 		</div>
 	</div>
 </nav>
