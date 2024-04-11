@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,11 +33,32 @@ public class MypageController {
 		int memberNum=loginMember.getMemberNum();
 		
 		Map<String, Object> futureJourney=mypageService.getFutureJourney(memberNum, pageNum);
+		Map<String, Object> pastJourney=mypageService.getPastJourney(memberNum, pageNum);
 		
 		model.addAttribute("pager", futureJourney.get("pager"));
 		model.addAttribute("futureJourneyList", futureJourney.get("futureJourneyList"));
 		
+		model.addAttribute("pager1", pastJourney.get("pager"));
+		model.addAttribute("pastJourneyList", pastJourney.get("pastJourneyList"));
+		
 		return "mypage/mypage";
+	}
+	
+	@GetMapping(value="/journeyTable")
+	@ResponseBody
+	public Map<String, Object> myFutureJourney(@RequestParam(defaultValue = "1")int pageNum
+			, @RequestParam(defaultValue = "1")int journey, Model model, HttpSession session) {
+		Member loginMember=(Member)session.getAttribute("loginMember");
+		int memberNum=loginMember.getMemberNum();
+		
+		Map<String, Object> journeyData = null;
+		
+		if (journey == 1) {
+			journeyData=mypageService.getFutureJourney(memberNum, pageNum);
+		 } else if (journey == 2) {
+			 journeyData = mypageService.getPastJourney(memberNum, pageNum);
+		 }
+		return journeyData;
 	}
 	
 	@PostMapping(value="/pointDetail")
@@ -59,7 +81,8 @@ public class MypageController {
 		map.put("sort", "point_date desc");
 		
 		model.addAttribute("pointDetail", mypageService.getPointDetail(map));
-
+		int memberNum=loginMember.getMemberNum();
+		model.addAttribute("paymentList", mypageService.getPaymentList(memberNum));
 		return "mypage/mypage_point";
 	}
 	

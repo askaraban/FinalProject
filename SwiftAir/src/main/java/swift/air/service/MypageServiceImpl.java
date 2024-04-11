@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import swift.air.dao.MypageDAO;
+import swift.air.dto.Payment;
 import swift.air.dto.Point;
 import swift.air.util.Pager;
 
@@ -45,7 +46,29 @@ public class MypageServiceImpl implements MypageService {
 
 	@Override
 	public Map<String, Object> getPastJourney(int paymentMemberNum, int pageNum) {
-		return null;
+		//페이징 처리
+		int totalSize = mypageDAO.selectPastJourneyCount(paymentMemberNum);
+		int pageSize = 5;
+		int blockSize = 5;
+
+		Pager pager = new Pager(pageNum, totalSize, pageSize, blockSize);
+
+		// 검색된 지난 일정
+		Map<String, Object> pageMap = new HashMap<String, Object>();
+		pageMap.put("paymentMemberNum", paymentMemberNum);
+		pageMap.put("startRow", pager.getStartRow());
+		pageMap.put("endRow", pager.getEndRow());
+		List<Map<String, Object>> pastJourneyList = mypageDAO.selectPastJourney(pageMap);
+
+		if (pastJourneyList == null || pastJourneyList.isEmpty()) {
+			System.out.println("pastJourneyList에 내용이 없습니다.");
+		}
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("pager", pager);
+		resultMap.put("pastJourneyList", pastJourneyList);
+
+		return resultMap;
 	}
 
 	@Override
@@ -58,6 +81,11 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public List<Point> getPointDetail(Map<String, Object> map) {
 		return mypageDAO.selectPointDetail(map);
+	}
+
+	@Override
+	public List<Payment> getPaymentList(int paymentMemberNum) {
+		return mypageDAO.selectPaymentList(paymentMemberNum);
 	}
 
 }

@@ -16,6 +16,19 @@
 	max-width: 100px;
 	max-height: 100px;
 }
+
+.modal {
+	top: 0;
+	left: 0;
+	weight: 100vw;
+	height: 100vhv;
+	background-color : rgba(0,0,0,0.2);
+	z-index : 100;
+	display :flex; 
+	justify-content:center;
+	align-items :center;
+	display: none;
+}
 </style>
 </head>
 <body id="body" class="body-wrapper boxed-menu">
@@ -49,10 +62,9 @@
 						<div class="col-md-5 col-lg-4" style="float: right;">
 							<div class="card-profile-img py-6" style="text-align: center;">
 								<div>
-									<a href="#modal-without-animation" class="btn btn-white btn-lg"
-										data-toggle="modal"> <img class="img"
-										data-src=<c:url value="/img/mypage/point_saving.png"/>
-										src=<c:url value="/img/mypage/point_saving.png"/> alt="Image">
+									<a href="#modal" class="btn btn-white btn-lg" data-toggle="modal" data-target="#pointModal" onclick="openModal()">
+										<img class="img" data-src=<c:url value="/img/mypage/point_saving.png"/>
+											src=<c:url value="/img/mypage/point_saving.png"/> alt="Image">
 									</a>
 									<h3>탑승 후 적립</h3>
 								</div>
@@ -83,9 +95,7 @@
 						<div class="panel-heading">
 							<div class="btn-group my-n1">
 								<button type="button" class="btn btn-success btn-xs" style="color:white;">전체</button>
-								<button type="button"
-									class="btn btn-success btn-xs dropdown-toggle"
-									data-bs-toggle="dropdown">
+								<button type="button" class="btn btn-success btn-xs dropdown-toggle" data-bs-toggle="dropdown" style="color:white;">
 									<b class="caret"></b>
 								</button>
 								<div class="dropdown-menu dropdown-menu-end">
@@ -101,7 +111,7 @@
 						<div class="panel-heading">
 							<div class="btn-group my-n1">
 								<button type="button" class="btn btn-success btn-xs" style="color:white;">최신순</button>
-								<button type="button" class="btn btn-success btn-xs dropdown-toggle" data-bs-toggle="dropdown">
+								<button type="button" class="btn btn-success btn-xs dropdown-toggle" data-bs-toggle="dropdown" style="color:white;">
 									<b class="caret"></b>
 								</button>
 								<div class="dropdown-menu dropdown-menu-end">
@@ -180,24 +190,41 @@
 		</div>
 	</section>
 
-	<!-- #modal-without-animation -->
-	<!-- <div class="modal" id="modal-without-animation" style="background-color: rgba(0,0,0,0.4);"> -->
-	<!-- <div class="modal" id="modal-without-animation">
+	<!-- 탑승 후 적립 모달창 -->
+	<div class="modal" id="pointModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
-					<h4 class="modal-title">Modal Without Animation</h4>
+					<button type="button" class="close" onClick="modalClose()">×</button>
+					<h4 class="modal-title">탑승 후 적립</h4>
 				</div>
-				<div class="modal-body">Modal body content here...</div>
+				<div class="modal-body">
+					<table class="table" id="paymentTable">
+						<thead>
+							<tr>
+								<td></td>
+								<td></td>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="payment" items="${paymentList}">
+								<tr>
+									<td>결제 금액</td>
+									<td>${payment.paymentTotal}</td>
+				   				</tr>
+				   					<td>${payment.paymentId}, ${payment.scheduleFlight},
+				   						${payment.routeDeparture} -> ${payment.routeDestination}</td>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 				<div class="modal-footer">
-					<a href="javascript:;" class="btn btn-sm btn-white"
-						data-dismiss="modal">Close</a>
+					<button class="btn btn-sm btn-white" onClick="modalClose()">취소</button>
+					<button class="btn btn-sm btn-white" type="submit">적립</button>
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div>
 	
 <script>
 var pointStatus=-1;
@@ -243,7 +270,7 @@ function filterPoints(status) {
 				html+="<tbody>";
 				html+="<tr>";
 				html+="<td>"+this.pointDate.substring(0, 10)+"</td>";
-				html+="<td>"+this.routeDeparture+" - "+this.routeDestination+"(왕복))</td>";
+				html+="<td>"+this.routeDeparture+" - "+this.routeDestination+"(왕복)</td>";
 				html+="<td>"+this.pointAmount+"</td>";
 				 if (this.pointStatus == 0) { 
 				        html += "<td>적립</td>";
@@ -258,15 +285,20 @@ function filterPoints(status) {
 			html+="</table>";
 
 			$("#pointTableDiv").html(html);
-			
-			//페이지 번호를 출력하는 함수 호출
-			//pageNumberDisplay(result.pager);
         },
         error: function(xhr) {
             alert(xhr.status) 
         }
     });
 
+}
+
+function openModal() {
+	$("#pointModal"). show();
+}
+
+function modalClose(){
+	$("#pointModal"). hide();
 }
 
 </script>

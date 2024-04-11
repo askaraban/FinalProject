@@ -1,6 +1,5 @@
 package swift.air.dto;
 
-import lombok.Builder;
 import lombok.Data;
 
 /*
@@ -20,12 +19,15 @@ PAYMENT_METHOD               NUMBER
 @Data
 public class Payment {
 	private String paymentId; 
-	private int paymentAdult; 
-	private int paymentChild; 
+	private int paymentPassenger; 
 	private int paymentMemberNum; 
-	private String paymentScheduleId; 
+	private String paymentScheduleId1; 
+	private String paymentScheduleId2; 
 	private String paymentDate; 
 	private int paymentTotal; 
 	private int paymentStatus; 
 	private int paymentMethod; 
+	private String routeDeparture;
+	private String routeDestination;
+	private String scheduleFlight;
 }
