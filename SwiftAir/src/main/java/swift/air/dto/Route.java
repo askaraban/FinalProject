@@ -14,7 +14,6 @@ ROUTE_PRICE                NUMBER
 ROUTE_FLIGHT               VARCHAR2(30) 
  */
 
-@Builder
 @Data
 public class Route {
 	private int routeId;
