@@ -39,7 +39,7 @@
 	        FROM (
 	            SELECT faq_id, faq_title, faq_content, faq_date, faq_cate
 	            FROM faq 
-	            <if test="categoryId != 0">
+		        <if test="categoryId != 0">
 	    		where faq_cate= #{categoryId}
 	    		</if>
 	            ORDER BY faq_id DESC 
