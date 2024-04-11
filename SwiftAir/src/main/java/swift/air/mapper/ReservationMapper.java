@@ -1,6 +1,7 @@
 package swift.air.mapper;
 
-import swift.air.dto.Schedule;
+import java.util.Map;
+
 
 //PaymentMapper : 
 
@@ -20,5 +21,6 @@ import swift.air.dto.Schedule;
 
 // Reservation/payment : 다 받아와서 결제할때 insert
 public interface ReservationMapper {
-	//
+	Map<String, Object> selectFlightAvailable(Map<String, Object> map);
+	int selectSeatCount(int seatId);
 }
