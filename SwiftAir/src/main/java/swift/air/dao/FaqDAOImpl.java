@@ -31,6 +31,11 @@ public class FaqDAOImpl implements FaqDAO {
 	}
 	
 	@Override
+	public Faq selectFaq(int faqId) {
+		return sqlSession.getMapper(FaqMapper.class).selectFaq(faqId);
+	}
+	
+	@Override
 	public int selectFaqCount() {
 		return sqlSession.getMapper(FaqMapper.class).selectFaqCount();
 	}

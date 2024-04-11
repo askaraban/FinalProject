@@ -8,5 +8,6 @@ public interface FaqService {
 	void addFaq(Faq faq);
 	void modifyFaq(Faq faq);
 	void removeFaq(int noticeId);
+	Faq getFaq(int faqId);
 	Map<String, Object> getFaqList(int pageNum);
 }

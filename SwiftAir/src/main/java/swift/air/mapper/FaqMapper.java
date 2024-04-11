@@ -9,6 +9,7 @@ public interface FaqMapper {
 	int insertFaq(Faq faq);
 	int updateFaq(Faq faq);
 	int deleteFaq(int faqId);
+	Faq selectFaq(int faqId);
 	int selectFaqCount();
 	List<Faq> selectFaqList(Map<String, Object> map);
 }

@@ -1,5 +1,6 @@
 package swift.air.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 /*
@@ -13,6 +14,7 @@ SCHEDULE_ROUTE_ID                NUMBER
  */
 
 @Data
+@Builder
 public class Schedule {
     private String scheduleId;
     private String scheduleDepartureDate;

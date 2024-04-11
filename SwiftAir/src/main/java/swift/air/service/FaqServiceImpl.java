@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import swift.air.dao.FaqDAO;
 import swift.air.dto.Faq;
-import swift.air.dto.Notice;
 import swift.air.util.Pager;
 
 @Service
@@ -36,6 +35,11 @@ public class FaqServiceImpl implements FaqService {
 	}
 	
 	@Override
+	public Faq getFaq(int faqId) {
+		return faqDAO.selectFaq(faqId);
+	}
+	
+	@Override
 	public Map<String, Object> getFaqList(int pageNum) {
 		//페이징 처리
 		int totalSize=faqDAO.selectFaqCount();
@@ -45,6 +49,10 @@ public class FaqServiceImpl implements FaqService {
 		Map<String, Object> pageMap=new HashMap<String, Object>();
 		pageMap.put("startRow", pager.getStartRow());
 		pageMap.put("endRow", pager.getEndRow());
+		
+		pageMap.put("categoryId", 0);
+		
+		
 		
 		List<Faq> faqList=faqDAO.selectFaqList(pageMap);
 		
