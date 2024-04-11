@@ -55,81 +55,138 @@
 				<div class="airplane--background" style="background-image: url('<c:url value="/img/seat/airplane_empty2.png"/>');">
 					<div class="b--seat">
 					
-					<!-- 프레미아42 등급 좌석 -->
-						<c:set var="b" value="1" />
-						<c:forEach var="seatList" items="${seatList }" varStatus="status" begin="0" end="17">
-							<c:choose>
-								<c:when test="${seatList.seatGrade eq '프레미아42' }">
-									<c:forEach var="reserved" items="${reservedSeatList }">
-									
-										<!-- 예매된 좌석을 확인하기 -->
-										<c:set var="seatName" value="${seatList.seatName }"/>
-										<c:choose>
-											<c:when test="${reserved eq seatName}">
-												<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/business_pre.png"/>'
-												 style="position: relative; left: 100px; top: 590px; width: 55px;">
-											</c:when>
-											<c:otherwise>
-												<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/business_not.png"/>'
-												 style="position: relative; left: 100px; top: 590px; width: 55px;" class="pre_business" title="on">
-											</c:otherwise>
-										</c:choose>
+					<%-- 탑승객이 선택한 좌석이 프레미아42일 경우 이코노미 좌석 선택 불가능 --%>
+					<c:choose>
+						<c:when test="${resInfo.resSeatGrade eq 'premia42'}">
+							<!-- 프레미아42 등급 좌석 -->
+							<c:set var="b" value="1" />
+							<c:forEach var="seatList" items="${seatList }" varStatus="status" begin="0" end="17">
+								<c:choose>
+									<c:when test="${seatList.seatGrade eq '프레미아42' }">
+										<c:forEach var="reserved" items="${reservedSeatList }">
 										
-									</c:forEach>
-								</c:when>
-							</c:choose>
-					<%-- 좌석별 여백 --%>
-							<c:choose>
-								<c:when test="${b % 6 == 0}">
-									<div style="height: 53px;">
-									</div>
-								</c:when>
-								<c:when test="${b % 2 == 0}">
-									<span style="margin: 37px;"> </span>
-								</c:when>
-								<c:when test="${b % 2 == 1}">
-									<span style="margin: 1px;"> </span>
-								</c:when>
-							</c:choose>
-							<c:set var="b" value="${b + 1}" />
-						</c:forEach>
-						
-						<!-- 이코노미35 좌석 -->
-						<c:set var="e" value="1" />
-						<c:forEach var="seatList" items="${seatList }" varStatus="status">
-							<c:choose>
-								<c:when test="${seatList.seatGrade eq '이코노미35' }">
-									<c:forEach var="reserved" items="${reservedSeatList }">
-									
-										<!-- 예매된 좌석을 확인하기 -->
-										<c:set var="seatName" value="${seatList.seatName }"/>
-										<c:if test="${reserved eq seatName}">
+											<!-- 예매된 좌석을 확인하기 -->
+											<c:set var="seatName" value="${seatList.seatName }"/>
+											<c:choose>
+												<c:when test="${reserved eq seatName}">
+													<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/business_pre.png"/>'
+													 style="position: relative; left: 100px; top: 590px; width: 55px;">
+												</c:when>
+												<c:otherwise>
+													<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/business_not.png"/>'
+													 style="position: relative; left: 100px; top: 590px; width: 55px;" class="pre_business" title="on">
+												</c:otherwise>
+											</c:choose>
+											
+										</c:forEach>
+									</c:when>
+								</c:choose>
+							<%-- 좌석별 여백 --%>
+								<c:choose>
+									<c:when test="${b % 6 == 0}">
+										<div style="height: 53px;">
+										</div>
+									</c:when>
+									<c:when test="${b % 2 == 0}">
+										<span style="margin: 37px;"> </span>
+									</c:when>
+									<c:when test="${b % 2 == 1}">
+										<span style="margin: 1px;"> </span>
+									</c:when>
+								</c:choose>
+								<c:set var="b" value="${b + 1}" />
+							</c:forEach>
+							
+							<%-- 이코노미35 좌석 --%>
+							<c:set var="e" value="1" />
+							<c:forEach var="seatList" items="${seatList }" varStatus="status">
+								<c:choose>
+									<c:when test="${seatList.seatGrade eq '이코노미35' }">
+										<c:forEach var="reserved" items="${reservedSeatList }">
 											<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/economy_pre.png"/>'
 											 style="position: relative; left: 87.5px; top:735px; width: 45px;">
-										</c:if>
-									</c:forEach>
-									<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/economy_not.png"/>'
-									 style="position: relative; left: 87.5px; top:735px; width: 45px;" class="pre_economy" title="on"">
-								</c:when>
-							</c:choose>
-						<%-- 좌석별 여백 --%>	
-							<c:choose>
-								<c:when test="${e % 9 == 0}">
-									<div style="height: 28.5px;"></div>
-								</c:when>
-								<c:when test="${e % 3 == 0}">
-									<span style="margin: 25px;"> </span>
-								</c:when>
-							</c:choose>
-							<c:set var="e" value="${e + 1}" />
-						</c:forEach>
-					</div>
-				</div>	
-			</div>
-			</div>
-        </div>
+										</c:forEach>
+									</c:when>
+								</c:choose>
+							<%-- 좌석별 여백 --%>	
+								<c:choose>
+									<c:when test="${e % 9 == 0}">
+										<div style="height: 28.5px;"></div>
+									</c:when>
+									<c:when test="${e % 3 == 0}">
+										<span style="margin: 25px;"> </span>
+									</c:when>
+								</c:choose>
+								<c:set var="e" value="${e + 1}" />
+							</c:forEach>
+							
+						</c:when>
+						
+						<%-- 탑승객이 선택한 등급이 이코노미좌석일 경우, 프레디마42 등급 선택 불가능 --%>
+						<c:otherwise>
+							<!-- 프레미아42 등급 좌석 -->
+							<c:set var="b" value="1" />
+							<c:forEach var="seatList" items="${seatList }" varStatus="status" begin="0" end="17">
+								<c:choose>
+									<c:when test="${seatList.seatGrade eq '프레미아42' }">
+										<c:forEach var="reserved" items="${reservedSeatList }">
+											<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/business_pre.png"/>'
+											 style="position: relative; left: 100px; top: 590px; width: 55px;">
+										</c:forEach>
+									</c:when>
+								</c:choose>
+							<%-- 좌석별 여백 --%>
+								<c:choose>
+									<c:when test="${b % 6 == 0}">
+										<div style="height: 53px;">
+										</div>
+									</c:when>
+									<c:when test="${b % 2 == 0}">
+										<span style="margin: 37px;"> </span>
+									</c:when>
+									<c:when test="${b % 2 == 1}">
+										<span style="margin: 1px;"> </span>
+									</c:when>
+								</c:choose>
+								<c:set var="b" value="${b + 1}" />
+							</c:forEach>
+							<!-- 이코노미35 좌석 -->
+							<c:set var="e" value="1" />
+							<c:forEach var="seatList" items="${seatList }" varStatus="status">
+								<c:choose>
+									<c:when test="${seatList.seatGrade eq '이코노미35' }">
+										<c:forEach var="reserved" items="${reservedSeatList }">
+										
+											<!-- 예매된 좌석을 확인하기 -->
+											<c:set var="seatName" value="${seatList.seatName }"/>
+											<c:if test="${reserved eq seatName}">
+												<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/economy_pre.png"/>'
+												 style="position: relative; left: 87.5px; top:735px; width: 45px;">
+											</c:if>
+										</c:forEach>
+										<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/economy_not.png"/>'
+										 style="position: relative; left: 87.5px; top:735px; width: 45px;" class="pre_economy" title="on"">
+									</c:when>
+								</c:choose>
+							<%-- 좌석별 여백 --%>	
+								<c:choose>
+									<c:when test="${e % 9 == 0}">
+										<div style="height: 28.5px;"></div>
+									</c:when>
+									<c:when test="${e % 3 == 0}">
+										<span style="margin: 25px;"> </span>
+									</c:when>
+								</c:choose>
+								<c:set var="e" value="${e + 1}" />
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			 </div>	
+		   </div>
+		 </div>
+       </div>
 	</div>
-        
 <!-- ====================================
 ———	좌석 및 탑승객
 ===================================== -->
@@ -138,8 +195,8 @@
 		      <!-- Breadcrumb -->
     <nav class="bg-transparent breadcrumb breadcrumb-2 px-0 mb-5" aria-label="breadcrumb">
       <ul class="list-unstyled d-flex p-0 m-0">
-        <li class="breadcrumb-item"><a href="index.html">NRT-ICN</a></li>
-        <li class="breadcrumb-item active" aria-current="page">ICN-NRT</li>
+        <li class="breadcrumb-item"><a href="index.html">${resInfo.resDeparture }-${resInfo.resDestination }</a></li>
+        <li class="breadcrumb-item active" aria-current="page">${resInfo.resDestination }-${resInfo.resDeparture }</li>
       </ul>
     </nav>
         <div class="mb-6">
@@ -154,18 +211,23 @@
         </div>
         <div class="mb-6">
           <div class="border border-subtle rounded" style="padding: 0.75rem 1.5rem; font-size: 15px; font-weight: bold; color: black;">탑승객
-          	<c:forEach var="i" begin="1" end="${resInfo.resAdultCnt }">
-			  <div class="border border-primary rounded" style="padding: 0.75rem 1.5rem; margin-top: 1.2rem;">${resInfo.resAdultFirst1}${i }</div>
+          	<c:forEach items="${resInfo.addPassengerInfo}" varStatus="status" step="2" var="idx">
+			  <div class="border border-primary rounded" style="padding: 0.75rem 1.5rem; margin-top: 1.2rem;" id="seat_no${status.index}" >
+			  	${resInfo.addPassengerInfo[status.index] } ${resInfo.addPassengerInfo[status.index+1] } <span style="padding-left: 20px;" >
+			  	
+			  	</span>
+			  </div>
           	</c:forEach>
-			  <div class="border border-primary rounded" style="padding: 0.75rem 1.5rem; margin-top: 1.2rem;">heesoo cho</div>
 		  </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
   </div> <!-- element wrapper ends -->
+  
+<form action="/payment/card">
+	<input hidden="" id="">
 <nav class="navbar-expand-sm rounded shadow bg-light fixed-bottom">
 	<div class="row">
 		<div class="col-sm-6 col-lg-6"></div>
@@ -183,17 +245,16 @@
 		</div>
 	</div>
 </nav>
-
+</form>
 <script type="text/javascript">
 
-var seatCount = 2;
+var seatCount = ${resInfo.resPassengerCnt};
 var selectSeat = 0;
 	
 
 	/* 클릭 시 예약좌석 선택 */
 	$(".pre_economy").click(function () {
 		var pre = $(this).attr("id");
-		
 		if($("#"+pre).attr("title")=="on"){
 			
 			if(seatCount<=0){
@@ -201,6 +262,23 @@ var selectSeat = 0;
 			} else {
 				$("#"+pre).attr("src", "<c:url value="/img/seat/economy_sel.png"/>")
 				$("#"+pre).attr("title", "off")
+				$('#${resInfo.resMemFirst}0 span').text(pre);
+				$('#heesoo2 span').text(pre);
+				
+				var l1 = document.querySelectorAll("div[id^='seat_no']");
+				var l2 = $('.border-primary').attr('id');
+				
+				/* function selectSeatNo() {
+					var l3 = [];
+					$('.border-primary').each(function(index, item){
+						l3.push($(this).attr('id'));
+					});
+					return l3;
+				};
+				
+				
+				console.log(l2); */
+				
 				seatCount--;
 			}
 			
@@ -212,6 +290,9 @@ var selectSeat = 0;
 			
 			$("#"+pre).attr("src", "<c:url value="/img/seat/economy_not.png"/>")
 			$("#"+pre).attr("title", "on")
+			
+			$('#heesoo2 span').text("");
+			
 			seatCount++;
 		}
 	});
@@ -229,6 +310,8 @@ var selectSeat = 0;
 			} else {
 				$("#"+pre).attr("src", "<c:url value="/img/seat/business_sel.png"/>")
 				$("#"+pre).attr("title", "off")
+				$('#heesoo2 span').text(pre);
+				
 				seatCount--;
 			}
 			
@@ -240,11 +323,10 @@ var selectSeat = 0;
 			
 			$("#"+pre).attr("src", "<c:url value="/img/seat/business_not.png"/>")
 			$("#"+pre).attr("title", "on")
+			$('#heesoo2 span').text(pre);
 			seatCount++;
 		}
 	});
-	
-	
 	
 	
 </script>

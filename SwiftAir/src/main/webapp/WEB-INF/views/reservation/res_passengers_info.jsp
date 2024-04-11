@@ -76,15 +76,15 @@
 		            <div class="form-group col-sm-12">
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">영문 성</div>
-		            		<input type="text" class="form-control" id="resPassengerLastName${i}" placeholder="여권에 표시된 언어로 성을 입력해주세요." required>
+		            		<input type="text" class="form-control" id="resPassengerLastName${i}" name="resPassenger" placeholder="여권에 표시된 언어로 성을 입력해주세요." required>
 		            	</div>
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">영문 이름</div>
-		            		<input type="text" class="form-control" id="resPassengerFirstName${i}" placeholder="여권에 표시된 언어로 이름을 입력해주세요." required>
+		            		<input type="text" class="form-control" id="resPassengerFirstName${i}" name="resPassenger" placeholder="여권에 표시된 언어로 이름을 입력해주세요." required>
 		            	</div>
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">생년월일</div>
-		            		<input type="text" class="form-control" id="resPassengerBirth${i}" placeholder="예): 20180823" required>
+		            		<input type="text" class="form-control" id="resPassengerBirth${i}"  name="resPassengerBirth" placeholder="예): 20180823" required>
 		            	</div>
 		            </div>
 				</div>
@@ -116,7 +116,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 //탑승자 n의 List 생성
-$('#toSeat').click(function() {
+/* $('#toSeat').click(function() {
 	var passengerList = [];
 	
 	var pasCount = $('#passengerCount').val();
@@ -134,6 +134,6 @@ $('#toSeat').click(function() {
 		passengerList.push(arr);
 	};
 	$('#passengersList').val(JSON.stringify(passengerList));
-});
+}); */
 </script>
 </body>

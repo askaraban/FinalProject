@@ -3,6 +3,7 @@ package swift.air.controller;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 import swift.air.service.SeatService;
 
 
@@ -63,16 +65,25 @@ public class ReservationController {
 	}
 	
 	@RequestMapping(value = "/seat")
-	public String getResPassengersInfo(@RequestParam Map<String, Object> addPassengerInfo, Model model) {
+	public String getResPassengersInfo(@RequestParam(value = "resPassenger", required = true) List<String> values
+			, Model model, @RequestParam(value = "resPassengerBirth", required = true) List<String> birth
+			, @RequestParam Map<String, Object> addResMember) {
 		model.addAttribute("seatList",seatService.getSeatList());
 		model.addAttribute("reservedSeatList",seatService.getReservedSeatList());
+		
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
 		
-		resInfo.putAll(addPassengerInfo);
+		
+		resInfo.putAll(addResMember);
+		
+		resInfo.put("addPassengerInfo", values);
+		resInfo.put("addPassengerBirth", birth);
 		model.addAttribute("resInfo", resInfo);
+		model.addAttribute("values", values);
+		model.addAttribute("bitrh", birth);
+		
 		
 		System.out.println("Reservation Information: " + resInfo);
-		
 	    //return "redirect:/reservation/seat";
 	    return "reservation/res_seat";
 	}
