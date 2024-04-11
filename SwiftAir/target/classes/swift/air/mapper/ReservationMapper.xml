@@ -2,10 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="swift.air.mapper.ReservationMapper">
 	<!-- 출발지, 도착지, 가는여정 출발일, 돌아오는 여정 출발일, 가용 자리 받아와야함 -->
-	<!-- route_departure, route_destination, schedule_departure, schedule_departure, seat_id -->
 	<select id="selectFlightAvailable" resultType="map">
-		select route_departure, route_destination, route_time, schedule_departure_date, scheduel_arrival_date,
-			
-			
+		<!--
+		SELECT 
+		schedule_id1(가는여정) departure_date, arrival_date, departure, destination, flight, 
+		schedule_id2(돌아오는여정) departure_date, arrival_date, departure, destination, flight
+		seat_name1(가는여정) seat_name, seat_grade
+		seat_name2(돌아오는여정) seat_name, seat_grade 
+		FROM passenger
+		JOIN wadadadadadadadadadada
+		 -->
 	</select>
 </mapper>
