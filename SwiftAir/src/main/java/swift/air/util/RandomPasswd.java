@@ -5,7 +5,7 @@ import org.apache.commons.lang.RandomStringUtils;
 public class RandomPasswd {
 	public static String randomPasswd(int length) {
 		 if (length < 6 || length > 20) {
-	            throw new IllegalArgumentException("ë¹„ë°€ë²ˆí˜¸ ê¸¸ì´ëŠ” 6~20ìë¦¬ì—¬ì•¼ í•©ë‹ˆë‹¤.");
+	            throw new IllegalArgumentException("ºñ¹Ğ¹øÈ£ ±æÀÌ´Â 6~20ÀÚ¸®¿©¾ß ÇÕ´Ï´Ù.");
 	        }
 	        
 	        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%";
