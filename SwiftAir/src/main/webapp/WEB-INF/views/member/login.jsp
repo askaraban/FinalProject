@@ -71,8 +71,8 @@
                     <div class="m-b-20 m-t-20">
                     	<div class="row">
                     <div id="search">
-						<a>아이디 찾기</a> |
-						<a>비밀번호 찾기</a>
+						<a href="<c:url value = '/member/searchId'/>">아이디 찾기</a> |
+						<a href="<c:url value = '/member/searchPasswd'/>">비밀번호 찾기</a>
 					</div>	
 					
 					<div class="text-center">

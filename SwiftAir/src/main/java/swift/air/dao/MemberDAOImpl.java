@@ -17,7 +17,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public int insertMember(Member member) {
 		return sqlSession.getMapper(MemberMapper.class).insertMember(member);
 	}
-
+	
 	@Override
 	public Member selectMember(String memberid) {
 		return sqlSession.getMapper(MemberMapper.class).selectMember(memberid);
@@ -27,5 +27,18 @@ public class MemberDAOImpl implements MemberDAO {
 	public int selectMemberId(String memberId) {
 		return sqlSession.getMapper(MemberMapper.class).selectMemberId(memberId);
 	}
+
+	@Override
+	public String findEmail(String memberKorName, String memberEmail) {
+		return sqlSession.getMapper(MemberMapper.class).findEmail(memberKorName, memberEmail);
+	}
+
+	@Override
+	public int findPasswd(Member member) {
+		return sqlSession.getMapper(MemberMapper.class).findPasswd(member);
+	}
+
+	
+	
 
 }

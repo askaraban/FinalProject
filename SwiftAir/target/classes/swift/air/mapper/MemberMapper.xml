@@ -11,7 +11,18 @@
 	member_phone, member_gender, member_birth, member_join_date, member_withdraw_date, member_point, 
 	member_status from member where member_id = #{memberId} 
 
-</select>	
+</select>
+
+
+<select id="findEmail" resultType="string">
+ select member_id from member where member_kor_name = #{memberKorName} AND member_email = #{memberEmail}
+</select>
+
+<update id="findPasswd">
+ update member set member_pswd = #{memberPswd} where member_id = #{memberId} AND member_email = #{memberEmail} AND member_kor_name = #{memberKorName}
+
+</update>
+	
 
 <select id = "selectMemberId" resultType="int">
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
@@ -75,7 +76,30 @@ public class MemberController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/searchId") 
+		public String searchId() {
+			return "/member/search_id";
+		}
 	
+	@RequestMapping(value = "/searchIdAction") 
+	public String searchIdAction(@RequestParam("memberKorName") String memberKorName, 
+			@RequestParam("memberEmail") String memberEmail) {
+		memberService.findEmail(memberKorName, memberEmail);
+		return "index";
+	}
 	
+	@RequestMapping(value = "/searchPasswd") 
+	public String searchPasswd() {
+		return "/member/search_passwd";
+	}
+	
+	@RequestMapping(value = "/searchPasswdAction") 
+	public String searchPasswdAction(@ModelAttribute Member member) {
+		memberService.findPasswd(member);
+		return "index";
+	}
 	
 }
+	
+	
+	
