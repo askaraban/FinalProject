@@ -32,7 +32,7 @@ public class PaymentController {
 	
 	@RequestMapping(value="/payment", method = RequestMethod.GET)
 	public String pay() {
-		return "pay";	
+		return "payment/payment_card";	
 	}
 	
 	@RequestMapping(value="/payment", method = RequestMethod.POST)
