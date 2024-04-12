@@ -48,7 +48,7 @@ public class MypageController {
 	@GetMapping(value="/journeyTable")
 	@ResponseBody
 	public Map<String, Object> myJourney(@RequestParam(defaultValue = "1")int pageNum
-			, @RequestParam int journey, Model model, HttpSession session) {
+			, @RequestParam(defaultValue = "1") int journey, Model model, HttpSession session) {
 		Member loginMember=(Member)session.getAttribute("loginMember");
 		int memberNum=loginMember.getMemberNum();
 		

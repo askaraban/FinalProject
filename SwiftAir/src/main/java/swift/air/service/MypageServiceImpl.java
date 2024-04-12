@@ -39,7 +39,7 @@ public class MypageServiceImpl implements MypageService {
 		
 		Map<String, Object> resultMap=new HashMap<String, Object>();
 		resultMap.put("pager", pager);
-		resultMap.put("futureJourneyList", futureJourneyList);
+		resultMap.put("list", futureJourneyList);
 		
 		return resultMap;
 	}
@@ -66,7 +66,7 @@ public class MypageServiceImpl implements MypageService {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("pager", pager);
-		resultMap.put("pastJourneyList", pastJourneyList);
+		resultMap.put("list", pastJourneyList);
 
 		return resultMap;
 	}

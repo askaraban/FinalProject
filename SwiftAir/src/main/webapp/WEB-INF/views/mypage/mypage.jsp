@@ -18,6 +18,10 @@
 	color: #fff;
 	cursor: default;
 }
+
+.pageNumDiv {
+	text-align: center;
+}
 </style>
 </head>
 
@@ -92,12 +96,12 @@
 				<ul class="nav nav-pills">
 					<li class="active" style="margin: 5px;">
 						<!-- <a href="#nav-pills-tab-1" data-bs-toggle="tab" class="nav-link active" style="background-color: #43C4AE;">다가오는 여정</a> -->
-						<a href="<c:url value="/mypage/journeyTable"/>?journey=1" style="background-color: #43C4AE;">다가오는 여정</a>
+						<a href="javascript:journeyTableDisplay(1, 1);" style="background-color: #43C4AE;">다가오는 여정</a>
 					</li>
 					<li class="nav-item" style="margin: 5px;">
-						<a href="<c:url value="/mypage/journeyTable"/>?journey=2"" style="background-color: #43C4AE;">지난 여정</a>
-					</li>
+						<a href="javascript:journeyTableDisplay(1, 2);" style="background-color: #43C4AE;">지난 여정</a>
 					<!-- 		
+					</li>
 					<li class="nav-item" style="margin: 5px;"><a
 						href="#nav-pills-tab-3" data-bs-toggle="tab"
 						class="nav-link active" style="background-color: #43C4AE;">나의 분실물 내역</a></li>
@@ -109,169 +113,33 @@
 						<div class="table-responsive">
 							<div class="panel panel-inverse" data-sortable-id="table-basic-4">
 								<div class="panel-body">
-									<div class="table-responsive" id="journeyTableDiv">
+									<div class="table-responsive" id="journeyTableDiv"></div>
+									<div class="pageNumDiv" id="pageNumDiv">
+									
 									</div>
-										<!-- 
-										<table class="table" style="text-align: center;">
-											<thead>
-												<tr>
-													<th>예약번호</th>
-													<th nowrap>여정</th>
-													<th nowrap>노선</th>
-													<th nowrap>일정</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:if test="${empty futureJourneyList}">
-													<tr>
-														<td colspan="4">다가오는 여정이 없습니다.</td>
-													</tr>
-												</c:if>
-											<c:forEach var="map" items="${futureJourneyList}">
-												<tr>
-													<td>${map.PAYMENT_ID}</td>
-													<td>${map.SCHEDULE_FLIGHT }</td>
-													<td>${map.ROUTE_DEPARTURE } -> ${map.ROUTE_DESTINATION } </td>
-													<td>${map.SCHEDULE_DEPARTURE_DATE } -> ${map.SCHEDULE_ARRIVAL_DATE  } </td>
-												</tr>
-											</c:forEach>
-											</tbody>
-										</table>
-									</div>
-									<div style="text-align: center;">
-									 -->
-										<%-- 페이지 번호 출력 --%>
-										<%-- <c:choose>
-											<c:when test="${pager.startPage > pager.blockSize }">
-												<a href="<c:url value="/mypage/"/>?pageNum=${pager.prevPage}">[이전]</a>
-											</c:when>
-											<c:otherwise>
-												[이전]
-											</c:otherwise>
-										</c:choose>
-										
-										<c:forEach var="i" begin="${pager.startPage }" end="${pager.endPage }" step="1">
-											<c:choose>
-												<c:when test="${pager.pageNum != i }">
-													<a href="<c:url value="/mypage/"/>?pageNum=${i}">[${i}]</a>
-												</c:when>
-												<c:otherwise>
-													[${i}]
-												</c:otherwise>
-											</c:choose>
-										</c:forEach>
-										<c:choose>
-											<c:when test="${pager.endPage != pager.totalPage }">
-												<a href="<c:url value="/mypage/"/>?pageNum=${pager.nextPage}">[다음]</a>
-											</c:when>
-											<c:otherwise> 
-												[다음]
-											</c:otherwise>
-										</c:choose> --%>
-									<!-- </div> -->
 								</div>
 							</div>
 						</div>
 					</div>
-					
-					<%-- <div class="tab-pane fade active show" id="nav-pills-tab-2" style="display: none;">
-						<div class="table-responsive">
-							<div class="panel panel-inverse" data-sortable-id="table-basic-4">
-								<div class="panel-body">
-									<div class="table-responsive">
-										<table class="table" style="text-align: center;">
-											<thead>
-												<tr>
-													<th>예약번호(지난여정)</th>
-													<th nowrap>여정</th>
-													<th nowrap>노선</th>
-													<th nowrap>일정</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:if test="${empty pastJourneyList}">
-													<tr>
-														<td colspan="4">지난 여정이 없습니다.</td>
-													</tr>
-												</c:if>
-											<c:forEach var="map" items="${pastJourneyList}">
-												<tr>
-													<td>${map.PAYMENT_ID}</td>
-													<td>${map.SCHEDULE_FLIGHT }</td>
-													<td>${map.ROUTE_DEPARTURE } -> ${map.ROUTE_DESTINATION } </td>
-													<td>${map.SCHEDULE_DEPARTURE_DATE } -> ${map.SCHEDULE_ARRIVAL_DATE  } </td>
-												</tr>
-											</c:forEach>
-											</tbody>
-										</table>
-									</div>
-									<div style="text-align: center;">
-										페이지 번호 출력
-										<c:choose>
-											<c:when test="${pager1.startPage > pager1.blockSize }">
-												<a href="<c:url value="/mypage/"/>?pageNum=${pager1.prevPage}">[이전]</a>
-											</c:when>
-											<c:otherwise>
-												[이전]
-											</c:otherwise>
-										</c:choose>
-										
-										<c:forEach var="i" begin="${pager1.startPage }" end="${pager1.endPage }" step="1">
-											<c:choose>
-												<c:when test="${pager1.pageNum != i }">
-													<a href="<c:url value="/mypage/"/>?pageNum=${i}">[${i}]</a>
-												</c:when>
-												<c:otherwise>
-													[${i}]
-												</c:otherwise>
-											</c:choose>
-										</c:forEach>
-										<c:choose>
-											<c:when test="${pager1.endPage != pager1.totalPage }">
-												<a href="<c:url value="/mypage/"/>?pageNum=${pager1.nextPage}">[다음]</a>
-											</c:when>
-											<c:otherwise> 
-												[다음]
-											</c:otherwise>
-										</c:choose>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> --%>
 				</div>
 			</div>
-		</div>
+		</div>		
 	</section>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
-/*
-function upcomingJourney() {
-	$("#nav-pills-tab-1").show();
-    $("#nav-pills-tab-2").hide();
-};
-            
-function pastJourney() {
-    $("#nav-pills-tab-1").hide();
-    $("#nav-pills-tab-2").show();
-}; */
-
 var page=1;
-var journeyNum=1;
-journeyTableDisplay(page, journeyNum);
+journeyTableDisplay(page, 1);
 
 function journeyTableDisplay(pageNum, journey) {
 	page=pageNum;
-	journeyNum=journey;
-    $.ajax({
+	$.ajax({
         url: '<c:url value="/mypage/journeyTable"/>',
         type: 'get',
-        data: { "pageNum" : pageNum, "journey" : journey},
+        data: { "pageNum" : pageNum, "journey":journey},
         dataType: "json",
-        success: function(journeyData) {
-        	if(journeyData.futureJourneyList.length == 0 ) {//검색된 여정이 없는 경우
+        success: function(result) {
+        	if(result.list.length == 0 ) {//검색된 여정이 없는 경우
 				var html="<table class='table' style='text-align: center;' id='journeyTable'>";
 				html+="<thead>";
 				html+="<tr>";
@@ -301,8 +169,7 @@ function journeyTableDisplay(pageNum, journey) {
 			html+="</tr>";
 			html+="</thead>";
 			
-			if(journey == 1) {
-			$(journeyData.futureJourneyList).each(function() {
+			$(result.list).each(function() {
 				html+="<tbody>";
 				html+="<tr>";
 				html+="<td>"+this.PAYMENT_ID+"</td>";
@@ -312,43 +179,31 @@ function journeyTableDisplay(pageNum, journey) {
 				html+="</tr>";
 				html+="</tbody>";
 			});
-			} else if(journey == 2) {
-				$(journeyData.pastJourneyList).each(function() {
-					html+="<tbody>";
-					html+="<tr>";
-					html+="<td>"+this.PAYMENT_ID+"</td>";
-					html+="<td>"+this.SCHEDULE_FLIGHT+"</td>";
-					html+="<td>"+this.ROUTE_DEPARTURE+" - "+this.ROUTE_DESTINATION+"</td>";
-					html+="<td>"+this.SCHEDULE_DEPARTURE_DATE+" - "+this.SCHEDULE_ARRIVAL_DATE+"</td>";
-					html+="</tr>";
-					html+="</tbody>";
-				});
-			}
-			html+="</table>";
 			
+			html+="</table>";
+		
 			html+="<div id='pageNumDiv' style='text-align:center;'>"
-			if(journeyData.pager.startPage > journeyData.pager.blockSize) {
-				html+="<a href='javascript:journeyTableDisplay("+journeyData.pager.prevPage+");'>[이전]</a>";
+			if(result.pager.startPage > result.pager.blockSize) {
+				html+="<a href='javascript:journeyTableDisplay("+result.pager.prevPage+","+ journey +");'>[이전]</a>";
 			} else {
 				html+="[이전]";
 			}
 			
-			for(i = journeyData.pager.startPage ; i <= journeyData.pager.endPage ; i++) {
-				if(journeyData.pager.pageNum != i) {
-					html+="<a href='javascript:journeyTableDisplay("+i+");'>["+i+"]</a>";
+			for(i = result.pager.startPage ; i <= result.pager.endPage ; i++) {
+				if(result.pager.pageNum != i) {
+					html+="<a href='javascript:journeyTableDisplay("+ i +","+journey+");'>["+i+"]</a>";
 				} else {
 					html+="["+i+"]";
 				}
 			}
 			
-			if(journeyData.pager.endPage != journeyData.pager.totalPage) {
-				html+="<a href='javascript:journeyTableDisplay("+journeyData.pager.nextPage+");'>[다음]</a>";
+			if(result.pager.endPage < result.pager.totalPage) {
+				html+="<a href='javascript:journeyTableDisplay("+ result.pager.nextPage +","+journey+");'>[다음]</a>";
 			} else {
 				html+="[다음]";
 			}
 			html+="</div>"
-			$("#journeyTableDiv").html(html);
-			
+			$("#journeyTableDiv").html(html); 
 			
         },
         error: function(xhr) {
@@ -356,9 +211,6 @@ function journeyTableDisplay(pageNum, journey) {
         }
     });
 }
-
-
-
 
 </script>
 	

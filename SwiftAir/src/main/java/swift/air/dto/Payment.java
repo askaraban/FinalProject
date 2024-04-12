@@ -6,14 +6,15 @@ import lombok.Data;
 이름                  널?       유형           
 ------------------- -------- ------------ 
 PAYMENT_ID          NOT NULL VARCHAR2(20) 
-PAYMENT_ADULT                NUMBER       
-PAYMENT_CHILD                NUMBER       
+PAYMENT_Passenger            NUMBER       
 PAYMENT_MEMBER_NUM           NUMBER       
 PAYMENT_SCHEDULE_ID          VARCHAR2(20) 
 PAYMENT_DATE                 DATE         
 PAYMENT_TOTAL                NUMBER       
 PAYMENT_STATUS               NUMBER(1)    
 PAYMENT_METHOD               NUMBER 
+PAYMENT_impUid               VARCHAR2 
+PAYMENT_merchantUid          VARCHAR2 
 */
 
 @Data
@@ -30,4 +31,6 @@ public class Payment {
 	private String routeDeparture;
 	private String routeDestination;
 	private String scheduleFlight;
+	private String impUid;//결제 관련 OpenApi에서 제공되는 고유값
+	private String merchantUid;//결제번호
 }
