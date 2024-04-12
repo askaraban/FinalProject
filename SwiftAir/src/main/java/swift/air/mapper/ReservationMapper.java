@@ -1,6 +1,7 @@
 
 package swift.air.mapper;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -22,6 +23,6 @@ import java.util.Map;
 
 // Reservation/payment : 다 받아와서 결제할때 insert
 public interface ReservationMapper {
-	Map<String, Object> selectFlightAvailable(Map<String, Object> map);
-	int selectSeatCount(int seatId);
+	List<Map<String, Object>> selectFlightAvailable(String resDeparture, String resDestination, String resDepartDate, String resReturnDate);
+	int selectSeatCount(String resDeparture, String resDestination, String checkDate);
 }

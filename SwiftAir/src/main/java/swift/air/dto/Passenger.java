@@ -21,4 +21,16 @@ public class Passenger {
 	private String passengerPaymentId; 
 	private String passengerSeatName;
 	private String passengerScheduleId;
+	
+	private String scheduleId;
+	private String scheduleDepartureDate;
+	private String scheduleArrivalDate;
+	private String routeDeparture;
+	private String routeDestination;
+	private String routeFlight;
+	private int routePrice;
+	private String seatName;
+	private String seatGrade;
+	private String checkDate;
+	
 }

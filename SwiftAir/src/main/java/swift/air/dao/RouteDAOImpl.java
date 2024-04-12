@@ -10,7 +10,7 @@ import swift.air.mapper.RouteMapper;
 
 @Repository
 @RequiredArgsConstructor
-public class RouteleDAOImpl implements RouteDAO{
+public class RouteDAOImpl implements RouteDAO{
 	private final SqlSession sqlSession;
 
 	@Override
