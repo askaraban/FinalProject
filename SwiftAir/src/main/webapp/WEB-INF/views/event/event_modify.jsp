@@ -19,7 +19,7 @@
 ===================================== -->
 <section class="py-7 py-md-10">
 	<div class="container">
-		<form action="<c:url value="/event/modify"/>" method="post">
+		<form action="<c:url value="/event/modify"/>" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="eventId" value="${eventmodify.eventId}"/>
 		<div class="col-12">
 
@@ -32,7 +32,7 @@
 				<div class="col-sm-8">
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">제목</div>
-						<input type="text" class="form-control" value="${eventmodify.eventTitle}">
+						<input type="text" name="eventTitle" class="form-control" value="${eventmodify.eventTitle}">
 					</div>
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">운영기간</div>
@@ -44,11 +44,11 @@
 					</div>
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">행사내용</div>
-						<textarea class="form-control" rows="5" >${eventmodify.eventContent}</textarea>
+						<textarea class="form-control" rows="5" name="eventContent">${eventmodify.eventContent}</textarea>
 					</div>
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">유의사항</div>
-						<textarea class="form-control" rows="5" >${eventmodify.eventNotice}</textarea>
+						<textarea class="form-control" rows="5" name="eventNotice">${eventmodify.eventNotice}</textarea>
 					</div>
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">대표 이미지</div>
@@ -65,7 +65,7 @@
 		<div style="float: right">
 			<a href ="<c:url value="/event/list"/>" type="button" class="btn btn-primary ms-1">목록</a>
 			<a href ="<c:url value="/event/list"/>" type="button" class="btn btn-primary ms-1">취소</a>
-			<button type="submit" class="btn btn-primary ms-1">수정</button>
+			<button type="submit" class="btn btn-primary ms-1" id="submitBtn">수정</button>
 		</div>
 		</form>
 	</div>

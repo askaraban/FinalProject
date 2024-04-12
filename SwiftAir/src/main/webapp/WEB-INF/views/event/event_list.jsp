@@ -50,7 +50,6 @@
 	          <td class="text-capitalize" align="center">
 	          	<fmt:parseDate var="endDate" value="${event.eventEnd}" pattern="yyyy-MM-dd HH:mm:ss" />
                	<fmt:formatDate pattern='yyyy-MM-dd' value='${endDate}' /> 
-	          </td>
 	          
 	          <td align="center">
 	            <span class="badge text-bg-primary px-2 py-1">${event.eventStatus}</span>

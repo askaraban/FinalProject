@@ -1,7 +1,5 @@
 package swift.air.dto;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.Data;
 
 /*
@@ -22,15 +20,12 @@ EVENT_STATUS           NUMBER(1)
 @Data
 public class Event {
 	private int eventId;
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private String eventDate;
 	private String eventTitle;
 	private String eventContent;
 	private String eventImg1;
 	private String eventImg2;
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private String eventStart;
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private String eventEnd;
 	private String eventNotice;
 	private int eventStatus;
