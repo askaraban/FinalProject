@@ -29,8 +29,13 @@
 	
 	<!-- ========== select문 (총n개 , 페이징쓸때 필요) ============ -->
 	<select id="selectFaqCount" resultType="int">
-		select count(*) from faq 
+		select count(*) from faq
+		<if test="categoryId != 0">
+	    	where faq_cate= #{categoryId}
+  		</if>
 	</select>
+	
+	
 	
 	<!-- ============ 페이징 처리 ============  -->
 	<select id="selectFaqList" resultType="Faq">
@@ -39,12 +44,11 @@
 	        FROM (
 	            SELECT faq_id, faq_title, faq_content, faq_date, faq_cate
 	            FROM faq 
-		        <if test="categoryId != 0">
+		       <if test="categoryId != 0">
 	    		where faq_cate= #{categoryId}
 	    		</if>
 	            ORDER BY faq_id DESC 
 	        ) faq
 	    ) WHERE rn BETWEEN #{startRow} AND #{endRow}
 	</select>
-	
 </mapper>

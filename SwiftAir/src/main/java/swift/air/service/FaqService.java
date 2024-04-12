@@ -9,5 +9,5 @@ public interface FaqService {
 	void modifyFaq(Faq faq);
 	void removeFaq(int noticeId);
 	Faq getFaq(int faqId);
-	Map<String, Object> getFaqList(int pageNum);
+	Map<String, Object> getFaqList(int pageNum, int categoryId);
 }

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
 import swift.air.dto.Faq;
-import swift.air.dto.Notice;
 import swift.air.service.FaqService;
 
 
@@ -39,7 +38,7 @@ public class FaqController {
 	/* ================= faq 리스트 페이징 할때 ====================== */
 	@RequestMapping(value = "/list")
 	public String faqList(@RequestParam(defaultValue = "1") int pageNum,Model model) {
-		Map<String, Object> map=faqService.getFaqList(pageNum);
+		Map<String, Object> map=faqService.getFaqList(pageNum, 0);
 		
 		model.addAttribute("pager", map.get("pager"));
 		model.addAttribute("faqList", map.get("faqList"));
@@ -51,10 +50,9 @@ public class FaqController {
 	
 	/* ================= faq 메인 페이징 할때 ====================== */
 	@RequestMapping(value = "/main")
-	public String faqMain(@RequestParam(defaultValue = "1") int pageNum, Model model) {
-		Map<String, Object> map=faqService.getFaqList(pageNum);
+	public String faqMain(@RequestParam(defaultValue = "1") int pageNum, Model model, @RequestParam(defaultValue = "0") int categoryId) {
+		Map<String, Object> map=faqService.getFaqList(pageNum, categoryId);
 		
-		/*총 갯수*/
 		List<Faq> list=(List<Faq>)map.get("faqList");
 		
 		model.addAttribute("pager", map.get("pager"));
@@ -62,7 +60,6 @@ public class FaqController {
 		
 		/*총갯수*/
 		model.addAttribute("size",  list.size());
-		
 	
 		return "faq/faq_main";
 	}

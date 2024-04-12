@@ -36,8 +36,8 @@ public class FaqDAOImpl implements FaqDAO {
 	}
 	
 	@Override
-	public int selectFaqCount() {
-		return sqlSession.getMapper(FaqMapper.class).selectFaqCount();
+	public int selectFaqCount(int categoryId) {
+		return sqlSession.getMapper(FaqMapper.class).selectFaqCount(categoryId);
 	}
 	
 	/*
@@ -51,5 +51,4 @@ public class FaqDAOImpl implements FaqDAO {
 	public List<Faq> selectFaqList(Map<String, Object> map) {
 		return sqlSession.getMapper(FaqMapper.class).selectFaqList(map);
 	}
-	
 }
