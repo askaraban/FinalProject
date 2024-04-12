@@ -11,6 +11,8 @@ public interface FaqDAO {
 	int deleteFaq(int faqId);
 	Faq selectFaq(int faqId);
 	int selectFaqCount(int categoryId);
-	/* List<Map<String, Object>> selectFaqList(Map<String, Object> map); */
 	List<Faq> selectFaqList(Map<String, Object> map); 
+	/* List<Map<String, Object>> selectFaqList(Map<String, Object> map); */
+	
+
 }

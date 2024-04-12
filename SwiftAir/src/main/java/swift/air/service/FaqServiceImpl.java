@@ -39,6 +39,20 @@ public class FaqServiceImpl implements FaqService {
 		return faqDAO.selectFaq(faqId);
 	}
 	
+
+	
+	
+	//총개수 띄울때 쓰임
+	@Override
+	public int getFaqCount(int categoryId) {
+	return faqDAO.selectFaqCount(categoryId);
+		
+	}
+	
+	
+	
+	
+	
 	@Override
 	public Map<String, Object> getFaqList(int pageNum, int categoryId) {
 		//페이징 처리

@@ -177,7 +177,8 @@ ul {
             </div>
             
            <div class="qus">
-                <span>총&nbsp;<strong id="cnt">${size}</strong>건</span>
+                
+                <span>전체&nbsp;<strong id="totalItems">${faqCount}</strong>건</span>
            </div>
             
            <c:forEach var="faq" items="${faqList}"> 

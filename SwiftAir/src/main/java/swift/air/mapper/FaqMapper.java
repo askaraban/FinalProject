@@ -12,4 +12,6 @@ public interface FaqMapper {
 	Faq selectFaq(int faqId);
 	int selectFaqCount(int categoryId);
 	List<Faq> selectFaqList(Map<String, Object> map);
+	
+
 }

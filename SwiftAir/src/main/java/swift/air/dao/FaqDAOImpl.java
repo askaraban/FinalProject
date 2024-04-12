@@ -51,4 +51,6 @@ public class FaqDAOImpl implements FaqDAO {
 	public List<Faq> selectFaqList(Map<String, Object> map) {
 		return sqlSession.getMapper(FaqMapper.class).selectFaqList(map);
 	}
+	
+	
 }

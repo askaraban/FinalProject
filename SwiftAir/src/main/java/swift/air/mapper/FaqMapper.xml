@@ -36,7 +36,6 @@
 	</select>
 	
 	
-	
 	<!-- ============ 페이징 처리 ============  -->
 	<select id="selectFaqList" resultType="Faq">
 	    SELECT * FROM (
@@ -51,4 +50,9 @@
 	        ) faq
 	    ) WHERE rn BETWEEN #{startRow} AND #{endRow}
 	</select>
+	
+	
+	
+
+	
 </mapper>
