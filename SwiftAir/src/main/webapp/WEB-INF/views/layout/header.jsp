@@ -38,7 +38,7 @@
             <ul class="dropdown">
               <li><a href='<c:url value="/reservation"/>'>항공권 예매</a></li>
               <li><a href="index-2.html">포인트 예매</a></li>
-              <li><a href="index-3.html">이벤트</a></li>
+              <li><a href="<c:url value="/event/main"/>">이벤트</a></li>
             </ul>
           </li>
           <li class="">
