@@ -64,8 +64,8 @@ public class ReservationController {
 	    return "reservation/res_passengers_info";
 	}
 	
-	@RequestMapping(value = "/seat")
-	public String getResPassengersInfo(@RequestParam(value = "resPassenger", required = true) List<String> values
+	@RequestMapping(value = "/seat1")
+	public String getResPassengersInfo1(@RequestParam(value = "resPassenger", required = true) List<String> values
 			, Model model, @RequestParam(value = "resPassengerBirth", required = true) List<String> birth
 			, @RequestParam Map<String, Object> addResMember) {
 		model.addAttribute("seatList",seatService.getSeatList());
@@ -85,16 +85,45 @@ public class ReservationController {
 		
 		System.out.println("Reservation Information: " + resInfo);
 	    //return "redirect:/reservation/seat";
-	    return "reservation/res_seat";
+	    return "reservation/res_seat_dep";
 	}
-	/*
-	@RequestMapping(value = "/seat")
-	public String resSeat(Model model) {
+	@RequestMapping(value = "/seat2")
+	public String getResPassengersInfo2(@RequestParam(value = "selSeat1", required = true) List<String> values2
+			, Model model, @RequestParam Map<String, Object> addPassengerSeat1) {
 		model.addAttribute("seatList",seatService.getSeatList());
 		model.addAttribute("reservedSeatList",seatService.getReservedSeatList());
-		return "reservation/res_seat";
-	}	
-	*/
+		
+		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
+		
+		resInfo.putAll(addPassengerSeat1);
+		
+		resInfo.put("selSeat1", values2);
+		model.addAttribute("resInfo", resInfo);
+		
+		
+		System.out.println("Reservation Information: " + resInfo);
+		//return "redirect:/reservation/seat";
+		return "reservation/res_seat_arr";
+	}
+	
+	@RequestMapping(value = "/confirm")
+	public String getResPassengersInfo3(@RequestParam(value = "selSeat2", required = true) List<String> values3
+			, Model model, @RequestParam Map<String, Object> addPassengerSeat2) {
+		model.addAttribute("seatList",seatService.getSeatList());
+		model.addAttribute("reservedSeatList",seatService.getReservedSeatList());
+		
+		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
+		
+		resInfo.putAll(addPassengerSeat2);
+		
+		resInfo.put("selSeat2", values3);
+		model.addAttribute("resInfo", resInfo);
+		
+		
+		System.out.println("Reservation Information: " + resInfo);
+		//return "redirect:/reservation/seat";
+		return "reservation/res_ticket_confirm";
+	}
 	
 	
 }

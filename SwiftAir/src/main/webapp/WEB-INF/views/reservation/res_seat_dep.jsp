@@ -195,8 +195,7 @@
 		      <!-- Breadcrumb -->
     <nav class="bg-transparent breadcrumb breadcrumb-2 px-0 mb-5" aria-label="breadcrumb">
       <ul class="list-unstyled d-flex p-0 m-0">
-        <li class="breadcrumb-item"><a href="index.html">${resInfo.resDeparture }-${resInfo.resDestination }</a></li>
-        <li class="breadcrumb-item active" aria-current="page">${resInfo.resDestination }-${resInfo.resDeparture }</li>
+        <li class="breadcrumb-item active" aria-current="page">${resInfo.resDeparture }-${resInfo.resDestination }</a></li>
       </ul>
     </nav>
         <div class="mb-6">
@@ -211,13 +210,14 @@
         </div>
         <div class="mb-6">
           <div class="border border-subtle rounded" style="padding: 0.75rem 1.5rem; font-size: 15px; font-weight: bold; color: black;">탑승객
+          
           	<c:forEach items="${resInfo.addPassengerInfo}" varStatus="status" step="2" var="idx">
-			  <div class="border border-primary rounded" style="padding: 0.75rem 1.5rem; margin-top: 1.2rem;" id="seat_no${status.index}" >
-			  	${resInfo.addPassengerInfo[status.index] } ${resInfo.addPassengerInfo[status.index+1] } <span style="padding-left: 20px;" >
-			  	
+			  <div class="border border-primary rounded" style="padding: 0.75rem 1.5rem; margin-top: 1.2rem;" id="seat_no${status.index}">
+			  	${resInfo.addPassengerInfo[status.index] } ${resInfo.addPassengerInfo[status.index+1] } <span style="padding-left: 20px; text-align: right;" >
 			  	</span>
 			  </div>
           	</c:forEach>
+          	
 		  </div>
         </div>
       </div>
@@ -226,8 +226,10 @@
 </section>
   </div> <!-- element wrapper ends -->
   
-<form action="/payment/card">
-	<input hidden="" id="">
+<form action="<c:url value="/reservation/seat2" />" method="post" id="addPassengerSeat1">
+	<c:forEach var="selSeat" varStatus="status" begin="1" end="${resInfo.resPassengerCnt }">
+		<input hidden="" name="selSeat1" id="selSeat${status.count }">
+	</c:forEach>
 <nav class="navbar-expand-sm rounded shadow bg-light fixed-bottom">
 	<div class="row">
 		<div class="col-sm-6 col-lg-6"></div>
@@ -250,11 +252,13 @@
 
 var seatCount = ${resInfo.resPassengerCnt};
 var selectSeat = 0;
-	
+var cnt = 1;
 
-	/* 클릭 시 예약좌석 선택 */
+
+	/* 클릭 시 이코노미 예약좌석 선택 */
 	$(".pre_economy").click(function () {
 		var pre = $(this).attr("id");
+		
 		if($("#"+pre).attr("title")=="on"){
 			
 			if(seatCount<=0){
@@ -262,41 +266,31 @@ var selectSeat = 0;
 			} else {
 				$("#"+pre).attr("src", "<c:url value="/img/seat/economy_sel.png"/>")
 				$("#"+pre).attr("title", "off")
-				$('#${resInfo.resMemFirst}0 span').text(pre);
-				$('#heesoo2 span').text(pre);
-				
-				var l1 = document.querySelectorAll("div[id^='seat_no']");
-				var l2 = $('.border-primary').attr('id');
-				
-				/* function selectSeatNo() {
-					var l3 = [];
-					$('.border-primary').each(function(index, item){
-						l3.push($(this).attr('id'));
-					});
-					return l3;
-				};
-				
-				
-				console.log(l2); */
+				$('#seat_no'+selectSeat+' span').text(pre);
+				$('#selSeat'+cnt).val(pre);
+				console.log($('#selSeat'+cnt).val(pre));
 				
 				seatCount--;
+				selectSeat++;
+				selectSeat++;
+				cnt++;
 			}
 			
 		} else {
+			selectSeat--;
+			selectSeat--;
+			cnt--;
 			
 			if($("#"+pre).attr("title")=="off" && $("#"+pre).attr("src")=="<c:url value="/img/seat/economy_sel.png"/>"){
-				console.log(seatCount);
+				$('#seat_no'+selectSeat+' span').text("");
+				$("#"+pre).attr("src", "<c:url value="/img/seat/economy_not.png"/>")
+				$("#"+pre).attr("title", "on")
 			}
-			
-			$("#"+pre).attr("src", "<c:url value="/img/seat/economy_not.png"/>")
-			$("#"+pre).attr("title", "on")
-			
-			$('#heesoo2 span').text("");
-			
-			seatCount++;
+				seatCount++;
 		}
 	});
-	/* 클릭 시 예약좌석 선택 */
+	
+	/* 클릭 시 비즈니스 예약좌석 선택 */
 	$(".pre_business").click(function () {
 		var pre = $(this).attr("id");
 		/* 

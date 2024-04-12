@@ -7,8 +7,8 @@
 	<!-- 모든 결제 내역 중 항공편 id가 같은 결제 내역에서 탑승객의 좌석번호들을 출력하는 sql -->
 	
 	<select id="selectReservedSeatList" resultType="String">
-		select passenger_Seat_name1 from schedule join passenger
-		 on passenger_schedule_id1=1 where schedule_id=1
+		select passenger_seat_name from schedule join passenger
+		 on passenger_schedule_id=1 where schedule_id=#{scheduleId}
 	</select>
 	 
 	<!-- 모든 좌석 리스트를 출력하는 sql -->

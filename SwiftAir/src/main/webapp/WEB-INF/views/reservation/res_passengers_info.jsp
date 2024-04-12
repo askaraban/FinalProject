@@ -5,7 +5,7 @@
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 <body id="body" class="up-scroll">
-<form id="addPassengerInfo" action="<c:url value="/reservation/seat" />" method="POST">
+<form id="addPassengerInfo" action="<c:url value="/reservation/seat1" />" method="POST">
 
 <!-- ====================================
 ———	HEADER
@@ -64,7 +64,6 @@
         <!-- 탑승자 정보입력 -->
         <!-- 여러명일 경우 탑승자 * n (성인, 소인 구분 x) -->
         <input type="hidden" id="passengerCount" value="${resInfo.resPassengerCnt}">
-        <input type="hidden" name="passengersList" id="passengersList">
         <c:forEach var="i" begin="1" end="${resInfo.resPassengerCnt}">
         <div class="border rounded px-6 py-5 mb-6">
 			<div class="row">
