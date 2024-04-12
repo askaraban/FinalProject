@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="swift.air.mapper.ReservationMapper">
 	<!-- 출발지, 도착지, 가는여정 출발일, 돌아오는 여정 출발일, 가용 자리 받아와야함 -->
-	<select id="selectFlightAvailable" resultType="map">
+	<select id="selectFlight" resultType="Passenger">
 		SELECT 
 			schedule_id, schedule_departure_date, schedule_arrival_date, route_departure, route_destination, route_flight, route_price, seat_name, seat_grade
 		FROM 
@@ -14,10 +14,8 @@
 		LEFT JOIN 
 			seat on passenger_seat_name = seat_name
 		WHERE 
-			(route_departure = #{resDeparture} and route_destination = #{resDestination} and schedule_departure_date = #{resDepartDate}) 
-			or (route_departure = #{resDestination} and route_destination = #{resDeparture} and schedule_departure_date = #{resReturnDate});
+			route_departure = #{resDeparture} and route_destination = #{resDestination} and schedule_departure_date = #{resDepartDate};
 	</select>
-	
 	<select id="selectSeatCount" resultType="int">
 		SELECT 
 			COUNT(passenger_seat_name) 
@@ -28,6 +26,6 @@
 		LEFT JOIN 
 			route on schedule_route_id = route_id 
 		WHERE 
-			route_departure = #{resDeparture} and route_destination = #{resDestination} and schedule_departure_date = #{checkDate}
+			route_departure = #{resDeparture} and route_destination = #{resDestination} and schedule_departure_date = #{checkDate};
 	</select>
 </mapper>

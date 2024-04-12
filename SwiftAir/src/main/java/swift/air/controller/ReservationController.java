@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import lombok.RequiredArgsConstructor;
 import lombok.val;
+import swift.air.dto.Passenger;
+import swift.air.service.ReservationService;
 import swift.air.service.SeatService;
 
 
@@ -25,6 +27,7 @@ import swift.air.service.SeatService;
 @RequiredArgsConstructor
 public class ReservationController {
 	private final SeatService seatService;
+	private final ReservationService reservationService;
 	
 	@ModelAttribute("resInfo")
     public Map<String, Object> resInfo() {
@@ -32,19 +35,18 @@ public class ReservationController {
     }
 	
 	@RequestMapping(value = "/seatgrade")
-	public String resSeatGrade(@RequestParam Map<String, Object> resScheduleSellection, Model model) {
+	public String resSeatGrade(@RequestParam Map<String, Object> resScheduleSellection, Model model
+			, @RequestParam String resDeparture, @RequestParam String resDestination, @RequestParam String resDepartDate) {
 		
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
-		
-		//resInfo.put("resDeparture", resScheduleSellection.get("resDeparture"));
-		//resInfo.put("resDestination", resScheduleSellection.get("resDestination"));
-		//resInfo.put("resDuration", resScheduleSellection.get("resDuration"));
-		//resInfo.put("resNumofPassengers", resScheduleSellection.get("resNumofPassengers"));
+		//Passenger flightList = reservationService.getFlight(resDeparture, resDestination, resDepartDate);
+
 		resInfo.putAll(resScheduleSellection);
 		model.addAttribute("resInfo", resInfo);
-		
+		//model.addAttribute("flightList", flightList);
 		
 		System.out.println("Reservation Information: " + resInfo);
+		//System.out.println("Flight Information: " + flightList);
 		
 		//return "redirect:/reservation/seatgrade";
 		return "reservation/res_seat_grade";

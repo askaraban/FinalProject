@@ -1,9 +1,8 @@
 package swift.air.service;
 
-import java.util.List;
-import java.util.Map;
+import swift.air.dto.Passenger;
 
 public interface ReservationService {
-	List<Map<String, Object>> getFlightAvailable(String resDeparture, String resDestination, String resDepartDate, String resReturnDate);
+	Passenger getFlight(String resDeparture, String resDestination, String resDepartDate);
 	int getSeatCount(String resDeparture, String resDestination, String checkDate);
 }

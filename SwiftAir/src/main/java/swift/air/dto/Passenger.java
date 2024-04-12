@@ -33,4 +33,9 @@ public class Passenger {
 	private String seatGrade;
 	private String checkDate;
 	
+	private String resDeparture;
+	private String resDestination;
+	private String resDepartDate;
+	private String resReturnDate;
+	
 }

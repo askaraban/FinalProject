@@ -1,9 +1,8 @@
 package swift.air.dao;
 
-import java.util.List;
-import java.util.Map;
+import swift.air.dto.Passenger;
 
 public interface ReservationDAO {
-	List<Map<String, Object>> selectFlightAvailable(String resDeparture, String resDestination, String resDepartDate, String resReturnDate);
+	Passenger selectFlight(String resDeparture, String resDestination, String resDepartDate);
 	int selectSeatCount(String resDeparture, String resDestination, String checkDate);
 }
