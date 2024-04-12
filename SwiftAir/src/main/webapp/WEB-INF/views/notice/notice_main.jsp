@@ -106,7 +106,7 @@ border-collapse: collapse;
 						<%-- 페이지 번호 출력 --%>
 						<c:choose>
 							<c:when test="${pager.startPage > pager.blockSize }">
-								<a href="<c:url value="/file/list"/>?pageNum=${pager.prevPage}">[이전]</a>
+								<a href="<c:url value="/notice/list"/>?pageNum=${pager.prevPage}">[이전]</a>
 							</c:when>
 							<c:otherwise>
 								[이전]
@@ -116,7 +116,7 @@ border-collapse: collapse;
 						<c:forEach var="i" begin="${pager.startPage }" end="${pager.endPage }" step="1">
 							<c:choose>
 								<c:when test="${pager.pageNum != i }">
-									<a href="<c:url value="/file/list"/>?pageNum=${i}">[${i}]</a>
+									<a href="<c:url value="/notice/list"/>?pageNum=${i}">[${i}]</a>
 								</c:when>
 								<c:otherwise>
 									[${i}]
@@ -125,7 +125,7 @@ border-collapse: collapse;
 						</c:forEach>
 						<c:choose>
 							<c:when test="${pager.endPage != pager.totalPage }">
-								<a href="<c:url value="/file/list"/>?pageNum=${pager.nextPage}">[다음]</a>
+								<a href="<c:url value="/notice/list"/>?pageNum=${pager.nextPage}">[다음]</a>
 							</c:when>
 							<c:otherwise> 
 								[다음]
