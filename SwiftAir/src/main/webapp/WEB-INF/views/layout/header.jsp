@@ -76,6 +76,11 @@
           <li class="">
             <a href="javascript:0">Pages</a>
             <ul class="dropdown">
+          	<c:choose>
+          		<c:when test="${loginMember.memberStatus eq 9}">
+	              <li><a href="contact-us.html">관리자페이지로</a></li>
+          		</c:when>
+          	</c:choose>
               <li><a href="contact-us.html">Contact Us</a></li>
               <li><a href="terms-of-services.html">Terms and Conditions</a></li>
               <li><a href="pricing-table.html">Pricing Table</a></li>
