@@ -61,19 +61,19 @@ public class EventController {
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String eventModify(@ModelAttribute Event event, @RequestParam MultipartFile multipartFile1,
+	public String eventModify(@ModelAttribute Event event, @RequestParam MultipartFile multipartFile,
 						        @RequestParam MultipartFile multipartFile2) throws IOException {
 		
 		//기존의 이벤트 정보
 	    Event exEvent = eventService.getEvent(event.getEventId());
 	   
 	    //대표 이미지 변경 확인 후 새로운 파일로 변경
-	    if (!multipartFile1.isEmpty()) {
+	    if (!multipartFile.isEmpty()) {
 	        String uploadDirectory = context.getServletContext().getRealPath("/resources/assets/img/event");
-	        String newFileName = UUID.randomUUID().toString() + "_" + multipartFile1.getOriginalFilename();
+	        String newFileName = UUID.randomUUID().toString() + "_" + multipartFile.getOriginalFilename();
 	        
 	        //새로운 파일 서버 업로드
-	        multipartFile1.transferTo(new File(uploadDirectory, newFileName));
+	        multipartFile.transferTo(new File(uploadDirectory, newFileName));
 	        
 	        //기존 파일 삭제
 	        if (exEvent.getEventImg1() != null) {
