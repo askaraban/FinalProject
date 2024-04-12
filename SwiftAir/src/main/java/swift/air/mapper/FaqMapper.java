@@ -10,6 +10,6 @@ public interface FaqMapper {
 	int updateFaq(Faq faq);
 	int deleteFaq(int faqId);
 	Faq selectFaq(int faqId);
-	int selectFaqCount();
+	int selectFaqCount(int categoryId);
 	List<Faq> selectFaqList(Map<String, Object> map);
 }

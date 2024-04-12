@@ -165,13 +165,13 @@ ul {
          </div>
             
             <div class="tabMenu rud">
-              <div class="tabBtn" style="margin-top: 50px;">
+              <div class="tabBtn" style="margin-top: 50px;" id="faqList">
 	             <input type="hidden" id="category" value="">
-				 <button class="btn on" onclick="fn_changeCategory(this.value);" value="">전체</button>
-	             <button class="btn on" onclick="fn_changeCategory(this.value);" value="bs">예약</button>
-	             <button class="btn on" onclick="fn_changeCategory(this.value);" value="bk">결제</button>
-	             <button class="btn on" onclick="fn_changeCategory(this.value);" value="pm">변경취소</button>
-	             <button class="btn on" onclick="fn_changeCategory(this.value);" value="cc">공항</button>
+				 <button class="btn on" onclick="fn_changeCategory(this.value);" value="0">전체</button>
+	             <button class="btn on" onclick="fn_changeCategory(this.value);" value="1">예약</button>
+	             <button class="btn on" onclick="fn_changeCategory(this.value);" value="2">결제</button>
+	             <button class="btn on" onclick="fn_changeCategory(this.value);" value="3">변경취소</button>
+	             <button class="btn on" onclick="fn_changeCategory(this.value);" value="4">공항</button>
 
               </div>
             </div>
@@ -254,7 +254,13 @@ ul {
 	    })
     </script>
     
-    
+    <script>
+    function fn_changeCategory(categoryId) {
+        location="<c:url value="/faq/main"/>?categoryId="+categoryId;
+        
+    }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
   </body>

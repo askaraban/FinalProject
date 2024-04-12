@@ -40,19 +40,16 @@ public class FaqServiceImpl implements FaqService {
 	}
 	
 	@Override
-	public Map<String, Object> getFaqList(int pageNum) {
+	public Map<String, Object> getFaqList(int pageNum, int categoryId) {
 		//페이징 처리
-		int totalSize=faqDAO.selectFaqCount();
+		int totalSize=faqDAO.selectFaqCount(categoryId);
 		
 		Pager pager=new Pager(pageNum, totalSize, 5, 5);
 		
 		Map<String, Object> pageMap=new HashMap<String, Object>();
 		pageMap.put("startRow", pager.getStartRow());
 		pageMap.put("endRow", pager.getEndRow());
-		
-		pageMap.put("categoryId", 0);
-		
-		
+		pageMap.put("categoryId", categoryId);
 		
 		List<Faq> faqList=faqDAO.selectFaqList(pageMap);
 		
