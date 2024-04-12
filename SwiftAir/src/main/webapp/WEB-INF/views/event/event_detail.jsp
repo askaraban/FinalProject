@@ -3,6 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>   
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <body id="body" class="up-scroll">
 <!-- ====================================
@@ -16,7 +18,12 @@
             <h2 class="fw-bolder lh-base">
          		${eventdetail.eventTitle}
             </h2>
-            <date class="meta-date" style="font-size: 1.025rem;">${eventdetail.eventStart} ~ ${eventdetail.eventEnd}</date>
+            <date class="meta-date" style="font-size: 1.025rem;">
+            	<fmt:parseDate var="startDate" value="${eventdetail.eventStart}" pattern="yyyy-MM-dd HH:mm:ss" />
+                <fmt:parseDate var="endDate" value="${eventdetail.eventEnd}" pattern="yyyy-MM-dd HH:mm:ss" />
+                <fmt:formatDate pattern='yyyy-MM-dd' value='${startDate}' /> ~ 
+                <fmt:formatDate pattern='yyyy-MM-dd' value='${endDate}' />
+            </date>
             <hr>
         </div>
         </div>
@@ -31,7 +38,7 @@
         <div class="row">
             <div class="col-md-5 col-lg-4">
             <div class="card border-0 bg-transparent">
-                <img class="card-img rounded-5 mt-sm-5" src="<c:url value="${eventdetail.eventImg2}"/>">
+                <img class="card-img rounded-5 mt-sm-5" src="<c:url value='/img/event/${fn:split(eventdetail.eventImg2, \"_\")[1]}'/>">
             </div>
         </div>
       <!--======= Sidebar =======-->
@@ -42,7 +49,12 @@
                         <tbody>
                             <tr>
                                 <td class="fw-bolder lh-base">운영기간</td>
-                                <td class="px-6">${eventdetail.eventStart} ~ ${eventdetail.eventEnd}</td>
+                                <td class="px-6">
+                            		<fmt:parseDate var="startDate" value="${eventdetail.eventStart}" pattern="yyyy-MM-dd HH:mm:ss" />
+					               	<fmt:parseDate var="endDate" value="${eventdetail.eventEnd}" pattern="yyyy-MM-dd HH:mm:ss" />
+					               	<fmt:formatDate pattern='yyyy-MM-dd' value='${startDate}' /> ~ 
+					               	<fmt:formatDate pattern='yyyy-MM-dd' value='${endDate}' />
+                                </td>
                             </tr>
                             <tr>
                                 <td class="fw-bolder lh-base">행사내용</td>

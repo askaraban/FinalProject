@@ -2,8 +2,6 @@ package swift.air.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -55,12 +53,56 @@ public class EventController {
         return "redirect:/event/list";
 	}
 	
-	/*
-	@RequestMapping(value = "/modify")
-	public String eventModify() {
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public String eventModify(@RequestParam int eventId, Model model) {
+		Event eventmodify= eventService.getEvent(eventId);
+		model.addAttribute("eventmodify", eventmodify);
 		return "event/event_modify";
 	}
-	*/
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String eventModify(@ModelAttribute Event event, @RequestParam MultipartFile multipartFile1,
+						        @RequestParam MultipartFile multipartFile2) throws IOException {
+		
+		//기존의 이벤트 정보
+	    Event exEvent = eventService.getEvent(event.getEventId());
+	   
+	    //대표 이미지 변경 확인 후 새로운 파일로 변경
+	    if (!multipartFile1.isEmpty()) {
+	        String uploadDirectory = context.getServletContext().getRealPath("/resources/assets/img/event");
+	        String newFileName = UUID.randomUUID().toString() + "_" + multipartFile1.getOriginalFilename();
+	        
+	        //새로운 파일 서버 업로드
+	        multipartFile1.transferTo(new File(uploadDirectory, newFileName));
+	        
+	        //기존 파일 삭제
+	        if (exEvent.getEventImg1() != null) {
+	            new File(uploadDirectory, exEvent.getEventImg1()).delete();
+	        }
+	        
+	        //업데이트된 파일명 이벤트 객체에 설정
+	        event.setEventImg1(newFileName);
+	    }
+	
+	    if (!multipartFile2.isEmpty()) {
+	        String uploadDirectory = context.getServletContext().getRealPath("/resources/assets/img/event");
+	        String newFileName = UUID.randomUUID().toString() + "_" + multipartFile2.getOriginalFilename();
+	        
+	        multipartFile2.transferTo(new File(uploadDirectory, newFileName));
+	        
+	        if (exEvent.getEventImg2() != null) {
+	            new File(uploadDirectory, exEvent.getEventImg2()).delete();
+	        }
+	        
+	        event.setEventImg2(newFileName);
+	    }
+	    
+	    //이벤트 정보 업데이트
+	    eventService.modifyEvent(event);
+	    
+	    return "redirect:/event/list";
+	}
+	
 	
 	@RequestMapping("/list")
 	public String eventList(@RequestParam(defaultValue = "1") int pageNum, Model model) {
@@ -76,12 +118,20 @@ public class EventController {
 	public String eventDelete(@RequestParam int eventId) {
 		//삭제될 게시글을 반환받아 저장 - 파일명을 제공받기 위해 사용
 		Event event=eventService.getEvent(eventId);
-		String uploadDirectory=context.getServletContext().getRealPath("/resources/assets/img/event");
-		//서버 디렉토리에 저장된 게시글의 파일 삭제 처리
-		new File(uploadDirectory, event.getEventImg1()).delete();		
-		new File(uploadDirectory, event.getEventImg2()).delete();		
 		
-		eventService.removeEvent(eventId);
+		if (event != null) { // event가 null이 아닌 경우에만 처리
+			String uploadDirectory=context.getServletContext().getRealPath("/resources/assets/img/event");
+			//서버 디렉토리에 저장된 게시글의 파일 삭제 처리
+			if (event.getEventImg1() != null) {
+				new File(uploadDirectory, event.getEventImg1()).delete();	
+			}
+	        if (event.getEventImg2() != null) {
+	        	new File(uploadDirectory, event.getEventImg2()).delete();		
+	        }
+	        
+	        eventService.removeEvent(eventId);
+		}
+        
 		return "redirect:/event/list";
 	}
 

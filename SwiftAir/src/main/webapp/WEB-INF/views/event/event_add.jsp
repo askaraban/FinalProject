@@ -37,8 +37,9 @@
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">운영기간</div>
 						<div class="form-group col-md-3 col-lg-12 mb-0">
-							<input type="text" class="form-control" name="eventStart" value="${event.eventStart}">
-							<input type="text" class="form-control" name="eventEnd" value="${event.eventEnd}">
+							<input type="text" class="form-control double-date" id="eventSchedule">
+							<input type="hidden" name="eventStart" id="eventStart" value="${event.eventStart}">
+							<input type="hidden" name="eventEnd" id="eventEnd" value="${event.eventEnd}">
 						</div>
 					</div>
 					<div class="mb-4">
@@ -64,15 +65,30 @@
 		<div style="float: right">
 			<button type="button" class="btn btn-primary ms-1" onclick="location.href='<c:url value="/event/list"/>';">목록</button>
 			<button type="button" class="btn btn-primary ms-1" onclick="location.href='<c:url value="/event/list"/>';">취소</button>
-			<button type="submit" class="btn btn-primary ms-1">등록</button>
+			<button type="submit" class="btn btn-primary ms-1" id="submitBtn">등록</button>
 		</div>
 		</form>
 	</div>
 </section>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-  
+$('#submitBtn').click(function() {
+	var eventSchedule = $('#eventSchedule').val();
+	var values = eventSchedule.split(" - ");
 	
+	var first = values[0].split('/');
+	var last = values[1].split('/');
+	
+	var oStart = first[2] + '/' + first[0] + '/' + first[1];
+	var oEnd = last[2] + '/' + last[0] + '/' + last[1];
+	
+	var eventStart = oStart;
+	var eventEnd = oEnd;
+	
+	$('#eventStart').val(eventStart);
+	$('#eventEnd').val(eventEnd);
+})
 </script>
 
 </body>

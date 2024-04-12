@@ -3,6 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <body id="body" class="body-wrapper boxed-menu">
 
@@ -41,8 +43,15 @@
 	        <tr>
 	          <td class="text-capitalize">${event.eventId}</td>
 	          <td class="text-capitalize">${event.eventTitle}</td>
-	          <td class="text-capitalize" align="center">${event.eventStart}</td>
-	          <td class="text-capitalize" align="center">${event.eventEnd}</td>
+	          <td class="text-capitalize" align="center">
+	          	<fmt:parseDate var="startDate" value="${event.eventStart}" pattern="yyyy-MM-dd HH:mm:ss" />
+               	<fmt:formatDate pattern='yyyy-MM-dd' value='${startDate}' /> 
+	          </td>
+	          <td class="text-capitalize" align="center">
+	          	<fmt:parseDate var="endDate" value="${event.eventEnd}" pattern="yyyy-MM-dd HH:mm:ss" />
+               	<fmt:formatDate pattern='yyyy-MM-dd' value='${endDate}' /> 
+	          </td>
+	          
 	          <td align="center">
 	            <span class="badge text-bg-primary px-2 py-1">${event.eventStatus}</span>
 	          </td>

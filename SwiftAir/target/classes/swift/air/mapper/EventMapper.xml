@@ -13,7 +13,7 @@
 	<!-- 수정 메소드 -->
 	<update id="updateEvent">
 		update event set event_title=#{eventTitle}, event_content=#{eventContent}, event_img1=#{eventImg1}
-			, event_img2=#{eventImg2}, event_start=#{eventStart}, event_end=sysdate
+			, event_img2=#{eventImg2}, event_start=#{eventStart}, event_end=#{eventStart}
 			, event_notice=#{eventNotice}, event_status=#{eventStatus} where event_id=#{eventId}
 	</update>
 	
