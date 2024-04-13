@@ -25,8 +25,9 @@ import swift.air.service.SeatService;
 public class SearchController {
 	private final SearchService service;
 	
-	@RequestMapping(value = "/reservation")
-	public String searchReservation(HttpSession session, Model model) {
+	// 지난 여정에 대한 일정을 보여주는 컨트롤러
+	@RequestMapping(value = "/reservation/pre")
+	public String searchReservation1(HttpSession session, Model model) {
 		
 		Member member = (Member)session.getAttribute("loginMember");
 		
@@ -38,9 +39,26 @@ public class SearchController {
 		log.info("[/searchReservation] 페이지 요청 : SearchController 클래스의 searchReservation() 메소드 호출");
 		return "search/search_reservation";
 	}
+	// 다가오는 여정에 대한 일정을 보여주는 컨트롤러
+	@RequestMapping(value = "/reservation/aft")
+	public String searchReservation2(HttpSession session, Model model) {
+		
+		Member member = (Member)session.getAttribute("loginMember");
+		
+		if(member==null) {
+			return "redirect:/member/login";
+		}
+		model.addAttribute("searchList1", service.getSearchListAfter(member.getMemberNum()));
+		System.out.println(member.getMemberNum());
+		log.info("[/searchReservation] 페이지 요청 : SearchController 클래스의 searchReservation() 메소드 호출");
+		return "search/search_reservation2";
+	}
 	
 	@RequestMapping(value = "/destination")
 	public String searchDestination() {
+		
+		
+		
 		log.info("[/searchReservation] 페이지 요청 : SearchController 클래스의 searchReservation() 메소드 호출");
 		return "search/search_destination";
 	}

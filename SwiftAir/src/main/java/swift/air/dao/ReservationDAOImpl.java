@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import lombok.RequiredArgsConstructor;
 import swift.air.dto.Passenger;
+import swift.air.dto.PassengerReservation;
 import swift.air.mapper.ReservationMapper;
 
 @Repository
@@ -20,6 +21,12 @@ public class ReservationDAOImpl implements ReservationDAO {
 	@Override
 	public int selectSeatCount(String resDeparture, String resDestination, String checkDate) {
 		return sqlSession.getMapper(ReservationMapper.class).selectSeatCount(resDeparture, resDestination, checkDate);
+	}
+
+	@Override
+	public PassengerReservation chooseFlight(String departureDate, String departure, String arrival) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(ReservationMapper.class).chooseFlight(departureDate, departure, arrival);
 	}
 
 

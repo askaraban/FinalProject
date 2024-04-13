@@ -36,17 +36,22 @@ public class ReservationController {
 	
 	@RequestMapping(value = "/seatgrade")
 	public String resSeatGrade(@RequestParam Map<String, Object> resScheduleSellection, Model model
-			, @RequestParam String resDeparture, @RequestParam String resDestination, @RequestParam String resDepartDate) {
+			, @RequestParam int resPassengerCnt
+			, @RequestParam String resDeparture
+			, @RequestParam String resDestination
+			, @RequestParam String resDepartDate
+			, @RequestParam String resReturnDate) {
 		
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
-		//Passenger flightList = reservationService.getFlight(resDeparture, resDestination, resDepartDate);
-
+		
 		resInfo.putAll(resScheduleSellection);
 		model.addAttribute("resInfo", resInfo);
 		//model.addAttribute("flightList", flightList);
 		
+		model.addAttribute("flight1", reservationService.getFlight(resDeparture, resDestination, resDepartDate));
+		model.addAttribute("flight2", reservationService.getFlight(resDestination, resDeparture, resReturnDate));
+		
 		System.out.println("Reservation Information: " + resInfo);
-		//System.out.println("Flight Information: " + flightList);
 		
 		//return "redirect:/reservation/seatgrade";
 		return "reservation/res_seat_grade";
@@ -71,7 +76,7 @@ public class ReservationController {
 			, Model model, @RequestParam(value = "resPassengerBirth", required = true) List<String> birth
 			, @RequestParam Map<String, Object> addResMember) {
 		model.addAttribute("seatList",seatService.getSeatList());
-		model.addAttribute("reservedSeatList",seatService.getReservedSeatList());
+		//model.addAttribute("reservedSeatList",seatService.getReservedSeatList());
 		
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
 		
@@ -93,7 +98,7 @@ public class ReservationController {
 	public String getResPassengersInfo2(@RequestParam(value = "selSeat1", required = true) List<String> values2
 			, Model model, @RequestParam Map<String, Object> addPassengerSeat1) {
 		model.addAttribute("seatList",seatService.getSeatList());
-		model.addAttribute("reservedSeatList",seatService.getReservedSeatList());
+		//model.addAttribute("reservedSeatList",seatService.getReservedSeatList());
 		
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
 		
@@ -112,7 +117,7 @@ public class ReservationController {
 	public String getResPassengersInfo3(@RequestParam(value = "selSeat2", required = true) List<String> values3
 			, Model model, @RequestParam Map<String, Object> addPassengerSeat2) {
 		model.addAttribute("seatList",seatService.getSeatList());
-		model.addAttribute("reservedSeatList",seatService.getReservedSeatList());
+		//model.addAttribute("reservedSeatList",seatService.getReservedSeatList());
 		
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
 		

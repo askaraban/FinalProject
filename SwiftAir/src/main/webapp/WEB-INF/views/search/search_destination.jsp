@@ -25,7 +25,7 @@
   <div class="py-7 py-md-0 bg-light">
   	<div class="container position-relative px-md-0">
   	 <div class="search-box2">
-      <form method="GET" action="listings-half-screen-map-list.html">
+      <form method="post" action="<c:url value="/search/destination" />">
         <div class="select-default" style="padding: 10px;">
           <select class="select-location">
             <option>출발지</option>

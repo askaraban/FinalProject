@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="swift.air.mapper.ReservationMapper">
+
 	<!-- 출발지, 도착지, 가는여정 출발일, 돌아오는 여정 출발일, 가용 자리 받아와야함 -->
 	<select id="selectFlight" resultType="Passenger">
-		SELECT 
-			schedule_id, schedule_departure_date, schedule_arrival_date, route_departure, route_destination, route_flight, route_price, seat_name, seat_grade
-		FROM 
-			passenger 
-		LEFT JOIN 
-			schedule on passenger_schedule_id = schedule_id 
-		LEFT JOIN 
-			route on schedule_route_id = route_id
-		LEFT JOIN 
-			seat on passenger_seat_name = seat_name
-		WHERE 
-			route_departure = #{resDeparture} and route_destination = #{resDestination} and schedule_departure_date = #{resDepartDate};
+		SELECT
+		 schedule_id, schedule_departure_date, schedule_arrival_date, route_departure, route_destination, route_flight, route_price
+		 FROM passenger LEFT JOIN
+		 schedule on passenger_schedule_id = schedule_id LEFT JOIN
+		 route on schedule_route_id = route_id WHERE
+		 route_departure = #{param1} and route_destination = #{param2} and schedule_departure_date = to_date(#{param3}, 'mm/dd/yyyy')
 	</select>
 	<select id="selectSeatCount" resultType="int">
 		SELECT 
@@ -26,6 +21,21 @@
 		LEFT JOIN 
 			route on schedule_route_id = route_id 
 		WHERE 
-			route_departure = #{resDeparture} and route_destination = #{resDestination} and schedule_departure_date = #{checkDate};
+			route_departure = #{resDeparture} and route_destination = #{resDestination} and schedule_departure_date = #{checkDate}
+	</select>
+	
+	<!-- 따로 sql 만들어봤던 것 -->
+	<select id="chooseFlight" resultType="PassengerReservation">
+		select
+		    schedule_id
+		    , schedule_departure_Date
+		    , schedule_arrival_date
+		    , route_departure
+		    , route_destination
+		    , route_flight
+		    , route_price
+		    from schedule join route on route_id = schedule_route_id
+		    where schedule_departure_Date = to_date('#{param1}','mm/dd/yyyy')
+		     and route_departure=#{param2} and route_destination=#{param3}
 	</select>
 </mapper>

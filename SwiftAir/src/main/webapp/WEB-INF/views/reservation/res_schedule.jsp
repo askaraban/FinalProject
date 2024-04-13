@@ -34,10 +34,10 @@
               <div class="select-default">
          		 <select class="select-location" name="resDeparture">
 		            <option>출발지</option>
-		            <option value="ICN">서울/인천(ICN)</option>
-		            <option value="LAX">로스앤젤레스(LAX)</option>
-		            <option value="BKK">방콕(BKK)</option>
-		            <option value="NRT">도쿄/나리타(NRT)</option>
+		            <option value="인천">서울/인천(ICN)</option>
+		            <option value="로스앤젤레스">로스앤젤레스(LAX)</option>
+		            <option value="방콕">방콕(BKK)</option>
+		            <option value="나리타">도쿄/나리타(NRT)</option>
 		          </select>
         		</div>
             </div>
@@ -46,10 +46,10 @@
               <div class="select-default">
 		          <select class="select-location" name="resDestination">
 		            <option>도착지</option>
-		            <option value="ICN">서울/인천(ICN)</option>
-		            <option value="LAX">로스앤젤레스(LAX)</option>
-		            <option value="BKK">방콕(BKK)</option>
-		            <option value="NRT">도쿄/나리타(NRT)</option>
+		            <option value="인천">서울/인천(ICN)</option>
+		            <option value="로스앤젤레스">로스앤젤레스(LAX)</option>
+		            <option value="방콕">방콕(BKK)</option>
+		            <option value="나리타">도쿄/나리타(NRT)</option>
 		          </select>
 		        </div>
             </div>

@@ -18,8 +18,8 @@
     <nav class="bg-transparent breadcrumb breadcrumb-2 px-0 mb-5" aria-label="breadcrumb">
       <h2 class="fw-normal mb-4 mb-md-0">예약 조회</h2>
       <ul class="list-unstyled d-flex p-0 m-0">
-        <li class="breadcrumb-item active" aria-current="page">다가오는 여정</li>
-        <li class="breadcrumb-item"><a href="<c:url value = '/search/reservation/aft'/>">지난 여정</a></li>
+        <li class="breadcrumb-item"><a href="<c:url value = '/search/reservation/pre'/>">다가오는 여정</a></li>
+        <li class="breadcrumb-item active" aria-current="page">지난 여정</li>
       </ul>
     </nav>
 
