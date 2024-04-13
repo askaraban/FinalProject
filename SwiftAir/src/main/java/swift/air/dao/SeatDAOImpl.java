@@ -15,7 +15,7 @@ public class SeatDAOImpl implements SeatDAO{
 	private final SqlSession session;
 
 	@Override
-	public List<String> selectReservedSeatList(int scheduleId) {
+	public List<String> selectReservedSeatList(String scheduleId) {
 		
 		return session.getMapper(SeatMapper.class).selectReservedSeatList(scheduleId);
 	}

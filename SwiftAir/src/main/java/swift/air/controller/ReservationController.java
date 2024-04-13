@@ -45,11 +45,17 @@ public class ReservationController {
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
 		
 		resInfo.putAll(resScheduleSellection);
+		resInfo.put("scheduleId", reservationService.getFlight(resDeparture, resDestination, resDepartDate).getScheduleId());
+		resInfo.put("scheduleDepartureDate", reservationService.getFlight(resDeparture, resDestination, resDepartDate).getScheduleDepartureDate());
+		resInfo.put("scheduleArrivalDate", reservationService.getFlight(resDeparture, resDestination, resDepartDate).getScheduleArrivalDate());
+		resInfo.put("routeDeparture", reservationService.getFlight(resDeparture, resDestination, resDepartDate).getScheduleArrivalDate());
+		resInfo.put("routeDestination", reservationService.getFlight(resDeparture, resDestination, resDepartDate).getRouteDestination());
+		resInfo.put("routeFlight", reservationService.getFlight(resDeparture, resDestination, resDepartDate).getRouteFlight());
+		resInfo.put("routePrice", reservationService.getFlight(resDeparture, resDestination, resDepartDate).getRoutePrice());
 		model.addAttribute("resInfo", resInfo);
-		//model.addAttribute("flightList", flightList);
 		
-		model.addAttribute("flight1", reservationService.getFlight(resDeparture, resDestination, resDepartDate));
-		model.addAttribute("flight2", reservationService.getFlight(resDestination, resDeparture, resReturnDate));
+		model.addAttribute("flight", reservationService.getFlight(resDeparture, resDestination, resDepartDate));
+		//model.addAttribute("flight2", reservationService.getFlight(resDestination, resDeparture, resReturnDate));
 		
 		System.out.println("Reservation Information: " + resInfo);
 		
@@ -76,9 +82,9 @@ public class ReservationController {
 			, Model model, @RequestParam(value = "resPassengerBirth", required = true) List<String> birth
 			, @RequestParam Map<String, Object> addResMember) {
 		model.addAttribute("seatList",seatService.getSeatList());
-		//model.addAttribute("reservedSeatList",seatService.getReservedSeatList());
 		
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
+		model.addAttribute("reservedSeatList",seatService.getReservedSeatList((String)resInfo.get("scheduleId")));
 		
 		
 		resInfo.putAll(addResMember);
@@ -98,9 +104,9 @@ public class ReservationController {
 	public String getResPassengersInfo2(@RequestParam(value = "selSeat1", required = true) List<String> values2
 			, Model model, @RequestParam Map<String, Object> addPassengerSeat1) {
 		model.addAttribute("seatList",seatService.getSeatList());
-		//model.addAttribute("reservedSeatList",seatService.getReservedSeatList());
 		
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
+		model.addAttribute("reservedSeatList",seatService.getReservedSeatList((String)resInfo.get("scheduleId")));
 		
 		resInfo.putAll(addPassengerSeat1);
 		

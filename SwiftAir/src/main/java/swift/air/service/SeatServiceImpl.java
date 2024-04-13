@@ -14,7 +14,7 @@ public class SeatServiceImpl implements SeatService{
 	private final SeatDAO seatDAO;
 
 	@Override
-	public List<String> getReservedSeatList(int scheduleId) {
+	public List<String> getReservedSeatList(String scheduleId) {
 		
 		return seatDAO.selectReservedSeatList(scheduleId); 
 	}

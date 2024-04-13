@@ -8,7 +8,7 @@
 	
 	<select id="selectReservedSeatList" resultType="String">
 		select passenger_seat_name from schedule join passenger
-		 on passenger_schedule_id=1 where schedule_id=#{scheduleId}
+		 on passenger_schedule_id=schedule_id where schedule_id=#{scheduleId}
 	</select>
 	 
 	<!-- 모든 좌석 리스트를 출력하는 sql -->
