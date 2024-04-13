@@ -12,7 +12,7 @@
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+	</listener> 
 
 	<!-- filter : 필터 클래스를 필터로 등록하기 위한 엘리먼트 -->
 	<filter>

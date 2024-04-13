@@ -5,16 +5,15 @@
 
 	
 	<!-- 모든 결제 내역 중 항공편 id가 같은 결제 내역에서 탑승객의 좌석번호들을 출력하는 sql -->
-	<!-- 
+	
 	<select id="selectReservedSeatList" resultType="String">
-		select passengerSeatName from passenger join payment on
-		 passengerPaymentId = paymentId join schedule on scheduleId = paymentScheduleId1;
+		select passenger_seat_name from schedule join passenger
+		 on passenger_schedule_id=1 where schedule_id=#{scheduleId}
 	</select>
-	 -->
+	 
 	<!-- 모든 좌석 리스트를 출력하는 sql -->
-	<!-- 
-	<select id="selectSeatList" resultType="seat">
-		select seatName, seatGrade from seat
+	
+	<select id="selectSeatList" resultType="Seat">
+		select seat_name, seat_grade, seat_price from seat order by seat_name
 	</select>
-	 -->
 </mapper>

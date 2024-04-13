@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="swift.air.mapper.SearchMapper">
+
+	
+	<!--회원번호를 전달받아 결제번호, 여정, 노선, 일정을 조회할 수 있는 리스트 출력 -->
+	<select id="selectSearchList1" resultType="Search">
+		select payment_id, route_departure, route_destination, route_flight, schedule_departure_date, schedule_arrival_date
+		, payment_total, payment_method from payment join schedule on schedule_id = payment_schedule_id1
+		 join route on schedule_route_id=route_id where payment_member_num = #{memberId}
+		 union select payment_id, route_departure, route_destination, route_flight, schedule_departure_date
+		, schedule_arrival_date, payment_total, payment_method from payment join schedule on
+		 schedule_id = payment_schedule_id2 join route on schedule_route_id=route_id where payment_member_num = #{memberId}
+	</select>
+
+
+</mapper>

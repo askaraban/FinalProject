@@ -5,6 +5,8 @@
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 <body id="body" class="up-scroll">
+<form id="addSeatGrade" action="<c:url value="/reservation/passengersinfo" />" method="POST">
+
 <!-- ====================================
 ———	HEADER
 ===================================== -->
@@ -26,85 +28,73 @@
 ===================================== -->
 <section class="py-7 py-md-10">
 	<div class="container">
-		<div class="">
-			<p>성인 1인 기준</p>
-		</div>
-	<div class="border rounded px-6 py-5 mb-6">
-		<div class="row">
-			<div class="col-sm-4">
-				<div class="row">
-					<div class="col-sm-4 text-center">
-						<h5><div>04. 01</div></h5>
-						<h3><span>12 : 50</span></h3>
+		<div class="border rounded px-6 py-5 mb-6">
+			<h5>탑승객 1인 기준</h5>
+			<div class="row align-items-center">
+				<div class="col-sm-6">
+					<div class="row border rounded mb-1">
+						<div class="col-sm-4 text-center">
+							<h5>${resInfo.resDepartDate}</h5>
+							<h3><span>12 : 50</span></h3>
+						</div>
+						<div class="col-sm-4 text-center">
+							<h5>가는 여정</h5>
+							<h4>${resInfo.resDeparture} > ${resInfo.resDestination}</h4>
+						</div>
+						<div class="col-sm-4 text-center">
+							<h5>${resInfo.resDepartDate}</h5>
+							<h3><span>08 : 20</span></h3>
+						</div>
 					</div>
-					<div class="col-sm-4 text-center">
-						<p>11시간 30분</p>
-						<p>--------></p>
-					</div>
-					<div class="col-sm-4 text-center">
-						<h5><div>04. 01</div></h5>
-						<h3><span>08 : 20</span></h3>
+					<div class="row border rounded">
+						<div class="col-sm-4 text-center">
+							<h5>${resInfo.resReturnDate}</h5>
+							<h3><span>08 : 20</span></h3>
+						</div>
+						<div class="col-sm-4 text-center">
+							<h5>돌아오는 여정</h5>
+							<h4>${resInfo.resDestination} > ${resInfo.resDeparture}</h4>
+						</div>
+						<div class="col-sm-4 text-center">
+							<h5>${resInfo.resReturnDate}</h5>
+							<h3><span>12 : 50</span></h3>
+						</div>
 					</div>
 				</div>
-				<div class="col-sm-12 text-center">
-					B787-9 YP101 여정정보
-				</div>
-			</div>
-
-			<div class="col-sm-8 align-items-center">
-				<div class="row">
-					<div class="border rounded col-sm-6">
-						<div class="form-check form-check-inline col-sm-12">
-							<input class="form-check-input me-5" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							<label class="form-check-label" for="inlineRadio1">
-								<div class="col">
-									<h5>이코노미석</h5>
-								</div>
-								<div class="col">
+				
+				<div class="col-sm-6 px-7">
+					<div class="row align-items-center">
+						<div class="col-sm-6 px-2">
+							<div class="form-check form-check-inline col-sm-12 border rounded px-6">
+								<input class="form-check-input me-3" type="radio" name="resSeatGrade" id="economy35" value="economy35" onclick="showSeatImage('economy35')">
+								<label class="form-check-label" for="economy35">
+									<h5>이코노미석 : </h5>
 									<h3>520,000원</h3>
-								</div>
-							</label>
-	              		</div>
-			  		</div>
-					<div class="border rounded col-sm-6">
-						<div class="form-check form-check-inline col-sm-12">
-							<input class="form-check-input me-5" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-							<label class="form-check-label" for="inlineRadio2">
-								<div class="col">
-									<h5>프리미엄석</h5>
-								</div>
-								<div class="col">
+								</label>
+	              			</div>
+			  			</div>
+						<div class="col-sm-6 px-2">
+							<div class="form-check form-check-inline col-sm-12 border rounded px-6">
+								<input class="form-check-input me-3" type="radio" name="resSeatGrade" id="premia42" value="premia42"onclick="showSeatImage('premia42')">
+								<label class="form-check-label" for="premia42">
+									<h5>프리미엄석 : </h5>
 									<h3>1,045,000원</h3>
-								</div>
-							</label>
-	              		</div>
-			  		</div>
+								</label>
+	              			</div>
+			  			</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-  
-	<!-- 좌석 선택시 좌석 정보 -->
-	<!-- 이코노미석(이코노미35) -->
+	
 	<div class="container">
-		<div class="border rounded px-6 py-5 mb-6">
-			<div class="col-sm-12">
-			<img class="img-fluid" src=<c:url value="/img/seat-option/economy35.png"/>>
-			</div>
-		</div>
-	</div>
-	<!-- 프리미엄석(프레미아42) -->
-	<div class="container">
-		<div class="border rounded px-6 py-5 mb-6">
-			<div class="col-sm-12">
-				<img class="img-fluid" src=<c:url value="/img/seat-option/premia42.png"/>>
-			</div>
-		</div>
+		<div id="seatImageContainer"></div>
 	</div>
 </section>
 
 <!-- 일단 푸터 같은것 -->
-<nav class="navbar-expand-sm rounded shadow bg-light fixed-bottom">
+<nav class="navbar-expand-sm rounded shadow bg-light fixed-bottom" style="height: 54px;">
 	<div class="row">
 		<div class="col-sm-6 col-lg-6"></div>
 		<div class="col-sm-2 col-lg-2 align-self-center text-center">
@@ -113,13 +103,24 @@
 		<div class="col-sm-2 col-lg-2 align-self-center">
 			<h5>2,345,678 원</h5>
 		</div>
-		<div class="col-sm-1 col-lg-1">
-			<button onclick="history.back()" class="btn btn-outline-primary w-100">이전</button>
-		</div>
-		<div class="col-sm-1 col-lg-1">
-			<button type="submit" class="btn btn-primary w-100" onclick="location.href='<c:url value="/reservation/passengerinfo"/>';">다음</button>
+		<div class="col-sm-2 col-lg-2">
+			<button type="submit" class="btn btn-primary w-75">다음</button>
 		</div>
 	</div>
 </nav>
+</form>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function showSeatImage(seatGrade) {
+    var imageContainer = document.getElementById('seatImageContainer');
+    var imageUrl = '';
+    if (seatGrade === 'economy35') {
+        imageUrl = '<c:url value="/img/seat-option/economy35.png"/>';
+    } else if (seatGrade === 'premia42') {
+        imageUrl = '<c:url value="/img/seat-option/premia42.png"/>';
+    }
+    imageContainer.innerHTML = '<img class="img-fluid" src="' + imageUrl + '">';
+};
+</script>
 </body>

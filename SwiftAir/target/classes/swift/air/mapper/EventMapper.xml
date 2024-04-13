@@ -13,7 +13,7 @@
 	<!-- 수정 메소드 -->
 	<update id="updateEvent">
 		update event set event_title=#{eventTitle}, event_content=#{eventContent}, event_img1=#{eventImg1}
-			, event_img2=#{eventImg2}, event_start=#{eventTitle}, event_end=sysdate
+			, event_img2=#{eventImg2}, event_start=#{eventStart}, event_end=#{eventEnd}
 			, event_notice=#{eventNotice}, event_status=#{eventStatus} where event_id=#{eventId}
 	</update>
 	
@@ -24,8 +24,8 @@
 	
 	<!-- 이벤트번호를 전달받아 테이블의 단일행을 검색하여 이벤트글을 반환하는 메소드 -->
 	<select id="selectEvent" resultType="Event">  
-		select event_id, event_title, event_content, event_img2, event_start
-			, event_end, event_notice, event_status from event where evnet_id=#{eventId}
+		select event_id, event_title, event_content, event_img2, event_start,
+			event_end, event_notice, event_status from event where event_id=#{eventId}
 	</select>
 	
 	<!-- 이벤트 검색 결과 개수 -->
@@ -36,17 +36,19 @@
 	<!-- 페이징 처리 관련정보(시작 행번호와 종료 행번호)를 전달받아 Event 테이블에 저장된 행을 검색하여
 	이벤트 게시글 목록을 반환하는 메소드 -->
 	<select id="selectEventList" resultType="Event">
-		select * from (select rownum rn, eventlist.* from (select event_id, event_date, event_title
-			, event_content, event_img1, event_img2, event_start, event_end, event_notice, event_status
-			from event order by event_id desc) eventlist) where rn between #{startRow} and #{endRow}
+		select * from (select rownum rn, eventlist.* from (select event_id, event_title
+			, event_img1, event_start, event_end
+			, event_status
+			from event order by event_id) eventlist) where rn between #{startRow} and #{endRow}
 	</select>
-	
-	<!-- 페이징 처리 관련정보(Status, 시작 행번호와 종료 행번호)를 전달받아 Event 테이블에 저장된 행을 
-	검색하여 이벤트 게시글 목록을 반환하는 메소드 -->
+
+	<!-- 페이징 처리 관련정보(시작 행번호와 종료 행번호)를 전달받아 Event 테이블에 저장된 행을 검색하여
+	이벤트 게시글 목록을 반환하는 메소드 -->
 	<select id="selectEventListByStatus" resultType="Event">
 		select * from (select rownum rn, eventlist.* from (select event_id, event_title
-			, event_content, event_img1, event_start, event_end, event_status
-			from event where event_status=#{eventStatus} order by event_id desc) eventlist) 
-			where rn between #{startRow} and #{endRow}
+			, event_img1, TO_CHAR(event_start, 'YYYY-MM-DD HH24:MI:SS') as event_start, TO_CHAR(event_end, 'YYYY-MM-DD HH24:MI:SS') as event_end
+			, event_status
+			from event where event_status=#{eventStatus} order by event_id desc) eventlist) where rn between #{startRow} and #{endRow}
 	</select>
+	
 </mapper>

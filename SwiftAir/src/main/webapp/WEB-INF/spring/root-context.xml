@@ -4,6 +4,28 @@
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx.xsd">
+		
+	
+	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="javaMailSender">
+		
+		<property name="host" value="smtp.gmail.com"/>
+		
+		<property name="port" value="587"/>
+		
+		<property name="username" value="wjdghgoo"/>
+		
+	
+		<property name="password" value="zusz azup ojil bpcf"/>
+		
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.auth">true</prop>
+			</props>
+		</property>		
+	</bean>		
+		
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- root-context.xml : 모든 Front Controller에게 제공될 Spring Bean을 등록하기 위한 

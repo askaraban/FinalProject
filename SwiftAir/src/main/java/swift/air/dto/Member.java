@@ -1,9 +1,6 @@
 package swift.air.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /*
 Name                 Null?    Type         
@@ -23,25 +20,21 @@ MEMBER_WITHDRAW_DATE          DATE
 MEMBER_POINT                  NUMBER       
 MEMBER_STATUS                 NUMBER(1)  
  */
-
+ 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Member {
-
-	private int memberNum = 0;
-	private String memberId = "";
-	private String memberPswd = "";
-	private String memberKorName = "";
-	private String memberLastName = "";
-	private String memberFirstName = "";
-	private String memberEmail = "";
-	private String memberPhone = "";
-	private int memberGender = 0;
-	private String memberBirth = "";
-	private String memberJoinDate = "";
-	private String memberWithdrawDate = "";
-	private int memberPoint = 0;
-	private int memberStatus = 0;
-	
+	private int memberNum;
+	private String memberId;
+	private String memberPswd;
+	private String memberKorName;
+	private String memberLastName;
+	private String memberFirstName;
+	private String memberEmail;
+	private String memberPhone;
+	private int memberGender;
+	private String memberBirth;
+	private String memberJoinDate;
+	private String memberWithdrawDate;
+	private int memberPoint;
+	private int memberStatus;
 }

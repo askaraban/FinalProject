@@ -3,6 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 
@@ -28,30 +30,52 @@
     <table id="my-booking" class="display nowrap table-data-default" style="width:100%">
       <thead>
         <tr>
-          <th  style="padding: 15px; padding-left: 20px;">예약번호</th>
+          <th  style="padding: 15px; padding-left: 20px;">결제번호</th>
           <th style="padding-left: 20px;">여정</th>
           <th>노선</th>
-          <th>일정</th>
+          <th>출발일</th>
+          <th>도착일</th>
+          <th>결제금액</th>
+          
           <th>상태</th>
         </tr>
       </thead>
       <tbody>
 
+        <c:forEach var="list" items="${searchList1 }">
         <tr>
           <td>
-            <span>A3UFPC</span>
+            <span>${list.paymentId }</span>
           </td>
           <td class="text-capitalize" style="padding: 20px;">
-            <a class="text-hover-primary text-muted" href="listing-rental.html">think Coffee</a>
+            <span>${list.routeDeparture }-${list.routeDestination }</span>
           </td>
-          <td class="text-capitalize">Eat & Drink</td>
-          <td class="test-capitalize">
-            01 Aug 19 11.00 PM
+          <td class="text-capitalize">
+          	<span>${list.routeFlight }</span>
+          </td>
+          <td class="text-capitalize">
+          	<c:set value="${list.scheduleDepartureDate }" var="departure1"/>
+          	${fn:substring(departure1,0,10) }
           </td>
           <td class="test-capitalize">
-            08 Aug 2019, 4:30 PM 5 Persons
+          	<c:set value="${list.scheduleArrivalDate }" var="departure2"/>
+          	${fn:substring(departure2,0,10) }
+          </td>
+          <td class="test-capitalize">
+            <fmt:formatNumber value="${list.paymentTotal }" type="number"/>
+          </td>
+          <td class="test-capitalize">
+	          <c:choose>
+	          	<c:when test="${list.paymentMethod eq 0}">
+	              <span>일반결제</span>
+	          	</c:when>
+		        <c:otherwise>
+		          <span>포인트결제</span>
+		        </c:otherwise>
+	          </c:choose>
           </td>
         </tr>
+        </c:forEach>
       </tbody>
     </table>
   </div>

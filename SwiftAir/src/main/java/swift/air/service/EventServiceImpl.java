@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import swift.air.dao.EventDAO;
@@ -16,6 +17,7 @@ import swift.air.util.Pager;
 public class EventServiceImpl implements EventService{
 	private final EventDAO eventDAO;
 	
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public void addEvent(Event event) {
 		eventDAO.insertEvent(event);
@@ -27,7 +29,7 @@ public class EventServiceImpl implements EventService{
 		eventDAO.updateEvent(event);
 		
 	}
-
+	
 	@Override
 	public void removeEvent(int eventId) {
 		eventDAO.deleteEvent(eventId);
@@ -69,6 +71,8 @@ public class EventServiceImpl implements EventService{
 		pageMap.put("endRow", pager.getEndRow());
 		
 		List<Event> eventListByStatus=eventDAO.selectEventListByStatus(pageMap);
+		
+		 
 		
 		Map<String, Object> resultMap=new HashMap<String, Object>();
 		resultMap.put("pager", pager);

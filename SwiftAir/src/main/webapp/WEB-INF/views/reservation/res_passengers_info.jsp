@@ -5,6 +5,7 @@
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 <body id="body" class="up-scroll">
+<form id="addPassengerInfo" action="<c:url value="/reservation/seat1" />" method="POST">
 
 <!-- ====================================
 ———	HEADER
@@ -14,9 +15,9 @@
     <nav class="bg-transparent breadcrumb breadcrumb-2 px-0 mb-5" aria-label="breadcrumb" style="--bs-breadcrumb-divider: none;">
       <h2 class="fw-normal mb-4 mb-md-0" style="font-size: 40px;">항공권 예매</h2>
       <ul class="list-unstyled d-flex p-0 m-0">
-        <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-        <li class="breadcrumb-item">ㅇ</li><!-- 수정중 -->
-        <li class="breadcrumb-item">ㅇ</li>
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item">일정</li><!-- 수정중 -->
+        <li class="breadcrumb-item">좌석</li>
         <li class="breadcrumb-item">탑승객 정보</li>
       </ul>
     </nav>
@@ -41,19 +42,19 @@
 		            <div class="form-group col-sm-12">
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">영문 성</div>
-		            		<input type="text" class="form-control" placeholder="여권에 표시된 언어로 성을 입력해주세요." required>
+		            		<input type="text" class="form-control" name="resMemLast" value="${loginMember.memberLastName}" placeholder="여권에 표시된 언어로 성을 입력해주세요." required>
 		            	</div>
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">영문 이름</div>
-		            		<input type="text" class="form-control" placeholder="여권에 표시된 언어로 이름을 입력해주세요." required>
+		            		<input type="text" class="form-control" name="resMemFirst" value="${loginMember.memberFirstName}" placeholder="여권에 표시된 언어로 이름을 입력해주세요." required>
 		            	</div>
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">이메일 주소</div>
-		            		<input type="text" class="form-control" placeholder="이메일을 입력해주세요." required>
+		            		<input type="text" class="form-control" name="resMemEmail" value="${loginMember.memberEmail}" placeholder="이메일을 입력해주세요." required>
 		            	</div>
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">휴대폰 번호</div>
-		            		<input type="text" class="form-control" placeholder="휴대폰 번호를 입력해주세요." required>
+		            		<input type="text" class="form-control" name="resMemPhone" value="${loginMember.memberPhone}" placeholder="휴대폰 번호를 입력해주세요." required>
 		            	</div>
 		            </div>
 				</div>
@@ -62,68 +63,40 @@
 
         <!-- 탑승자 정보입력 -->
         <!-- 여러명일 경우 탑승자 * n (성인, 소인 구분 x) -->
+        <input type="hidden" id="passengerCount" value="${resInfo.resPassengerCnt}">
+        <c:forEach var="i" begin="1" end="${resInfo.resPassengerCnt}">
         <div class="border rounded px-6 py-5 mb-6">
 			<div class="row">
 				<div class="col-sm-4">
-					<h5>탑승자 정보입력</h5>
-					<h5>성인 1</h5>
-					<p>여권 상 표기된 이름과 동일하게 입력해주세요.</p>
-					<p>예약 완료 후 이름 변경 시 항공권 재발행 수수료가 부과될 수 있습니다.</p>
+					<h5>탑승자 - ${i} 정보입력</h5>
+					<p>여권 상 표기된 이름과 동일하게 입력해주세요.<br>예약 완료 후 이름 변경 시 항공권 재발행 수수료가 <br>부과될 수 있습니다.</p>
 				</div>
 				<div class="col-sm-8">
 		            <div class="form-group col-sm-12">
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">영문 성</div>
-		            		<input type="text" class="form-control" placeholder="여권에 표시된 언어로 성을 입력해주세요." required>
+		            		<input type="text" class="form-control" id="resPassengerLastName${i}" name="resPassenger" placeholder="여권에 표시된 언어로 성을 입력해주세요." required>
 		            	</div>
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">영문 이름</div>
-		            		<input type="text" class="form-control" placeholder="여권에 표시된 언어로 이름을 입력해주세요." required>
+		            		<input type="text" class="form-control" id="resPassengerFirstName${i}" name="resPassenger" placeholder="여권에 표시된 언어로 이름을 입력해주세요." required>
 		            	</div>
 		            	<div class="input-group mb-2">
 		            		<div class="input-group-text col-sm-2 text-center">생년월일</div>
-		            		<input type="text" class="form-control" placeholder="예): 20180823" required>
-		            	</div>
-		            	<div class="input-group mb-2">
-		            		<div class="input-group-text col-sm-2 text-center">국적</div>
-		            		<input type="text" class="form-control" value="대한민국" required>
-		            	</div>
-		            </div>
-		            	<div class="input-group mb-2">
-		            		<div class="input-group-text col-sm-2 text-center">휴대폰 번호</div>
-		            		<input type="text" class="form-control" placeholder="휴대폰 번호를 입력해주세요." required>
-		            	</div>
-		            	<div class="input-group mb-2">
-		            		<div class="input-group-text col-sm-2 text-center">체류 국가</div>
-		            		<input type="text" class="form-control" value="미국" required>
-		            	</div>
-		            	<div class="input-group mb-2">
-		            		<div class="input-group-text col-sm-2 text-center">주소</div>
-		            		<input type="text" class="form-control" placeholder="영문으로 입력해주세요." required>
-		            	</div>
-		            	<div class="input-group mb-2">
-		            		<div class="input-group-text col-sm-2 text-center">도시</div>
-		            		<input type="text" class="form-control" placeholder="영문으로 입력해주세요." required>
-		            	</div>
-		            	<div class="input-group mb-2">
-		            		<div class="input-group-text col-sm-2 text-center">우편번호</div>
-		            		<input type="text" class="form-control" placeholder="숫자를 입력해주세요." required>
-		            	</div>
-		            	<div class="input-group mb-2">
-		            		<div class="input-group-text col-sm-2 text-center">주</div>
-		            		<input type="text" class="form-control" placeholder="영문으로 입력해주세요." required>
+		            		<input type="text" class="form-control" id="resPassengerBirth${i}"  name="resPassengerBirth" placeholder="예): 20180823" required>
 		            	</div>
 		            </div>
 				</div>
 			</div>
  		</div>
-
+ 		</c:forEach>
+ 		 
       </div>
     </div>
 </section>
 
 <!-- 일단 푸터 같은것 -->
-<nav class="navbar-expand-sm rounded shadow bg-light fixed-bottom">
+<nav class="navbar-expand-sm rounded shadow bg-light fixed-bottom" style="height: 54px;">
 	<div class="row">
 		<div class="col-sm-6 col-lg-6"></div>
 		<div class="col-sm-2 col-lg-2 align-self-center text-center">
@@ -132,13 +105,34 @@
 		<div class="col-sm-2 col-lg-2 align-self-center">
 			<h5>2,345,678 원</h5>
 		</div>
-		<div class="col-sm-1 col-lg-1">
-			<button type="submit" class="btn btn-outline-primary w-100">이전</button>
-		</div>
-		<div class="col-sm-1 col-lg-1">
-			<button type="submit" class="btn btn-primary w-100">다음</button>
+		<div class="col-sm-2 col-lg-2">
+			<button type="submit" class="btn btn-primary w-75" id="toSeat">다음</button>
 		</div>
 	</div>
 </nav>
+</form>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+//탑승자 n의 List 생성
+/* $('#toSeat').click(function() {
+	var passengerList = [];
+	
+	var pasCount = $('#passengerCount').val();
+	for (var i = 1; i <= pasCount; i++) {
+		var lastName = $('#resPassengerLastName' + i).val();
+           var firstName = $('#resPassengerFirstName' + i).val();
+           var birth = $('#resPassengerBirth' + i).val();
+		
+		var arr = {
+			lastName: lastName,
+			firstName: firstName,
+			birth: birth
+		};
+		
+		passengerList.push(arr);
+	};
+	$('#passengersList').val(JSON.stringify(passengerList));
+}); */
+</script>
 </body>

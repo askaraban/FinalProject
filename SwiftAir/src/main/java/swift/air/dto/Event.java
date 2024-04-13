@@ -1,10 +1,9 @@
 package swift.air.dto;
 
-import lombok.Builder;
 import lombok.Data;
 
 /*
-이름            널?       유형             
+�씠由�            �꼸?       �쑀�삎             
 ------------- -------- -------------- 
 EVENT_ID      NOT NULL NUMBER         
 EVENT_DATE             DATE           
@@ -19,7 +18,6 @@ EVENT_STATUS           NUMBER(1)
 */
 
 @Data
-@Builder
 public class Event {
 	private int eventId;
 	private String eventDate;

@@ -10,7 +10,7 @@
 	</insert>
 
 	<update id="updateNotice">
-		update notice set notice_id=#{noticeId} , notice_title=#{noticeTitle} , notice_content=#{noticeContent} , notice_date=#{noticeDate} where notice_id=#{noticeId}
+		update notice set notice_title=#{noticeTitle} , notice_content=#{noticeContent} where notice_id=#{noticeId}
 	</update>
 
 	<delete id="deleteNotice">
@@ -27,7 +27,7 @@
 	
 	<!-- 페이징처리 -->
 	<select id="selectNoticeList" resultType="Notice">
-		select * from (select rownum rn, noticelist.* from (select notice_id, notice_title, notice_content, notice_date from notice order by notie_id desc) noticelist) where rn between #{startRow} and #{endRow}
+		select * from (select rownum rn, noticelist.* from (select notice_id, notice_title, notice_content, notice_date from notice order by notice_id desc) noticelist) where rn between #{startRow} and #{endRow}
 	</select>
 	
 </mapper>

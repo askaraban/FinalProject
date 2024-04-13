@@ -34,25 +34,58 @@
 	
 	<!-- 마이페이지 메인 - 지난 일정 -->
 	<select id="selectPastJourney" resultType="map">
-		select payment_id, schedule_departure_date, schedule_arrival_date, schedule_flight, route_departure, route_destination
-			from payment join schedule on payment_schedule_id=schedule_id
+		select * from (select rownum rn, journey.* from
+			(select payment_id, schedule_departure_date, schedule_arrival_date, schedule_flight, route_departure, route_destination
+			from payment join schedule on payment_schedule_id1=schedule_id
 			join route on schedule_route_id=route_id
-			where schedule_departure_date &lt; SYSDATE
+			where schedule_departure_date &lt; sysdate
 			and payment_member_num = #{paymentMemberNum}
+            union select payment_id, schedule_departure_date, schedule_arrival_date, schedule_flight, route_departure, route_destination
+			from payment join schedule on payment_schedule_id2=schedule_id
+			join route on schedule_route_id=route_id
+			where schedule_departure_date &lt; sysdate
+			and payment_member_num = #{paymentMemberNum}) journey)
+			where rn between #{startRow} and #{endRow}
 	</select>
 	
 	<select id="selectPastJourneyCount" resultType="int">
-		select count(*) from payment join schedule on payment_schedule_id=schedule_id
+		select count(*) from (select rownum rn, journey.* from
+			(select payment_id, schedule_departure_date, schedule_arrival_date, schedule_flight, route_departure, route_destination
+			from payment join schedule on payment_schedule_id1=schedule_id
 			join route on schedule_route_id=route_id
-			where schedule_departure_date &lt; SYSDATE
+			where schedule_departure_date &lt; sysdate
 			and payment_member_num = #{paymentMemberNum}
+            union select payment_id, schedule_departure_date, schedule_arrival_date, schedule_flight, route_departure, route_destination
+			from payment join schedule on payment_schedule_id2=schedule_id
+			join route on schedule_route_id=route_id
+			where schedule_departure_date &lt; sysdate
+			and payment_member_num = #{paymentMemberNum}) journey)
 	</select>
-	
 	
 	<!-- 마이페이지 메인 - 보유 포인트 -->
 	<select id="selectMemberPoint" resultType="int">
 		select member_point from member where member_num = #{memberNum}
 	</select>
 	
+	<!-- 마이페이지 포인트 - 포인트 상세 내역 -->
+	<select id="selectPointDetail" resultType="Point">
+		select point_id, point_member_num, point_payment_id, point_date, point_status, point_amount, route_departure, route_destination from point
+		    join payment on payment_id=point_payment_id
+		    join schedule on payment_schedule_id1=schedule_id
+		    join route on schedule_route_id=route_id where point_member_num = #{pointMemberNum}
+	    	<if test="pointStatus != -1">
+	    		and point_status=#{pointStatus}
+	    	</if>
+	   		order by ${sort}
+	</select>
+	
+	<!-- 마이페이지 포인트 - 포인트 사후 적립을 위한 결제 내역 불러오기 -->
+	<select id="selectPaymentList" resultType="Payment">
+		select payment_id, payment_member_num, payment_total, payment_date, payment_status, payment_method
+			, schedule_flight, route_departure, route_destination from payment
+			join schedule on payment_schedule_id1 = schedule_id
+			join route on schedule_route_id = route_id
+			where payment_member_num =#{paymentMemberNum}
+	</select>
 
 </mapper>

@@ -22,13 +22,12 @@
 							<h2 class="h3 mb-6">결제 방법</h2>
 							<div class="form-group mb-6">
 								<select class="form-select" required="required">
-									<option value="" selected disabled hidden>결제수단을
-										선택해주세요.</option>
+									<option value="" selected disabled hidden>결제수단을 선택해주세요.</option>
 									<option value="1">신용/체크카드</option>
 									<option value="2">해외 발행 신용카드</option>
 									<option value="3">카카오페이</option>
 								</select>
-							</div>
+						<!--  -->	</div>
 
 							<div class="input-group mb-6">
 								<select class="form-select" required="required">
@@ -41,8 +40,10 @@
 									<option value="6">국민카드</option>
 									<option value="7">NH농협</option>
 									<option value="8">하나카드</option>
-								</select> <span class="input-group-text bg-transparent px-3"><i
-									class="far fa-credit-card" aria-hidden="true"></i></span>
+								</select>
+								<span class="input-group-text bg-transparent px-3">
+								<i class="far fa-credit-card" aria-hidden="true"></i>
+								</span>
 							</div>
 
 							<!-- <div class="col-lg-6"> -->

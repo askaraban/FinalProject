@@ -10,7 +10,7 @@ public interface ScheduleMapper {
 	int updateSchedule(Schedule schedule);
 	int deleteSchedule(int scheduleId);
 	Schedule selectSchedule(int scheduleId);
+	Schedule selectScheduleByFlight(String scheduleFlight);
 	int selectScheduleCount();
 	List<Schedule> selectScheduleList(Map<String, Object> map);
-	
 }

@@ -15,20 +15,12 @@
       <div class="modal-body">
       	<div class="form-group mb-6">
       		<div class="d-flex justify-content-between align-items-center flex-wrap mb-5">
-      			<span class="font-weight-bold">Adults</span>
+      			<span class="font-weight-bold">탑승 인원</span>
       				<div class="count-input">
       					<a class="incr-btn" data-action="decrease" href="#">–</a>
       						<input class="quantity" type="text" value="1">
                 		<a class="incr-btn" data-action="increase" href="#">+</a>
               		</div>
-            </div>
-        	<div class="d-flex justify-content-between align-items-center flex-wrap mb-5">
-	            <span class="font-weight-bold">Children</span>
-	              	<div class="count-input">
-	                	<a class="incr-btn" data-action="decrease" href="#">–</a>
-	                		<input class="quantity" type="text" value="1">
-	                	<a class="incr-btn" data-action="increase" href="#">+</a>
-	              	</div>
             </div>
           </div>
       </div>
@@ -90,7 +82,7 @@
 	    </div>
         <!-- Button trigger modal -->
 		<button type="button"  class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-		  성인 1
+		  탑승인원
 		</button>
         <button type="submit" class="btn btn-primary">
           Search

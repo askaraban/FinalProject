@@ -28,38 +28,42 @@
 
         <!-- 항공권예매 검색박스 -->
         <div class="search-box-2">
-          <form class="row g-2 justify-content-center" method="POST" action="<c:url value="/reservation/seatgrade" />">
+          <form class="row g-2 justify-content-center" id="resScheduleSellection" action="<c:url value="/reservation/seatgrade" />" method="POST">
 
             <div class="form-group col-md-3 col-lg-2 mb-0">
               <div class="select-default">
-         		 <select class="select-location">
+         		 <select class="select-location" name="resDeparture">
 		            <option>출발지</option>
-		            <option>서울/인천(ICN)</option>
-		            <option>로스앤젤레스(LAX)</option>
-		            <option>방콕(BKK)</option>
-		            <option>도쿄/나리타(NRT)</option>
+		            <option value="ICN">서울/인천(ICN)</option>
+		            <option value="LAX">로스앤젤레스(LAX)</option>
+		            <option value="BKK">방콕(BKK)</option>
+		            <option value="NRT">도쿄/나리타(NRT)</option>
 		          </select>
         		</div>
             </div>
             
              <div class="form-group col-md-3 col-lg-2 mb-0">
               <div class="select-default">
-		          <select class="select-location">
+		          <select class="select-location" name="resDestination">
 		            <option>도착지</option>
-		            <option>서울/인천(ICN)</option>
-		            <option>로스앤젤레스(LAX)</option>
-		            <option>방콕(BKK)</option>
-		            <option>도쿄/나리타(NRT)</option>
+		            <option value="ICN">서울/인천(ICN)</option>
+		            <option value="LAX">로스앤젤레스(LAX)</option>
+		            <option value="BKK">방콕(BKK)</option>
+		            <option value="NRT">도쿄/나리타(NRT)</option>
 		          </select>
 		        </div>
             </div>
 
 			<div class="form-group col-md-3 col-lg-4 mb-0">
-				<input type="text" class="form-control double-date">
+				<input type="text" class="form-control double-date" id="resDuration" required>
+				
+				<input type="hidden" name="resDepartDate" id="resDepartDate">
+				<input type="hidden" name="resReturnDate" id="resReturnDate">
 			</div>
 			
             <div class="form-group col-md-3 col-lg-2 mb-0">
-				<input type="text" class="form-control" id="externalInput" value="1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				<input type="text" class="form-control" id="resNumofPassengers" placeholder="탑승인원 : " data-bs-toggle="modal" data-bs-target="#exampleModal" required>
+				<input type="hidden" name="resPassengerCnt" id="resPassengerCnt">
             </div>
             
             <div class="form-group col-md-3 col-lg-2 mb-0">
@@ -86,22 +90,14 @@
       <div class="modal-body">
       	<div class="form-group mb-6">
       		<div class="d-flex justify-content-between align-items-center flex-wrap mb-5">
-      			<span class="font-weight-bold">성인</span>
+      			<span class="font-weight-bold">탑승인원 : </span>
       				<div class="count-input">
       					<a class="incr-btn" data-action="decrease" href="#">–</a>
-      						<input class="quantity" type="text" id="adultCnt" value="1">
+      						<input class="quantity" type="text" id="passengerCnt" value="1" min="1" max="10">
                 		<a class="incr-btn" data-action="increase" href="#">+</a>
               		</div>
             </div>
-        	<div class="d-flex justify-content-between align-items-center flex-wrap mb-5">
-	            <span class="font-weight-bold">소아</span>
-	              	<div class="count-input">
-	                	<a class="incr-btn" data-action="decrease" href="#">–</a>
-	                		<input class="quantity" type="text" id="childCnt" value="1">
-	                	<a class="incr-btn" data-action="increase" href="#">+</a>
-	              	</div>
-            </div>
-          </div>
+         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
@@ -111,25 +107,34 @@
   </div>
 </div>
 
+<!-- 모달 실행이 안되서 jQuery 스크립트 추가 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
 // 모달이 열릴 때마다 실행
 $('#exampleModal').on('show.bs.modal', function (e) {
     // 모달 외부 입력값을 가져와서 모달 내 입력값으로 설정
-    var externalInputValue = $('#externalInput').val();
-    $('#adultCnt').val(externalInputValue);
-    $('#childCnt').val(externalInputValue);
-    $('#adultCnt').val('1');
-    $('#childCnt').val('0');
+    var resNumofPassengersValue = $('#resNumofPassengers').val();
+    $('#passengerCnt').val(resNumofPassengersValue);
 });
 
 // 적용 버튼 클릭 시 실행
 $('#applyPpl').click(function() {
     // 모달 내 입력값을 가져와서 모달 외부 입력값으로 설정
-    var adultCntValue = $('#adultCnt').val();
-    var childCntValue = $('#childCnt').val();
-    $('#externalInput').val('성인 : ' + adultCntValue + ', 소아 : ' + childCntValue);
+    var passengerCntValue = $('#passengerCnt').val();
+    $('#resNumofPassengers').val('탑승인원 : ' + passengerCntValue);
+    $('#resPassengerCnt').val(passengerCntValue);
     
     $('#exampleModal').modal('hide');
+	
+    //여정 정보 끼워넣음..
+    var resDurationValue = $('#resDuration').val();
+	var values = resDurationValue.split(" - ")
+	
+	var value1 = values[0];
+	var value2 = values[1];
+	$('#resDepartDate').val(value1);
+	$('#resReturnDate').val(value2);
 });
 </script>
 </body>

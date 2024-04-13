@@ -30,8 +30,9 @@
 <section class="py-7 py-md-10">
 	<div class="container">
 		<!-- 픽셀 고정이라 화면 작아지면 짤림 -->
+		<c:forEach var="i" begin="1" end="${resInfo.resPassengerCnt}">
 		<div class="col">
-			<h5>탑승객1 - 홍길동</h5>
+			<h5>탑승객 ${i} - name</h5>
 		</div>
 		<div style="background-image: url('<c:url value="/img/seat/ticket2.png"/>'); height: 285px; width: 1000px;">
 			<div class="col-sm-12">
@@ -139,6 +140,7 @@
 				</div>
 			</div>
 		</div>
+		</c:forEach>
 	</div><!-- container -->
 </section>
 
@@ -176,7 +178,7 @@
 </section>
 
 <!-- 일단 푸터 같은것 -->
-<nav class="navbar-expand-sm rounded shadow bg-light fixed-bottom">
+<nav class="navbar-expand-sm rounded shadow bg-light fixed-bottom" style="height: 54px;">
 	<div class="row">
 		<div class="col-sm-6 col-lg-6"></div>
 		<div class="col-sm-2 col-lg-2 align-self-center text-center">
@@ -185,11 +187,8 @@
 		<div class="col-sm-2 col-lg-2 align-self-center">
 			<h5>2,345,678 원</h5>
 		</div>
-		<div class="col-sm-1 col-lg-1">
-			<button type="submit" class="btn btn-outline-primary w-100">이전</button>
-		</div>
-		<div class="col-sm-1 col-lg-1">
-			<button type="submit" class="btn btn-primary w-100">다음</button>
+		<div class="col-sm-2 col-lg-2">
+			<button type="submit" class="btn btn-primary w-75">다음</button>
 		</div>
 	</div>
 </nav>

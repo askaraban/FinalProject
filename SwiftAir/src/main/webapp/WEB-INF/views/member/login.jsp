@@ -28,6 +28,8 @@
 	margin-bottom: 20px;
 	text-align: center;
 }
+
+
 </style>
 
 <body class="pace-top">
@@ -69,14 +71,20 @@
                     <div class="m-b-20 m-t-20">
                     	<div class="row">
                     <div id="search">
-						<a>아이디 찾기</a> |
-						<a>비밀번호 찾기</a>
+						<a href="<c:url value = '/member/searchId'/>">아이디 찾기</a> |
+						<a href="<c:url value = '/member/searchPasswd'/>">비밀번호 찾기</a>
 					</div>	
+					
+					<div class="text-center">
+	                    		<a href="#"><img src='<c:url value="/img_a/sns_icon/google_rac.png"/>' style="width: 36px; margin-right: 10px;"></a>
+	                    		<a href="#"><img src='<c:url value="/img_a/sns_icon/kakao_rac.png"/>' style="width: 36px; margin-right: 10px;"></a>
+	                    		<a href="#"><img src='<c:url value="/img_a/sns_icon/naver_rac.png"/>' style="width: 36px; margin-right: 10px;"></a>
+                    </div>
             
                     	</div>
                     </div>
-                    <div class="m-t-20">
-                        아직도 회원이 아니라면 <a href="#">여기</a> 를 눌러서 회원가입하세요.
+                    <div class="m-t-20"  style="color: black;" >
+                        아직도 회원이 아니라면 <a href="<c:url value = '/member/join'/>">여기</a> 를 눌러서 회원가입하세요.
                     </div>
                 </form>
             </div>

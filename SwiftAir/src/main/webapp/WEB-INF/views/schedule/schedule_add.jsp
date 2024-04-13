@@ -9,9 +9,17 @@
 <!-- ====================================
 ———	운항일정 등록
 ===================================== -->
+<section class="bg-light py-8">
+  <div class="container">
+    <nav class="bg-transparent breadcrumb breadcrumb-2 px-0 mb-5" aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
+      <h2 class="fw-normal mb-4 mb-md-0" style="font-size: 40px;">운항일정 등록</h2>
+    </nav>
+  </div>
+</section>
+
 <section class="py-7 py-md-10">
 	<div class="container">
-		<h2 class="fw-normal mb-4 mb-md-5">운항일정 등록</h2>
+		<form action="<c:url value="/schedule/add"/>" method="post">
 		<div class="col-12">
 
         <!-- 운항일정 정보 -->
@@ -24,46 +32,46 @@
 		            	<div class="mb-4">
 							<div class="col-sm-2 mb-1 fw-bold">항공편명</div>
 								<div class="select-default bg-white">
-									<select class="select-location">
+									<select class="select-location" id="scheduleFlight" name="scheduleFlight">
 										<option>항공편명</option>
-										<option>SW1011</option>
-										<option>SW1012</option>
-										<option>SW2011</option>
-										<option>SW2012</option>
-										<option>SW3011</option>
-										<option>SW3012</option>
+										<option value="SW1011">SW1011</option>
+										<option value="SW1012">SW1012</option>
+										<option value="SW2011">SW2011</option>
+										<option value="SW2012">SW2012</option>
+										<option value="SW3011">SW3011</option>
+										<option value="SW3012">SW3012</option>
 									</select>
 								</div>
 						</div>
 		            	<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">출발지</div>
-							<input type="text" class="form-control" required>
+							<input type="text" class="form-control" name="routeDeparture" id="routeDeparture">
 		            	</div>
 		            	<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">도착지</div>
-							<input type="text" class="form-control" required>
+							<input type="text" class="form-control" name="routeDestination" id="routeDestination">
 		            	</div>
 		            	<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">운항시간</div>
 							<div class="row">
 								<div class="col-sm-5">
-									<input type="number" class="form-control" required>
+									<input type="text" class="form-control" name="routeTime" id="routeTime">
 								</div>
 								<div class="col-sm-1 mt-2 ms-n3">시간</div>
 								<div class="col-sm-5">
-									<input type="number" class="form-control" required>
+									<input type="text" class="form-control" name="routeTime" id="routeTime">
 								</div>
 								<div class="col-sm-1 mt-2 ms-n3">분</div>
 							</div>
 						</div>
 						<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">가격</div>
-							<input type="text" class="form-control" required>
+							<input type="number" class="form-control" name="routePrice" id="routePrice">
 		            	</div>
 						<div class="mb-2">
 							<div class="col-sm-2 mb-1 fw-bold">운항일자</div>
 							<div class="form-group col-md-3 col-lg-12 mb-0">
-								<input type="text" class="form-control" name="daterange">
+								<input type="text" class="form-control double-date" name="scheduleDuration">
 							</div>
 						</div>
 		            </div>
@@ -71,11 +79,32 @@
 			</div>
  		</div>
 		<div style="float: right">
-		  <button type="submit" class="btn btn-primary ms-1" onclick="location.href='list'">목록</button>
-		  <button type="submit" class="btn btn-primary ms-1" onclick="location.href='list'">취소</button>
-		  <button type="submit" class="btn btn-primary ms-1" onclick="location.href='list'">등록</button>
+		 <a href ="<c:url value="/schedule/list"/>" type="button" class="btn btn-primary ms-1">목록</a>
+			<a href ="<c:url value="/schedule/list"/>" type="button" class="btn btn-primary ms-1">취소</a>
+		  <button type="submit" class="btn btn-primary ms-1">등록</button>
 		</div>
+		</form>
 	</div>
 </section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#scheduleFlight').on('change', function(){
+        var selectedFlight = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: '/schedule/getRouteData',
+            data: { flight: selectedFlight },
+            success: function(response) {
+            	 $('#routeDeparture').val(response.routeDeparture);
+                 $('#routeDestination').val(response.routeDestination);
+                 $('#routeTime').val(response.routeTime);
+                 $('#routePrice').val(response.routePrice);
+            }
+        });
+    });
+});
+</script>
 
 </body>

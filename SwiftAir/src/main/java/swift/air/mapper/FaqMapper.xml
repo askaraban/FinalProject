@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="swift.air.mapper.FaqMapper">
+
+
+	<!-- =================== 등록 문 =================== -->
+	<insert id="insertFaq">
+		<selectKey resultType="int" keyProperty="faqId" order="BEFORE">
+			select faq_seq.nextval from dual
+		</selectKey>
+		insert into faq values(#{faqId} , #{faqTitle} , #{faqContent}, sysdate, #{faqCate})
+	</insert>
+	
+	<!-- ===================업데이트 문 ======================= -->
+	<update id="updateFaq">
+		update faq set faq_title=#{faqTitle} , faq_content=#{faqContent} , faq_cate=#{faqCate} where faq_id=#{faqId}
+	</update>
+
+	<!-- =================== 삭제 문 =================== -->
+	<delete id="deleteFaq">
+		delete from faq where faq_id=#{faqId}
+	</delete>
+	
+	<!-- =================== 수정할때 불러와야해서 필요 =================== -->
+	<select id="selectFaq" resultType="Faq">
+		select faq_id, faq_title, faq_content, faq_cate from faq where faq_id=#{faqId}
+	</select>
+	
+	
+	<!-- ========== select문 (총n개 , 페이징쓸때 필요) ============ -->
+	<select id="selectFaqCount" resultType="int">
+		select count(*) from faq
+		<if test="categoryId != 0">
+	    	where faq_cate= #{categoryId}
+  		</if>
+	</select>
+	
+	
+	<!-- ============ 페이징 처리 ============  -->
+	<select id="selectFaqList" resultType="Faq">
+	    SELECT * FROM (
+	        SELECT rownum rn, faq.*
+	        FROM (
+	            SELECT faq_id, faq_title, faq_content, faq_date, faq_cate
+	            FROM faq 
+		       <if test="categoryId != 0">
+	    		where faq_cate= #{categoryId}
+	    		</if>
+	            ORDER BY faq_id DESC 
+	        ) faq
+	    ) WHERE rn BETWEEN #{startRow} AND #{endRow}
+	</select>
+	
+	
+	
+
+	
+</mapper>

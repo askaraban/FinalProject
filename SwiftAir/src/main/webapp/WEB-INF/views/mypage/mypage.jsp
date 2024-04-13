@@ -18,6 +18,10 @@
 	color: #fff;
 	cursor: default;
 }
+
+.pageNumDiv {
+	text-align: center;
+}
 </style>
 </head>
 
@@ -52,11 +56,11 @@
 						</div>
 						<div class="col-md-5 col-lg-4" style="margin: 10px;">
 							<div class="custom-file" style="text-align: left;">
-								<h2 class="fw-normal mb-4">SUMIN KIM</h2>
-								<h4 class="fw-normal mb-4">(회원번호:10004156970)</h4>
-								<h5 class="fw-normal mb-4" style="color: gray;">suumin0722@naver.com</h5>
-								<a href="pricing-table.html" class="btn btn-secondary btn mb-3">회원
-									정보 변경</a>
+								<h2 class="fw-normal mb-4">${loginMember.memberFirstName} ${loginMember.memberLastName}</h2>
+								<h4 class="fw-normal mb-4">(회원번호: ${loginMember.memberNum} )</h4>
+								<h5 class="fw-normal mb-4" style="color: gray;">${loginMember.memberEmail}</h5>
+								<a href="<c:url value = '/member/modifyMember'/>" class="btn btn-secondary btn mb-3">회원 정보 변경</a>
+								<a href="<c:url value = '/member/removeMember'/>" class="btn btn-secondary btn mb-3">회원 탈퇴</a>
 							</div>
 						</div>
 						<div class="col-md-5 col-lg-4">
@@ -64,14 +68,23 @@
 								<div style="margin: 10px;">
 									<h3>나의 등급</h3>
 									<!-- <a href="mgrade" class="btn btn-white btn-lg mb-3"> -->
-									<a href="<c:url value="/mypage/mgrade"/>?memberNum=1" class="btn btn-white btn-lg mb-3">
-										> BLUE</a>
+									<a href="<c:url value="/mypage/mgrade"/>" class="btn btn-white btn-lg mb-3">
+										<c:if test="${loginMember.memberPoint<4000}">
+										<span>> BLUE</span>
+										</c:if>
+										<c:if test="${loginMember.memberPoint>=4000 && loginMember.memberPoint<9000}">
+										<span>> GOLD</span>
+										</c:if>
+										<c:if test="${loginMember.memberPoint>=9000}">
+										<span>> DIAMOND</span>
+										</c:if>
+									</a>
 								</div>
 
 								<div style="margin: 10px;">
 									<h3>포인트</h3>
 									<a href="point" class="btn btn-white btn-lg mb-3">
-										> 10만P</a>
+										> ${loginMember.memberPoint }P</a>
 								</div>
 							</div>
 						</div>
@@ -82,93 +95,125 @@
 
 			<div>
 				<ul class="nav nav-pills">
-					<li class="active" style="margin: 5px;"><a
-						href="#nav-pills-tab-1" data-bs-toggle="tab"
-						class="nav-link active" style="background-color: #43C4AE;">다가오는
-							여정</a></li>
-					<li class="nav-item" style="margin: 5px;"><a
-						href="#nav-pills-tab-2" data-bs-toggle="tab"
-						class="nav-link active" style="background-color: #43C4AE;">지난
-							여정</a></li>
+					<li class="active" style="margin: 5px;">
+						<!-- <a href="#nav-pills-tab-1" data-bs-toggle="tab" class="nav-link active" style="background-color: #43C4AE;">다가오는 여정</a> -->
+						<a href="javascript:journeyTableDisplay(1, 1);" style="background-color: #43C4AE;">다가오는 여정</a>
+					</li>
+					<li class="nav-item" style="margin: 5px;">
+						<a href="javascript:journeyTableDisplay(1, 2);" style="background-color: #43C4AE;">지난 여정</a>
 					<!-- 		
+					</li>
 					<li class="nav-item" style="margin: 5px;"><a
 						href="#nav-pills-tab-3" data-bs-toggle="tab"
-						class="nav-link active" style="background-color: #43C4AE;">나의
-							분실물 내역</a></li>
+						class="nav-link active" style="background-color: #43C4AE;">나의 분실물 내역</a></li>
 					 -->
 				</ul>
 
 				<div class="tab-content panel p-3 rounded">
-					<div class="tab-pane fade active show" id="#nav-pills-tab-1">
+					<div class="tab-pane fade active show" id="nav-pills-tab-1">
 						<div class="table-responsive">
 							<div class="panel panel-inverse" data-sortable-id="table-basic-4">
 								<div class="panel-body">
-									<div class="table-responsive">
-										<table class="table">
-											<thead>
-												<tr>
-													<th>예약번호</th>
-													<th nowrap>여정</th>
-													<th nowrap>노선</th>
-													<th nowrap>일정</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:if test="${empty futureJourneyList}">
-													<tr>
-														<td colspan="4">다가오는 여정이 없습니다.</td>
-													</tr>
-												</c:if>
-											<c:forEach var="future" items="${futureJourneyList}">
-												<tr>
-													<td>${future.paymentId}</td>
-													<td>${future.scheduleFlight }</td>
-													<td>${future.routeDeparture } -> ${future.routeDestination } </td>
-													<td>${future.scheduleDepartureDate } -> ${future.scheduleArrivalDate } </td>
-												</tr>
-											</c:forEach>
-											</tbody>
-										</table>
+									<div class="table-responsive" id="journeyTableDiv"></div>
+									<div class="pageNumDiv" id="pageNumDiv">
+									
 									</div>
-
 								</div>
 							</div>
 						</div>
 					</div>
-
-					<div style="text-align: center;">
-						<%-- 페이지 번호 출력 --%>
-						<c:choose>
-							<c:when test="${pager.startPage > pager.blockSize }">
-								<a href="<c:url value="/file/list"/>?pageNum=${pager.prevPage}">[이전]</a>
-							</c:when>
-							<c:otherwise>
-								[이전]
-							</c:otherwise>
-						</c:choose>
-						
-						<c:forEach var="i" begin="${pager.startPage }" end="${pager.endPage }" step="1">
-							<c:choose>
-								<c:when test="${pager.pageNum != i }">
-									<a href="<c:url value="/file/list"/>?pageNum=${i}">[${i}]</a>
-								</c:when>
-								<c:otherwise>
-									[${i}]
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-						<c:choose>
-							<c:when test="${pager.endPage != pager.totalPage }">
-								<a href="<c:url value="/file/list"/>?pageNum=${pager.nextPage}">[다음]</a>
-							</c:when>
-							<c:otherwise> 
-								[다음]
-							</c:otherwise>
-						</c:choose>
-					</div>
 				</div>
 			</div>
-		</div>
+		</div>		
 	</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+var page=1;
+journeyTableDisplay(page, 1);
+
+function journeyTableDisplay(pageNum, journey) {
+	page=pageNum;
+	$.ajax({
+        url: '<c:url value="/mypage/journeyTable"/>',
+        type: 'get',
+        data: { "pageNum" : pageNum, "journey":journey},
+        dataType: "json",
+        success: function(result) {
+        	if(result.list.length == 0 ) {//검색된 여정이 없는 경우
+				var html="<table class='table' style='text-align: center;' id='journeyTable'>";
+				html+="<thead>";
+				html+="<tr>";
+				html+="<th>예약번호</th>";
+				html+="<th nowrap>여정</th>";
+				html+="<th nowrap>노선</th>";
+				html+="<th nowrap>일정</th>";
+				html+="</tr>";
+				html+="</thead>";
+				html+="<tbody>";
+				html+="<tr>";
+				html+="<td colspan='4'>다가오는 여정이 없습니다.</td>";
+				html+="</tr>";
+				html+="</tbody>";
+				html+="</table>"
+				$("#journeyTableDiv").html(html);
+				return;
+			}	
+        	
+        	var html="<table class='table' style='text-align: center;' id='journeyTable'>";
+			html+="<thead>";
+			html+="<tr>";
+			html+="<th>예약번호</th>";
+			html+="<th nowrap>여정</th>";
+			html+="<th nowrap>노선</th>";
+			html+="<th nowrap>일정</th>";
+			html+="</tr>";
+			html+="</thead>";
+			
+			$(result.list).each(function() {
+				html+="<tbody>";
+				html+="<tr>";
+				html+="<td>"+this.PAYMENT_ID+"</td>";
+				html+="<td>"+this.SCHEDULE_FLIGHT+"</td>";
+				html+="<td>"+this.ROUTE_DEPARTURE+" - "+this.ROUTE_DESTINATION+"</td>";
+				html+="<td>"+this.SCHEDULE_DEPARTURE_DATE+" - "+this.SCHEDULE_ARRIVAL_DATE+"</td>";
+				html+="</tr>";
+				html+="</tbody>";
+			});
+			
+			html+="</table>";
+		
+			html+="<div id='pageNumDiv' style='text-align:center;'>"
+			if(result.pager.startPage > result.pager.blockSize) {
+				html+="<a href='javascript:journeyTableDisplay("+result.pager.prevPage+","+ journey +");'>[이전]</a>";
+			} else {
+				html+="[이전]";
+			}
+			
+			for(i = result.pager.startPage ; i <= result.pager.endPage ; i++) {
+				if(result.pager.pageNum != i) {
+					html+="<a href='javascript:journeyTableDisplay("+ i +","+journey+");'>["+i+"]</a>";
+				} else {
+					html+="["+i+"]";
+				}
+			}
+			
+			if(result.pager.endPage < result.pager.totalPage) {
+				html+="<a href='javascript:journeyTableDisplay("+ result.pager.nextPage +","+journey+");'>[다음]</a>";
+			} else {
+				html+="[다음]";
+			}
+			html+="</div>"
+			$("#journeyTableDiv").html(html); 
+			
+        },
+        error: function(xhr) {
+            alert("에러코드(여정 검색) ="+xhr.status) 
+        }
+    });
+}
+
+</script>
+	
 </body>
 </html>

@@ -5,31 +5,39 @@
 		<selectKey resultType="int" keyProperty="scheduleId" order="BEFORE">
 			select schedule_seq.nextval from dual
 		</selectKey>
-		insert into schedule values(#{scheduleId}, #{scheduleDepartureDate}, #{scheduleArrivalDate}, #{scheduleFlight}, #{scheduleRouteId})
+		insert into schedule (schedule_id, schedule_Departure_date, schedule_arrival_date, schedule_flight, schedule_route_id)
+			select #{scheduleId}, #{scheduleDepartureDate}, #{scheduleArrivalDate}, #{routeFlight}, #{routeId}
+			from route where route_flight = #{routeFlight};
 	</insert>
 	
 	<update id="updateSchedule">
 		update schedule set schedule_departure_date=#{scheduleDepartureDate}, schedule_arrival_date=#{scheduleArrivalDate}
-			, schedule_flight=#{scheduleFlight}, schedule_route_id=#{scheduleRouteId} where schedule_id=#{scheduleId}
+			, schedule_flight=#{scheduleFlight} where schedule_id=#{scheduleId}
 	</update>
 	
 	<delete id="deleteSchedule">
 		delete from schedule where schedule_id=#{scheduleId}
 	</delete>
 	
-	<!-- <select id="selectSchedule" resultMap="scheduleResultMap">  
-		select schedule_id, schedule_departure_date, schedule_arrival_date, schedule_flight, schedule_route_id 
+	<select id="selectSchedule" resultType="Schedule"> 
+		select schedule_id, schedule_flight, route_departure, route_destination, route_time
+			, route_price, schedule_departure_date, schedule_arrival_date 
 			from schedule join route on schedule_route_id=route_id where schedule_id=#{scheduleId}
-	</select> -->
-	
+	</select>
+
+	<select id="selectScheduleByFlight" resultType="Schedule"> 
+		select route_departure, route_destination, route_time, route_price 
+			from schedule join route on schedule_route_id=route_id where schedule_flight=#{scheduleFlight}
+	</select>
+	 
 	<select id="selectScheduleCount" resultType="int">
 		select count(*) from schedule
 	</select>
 	
-	<!-- <select id="selectScheduleList" resultType="map">
-		select * from (select rownum rn, schedulelist.* from (select schedule_id, schedule_departure_date
-			, schedule_arrival_date, schedule_flight, schedule_route_id from schedule join route on 
-			schedule_route_id=route_id where schedule_route_id=#{schedule_route_id} order by schedule_id desc)
+	<select id="selectScheduleList" resultType="Schedule">
+		select * from (select rownum rn, schedulelist.* from (select schedule_id, schedule_flight
+			, route_departure, schedule_route_id, route_destination, route_time, route_price, schedule_departure_date, schedule_arrival_date
+			from schedule join route on schedule_route_id=route_id order by schedule_id desc)
 			schedulelist) where rn between #{startRow} and #{endRow}
-	</select> -->
+	</select>
 </mapper>

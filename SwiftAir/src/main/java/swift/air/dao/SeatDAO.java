@@ -6,6 +6,6 @@ import swift.air.dto.Passenger;
 import swift.air.dto.Seat;
 
 public interface SeatDAO {
-	List<String> selectReservedSeatList();
+	List<String> selectReservedSeatList(int scheduleId);
 	List<Seat> selectSeatList();
 }

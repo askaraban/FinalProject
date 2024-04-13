@@ -44,7 +44,6 @@ public class EventDAOImpl implements EventDAO{
 	public List<Event> selectEventList(Map<String, Object> map) {
 		return sqlSession.getMapper(EventMapper.class).selectEventList(map);
 	}
-
 	@Override
 	public List<Event> selectEventListByStatus(Map<String, Object> map) {
 		return sqlSession.getMapper(EventMapper.class).selectEventListByStatus(map);

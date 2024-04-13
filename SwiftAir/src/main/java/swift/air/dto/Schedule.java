@@ -20,5 +20,9 @@ public class Schedule {
     private String scheduleDepartureDate;
     private String scheduleArrivalDate;
     private String scheduleFlight;
-    private int scheduleRouteId;
+    private int scheduleRouteId;//노선번호
+    private String routeDeparture;//출발지
+	private String routeDestination;//도착지
+	private String routeTime;//운항시간
+	private int routePrice;//가격
 }

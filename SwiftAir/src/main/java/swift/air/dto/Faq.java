@@ -1,6 +1,6 @@
 package swift.air.dto;
 
-import lombok.Builder;
+
 import lombok.Data;
 
 /*
@@ -14,7 +14,6 @@ FAQ_CATE             NUMBER
 */
 
 @Data
-@Builder
 public class Faq {
 	private int faqId;
 	private String faqTitle;
