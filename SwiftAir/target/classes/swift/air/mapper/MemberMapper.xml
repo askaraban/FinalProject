@@ -9,18 +9,53 @@
 <select id="selectMember" resultType="Member">
 	select member_num, member_id, member_pswd, member_kor_Name, member_last_name, member_first_name, member_email, 
 	member_phone, member_gender, member_birth, member_join_date, member_withdraw_date, member_point, 
-	member_status from member where member_id = #{memberId} 
+	member_status from member where member_id = #{member_id} 
 
 </select>
 
+<update id = "updateMember">
+	update member
+	<set>
+		<if test = "memberId != null and memberId != ''" >
+			member_id = #{memberId}
+		
+		</if>
+		
+		<if test = "memberPswd != null and memberPswd != ''">
+		 	, member_pswd = #{memberPswd}
+		</if>
+		
+		<if test = "memberKorName != null and memberKorName != ''">
+		 	, member_kor_name = #{memberKorName}
+		</if>
+		
+		<if test = "memberFirstName != null and memberFirstName != ''">
+		 	, member_first_name = #{memberFirstName}
+		</if>
+		
+		<if test = "memberLastName != null and memberLastName != ''">
+		 	, member_last_name = #{memberLastName}
+		</if>
+		
+		<if test = "memberEmail != null and memberEmail != ''">
+		 	, member_email = #{memberEmail}
+		</if>
+		
+		<if test = "memberPhone != null and memberPhone != ''">
+		 	, member_phone = #{memberPhone}
+		</if>
+		
+	</set>
+	where member_num = #{memberNum}
+	
+</update>
 
-<select id="findEmail" resultType="string">
+<select id="findId" resultType="string">
  select member_id from member where member_kor_name = #{memberKorName} AND member_email = #{memberEmail}
 </select>
 
 <update id="findPasswd">
- update member set member_pswd = #{memberPswd} where member_id = #{memberId} AND member_email = #{memberEmail} AND member_kor_name = #{memberKorName}
-
+ update member set member_pswd = #{memberPswd} where member_id = #{memberId} 
 </update>
 	
 
@@ -28,7 +63,24 @@
 
 select count(*) from member where member_id = #{memberId}
 
-
 </select>
+
+<update id="updateMemberStatus">
+  update member
+  <set>
+   <if test = "memberStatus == 0 and memberWithdrawDate = ''">
+   	member_status = 1, member_withdraw_date = SYSDATE
+   </if>
+  
+  </set>
+  where member_num = #{memberNum}
+  </update>
+  
+  <select id = "selectMemberStatus" resultType="Member">
+  	select member_status from member where member_id = #{memberId} 
+  
+  </select>
+
+
 	
 </mapper>	

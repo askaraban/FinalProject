@@ -2,6 +2,7 @@ package swift.air.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.RequiredArgsConstructor;
 import swift.air.dto.Member;
 import swift.air.service.MemberService;
+import swift.air.util.PasswdHash;
 
 
 @Controller
@@ -43,13 +45,18 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/loginAction")
-	public String login(@ModelAttribute Member member, HttpSession session) {
+	public String login(@ModelAttribute Member member, HttpSession session, @RequestParam("memberPswd") String memberPswd) {
 		Member authMember = memberService.loginAuth(member);
-		session.setAttribute("loginMember", authMember);
-		return "index";	
-		
-	}
-	
+		Member memberStatus = memberService.selectMemberStatus(member);
+		String hashedPassword = PasswdHash.encrypt(memberPswd);
+		if(!authMember.getMemberPswd().equals(hashedPassword) || memberStatus.getMemberStatus() == 1) {
+			session.invalidate();
+			return "redirect:/member/login";	
+		} 
+		session.setAttribute("loginMember", authMember); 
+		return "index";   
+		  
+}		
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
@@ -84,7 +91,7 @@ public class MemberController {
 	@RequestMapping(value = "/searchIdAction") 
 	public String searchIdAction(@RequestParam("memberKorName") String memberKorName, 
 			@RequestParam("memberEmail") String memberEmail) {
-		memberService.findEmail(memberKorName, memberEmail);
+		memberService.findId(memberKorName, memberEmail);
 		return "index";
 	}
 	
@@ -98,6 +105,27 @@ public class MemberController {
 		memberService.findPasswd(member);
 		return "index";
 	}
+	
+	@RequestMapping(value = "/modifyMember")
+		public String modifyMember() {
+		return "/member/modify_member";
+	}
+	
+	@RequestMapping(value = "/modifyMemberAction")
+	public String modifyMember(@ModelAttribute Member member, HttpSession session) {
+		memberService.modifyMember(member);		
+		session.invalidate();
+		return "index";
+	}
+	
+	@RequestMapping(value = "/removeMember")
+	public String removeMember(@ModelAttribute Member member, HttpSession session) {
+	    memberService.removeMember(member, session);
+	    session.invalidate();
+	    return "index";
+	}
+	
+	
 	
 }
 	

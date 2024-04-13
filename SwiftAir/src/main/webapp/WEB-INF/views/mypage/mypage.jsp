@@ -59,7 +59,8 @@
 								<h2 class="fw-normal mb-4">${loginMember.memberFirstName} ${loginMember.memberLastName}</h2>
 								<h4 class="fw-normal mb-4">(회원번호: ${loginMember.memberNum} )</h4>
 								<h5 class="fw-normal mb-4" style="color: gray;">${loginMember.memberEmail}</h5>
-								<a href="pricing-table.html" class="btn btn-secondary btn mb-3">회원 정보 변경</a>
+								<a href="<c:url value = '/member/modifyMember'/>" class="btn btn-secondary btn mb-3">회원 정보 변경</a>
+								<a href="<c:url value = '/member/removeMember'/>" class="btn btn-secondary btn mb-3">회원 탈퇴</a>
 							</div>
 						</div>
 						<div class="col-md-5 col-lg-4">
