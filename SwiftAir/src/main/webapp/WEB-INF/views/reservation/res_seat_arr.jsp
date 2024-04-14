@@ -223,7 +223,7 @@
   
 <form action="<c:url value="/pay/payment" />" method="post" id="addPassengerSeat2">
 	<c:forEach var="selSeat" varStatus="status" begin="1" end="${resInfo.resPassengerCnt }">
-		<input hidden="" name="selSeat1" id="selSeat${status.count }">
+		<input hidden="" name="selSeat2" id="selSeat${status.count }">
 	</c:forEach>
 <nav class="navbar-expand-sm rounded shadow bg-light fixed-bottom">
 	<div class="row">
