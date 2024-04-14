@@ -7,7 +7,7 @@ import swift.air.dto.Seat;
 
 public interface SeatMapper {
 	
-	List<String> selectReservedSeatList(int scheduleId);
+	List<String> selectReservedSeatList(String scheduleId);
 	List<Seat> selectSeatList();
 	
 }

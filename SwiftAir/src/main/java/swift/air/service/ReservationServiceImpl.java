@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import swift.air.dao.ReservationDAO;
 import swift.air.dto.Passenger;
+import swift.air.dto.PassengerReservation;
 
 @Service
 @RequiredArgsConstructor
@@ -19,5 +20,11 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public int getSeatCount(String resDeparture, String resDestination, String checkDate) {
 		return reservationDAO.selectSeatCount(resDeparture, resDestination, checkDate);
+	}
+
+	@Override
+	public PassengerReservation chooseFlight(String departureDate, String departure, String arrival) {
+		// TODO Auto-generated method stub
+		return reservationDAO.chooseFlight(departureDate, departure, arrival);
 	}
 }

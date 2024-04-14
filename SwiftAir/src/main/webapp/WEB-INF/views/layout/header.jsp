@@ -44,7 +44,7 @@
           <li class="">
             <a href="javascript:0">조회</a>
             <ul class="dropdown">
-              <li><a href="<c:url value="/search/reservation"/>">예약 조회</a></li>
+              <li><a href="<c:url value="/search/reservation/pre"/>">예약 조회</a></li>
               <li><a href="<c:url value="/search/destination"/>">출/도착 조회</a></li>
               <li><a href="<c:url value="/search/schedule"/>">운항 스케쥴</a></li>
             </ul>

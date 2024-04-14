@@ -5,6 +5,6 @@ import java.util.List;
 import swift.air.dto.Seat;
 
 public interface SeatService {
-	List<String> getReservedSeatList(int schduleId);
+	List<String> getReservedSeatList(String schduleId);
 	List<Seat> getSeatList();
 }

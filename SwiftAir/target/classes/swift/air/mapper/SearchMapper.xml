@@ -8,11 +8,33 @@
 	<select id="selectSearchList1" resultType="Search">
 		select payment_id, route_departure, route_destination, route_flight, schedule_departure_date, schedule_arrival_date
 		, payment_total, payment_method from payment join schedule on schedule_id = payment_schedule_id1
-		 join route on schedule_route_id=route_id where payment_member_num = #{memberId}
+		 join route on schedule_route_id=route_id where payment_member_num = #{memberId} and schedule_departure_date <![CDATA[>=]]> sysdate 
 		 union select payment_id, route_departure, route_destination, route_flight, schedule_departure_date
 		, schedule_arrival_date, payment_total, payment_method from payment join schedule on
-		 schedule_id = payment_schedule_id2 join route on schedule_route_id=route_id where payment_member_num = #{memberId}
+		 schedule_id = payment_schedule_id2 join route on schedule_route_id=route_id where payment_member_num = #{memberId} and schedule_departure_date <![CDATA[>=]]> sysdate
 	</select>
 
+	<select id="selectSearchListAfter" resultType="Search">
+		select payment_id, route_departure, route_destination, route_flight, schedule_departure_date, schedule_arrival_date
+		, payment_total, payment_method from payment join schedule on schedule_id = payment_schedule_id1
+		 join route on schedule_route_id=route_id where payment_member_num = #{memberId} and schedule_departure_date <![CDATA[<]]> sysdate 
+		 union select payment_id, route_departure, route_destination, route_flight, schedule_departure_date
+		, schedule_arrival_date, payment_total, payment_method from payment join schedule on
+		 schedule_id = payment_schedule_id2 join route on schedule_route_id=route_id where payment_member_num = #{memberId} and schedule_departure_date <![CDATA[<]]> sysdate
+	</select>
+	
+	<select id="selectSearchAir" resultType="SearchFlight">
+		select
+		 schedule_id
+		 , route_departure
+		 , route_destination
+		 , schedule_departure_date
+		 , schedule_arrival_date
+		 , schedule_flight
+		 from schedule join on schedule_route_id = route_id
+		 where schedule_departure_date between to_date('#{startDate}','yy/mm/dd')
+		 and to_date('#{endDate}', 'yy/mm/dd')
+		 and route_departure=#{departure} and route_destination=#{destination}
+	</select>
 
 </mapper>
