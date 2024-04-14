@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <body id="body" class="up-scroll">
-<form id="addSeatGrade" action="<c:url value="/reservation/passengersinfo" />" method="POST">
+<form id="addSeatGrade" action="<c:url value="/reservation/seatgrade2" />" method="POST">
 
 <!-- ====================================
 ———	HEADER
@@ -46,39 +48,25 @@
 							<h3><span>08 : 20</span></h3>
 						</div>
 					</div>
-					<div class="row border rounded">
-						<div class="col-sm-4 text-center">
-							<h5>${resInfo.resReturnDate}</h5>
-							<h3><span>08 : 20</span></h3>
-						</div>
-						<div class="col-sm-4 text-center">
-							<h5>돌아오는 여정</h5>
-							<h4>${resInfo.resDestination} > ${resInfo.resDeparture}</h4>
-						</div>
-						<div class="col-sm-4 text-center">
-							<h5>${resInfo.resReturnDate}</h5>
-							<h3><span>12 : 50</span></h3>
-						</div>
-					</div>
 				</div>
 				
 				<div class="col-sm-6 px-7">
 					<div class="row align-items-center">
 						<div class="col-sm-6 px-2">
 							<div class="form-check form-check-inline col-sm-12 border rounded px-6">
-								<input class="form-check-input me-3" type="radio" name="resSeatGrade" id="economy35" value="economy35" onclick="showSeatImage('economy35')">
-								<label class="form-check-label" for="economy35">
+								<input class="form-check-input me-3" type="radio" name="resDepSeatGrade" id="economy35" value="economy35" onclick="showSeatImage('economy35')">
+								<label class="form-check-label" for="이코노미35">
 									<h5>이코노미석 : </h5>
-									<h3>520,000원</h3>
+									<h3><fmt:formatNumber value="${resInfo.routePrice}" pattern="#,##0"/>원</h3>
 								</label>
 	              			</div>
 			  			</div>
 						<div class="col-sm-6 px-2">
 							<div class="form-check form-check-inline col-sm-12 border rounded px-6">
-								<input class="form-check-input me-3" type="radio" name="resSeatGrade" id="premia42" value="premia42"onclick="showSeatImage('premia42')">
-								<label class="form-check-label" for="premia42">
+								<input class="form-check-input me-3" type="radio" name="resDepSeatGrade" id="premia42" value="premia42"onclick="showSeatImage('premia42')">
+								<label class="form-check-label" for="프레미아42">
 									<h5>프리미엄석 : </h5>
-									<h3>1,045,000원</h3>
+									<h3><fmt:formatNumber value="${resInfo.routePrice * 2}" pattern="#,##0"/>원</h3>
 								</label>
 	              			</div>
 			  			</div>
@@ -101,7 +89,7 @@
 			<h5>총 결제금액(세금포함) </h5>
 		</div>
 		<div class="col-sm-2 col-lg-2 align-self-center">
-			<h5>2,345,678 원</h5>
+			<h5> 원</h5>
 		</div>
 		<div class="col-sm-2 col-lg-2">
 			<button type="submit" class="btn btn-primary w-75">다음</button>

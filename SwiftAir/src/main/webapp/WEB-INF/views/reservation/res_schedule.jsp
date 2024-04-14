@@ -18,6 +18,12 @@
   </div>
 </section>
 
+<c:if test="${not empty alertMessage}">
+    <script>
+        alert("${alertMessage}");
+    </script>
+</c:if>
+
 <!-- ====================================
 ———	BANNER SECTION (TRAVEL)
 ===================================== -->
@@ -28,7 +34,7 @@
 
         <!-- 항공권예매 검색박스 -->
         <div class="search-box-2">
-          <form class="row g-2 justify-content-center" id="resScheduleSellection" action="<c:url value="/reservation/seatgrade" />" method="POST">
+          <form class="row g-2 justify-content-center" id="resScheduleSellection" action="<c:url value="/reservation/seatgrade1" />" method="POST">
 
             <div class="form-group col-md-3 col-lg-2 mb-0">
               <div class="select-default">
@@ -137,4 +143,5 @@ $('#applyPpl').click(function() {
 	$('#resReturnDate').val(value2);
 });
 </script>
+
 </body>
