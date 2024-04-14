@@ -22,7 +22,7 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public void addPayment(Payment payment) {
 		paymentDAO.insertPayment(payment);
-		paymentDAO.insertPassenger(null);
+		//paymentDAO.insertPassenger(null);
 	}
 
 	//OpneAPI를 사용하기 위해 필요한 토큰을 발급받아 반환하는 메소드
