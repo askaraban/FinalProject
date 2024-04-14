@@ -35,6 +35,7 @@ public class PaymentController {
 		
 		model.addAttribute("seatList",seatService.getSeatList());
 		
+		@SuppressWarnings("unchecked")
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
 		
 		resInfo.putAll(addPassengerSeat2);
