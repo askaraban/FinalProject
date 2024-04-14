@@ -27,7 +27,7 @@
 		<h2 class="fw-normal mb-4 mb-md-5">NOTICE 수정</h2>
 		<div class="col-12">
 
-        <!-- 이벤트 정보 -->
+        <!-- 이벤트 정보 --> 
         <div class="border rounded px-6 py-5 mb-6">
 			<div class="row">
 				<div class="col-sm-4">
