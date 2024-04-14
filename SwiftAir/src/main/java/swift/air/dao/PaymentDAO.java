@@ -1,5 +1,11 @@
 package swift.air.dao;
 
+import swift.air.dto.Passenger;
+import swift.air.dto.Payment;
+
 public interface PaymentDAO {
-	int insertPayment();
+	int insertPayment(Payment payment);
+	int insertPassenger(Passenger passenger);
+	int deletePayment(int paymentId);
+	int deletePassenger(int paymentId);
 }

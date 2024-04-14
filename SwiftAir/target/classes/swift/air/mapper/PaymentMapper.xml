@@ -1,7 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	private String paymentId; 
+	private int paymentPassenger; 
+	private int paymentMemberNum; 
+	private String paymentScheduleId1; 
+	private String paymentDate; 
+	private int paymentTotal; 
+	private int paymentStatus; 
+	private int paymentMethod; 
+	private String routeDeparture;
+	private String routeDestination;
+	private String scheduleFlight;
+	private String paymentScheduleId2; 
+	private String impUid;//결제 관련 OpenApi에서 제공되는 고유값
+	private String merchantUid;//결제번호
+ -->
 <mapper namespace="swift.air.mapper.PaymentMapper">
 	<insert id="insertPayment">
-	insert into payment values()
+		<selectKey resultType="int" keyProperty="paymentId" order="BEFORE">
+			select payment_seq.nextval from dual
+		</selectKey>
+		insert into payment values(#{paymentId}, #{paymentPassenger}, #{paymentMemberNum}
+			, #{paymentScheduleId1}, sysdate, #{paymentTotal}, #{paymentStatus}, #{paymentMethod}
+			, #{routeDeparture}, #{routeDestination}, #{scheduleFlight}, #{paymentScheduleId2}
+			,#{impUid}, #{merchantUid})
 	</insert>
+	
+	<insert id="insertPassenger">
+		insert into passenger values(#{passengerLastName}, #{passengerFirstName}, #{passengerBirth}
+			, #{passengerPaymentId}, #{passengerSeatName}, #{passengerScheduleId}
+	</insert>
+	
+	<delete id="deletePayment">
+	 delete from payment where payment_id = #{paymentId}
+	</delete>
+	
+	<delete id="deletePassenger">
+	 delete from passenger where passenger_payment_id = #{paymentId}
+	</delete>
+	
 </mapper>

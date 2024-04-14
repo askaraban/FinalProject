@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +29,7 @@
 									<option value="2">해외 발행 신용카드</option>
 									<option value="3">카카오페이</option>
 								</select>
-						<!--  -->	</div>
+							</div>
 
 							<div class="input-group mb-6">
 								<select class="form-select" required="required">
@@ -60,16 +62,6 @@
 							</div>
 							<!-- </div> -->
 
-							<!-- <div class="row g-2"> -->
-							<!-- <div class="col-lg-6"> -->
-							<!-- <div class="form-group mb-6">
-                  <select class="form-select" required="required">
-	              	 <option value="" selected disabled hidden>쿠폰 선택</option>
-				     <option value="1"></option>
-                  </select>
-                </div> -->
-							<!-- </div> -->
-
 							<!-- <div class="col-lg-6"> -->
 							<!--  <div class="input-group mb-6">
                   <input type="text" class="form-control border border-end-0 " placeholder="쿠폰 코드 입력">
@@ -99,29 +91,33 @@
 						<h2 class="h3 mb-6">결제 금액</h2>
 						<div>
 							<div style="float: left;">항공운임</div>
-							<div style="float: right;">260,000 KRW</div>
+							<div style="float: right;">
+								<fmt:formatNumber value="${${resinfo.paymentTotal + 187000}}" pattern="#,###"/> KRW
+							</div>
 						</div>
 						<!-- <span class="text-primary" style="font-size: 1.25rem;">$1550.00</span> -->
 						<div>
 							<div style="float: left;">공항시설 사용료</div>
-							<div style="float: right;">64,000 KRW</div>
+							<div style="float: right;">67,000 KRW</div>
 						</div>
 
 						<div>
 							<div style="float: left;">유류할증료</div>
-							<div style="float: right;">64,000 KRW</div>
+							<div style="float: right;">120,000 KRW</div>
 						</div>
 
-						<div>
+						<!-- <div>
 							<div style="float: left;">부가서비스 추가 금액</div>
 							<div style="float: right;">60,000 KRW</div>
-						</div>
+						</div> -->
 						<hr>
 						<div>
 							<div style="float: left;">
 								<strong>총 결제 금액</strong>
 							</div>
-							<div style="float: right;">50,000 KRW</div>
+							<div style="float: right;">
+								<fmt:formatNumber value="${${resinfo.paymentTotal + 187000}}" pattern="#,###"/> KRW
+							</div>
 						</div>
 						<div>
 							<div style="float: left;"></div>

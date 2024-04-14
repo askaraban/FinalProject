@@ -42,7 +42,7 @@
 							<!-- </div> -->
 							<!-- </div> -->
 
-							<!-- <div class="form-group mb-6">
+			<div class="form-group mb-6">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="gridCheck">
                 <label class="form-check-label" for="gridCheck">
@@ -52,7 +52,7 @@
                   </a>
                 </label>
               </div>
-            </div> -->
+            </div>
 
 							<div class="form-group mb-6">
 								<button type="submit" class="btn btn-success py-2 px-4"
