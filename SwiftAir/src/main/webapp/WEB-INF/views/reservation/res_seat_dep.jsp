@@ -268,7 +268,6 @@ var cnt = 1;
 				$("#"+pre).attr("title", "off")
 				$('#seat_no'+selectSeat+' span').text(pre);
 				$('#selSeat'+cnt).val(pre);
-				console.log($('#selSeat'+cnt).val(pre));
 				
 				seatCount--;
 				selectSeat++;
@@ -304,22 +303,29 @@ var cnt = 1;
 			} else {
 				$("#"+pre).attr("src", "<c:url value="/img/seat/business_sel.png"/>")
 				$("#"+pre).attr("title", "off")
-				$('#heesoo2 span').text(pre);
+				$('#seat_no'+selectSeat+' span').text(pre);
+				$('#selSeat'+cnt).val(pre);
 				
 				seatCount--;
+				selectSeat++;
+				selectSeat++;
+				cnt++;
 			}
 			
 		} else {
+			selectSeat--;
+			selectSeat--;
+			cnt--;
 			
 			if($("#"+pre).attr("title")=="off" && $("#"+pre).attr("src")=="<c:url value="/img/seat/business_sel.png"/>"){
 				console.log(seatCount);
 			}
 			
 			$("#"+pre).attr("src", "<c:url value="/img/seat/business_not.png"/>")
-			$("#"+pre).attr("title", "on")
-			$('#heesoo2 span').text(pre);
-			seatCount++;
+			$('#seat_no'+selectSeat+' span').text("");
+			$("#"+pre).attr("title", "on");
 		}
+			seatCount++;
 	});
 	
 	

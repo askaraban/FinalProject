@@ -63,8 +63,7 @@
 							<c:forEach var="seatList" items="${seatList }" varStatus="status" begin="0" end="17">
 								<c:choose>
 									<c:when test="${seatList.seatGrade eq '프레미아42' }">
-										<c:forEach var="reserved" items="${reservedSeatList }">
-										
+										<c:forEach var="reserved" items="${reservedSeatList2 }">
 											<!-- 예매된 좌석을 확인하기 -->
 											<c:set var="seatName" value="${seatList.seatName }"/>
 											<c:choose>
@@ -102,10 +101,8 @@
 							<c:forEach var="seatList" items="${seatList }" varStatus="status">
 								<c:choose>
 									<c:when test="${seatList.seatGrade eq '이코노미35' }">
-										<c:forEach var="reserved" items="${reservedSeatList }">
-											<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/economy_pre.png"/>'
-											 style="position: relative; left: 87.5px; top:735px; width: 45px;">
-										</c:forEach>
+										<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/economy_pre.png"/>'
+										 style="position: relative; left: 87.5px; top:735px; width: 45px;">
 									</c:when>
 								</c:choose>
 							<%-- 좌석별 여백 --%>	
@@ -129,10 +126,8 @@
 							<c:forEach var="seatList" items="${seatList }" varStatus="status" begin="0" end="17">
 								<c:choose>
 									<c:when test="${seatList.seatGrade eq '프레미아42' }">
-										<c:forEach var="reserved" items="${reservedSeatList }">
-											<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/business_pre.png"/>'
-											 style="position: relative; left: 100px; top: 590px; width: 55px;">
-										</c:forEach>
+										<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/business_pre.png"/>'
+										 style="position: relative; left: 100px; top: 590px; width: 55px;">
 									</c:when>
 								</c:choose>
 							<%-- 좌석별 여백 --%>
@@ -155,7 +150,7 @@
 							<c:forEach var="seatList" items="${seatList }" varStatus="status">
 								<c:choose>
 									<c:when test="${seatList.seatGrade eq '이코노미35' }">
-										<c:forEach var="reserved" items="${reservedSeatList }">
+										<c:forEach var="reserved" items="${reservedSeatList2 }">
 										
 											<!-- 예매된 좌석을 확인하기 -->
 											<c:set var="seatName" value="${seatList.seatName }"/>
@@ -195,7 +190,7 @@
 		      <!-- Breadcrumb -->
     <nav class="bg-transparent breadcrumb breadcrumb-2 px-0 mb-5" aria-label="breadcrumb">
       <ul class="list-unstyled d-flex p-0 m-0">
-        <li class="breadcrumb-item active" aria-current="page">${resInfo.resDestination }-${resInfo.resDeparture }</li>
+        <li class="breadcrumb-item active" aria-current="page">${resInfo.resDestination }-${resInfo.resDeparture }</a></li>
       </ul>
     </nav>
         <div class="mb-6">
@@ -226,9 +221,9 @@
 </section>
   </div> <!-- element wrapper ends -->
   
-<form action="<c:url value="/reservation/seat3" />" method="post" id="addPassengerSeat2">
+<form action="<c:url value="/pay/payment" />" method="post" id="addPassengerSeat2">
 	<c:forEach var="selSeat" varStatus="status" begin="1" end="${resInfo.resPassengerCnt }">
-		<input hidden="" name="selSeat" id="selSeat${status.count }">
+		<input hidden="" name="selSeat1" id="selSeat${status.count }">
 	</c:forEach>
 <nav class="navbar-expand-sm rounded shadow bg-light fixed-bottom">
 	<div class="row">
@@ -268,7 +263,6 @@ var cnt = 1;
 				$("#"+pre).attr("title", "off")
 				$('#seat_no'+selectSeat+' span').text(pre);
 				$('#selSeat'+cnt).val(pre);
-				console.log($('#selSeat'+cnt).val(pre));
 				
 				seatCount--;
 				selectSeat++;
@@ -304,22 +298,29 @@ var cnt = 1;
 			} else {
 				$("#"+pre).attr("src", "<c:url value="/img/seat/business_sel.png"/>")
 				$("#"+pre).attr("title", "off")
-				$('#heesoo2 span').text(pre);
+				$('#seat_no'+selectSeat+' span').text(pre);
+				$('#selSeat'+cnt).val(pre);
 				
 				seatCount--;
+				selectSeat++;
+				selectSeat++;
+				cnt++;
 			}
 			
 		} else {
+			selectSeat--;
+			selectSeat--;
+			cnt--;
 			
 			if($("#"+pre).attr("title")=="off" && $("#"+pre).attr("src")=="<c:url value="/img/seat/business_sel.png"/>"){
 				console.log(seatCount);
 			}
 			
 			$("#"+pre).attr("src", "<c:url value="/img/seat/business_not.png"/>")
-			$("#"+pre).attr("title", "on")
-			$('#heesoo2 span').text(pre);
-			seatCount++;
+			$('#seat_no'+selectSeat+' span').text("");
+			$("#"+pre).attr("title", "on");
 		}
+			seatCount++;
 	});
 	
 	
