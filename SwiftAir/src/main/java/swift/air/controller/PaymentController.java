@@ -1,11 +1,16 @@
 package swift.air.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
@@ -37,7 +42,7 @@ public class PaymentController {
 	
 	@RequestMapping(value="/payment", method = RequestMethod.POST)
 	@ResponseBody
-	public String pay(@RequestBody Payment payment, HttpSession session) {
+	public String pay(Model model, @RequestParam Map<String, Object> addPassengerSeat2, @RequestBody Payment payment, HttpSession session) {
 		//결제 관련 OpenAPI를 이용하기 전에 결제 금액 검증을 위해 세션에 주문번호(이름)와 결제금액(값)을 저장
 		session.setAttribute(payment.getMerchantUid(), payment.getPaymentTotal());
 		return "ok";	
