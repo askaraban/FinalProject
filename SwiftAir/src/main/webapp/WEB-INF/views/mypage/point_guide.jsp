@@ -26,8 +26,7 @@
 					가능하며, 해당 편의 좌석 상황에 따라 실시간으로 변경됩니다.
 				</p>
 				<a href="../reservation" class="btn btn-white btn"
-					style="border-color: #2196f3; color: black; font-weight: 500;">포인트
-					항공권 예매하러가기</a>
+					style="border-color: #2196f3; color: black; font-weight: 500;">항공권 예매하러가기</a>
 			</div>
 
 			<div class="py-6">
