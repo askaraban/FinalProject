@@ -32,7 +32,9 @@
             <a href="javascript:0">예매</a>
             <ul class="dropdown">
               <li><a href='<c:url value="/reservation"/>'>항공권 예매</a></li>
+              <!-- 
               <li><a href="index-2.html">포인트 예매</a></li>
+               -->
               <li><a href="<c:url value="/event/main"/>">이벤트</a></li>
             </ul>
           </li>
@@ -40,8 +42,10 @@
             <a href="javascript:0">조회</a>
             <ul class="dropdown">
               <li><a href="<c:url value="/search/reservation/pre"/>">예약 조회</a></li>
+              <%-- 
               <li><a href="<c:url value="/search/destination"/>">출/도착 조회</a></li>
               <li><a href="<c:url value="/search/schedule"/>">운항 스케쥴</a></li>
+               --%>
             </ul>
           </li>
           <li class="">
@@ -65,7 +69,7 @@
             <ul class="dropdown">
               <li><a href="<c:url value="/notice/main"/>">공지사항</a></li>
               <li><a href="<c:url value="/faq/main"/>">자주 묻는 질문</a></li>
-              <li><a href="index-2.html">출입국 규정 정보</a></li>
+              <!-- <li><a href="index-2.html">출입국 규정 정보</a></li> -->
             </ul>
           </li>
           <li class="">

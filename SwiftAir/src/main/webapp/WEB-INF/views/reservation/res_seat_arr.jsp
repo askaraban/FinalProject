@@ -4,6 +4,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <style type="text/css">
@@ -232,7 +233,7 @@
 			<h5>총 결제금액(세금포함) </h5>
 		</div>
 		<div class="col-sm-2 col-lg-2 align-self-center">
-			<h5>2,345,678 원</h5>
+			<h5><fmt:formatNumber value="${resInfo.routePrice * 2 }"/> 원</h5>
 		</div>
 		<div class="col-sm-1 col-lg-1">
 			<button type="submit" class="btn btn-outline-primary w-100">이전</button>

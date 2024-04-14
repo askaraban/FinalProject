@@ -25,9 +25,15 @@
 
     <!-- My Bookings -->
     
-    <c:if test=""></c:if>
-    
+
     <table id="my-booking" class="display nowrap table-data-default" style="width:100%">
+      <c:choose>
+      <c:when test="${empty searchList1}">
+        <tr>
+      		<th  style="padding: 15px; padding-left: 20px;">조회된 정보가 없습니다.</th>
+      	</tr>
+      </c:when>
+      <c:otherwise>
       <thead>
         <tr>
           <th  style="padding: 15px; padding-left: 20px;">결제번호</th>
@@ -36,10 +42,11 @@
           <th>출발일</th>
           <th>도착일</th>
           <th>결제금액</th>
-          
           <th>상태</th>
         </tr>
       </thead>
+      </c:otherwise>
+      </c:choose>
       <tbody>
 
         <c:forEach var="list" items="${searchList1 }">
