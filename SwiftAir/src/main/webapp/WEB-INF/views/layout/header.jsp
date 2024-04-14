@@ -63,27 +63,27 @@
           <li class="">
             <a href="javascript:0">서비스 안내</a>
             <ul class="dropdown">
-              <li><a href="/java/notice/main">공지사항</a></li>
-              <li><a href="/java/faq/main">자주 묻는 질문</a></li>
+              <li><a href="<c:url value="/notice/main"/>">공지사항</a></li>
+              <li><a href="<c:url value="/faq/main"/>">자주 묻는 질문</a></li>
               <li><a href="index-2.html">출입국 규정 정보</a></li>
             </ul>
           </li>
           <li class="">
-            <a href="javascript:0">Pages</a>
-            <ul class="dropdown">
-          	<c:choose>
-          		<c:when test="${loginMember.memberStatus eq 9}">
+         	<c:choose>
+         		<c:when test="${loginMember.memberStatus eq 9}">
+	            <a href="javascript:0">관리자페이지</a>
+	            <ul class="dropdown">
 	              <li><a href="contact-us.html">관리자페이지로</a></li>
-          		</c:when>
-          	</c:choose>
-              <li><a href="contact-us.html">Contact Us</a></li>
+             <!--  <li><a href="contact-us.html">Contact Us</a></li>
               <li><a href="terms-of-services.html">Terms and Conditions</a></li>
               <li><a href="pricing-table.html">Pricing Table</a></li>
               <li><a href="how-it-works.html">How It Works</a></li>
               <li><a href="user-profile.html">User Profile</a></li>
               <li><a href="comming-soon.html">Coming Soon</a></li>
-              <li><a href="404.html">404 Page</a></li>
+              <li><a href="404.html">404 Page</a></li> -->
             </ul>
+          		</c:when>
+          	</c:choose>
           </li>
         </ul>
       </div>

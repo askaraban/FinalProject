@@ -17,4 +17,5 @@ public interface EventDAO {
 	List<Event> selectEventListByStatus(Map<String, Object> map);
 	List<Event> selectOngoingEvents(LocalDate currentDate); 
     List<Event> selectEndedEvents(LocalDate currentDate);
+    List<Event> eventMainPage();
 }

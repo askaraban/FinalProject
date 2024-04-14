@@ -49,8 +49,10 @@
 <!-- ====================================
 ———	LOCATION SEARCH ONE
 ===================================== -->
+
 <div class="py-7 py-md-0 bg-light">
   <div class="container position-relative px-md-0">
+    <!-- 
     <div class="search-box">
       <form method="GET" action="listings-half-screen-map-list.html">
         <div class="select-default" style="padding: 10px;">
@@ -80,7 +82,7 @@
 	    <div class="form-group mb-6" style="padding-top: 30px;">
 	       <input type="text" class="form-control double-date">
 	    </div>
-        <!-- Button trigger modal -->
+        Button trigger modal
 		<button type="button"  class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
 		  탑승인원
 		</button>
@@ -89,12 +91,14 @@
         </button>
       </form>
     </div>
+       -->
   </div>
 </div>
 </div>
 </div>
 </div>
 </section>
+
 <!-- ====================================
 ———	BROWSER CATEGORI AREA
 ===================================== -->
@@ -104,58 +108,56 @@
     <!-- Section Title -->
 		<div style="display: flex; justify-content: space-between;">
 			<div><h3 style="color: mediumaquamarine;">Event</h3></div>
-			<div><span style="color: gray; font-size: 15px;">더보기</span></div>
+			<div><span style="color: gray; font-size: 15px;"><a href='<c:url value="/event/main"/>'>더보기</a></span></div>
 		</div>
 		<div class="row">
-			<div class="col-sm-4 col-xs-12">
-				<div class="card border-0 bg-transparent">
-					<a href="blog-details.html">
-						<img class="card-img-top rounded lazyestload" data-src="<c:url value="/img/blog/blog-article-1.jpg"/>" src="<c:url value="/img/blog/blog-article-1.jpg"/>" alt="Card image cap">
-					</a>
-         			 <div class="card-body p-0 pt-5">
-						<div class="meta-post" style="display: flex; justify-content: space-between;">
-							<date class="meta-date">Jan 22, 2021</date>
-							<span class="badge text-bg-primary fs-6">진행 중</span>
-						</div>
-						<h3 class="card-title">
-							<a href="blog-details.html"> Lorem ipsum dolor sit amet	</a>
-						</h3>
-						<p >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt  labore et dolore magna aliqua.</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-sm-4 col-xs-12">
-	        	<div class="card border-0 bg-transparent">
-				<a href="blog-details.html">
-					<img class="card-img-top rounded lazyestload" data-src="<c:url value="/img/blog/blog-article-2.jpg"/>" src="<c:url value="/img/blog/blog-article-2.jpg"/>" alt="Card image cap">
-				</a>
-				<div class="card-body p-0 pt-5">
-	            	<div class="meta-post" style="display: flex; justify-content: space-between;">
-	              		<date class="meta-date">Jan 20, 2021</date>
-	              		<span class="badge text-bg-primary fs-6">진행 중</span>
-	            	</div>
-					<h3 class="card-title">
-						<a href="blog-details.html"> Ut Enim Ad Minim Veniam.</a>
-					</h3>
-           	 		<p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit</p>
-				</div>
-				</div>
-			</div>
+			<c:forEach var="elist" items="eventList">
 			<div class="col-sm-4 col-xs-12">
 		        <div class="card border-0 bg-transparent">
-					<a href="blog-details.html">
-						<img class="card-img-top rounded lazyestload" data-src="<c:url value="/img/blog/blog-article-3.jpg"/>" src="<c:url value="/img/blog/blog-article-3.jpg"/>" alt="Card image cap">
+					<a href="<c:url value="/event/main"/>">
+						<img class="card-img-top rounded lazyestload" data-src="<c:url value="/img/event/SFOtemp.jpg"/>" src="<c:url value="/img/blog/blog-article-3.jpg"/>" alt="Card image cap">
 					</a>
 		         	<div class="card-body p-0 pt-5">
 			            <div class="meta-post" style="display: flex; justify-content: space-between;">
-			              <date class="meta-date">Jan 17, 2021</date>
+			              <date class="meta-date">2024-04-12 ~ 2024-04-30</date>
 			              <span class="badge text-bg-primary fs-6">진행 중</span>
 			            </div>
-						<h3 class="card-title">
-							<a href="blog-details.html"> Velit Esse Cillum Dolore Eu Fugiat	</a>
-						</h3>
-		            	<p >Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						<h4 class="card-title" style="font-weight: bold;">
+							<a href="<c:url value="/event/main"/>">장거리 여행도 여유롭게 샌프란시스코 특가</a>
+						</h4>
+					</div>
+				</div>
+			</div>
+			</c:forEach>
+			<div class="col-sm-4 col-xs-12">
+	        	<div class="card border-0 bg-transparent">
+				<a href="<c:url value="/event/main"/>">
+					<img class="card-img-top rounded lazyestload" data-src="<c:url value="/img/event/SFOsaleMarch.jpg"/>" src="<c:url value="/img/blog/blog-article-2.jpg"/>" alt="Card image cap">
+				</a>
+				<div class="card-body p-0 pt-5">
+	            	<div class="meta-post" style="display: flex; justify-content: space-between;">
+	              		<date class="meta-date">2024-03-30 ~ 2024-04-24</date>
+	              		<span class="badge text-bg-primary fs-6">진행 중</span>
+	            	</div>
+					<h4 class="card-title" style="font-weight: bold;">
+						<a href="<c:url value="/event/main"/>">샌프란시스코 이코노미 좌석 20% 할인특가</a>
+					</h4>
+				</div>
+				</div>
+			</div>
+			<div class="col-sm-4 col-xs-12">
+				<div class="card border-0 bg-transparent">
+					<a href="<c:url value="/event/main"/>">
+						<img class="card-img-top rounded lazyestload" data-src="<c:url value="/img/event/BKsale.jpg"/>" src="<c:url value="/img/blog/blog-article-1.jpg"/>" alt="Card image cap">
+					</a>
+         			 <div class="card-body p-0 pt-5">
+						<div class="meta-post" style="display: flex; justify-content: space-between;">
+							<date class="meta-date">2024-04-01 ~ 2024-04-20</date>
+							<span class="badge text-bg-primary fs-6">진행 중</span>
+						</div>
+						<h4 class="card-title" style="font-weight: bold;">
+							<a href="<c:url value="/event/main"/>"> 당장 떠나기 좋은 방콕 노선 임박특가</a>
+						</h4>
 					</div>
 				</div>
 			</div>
@@ -171,38 +173,38 @@
 		<div class="panel-body" style="text-align: center; vertical-align: middle;">
 			<div style="display: flex; justify-content: space-between;">
 				<div><h3 style="color: mediumaquamarine;">Notice</h3></div>
-				<div><span style="color: gray; font-size: 15px;">더보기</span></div>
+				<div><span style="color: gray; font-size: 15px;"><a href="<c:url value="/notice/main"/>">더보기</a></span></div>
 			</div>
 			<hr>
 			<table class="table">
 			    <tbody>
 			        <tr>
 			            <td style="text-align: left;">
-							<h4>국제선 운임 안내 (2024년 4월)</h4>
-				            <p style="font-size: 0.9375rem; color: grey;">누구나 누릴 수 있는 편안함, 에어프레미아에서 국제선 운임을 안내드립니다.</p>
+							<h4>예약 확인 지연 양해 요청</h4>
+				            <p style="font-size: 0.9375rem; color: grey;">프로모션 오픈으로 인한 시스템 과부하로 일부 예약 건들의 확인이 지연되고 있습니다. 시스템 과부하로 인해 발생한 오류 사항에 관해 양해 부탁드립니다.</p>
 				        </td>
-			            <td>2024.03.19</td>
+			            <td>2024.04.21</td>
 			        </tr>
 			        <tr>
 			            <td style="text-align: left;">
-							<h4>2024년 4월 국제선 유류할증료 안내</h4>
-				            <p style="font-size: 0.9375rem; color: grey;">에어프레미아에서 2024년 4월 국제선 유류할증료 안내드립니다.</p>
+							<h4>[중요]국내선 Swift Air 항공 시스템 점검 안내</h4>
+				            <p style="font-size: 0.9375rem; color: grey;">Swift Air 항공 시스템 점검안내 입니다.</p>
 				        </td>
-			            <td>2024.03.19</td>
+			            <td>2024.04.15</td>
 			        </tr>
 			        <tr>
 			            <td style="text-align: left;">
-							<h4>2024년 05월 20일 인천(ICN) ↔ 샌프란시스코(SFO) YP111/112편 스케줄 변경 안내</h4>
-				            <p style="font-size: 0.9375rem; color: grey;">2024년 05월 20일 인천(ICN) ↔ 샌프란시스코(SFO) YP111/112편 스케줄 변경 안내드립니다.</p>
+							<h4>국제선 결제(발권) 이후 24시간 이내 환불 처리 방침 변경 안내</h4>
+				            <p style="font-size: 0.9375rem; color: grey;">안녕하세요! Swiftair입니다. 항상 Swiftair 항공을 이용하여 주시는 고객님께 깊은 감사를 드리며 하기와 같이 일부 항공사의 결제(발권) 이후 취소 및 환불 규정이 다음과 같이 변경되어 안내드립니다.</p>
 				        </td>
-			            <td>2024.03.08</td>
+			            <td>2024.04.15</td>
 			        </tr>
 			        <tr>
 			            <td style="text-align: left;">
-							<h4>2024년 05월 18,20,25일 인천(ICN) ↔ 도쿄/나리타(NRT) YP731/732편 스케줄 변경 안내</h4>
-				            <p style="font-size: 0.9375rem; color: grey;">2024년 05월 18,20,25일 인천(ICN) ↔ 도쿄/나리타(NRT) YP731/732편 스케줄 변경 안내드립니다.</p>
+							<h4>미사용 항공권 환불 관련 안내</h4>
+				            <p style="font-size: 0.9375rem; color: grey;">SwiftAir를 이용해주신 고객 여러분께 진심으로 감사드리며, 미사용 항공권 환불 관련하여 안내드립니다. </p>
 				        </td>
-			            <td>2024.03.07</td>
+			            <td>2024.04.12</td>
 			        </tr>
 			    </tbody>
 			</table>

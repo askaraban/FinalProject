@@ -64,5 +64,11 @@ public class EventDAOImpl implements EventDAO{
 	public List<Event> selectEndedEvents(LocalDate currentDate) {
 	    return sqlSession.getMapper(EventMapper.class).selectEndedEvents(currentDate);
 	}
+
+	@Override
+	public List<Event> eventMainPage() {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(EventMapper.class).eventMainPage();
+	}
 }
 
