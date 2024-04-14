@@ -101,7 +101,7 @@
 						<div id="memberPoint" data-value="${loginMember.memberPoint}" style="text-align: center; margin-right: 50px;">
 							<h4 class="fw-normal mb-4" id="highestScore">승급 스코어</h4>
 							<h2 class="fw-normal mb-4">${loginMember.memberPoint}p</h2>
-							 <p id="promotionScore" style="color:#43C4AE">4000포인트 달성 시 GOLD로 승급</p>	
+							 <p id="promotionScore" style="color:#2196f3">4000포인트 달성 시 GOLD로 승급</p>	
 						</div>
 					</div>
 					<div class="col-md-5 col-lg-4" style="width: 70%">
@@ -110,7 +110,7 @@
 							<div class="progress rounded-pill mb-2" id="progressPill" style="height: 30px; width:20px;">
 								<div
 									class="progress-bar bg-indigo progress-bar-striped progress-bar-animated rounded-pill fs-10px fw-bold"
-									style="width: 100%; background-color: #43C4AE;">${loginMember.memberPoint}p</div>
+									style="width: 100%;">${loginMember.memberPoint}p</div>
 							</div>
 						</div>
 					</div>

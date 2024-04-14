@@ -21,8 +21,8 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public void addPayment(Payment payment) {
-		System.out.println("결제정보를 테이블의 행으로 삽입하는 명령 실행 - DAO 클래스의 메소드 호출");
-		
+		paymentDAO.insertPayment(payment);
+		paymentDAO.insertPassenger(null);
 	}
 
 	//OpneAPI를 사용하기 위해 필요한 토큰을 발급받아 반환하는 메소드
@@ -34,7 +34,7 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		//요청할 OpenAPI에게 전달될 값을 JSON 형식의 문자열로 표현하여 저장
 		// => {"imp_key" : REST API Key, "imp_secret" : REST API Secret}
-		String data="{\"imp_key\":\"7145387726131117\",\"imp_secret\":\"p6hCDrAyOWsAd4wn5e6kN6L2Si3yT1wI8cUivJDq0YasIVqxucrW9BWy4DTE9Yng8iEkrFMnDohOTEe3\"}";
+		String data="{\"imp_key\":\"2822647813465883\",\"imp_secret\":\"PQLXiZOW8gLN1lKPHKR7pbr47gunMohWYEj4mtxCQ4PLbYvJL98gCP23zwDFQCHNgWQMYm5CefYHQMp0\"}";
 		try {
 			//URL 주소가 저장된 URL 객체 생성
 			URL url=new URL(apiURL);

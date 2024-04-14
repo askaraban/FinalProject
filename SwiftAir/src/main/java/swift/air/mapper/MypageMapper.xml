@@ -79,13 +79,13 @@
 	   		order by ${sort}
 	</select>
 	
-	<!-- 마이페이지 포인트 - 포인트 사후 적립을 위한 결제 내역 불러오기 -->
+	<!-- 마이페이지 포인트 - 결제 내역 불러오기 -->
 	<select id="selectPaymentList" resultType="Payment">
 		select payment_id, payment_member_num, payment_total, payment_date, payment_status, payment_method
-			, schedule_flight, route_departure, route_destination from payment
+			, schedule_flight,schedule_departure_date, route_departure, route_destination from payment
 			join schedule on payment_schedule_id1 = schedule_id
 			join route on schedule_route_id = route_id
-			where payment_member_num =#{paymentMemberNum}
+			where payment_member_num =#{paymentMemberNum} order by schedule_departure_date desc
 	</select>
 
 </mapper>

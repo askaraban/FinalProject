@@ -1,6 +1,9 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.Date" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +13,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>포인트 상세</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+<%
+// 현재 날짜를 가져와서 변수에 저장
+Date date = new Date();
+SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+String strDate = simpleDate.format(date);
+%>
 
 <style>
 .img {
@@ -66,7 +77,7 @@
 										<img class="img" data-src=<c:url value="/img/mypage/point_saving.png"/>
 											src=<c:url value="/img/mypage/point_saving.png"/> alt="Image">
 									</a>
-									<h3>탑승 후 적립</h3>
+									<h3>결제 내역</h3>
 								</div>
 								<div>
 									<a href="pointGuide" class="btn btn-white btn-lg">
@@ -94,8 +105,8 @@
 						style="margin: 5px;">
 						<div class="panel-heading">
 							<div class="btn-group my-n1">
-								<button type="button" class="btn btn-success btn-xs" style="color:white;">전체</button>
-								<button type="button" class="btn btn-success btn-xs dropdown-toggle" data-bs-toggle="dropdown" style="color:white;">
+								<button type="button" class="btn btn-primary btn-xs" style="color:white;">전체</button>
+								<button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-bs-toggle="dropdown" style="color:white;">
 									<b class="caret"></b>
 								</button>
 								<div class="dropdown-menu dropdown-menu-end">
@@ -110,8 +121,8 @@
 					<div class="panel panel-inverse" data-sortable-id="ui-widget-2" style="margin: 5px;">
 						<div class="panel-heading">
 							<div class="btn-group my-n1">
-								<button type="button" class="btn btn-success btn-xs" style="color:white;">최신순</button>
-								<button type="button" class="btn btn-success btn-xs dropdown-toggle" data-bs-toggle="dropdown" style="color:white;">
+								<button type="button" class="btn btn-primary btn-xs" style="color:white;">최신순</button>
+								<button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-bs-toggle="dropdown" style="color:white;">
 									<b class="caret"></b>
 								</button>
 								<div class="dropdown-menu dropdown-menu-end">
@@ -190,37 +201,59 @@
 		</div>
 	</section>
 
-	<!-- 탑승 후 적립 모달창 -->
+	<!-- 결제내역 모달창 -->
 	<div class="modal" id="pointModal">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" onClick="modalClose()">×</button>
-					<h4 class="modal-title">탑승 후 적립</h4>
+					<h4 class="modal-title">결제 내역</h4>
 				</div>
 				<div class="modal-body">
 					<table class="table" id="paymentTable">
+						<c:forEach var="payment" items="${paymentList}" varStatus="status">
 						<thead>
 							<tr>
+								<td><h3>${status.index+1}</h3></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
 								<td></td>
 								<td></td>
 							</tr>
 						</thead>
-						<tbody>
-							<c:forEach var="payment" items="${paymentList}">
-								<tr>
+				   				<tr>
+									<td>결제 번호</td>
+									<td>탑승일</td>
+									<td>편명</td>
+									<td>여정</td>
+									<td>결제일</td>
 									<td>결제 금액</td>
-									<td>${payment.paymentTotal}</td>
+									<td></td>
 				   				</tr>
-				   					<td>${payment.paymentId}, ${payment.scheduleFlight},
-				   						${payment.routeDeparture} -> ${payment.routeDestination}</td>
-							</c:forEach>
-						</tbody>
+								<tr style="border-bottom: 3px">
+									<td>${payment.paymentId}</td>
+									<td>${payment.scheduleDepartureDate.substring(0,10)}</td>
+				   					<td>${payment.scheduleFlight}</td>
+				   					<td>${payment.routeDeparture} -> ${payment.routeDestination}</td>
+									<td>${payment.paymentDate.substring(0,10)}</td>
+									<td>${payment.paymentTotal}</td>
+									<c:set var="currentDate" value="<%= strDate %>" />
+									<c:choose>
+										<c:when test="${payment.scheduleDepartureDate < currentDate}">
+											<td><button class="btn btn-sm btn-white" type="button" disabled>환불 불가</button></td>
+				   						</c:when>
+				   						<c:otherwise>
+											<td><button class="btn btn-sm btn-white" type="button" style="color: red;">환불하기</button></td>
+				   						</c:otherwise>
+				   					</c:choose>
+				   				</tr>
+						</c:forEach>	
 					</table>
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-sm btn-white" onClick="modalClose()">취소</button>
-					<button class="btn btn-sm btn-white" type="submit">적립</button>
+					<button class="btn btn-sm btn-white" onClick="modalClose()">닫기</button>
 				</div>
 			</div>
 		</div>

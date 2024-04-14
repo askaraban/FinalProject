@@ -59,6 +59,7 @@ public class MypageController {
 		 } else if (journey == 2) {
 			 journeyData = mypageService.getPastJourney(memberNum, pageNum);
 		 }
+		System.out.println("!!!!!!!!!!!!!!!="+journeyData);
 		return journeyData;
 	}
 	

@@ -95,18 +95,11 @@
 
 			<div>
 				<ul class="nav nav-pills">
-					<li class="active" style="margin: 5px;">
-						<!-- <a href="#nav-pills-tab-1" data-bs-toggle="tab" class="nav-link active" style="background-color: #43C4AE;">다가오는 여정</a> -->
-						<a href="javascript:journeyTableDisplay(1, 1);" style="background-color: #43C4AE;">다가오는 여정</a>
+					<li class="nav-item" style="margin: 5px;">
+						<a href="javascript:journeyTableDisplay(1, 1);" class="nav-link active">다가오는 여정</a>
 					</li>
 					<li class="nav-item" style="margin: 5px;">
-						<a href="javascript:journeyTableDisplay(1, 2);" style="background-color: #43C4AE;">지난 여정</a>
-					<!-- 		
-					</li>
-					<li class="nav-item" style="margin: 5px;"><a
-						href="#nav-pills-tab-3" data-bs-toggle="tab"
-						class="nav-link active" style="background-color: #43C4AE;">나의 분실물 내역</a></li>
-					 -->
+						<a href="javascript:journeyTableDisplay(1, 2);" class="nav-link active">지난 여정</a>
 				</ul>
 
 				<div class="tab-content panel p-3 rounded">
@@ -129,6 +122,14 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+function formatDate(dateString) {
+    var date = new Date(dateString);
+    var year = date.getFullYear();
+    var month = ("0" + (date.getMonth() + 1)).slice(-2); // 월은 0부터 시작하므로 +1 필요
+    var day = ("0" + date.getDate()).slice(-2);
+    return year + "/" + month + "/" + day;
+}
+
 var page=1;
 journeyTableDisplay(page, 1);
 
@@ -176,7 +177,7 @@ function journeyTableDisplay(pageNum, journey) {
 				html+="<td>"+this.PAYMENT_ID+"</td>";
 				html+="<td>"+this.SCHEDULE_FLIGHT+"</td>";
 				html+="<td>"+this.ROUTE_DEPARTURE+" - "+this.ROUTE_DESTINATION+"</td>";
-				html+="<td>"+this.SCHEDULE_DEPARTURE_DATE+" - "+this.SCHEDULE_ARRIVAL_DATE+"</td>";
+				html+="<td>"+formatDate(this.SCHEDULE_DEPARTURE_DATE)+" - "+formatDate(this.SCHEDULE_ARRIVAL_DATE)+"</td>";
 				html+="</tr>";
 				html+="</tbody>";
 			});

@@ -25,12 +25,13 @@ public class Payment {
 	private String paymentScheduleId1; 
 	private String paymentScheduleId2; 
 	private String paymentDate; 
-	private int paymentTotal; 
+	private long paymentTotal; 
 	private int paymentStatus; 
 	private int paymentMethod; 
 	private String routeDeparture;
 	private String routeDestination;
 	private String scheduleFlight;
+	private String scheduleDepartureDate;
 	private String impUid;//결제 관련 OpenApi에서 제공되는 고유값
 	private String merchantUid;//결제번호
 }

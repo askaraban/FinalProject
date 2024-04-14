@@ -26,7 +26,7 @@
 					가능하며, 해당 편의 좌석 상황에 따라 실시간으로 변경됩니다.
 				</p>
 				<a href="../reservation" class="btn btn-white btn"
-					style="border-color: #22baa0; color: black; font-weight: 500;">포인트
+					style="border-color: #2196f3; color: black; font-weight: 500;">포인트
 					항공권 예매하러가기</a>
 			</div>
 
@@ -60,19 +60,19 @@
 							<thead>
 								<tr>
 									<th rowspan="3" valign=middle
-										style="background: #22baa0; color: white;">구분</th>
-									<th colspan="2" style="background: #22baa0; color: white;">환불
+										style="background: #2196f3; color: white;">구분</th>
+									<th colspan="2" style="background: #2196f3; color: white;">환불
 										수수료</th>
 									<th rowspan="3" valign=middle
-										style="background: #22baa0; color: white;">노쇼(No-show)</th>
+										style="background: #2196f3; color: white;">노쇼(No-show)</th>
 								</tr>
 								<tr>
-									<th colspan="2" style="background: #22baa0; color: white;">출발
+									<th colspan="2" style="background: #2196f3; color: white;">출발
 										전</th>
 								</tr>
 								<tr>
-									<th style="background: #22baa0; color: white;">91이전</th>
-									<th style="background: #22baa0; color: white;">91이내</th>
+									<th style="background: #2196f3; color: white;">91이전</th>
+									<th style="background: #2196f3; color: white;">91이내</th>
 								</tr>
 							</thead>
 							<tbody>

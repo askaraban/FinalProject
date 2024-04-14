@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>  
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 <body id="body" class="up-scroll">
@@ -30,9 +30,13 @@
 <section class="py-7 py-md-10">
 	<div class="container">
 		<!-- 픽셀 고정이라 화면 작아지면 짤림 -->
-		<c:forEach var="i" begin="1" end="${resInfo.resPassengerCnt}">
-		<div class="col">
-			<h5>탑승객 ${i} - name</h5>
+		<c:forEach var="i" begin="0" end="${resInfo.resPassengerCnt - 1}" varStatus="iStatus" >
+		<div id="div${i}">
+		<div class="col" >
+			<h5>탑승객 ${i+1} -</h5>
+			<c:forEach var="j" begin="${iStatus.index*2 }" end="${iStatus.index*2 + 1}">
+				<h5>${resInfo.addPassengerInfo[j]} </h5>
+			</c:forEach>
 		</div>
 		<div style="background-image: url('<c:url value="/img/seat/ticket2.png"/>'); height: 285px; width: 1000px;">
 			<div class="col-sm-12">
@@ -44,16 +48,20 @@
 							<div class="row">
 								<div class="col-sm-4">Name</div>
 								<div class="col-sm-2">Flight</div>
-								<div class="col-sm-2">Date</div>
-								<div class="col-sm-2">Time</div>
+								<div class="col-sm-2">Departure</div>
+								<div class="col-sm-2">Arrival</div>
 							</div>
 						</div>
 						<div class="col ms-5">
 							<div class="row">
-								<div class="col-sm-4"><h5>GIL-DONG, HONG</h5></div>
-								<div class="col-sm-2"><h5>SA747</h5></div>
-								<div class="col-sm-2"><h5>01 APR 23</h5></div>
-								<div class="col-sm-2"><h5>13:45</h5></div>
+								<div class="col-sm-4">
+								<c:forEach var="j" begin="${iStatus.index*2 }" end="${iStatus.index*2 + 1}">
+								<h5>${resInfo.addPassengerInfo[j]}</h5>
+								</c:forEach>
+								</div>								
+								<div class="col-sm-2"><h5>>${resInfo.routeFlight}</h5></div>
+								<div class="col-sm-2"><h6>${resInfo.scheduleDepartureDate}</h6></div>
+								<div class="col-sm-2"><h6>${resInfo.scheduleArrivalDate}</h6></div>
 							</div>
 						</div>
 						<!-- 두번째 줄 -->
@@ -140,6 +148,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 		</c:forEach>
 	</div><!-- container -->
 </section>
@@ -273,7 +282,7 @@
 		// => 결제 후 결제정보와 비교하여 검증하기 위해 세션에 저장 
 		$.ajax({
 			type: "post",
-			url: "<c:url value="/pay/payment"/>",
+			url: "<c:url value="/pay/payment/api"/>",
 			contentType: "application/json",
 			data: JSON.stringify({"merchantUid":merchantUid, "amount":amount}),
 			dataType: "text",
@@ -292,11 +301,11 @@
 						//결제창에 보여질 제품명
 						name: "컴퓨터",
 						//결제 사용자의 이메일 주소 
-			            buyer_email: "ocj1778@hanmail.net",
+			            buyer_email: "${loginMember.memberEmail}",
 			            buyer_name: "홍길동",//결제 사용자 이름
 			            buyer_tel: "010-1234-5678",//결제 사용자 전화번호
 			            buyer_postcode: "123-456",//결제 사용자 우편번호
-			            buyer_addr: "서울시 강남구 역삼동 내빌딩 4층 3강의실",//결제 사용자 주소
+			            buyer_addr: "서울시 강남구",//결제 사용자 주소
 						//m_redirect_url: "http://localhost:8000:auth/payment/pay",//모바일의 리다이렉트 URL 주소
 					}, function(response) {//결제 관련 응답 결과를 제공받아 처리하는 함수
 						//response : 응답결과를 저장한 Object 객체
