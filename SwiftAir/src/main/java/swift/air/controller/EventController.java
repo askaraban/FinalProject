@@ -2,6 +2,8 @@ package swift.air.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -61,14 +63,14 @@ public class EventController {
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String eventModify(@ModelAttribute Event event, @RequestParam MultipartFile multipartFile,
-						        @RequestParam MultipartFile multipartFile2) throws IOException {
+	public String eventModify(@ModelAttribute Event event, @RequestParam(required = false) MultipartFile multipartFile,
+						        @RequestParam(required = false) MultipartFile multipartFile2) throws IOException {
 		
 		//기존의 이벤트 정보
 	    Event exEvent = eventService.getEvent(event.getEventId());
 	   
 	    //대표 이미지 변경 확인 후 새로운 파일로 변경
-	    if (!multipartFile.isEmpty()) {
+	    if (multipartFile != null && !multipartFile.isEmpty()) {
 	        String uploadDirectory = context.getServletContext().getRealPath("/resources/assets/img/event");
 	        String newFileName = UUID.randomUUID().toString() + "_" + multipartFile.getOriginalFilename();
 	        
@@ -80,11 +82,14 @@ public class EventController {
 	            new File(uploadDirectory, exEvent.getEventImg1()).delete();
 	        }
 	        
-	        //업데이트된 파일명 이벤트 객체에 설정
+	     // 업데이트된 파일명 이벤트 객체에 설정
 	        event.setEventImg1(newFileName);
+	    } else {
+	        // 수정된 파일이 없는 경우 기존 파일명 유지
+	        event.setEventImg1(exEvent.getEventImg1());
 	    }
 	
-	    if (!multipartFile2.isEmpty()) {
+	    if (multipartFile2 != null && !multipartFile2.isEmpty()) {
 	        String uploadDirectory = context.getServletContext().getRealPath("/resources/assets/img/event");
 	        String newFileName = UUID.randomUUID().toString() + "_" + multipartFile2.getOriginalFilename();
 	        
@@ -95,7 +100,9 @@ public class EventController {
 	        }
 	        
 	        event.setEventImg2(newFileName);
-	    }
+	    } else {
+            event.setEventImg2(exEvent.getEventImg2());
+        }
 	    
 	    //이벤트 정보 업데이트
 	    eventService.modifyEvent(event);
@@ -137,11 +144,25 @@ public class EventController {
 
 	
 	@RequestMapping("/main")
-	public String eventMain(@RequestParam(defaultValue = "1") int pageNum, Model model) {
-		Map<String, Object> map=eventService.getEventList(pageNum);
+	public String eventMain(@RequestParam(defaultValue = "1") int pageNum, Model model,
+			@RequestParam(defaultValue = "0") int statusId) {
+		Map<String, Object> map = eventService.getEventListByStatus(pageNum, statusId);
 		
 		model.addAttribute("pager", map.get("pager"));
 		model.addAttribute("eventList", map.get("eventList"));
+		
+		if (statusId == 0) {
+			LocalDate currentDate = LocalDate.now();
+			List<Event> ongoingEvents = eventService.getOngoingEvents(currentDate);
+			model.addAttribute("ongoingEvents", ongoingEvents);
+			
+			// 진행 중인 이벤트 처리...
+		} else {
+			LocalDate currentDate = LocalDate.now();
+			List<Event> endedEvents = eventService.getEndedEvents(currentDate);
+			model.addAttribute("ongoingEvents", endedEvents);
+			// 종료된 이벤트 처리...
+		}
 	
 		return "event/event_main";
 	}

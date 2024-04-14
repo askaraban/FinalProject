@@ -32,31 +32,36 @@
 				<div class="col-sm-8">
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">제목</div>
-						<input type="text" name="eventTitle" class="form-control" value="${eventmodify.eventTitle}">
+						<input type="text" name="eventTitle" class="form-control" value="${eventmodify.eventTitle}" required>
 					</div>
 					<div class="mb-4">
-						<div class="col-sm-2 mb-1 fw-bold">운영기간</div>
-						<div class="form-group col-md-3 col-lg-12 mb-0">
-							<input type="text" class="form-control double-date" id="eventSchedule">
-							<input type="hidden" name="eventStart" id="eventStart" value="${eventmodify.eventStart}">
-							<input type="hidden" name="eventEnd" id="eventEnd" value="${eventmodify.eventEnd}">
-						</div>
+					    <input type="hidden" id="eventSchedule">
+					    <div class="col-sm-12">
+					        <div class="col-sm-2 mb-1 fw-bold">시작일</div>
+					        <div class="col-sm-4 mb-1">
+					            <input type="text" class="form-control" name="eventStart" id="eventStart" placeholder="예): 2024-04-14" value="${eventmodify.eventStart}" style="margin-bottom: 1rem;" required>
+					        </div>
+					        <div class="col-sm-2 mb-1 fw-bold">종료일</div>
+					        <div class="col-sm-4 mb-1">
+					            <input type="text" class="form-control" name="eventEnd" id="eventEnd" placeholder="예): 2024-04-14" value="${eventmodify.eventEnd}" required>
+					        </div>
+					    </div>
 					</div>
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">행사내용</div>
-						<textarea class="form-control" rows="5" name="eventContent">${eventmodify.eventContent}</textarea>
+						<textarea class="form-control" rows="5" name="eventContent" required>${eventmodify.eventContent}</textarea>
 					</div>
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">유의사항</div>
-						<textarea class="form-control" rows="5" name="eventNotice">${eventmodify.eventNotice}</textarea>
+						<textarea class="form-control" rows="5" name="eventNotice" required>${eventmodify.eventNotice}</textarea>
 					</div>
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">대표 이미지</div>
-						<input type="file" class="form-control" name="multipartFile" id="eventImg1">${eventmodify.eventImg1}
+						<input type="file" class="form-control" name="multipartFile" id="eventImg1" required>${eventmodify.eventImg1}
 					</div>
 					<div class="mb-2">
 						<div class="col-sm-2 mb-1 fw-bold">상세 이미지</div>
-						<input type="file" class="form-control" name="multipartFile2" id="eventImg2">${eventmodify.eventImg2}
+						<input type="file" class="form-control" name="multipartFile2" id="eventImg2" required>${eventmodify.eventImg2}
 					</div>
 				</div>
 			</div>

@@ -28,12 +28,11 @@
     <table id="my-booking" class="display nowrap table-data-default" style="width:100%">
       <thead style="text-align:center">
 		<tr>
-          <th>번호</th>
-          <th>제목</th>
-          <th>시작일</th>
-          <th>종료일</th>
-          <th>진행상태</th>
-          <th>편집</th>
+         <th style="border: 1px solid #dee2e6; font-size: 20px;">제목</th>
+	     <th style="border: 1px solid #dee2e6; font-size: 20px;">시작일</th>
+	     <th style="border: 1px solid #dee2e6; font-size: 20px;">종료일</th>
+	     <th style="border: 1px solid #dee2e6; font-size: 20px;">진행상태</th>
+	     <th style="border: 1px solid #dee2e6; font-size: 20px;">편집</th>
         </tr>
       </thead>
      
@@ -41,78 +40,81 @@
 	  <%-- 게시글 목록 출력 --%> 
 		<c:forEach var="event" items="${eventList}">
 	        <tr>
-	          <td class="text-capitalize">${event.eventId}</td>
-	          <td class="text-capitalize">${event.eventTitle}</td>
-	          <td class="text-capitalize" align="center">
+	          <td class="text-capitalize" style="border: 1px solid #dee2e6; font-size: 18px; padding-top: 10px; padding-bottom: 10px;">${event.eventTitle}</td>
+	          <td class="text-capitalize" align="center" style="border: 1px solid #dee2e6; font-size: 18px;">
 	          	<fmt:parseDate var="startDate" value="${event.eventStart}" pattern="yyyy-MM-dd HH:mm:ss" />
                	<fmt:formatDate pattern='yyyy-MM-dd' value='${startDate}' /> 
 	          </td>
-	          <td class="text-capitalize" align="center">
+	          <td class="text-capitalize" align="center" style="border: 1px solid #dee2e6; font-size: 18px;">
 	          	<fmt:parseDate var="endDate" value="${event.eventEnd}" pattern="yyyy-MM-dd HH:mm:ss" />
                	<fmt:formatDate pattern='yyyy-MM-dd' value='${endDate}' /> 
-	          
-	          <td align="center">
+	          </td>
+	          <td align="center" style="border: 1px solid #dee2e6; font-size: 18px;">
 	            <span class="badge text-bg-primary px-2 py-1">${event.eventStatus}</span>
 	          </td>
-	          <td class="td-buttons-2">
-	            <div class="d-flex justify-content-center flex-column flex-lg-row">
-	               <a class="btn btn-outline-primary btn-sm me-lg-3 mb-2" href="<c:url value="/event/modify"/>?eventId=${event.eventId}">
-	                <i class="fa fa-edit"></i>
-	                수정</a>
-	               <a class="btn btn-outline-danger btn-sm" href="<c:url value="/event/delete"/>?eventId=${event.eventId}">
-	                <i class="fa fa-times" aria-hidden="true"></i>
-	                삭제
-	              </a>
-	            </div>
-	          </td>
+	          <td class="td-buttons-2" style="border: 1px solid #dee2e6; font-size: 18px; text-align: center; vertical-align: middle;">
+			    <div style="display: flex; justify-content: center; align-items: center; margin: 10px;"> <!-- 여백을 조정하는 부분입니다. -->
+			        <a class="btn btn-outline-primary btn-sm me-lg-3 mb-0" href="<c:url value='/event/modify'/>?eventId=${event.eventId}" style="font-size: 15px;">
+			            <i class="fa fa-edit"></i> 수정
+			        </a>
+			        <a class="btn btn-outline-danger btn-sm mb-0" href="<c:url value='/event/delete'/>?eventId=${event.eventId}" style="font-size: 15px;">
+			            <i class="fa fa-times" aria-hidden="true"></i> 삭제
+			        </a>
+			    </div>
+			  </td>
 	        </tr>
 		</c:forEach>	
       </tbody>
     </table>
-  </div>
-  
-  <%-- 페이지 번호 출력 --%>
-<section class="my-5">	
-	<nav aria-label="Page navigation example">
-    	<ul class="pagination" style="justify-content: center;">
-			<li class="page-item me-2">
-				<c:choose>
-					<c:when test="${pager.startPage > pager.blockSize }">
-						<a href="<c:url value="/event/list"/>?pageNum=${pager.prevPage}">[이전]
-							<i class="fa fa-angle-left" aria-hidden="true"></i>
-						</a>	
-					</c:when>
-					<c:otherwise>
-						[이전]
-					</c:otherwise>
-				</c:choose>
-			</li>	
-				<c:forEach var="i" begin="${pager.startPage }" end="${pager.endPage }" step="1">
-					<c:choose>
-						<c:when test="${pager.pageNum != i }">
-							<a href="<c:url value="/event/list"/>?pageNum=${i}">[${i}]</a>
-						</c:when>
-						<c:otherwise>
-							[${i}]
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				
-			<li class="page-item">	
-				<c:choose>
-					<c:when test="${pager.endPage != pager.totalPage }">
-						<a href="<c:url value="/event/list"/>?pageNum=${pager.nextPage}">[다음]
-							 <i class="fa fa-angle-right" aria-hidden="true"></i>
-						</a>	 
-					</c:when>
-					<c:otherwise>
-						[다음]
-					</c:otherwise>
-				</c:choose>
-			</li>
-		</ul>
-	</nav>			
+  <div class="pb-8"></div>
+<%-- 페이지 번호 출력 --%>
+<section class="my-5">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination" style="justify-content: center;">
+      <li class="page-item me-2">
+        <c:choose>
+          <c:when test="${pager.startPage > pager.blockSize}">
+            <a class="page-link" href="<c:url value="/event/list"/>?pageNum=${pager.prevPage}">
+              <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+          </c:when>
+          <c:otherwise>
+            <a class="page-link" href="javascript:void(0)">
+              <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+          </c:otherwise>
+        </c:choose>
+      </li>
+      <c:forEach var="i" begin="${pager.startPage}" end="${pager.endPage}" step="1">
+        <li class="page-item me-2">
+          <c:choose>
+            <c:when test="${pager.pageNum != i}">
+              <a class="page-link" href="<c:url value="/event/list"/>?pageNum=${i}">${i}</a>
+            </c:when>
+            <c:otherwise>
+              <a class="page-link" href="javascript:void(0)">${i}</a>
+            </c:otherwise>
+          </c:choose>
+        </li>
+      </c:forEach>
+      <li class="page-item">
+        <c:choose>
+          <c:when test="${pager.endPage != pager.totalPage}">
+            <a class="page-link" href="<c:url value="/event/list"/>?pageNum=${pager.nextPage}">
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+          </c:when>
+          <c:otherwise>
+            <a class="page-link" href="javascript:void(0)">
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+          </c:otherwise>
+        </c:choose>
+      </li>
+    </ul>
+  </nav>
 </section>
+</div>
 </section>
 
 

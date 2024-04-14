@@ -49,14 +49,10 @@
 				<h2 class="fw-bolder mb-6">이벤트</h2>
 				<h5 class="mb-8">스위프트에어 이벤트와 함께 특별한 여정을 시작해보세요:)</h5>
 				<div class="d-flex align-items-center">
-					<div class="tapBtn">
-						<button type="button" class="btn-line on" onclick="location.href='main'">
-						진행중
-						</button>
-						<button class="btn-line" onclick="location.href='main'">
-						종료됨
-						</button>
-						
+					<div class="tapBtn" id="eventStatus">
+						<input type="hidden" id="status" value="">
+			            <button class="btn-line ${param.statusId == null || param.statusId == '0' ? 'on' : ''}" onclick="fn_changeStatus(0);">진행중</button>
+						<button class="btn-line ${param.statusId == '1' ? 'on' : ''}" onclick="fn_changeStatus(1);">종료됨</button>
 					</div>
 				</div>
 			</div>
@@ -79,85 +75,74 @@
 					               	<fmt:formatDate pattern='yyyy-MM-dd' value='${startDate}' /> ~ 
 					               	<fmt:formatDate pattern='yyyy-MM-dd' value='${endDate}' />
 								</date>
-			              		<span class="badge text-bg-primary fs-6" style="line-height: 1.2">${event.eventStatus}</span>
+			              		<span class="badge text-bg-primary fs-6" style="line-height: 1.2">${event.eventStatus == 0 ? '진행중' : '종료됨'}</span>
 			            	</div>
 							<h5 class="card-title fw-bolder lh-base">
 								<a href="<c:url value="/event/detail"/>?eventId=${event.eventId}">${event.eventTitle}</a>
 							</h5>
 						</div>
 					</div>
+					<input name="pageIndex" id="pageIndex" type="hidden" value="1">
 				</div>
 			</c:forEach>		
 		</div>
     <!-- ====================================
 ———	pagination
 ===================================== -->
-<%--
+<%-- 페이지 번호 출력 --%>
 <section class="my-5">
   <nav aria-label="Page navigation example">
     <ul class="pagination" style="justify-content: center;">
       <li class="page-item me-2">
-        <a class="page-link" href="javascript:void(0)">
-          <i class="fa fa-angle-left" aria-hidden="true"></i>
-        </a>
+        <c:choose>
+          <c:when test="${pager.startPage > pager.blockSize}">
+            <a class="page-link" href="<c:url value="/event/main"/>?pageNum=${pager.prevPage}&statusId=${param.statusId}">
+              <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+          </c:when>
+          <c:otherwise>
+            <a class="page-link" href="javascript:void(0)">
+              <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+          </c:otherwise>
+        </c:choose>
       </li>
-      <li class="page-item active me-2"><a class="page-link" href="javascript:void(0)">1</a></li>
-      <li class="page-item me-2"><a class="page-link" href="javascript:void(0)">2</a></li>
-      <li class="page-item me-2"><a class="page-link" href="javascript:void(0)">3</a></li>
-      <li class="page-item me-2"><a class="page-link" href="javascript:void(0)">4</a></li>
-      <li class="page-item me-2"><a class="page-link" href="javascript:void(0)">5</a></li>
+      <c:forEach var="i" begin="${pager.startPage}" end="${pager.endPage}" step="1">
+        <li class="page-item me-2">
+          <c:choose>
+            <c:when test="${pager.pageNum != i}">
+              <a class="page-link" href="<c:url value="/event/main"/>?pageNum=${i}&statusId=${param.statusId}">${i}</a>
+            </c:when>
+            <c:otherwise>
+              <a class="page-link" href="javascript:void(0)">${i}</a>
+            </c:otherwise>
+          </c:choose>
+        </li>
+      </c:forEach>
       <li class="page-item">
-        <a class="page-link" href="javascript:void(0)">
-          <i class="fa fa-angle-right" aria-hidden="true"></i>
-        </a>
+        <c:choose>
+          <c:when test="${pager.endPage != pager.totalPage}">
+            <a class="page-link" href="<c:url value="/event/main"/>?pageNum=${pager.nextPage}&statusId=${param.statusId}">
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+          </c:when>
+          <c:otherwise>
+            <a class="page-link" href="javascript:void(0)">
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+          </c:otherwise>
+        </c:choose>
       </li>
     </ul>
   </nav>
 </section>
---%>
+</div>
+</section>
 
-<%-- 페이지 번호 출력 --%>
-<section class="my-5">	
-	<nav aria-label="Page navigation example">
-    	<ul class="pagination" style="justify-content: center;">
-			<li class="page-item me-2">
-				<c:choose>
-					<c:when test="${pager.startPage > pager.blockSize }">
-						<a href="<c:url value="/event/main"/>?pageNum=${pager.prevPage}">[이전]
-							<i class="fa fa-angle-left" aria-hidden="true"></i>
-						</a>	
-					</c:when>
-					<c:otherwise>
-						[이전]
-					</c:otherwise>
-				</c:choose>
-			</li>	
-				<c:forEach var="i" begin="${pager.startPage }" end="${pager.endPage }" step="1">
-					<c:choose>
-						<c:when test="${pager.pageNum != i }">
-							<a href="<c:url value="/event/main"/>?pageNum=${i}">[${i}]</a>
-						</c:when>
-						<c:otherwise>
-							[${i}]
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				
-			<li class="page-item">	
-				<c:choose>
-					<c:when test="${pager.endPage != pager.totalPage }">
-						<a href="<c:url value="/event/main"/>?pageNum=${pager.nextPage}">[다음]
-							 <i class="fa fa-angle-right" aria-hidden="true"></i>
-						</a>	 
-					</c:when>
-					<c:otherwise>
-						[다음]
-					</c:otherwise>
-				</c:choose>
-			</li>
-		</ul>
-	</nav>			
-</section>
-</section>
+<script>
+    function fn_changeStatus(statusId) {
+        location="<c:url value="/event/main"/>?statusId="+statusId;
+    }
+</script>
 
 </body>

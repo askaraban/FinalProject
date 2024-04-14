@@ -37,11 +37,11 @@
 						</div>
 		            	<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">출발지</div>
-							<input type="text" class="form-control" required>
+							<input type="text" class="form-control" value="${schedulemodify.routeDeparture}">
 		            	</div>
 		            	<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">도착지</div>
-							<input type="text" class="form-control" required>
+							<input type="text" class="form-control" value="${schedulemodify.routeDestination}">
 		            	</div>
 		            	<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">운항시간</div>
@@ -60,22 +60,45 @@
 		            		<div class="col-sm-2 mb-1 fw-bold">가격</div>
 							<input type="text" class="form-control" required>
 		            	</div>
-						<div class="mb-2">
-							<div class="col-sm-2 mb-1 fw-bold">운항일자</div>
-							<div class="form-group col-md-3 col-lg-12 mb-0">
-								<input type="text" class="form-control" name="daterange">
-							</div>
+						<div class="mb-4">
+						    <input type="hidden" id="scheduleSchedule">
+						    <div class="col-sm-12">
+						        <div class="col-sm-2 mb-1 fw-bold">출발일</div>
+						            <input type="text" class="form-control" name="scheduleDepartureDate" id="scheduleDepartureDate" placeholder="예): 2024-04-14" value="${schedulemodify.scheduleDepartureDate}" style="margin-bottom: 1rem;" required>
+						        <div class="col-sm-2 mb-1 fw-bold">도착일</div>
+						            <input type="text" class="form-control" name="scheduleArrivalDate" id="scheduleArrivalDate" placeholder="예): 2024-04-14" value="${schedulemodify.scheduleArrivalDate}" required>
+						    </div>
 						</div>
 		            </div>
 				</div>
 			</div>
  		</div>
 		<div style="float: right">
-		  <button type="submit" class="btn btn-primary ms-1" onclick="location.href='list'">목록</button>
-		  <button type="submit" class="btn btn-primary ms-1" onclick="location.href='list'">취소</button>
-		  <button type="submit" class="btn btn-primary ms-1" onclick="location.href='list'">수정</button>
+			<a href ="<c:url value="/schedule/list"/>" type="button" class="btn btn-primary ms-1">목록</a>
+			<a href ="<c:url value="/schedule/list"/>" type="button" class="btn btn-primary ms-1">취소</a>
+			<button type="submit" class="btn btn-primary ms-1" id="submitBtn">수정</button>
 		</div>
 	</div>
 </section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$('#submitBtn').click(function() {
+	var scheduleSchedule = $('#scheduleSchedule').val();
+	var values = scheduleSchedule.split(" - ");
+	
+	var first = values[0].split('/');
+	var last = values[1].split('/');
+	
+	var oDepartureDate = first[2] + '/' + first[0] + '/' + first[1];
+	var oArrivalDate = last[2] + '/' + last[0] + '/' + last[1];
+	
+	var scheduleDepartureDate = oStart;
+	var scheduleArrivalDate = oEnd;
+	
+	$('#scheduleDepartureDate').val(scheduleDepartureDate);
+	$('#scheduleArrivalDate').val(scheduleArrivalDate);
+})
+</script>
 
 </body>

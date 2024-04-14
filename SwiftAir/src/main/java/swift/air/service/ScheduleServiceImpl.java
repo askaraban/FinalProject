@@ -53,7 +53,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 	public Map<String, Object> getScheduleList(int pageNum) {
 		int totalSize=scheduleDAO.selectScheduleCount();
 		
-		Pager pager=new Pager(pageNum, totalSize, 5, 5);
+		Pager pager=new Pager(pageNum, totalSize, 10, 5);
 		
 		Map<String, Object> pageMap=new HashMap<String, Object>();
 		pageMap.put("startRow", pager.getStartRow());

@@ -1,5 +1,6 @@
 package swift.air.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -41,6 +42,11 @@ public class EventDAOImpl implements EventDAO{
 	}
 
 	@Override
+	public int selectEventCountByStatus(int statusId) {
+		return sqlSession.getMapper(EventMapper.class).selectEventCountByStatus(statusId);
+	}
+
+	@Override
 	public List<Event> selectEventList(Map<String, Object> map) {
 		return sqlSession.getMapper(EventMapper.class).selectEventList(map);
 	}
@@ -49,4 +55,14 @@ public class EventDAOImpl implements EventDAO{
 		return sqlSession.getMapper(EventMapper.class).selectEventListByStatus(map);
 	}
 
+	@Override
+	public List<Event> selectOngoingEvents(LocalDate currentDate) {
+	    return sqlSession.getMapper(EventMapper.class).selectOngoingEvents(currentDate);
+	}
+
+	@Override
+	public List<Event> selectEndedEvents(LocalDate currentDate) {
+	    return sqlSession.getMapper(EventMapper.class).selectEndedEvents(currentDate);
+	}
 }
+

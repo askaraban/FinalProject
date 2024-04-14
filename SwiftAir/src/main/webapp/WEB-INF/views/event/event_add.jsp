@@ -31,40 +31,46 @@
 				<div class="col-sm-8">
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">제목</div>
-						<input type="text" class="form-control" name="eventTitle" value="${event.eventTitle}">
+						<input type="text" class="form-control" name="eventTitle" value="${event.eventTitle}" required>
 					</div>
 					
 					<div class="mb-4">
-						<div class="col-sm-2 mb-1 fw-bold">운영기간</div>
-						<div class="form-group col-md-3 col-lg-12 mb-0">
-							<input type="text" class="form-control double-date" id="eventSchedule">
-							<input type="hidden" name="eventStart" id="eventStart" value="${event.eventStart}">
-							<input type="hidden" name="eventEnd" id="eventEnd" value="${event.eventEnd}">
-						</div>
+					    <input type="hidden" id="eventSchedule">
+					    <div class="col-sm-12">
+					        <div class="col-sm-2 mb-1 fw-bold">시작일</div>
+					        <div class="col-sm-4 mb-1">
+					            <input type="text" class="form-control" name="eventStart" id="eventStart" placeholder="예): 2024-04-14" value="${event.eventStart}" style="margin-bottom: 1rem;" required>
+					        </div>
+					        <div class="col-sm-2 mb-1 fw-bold">종료일</div>
+					        <div class="col-sm-4 mb-1">
+					            <input type="text" class="form-control" name="eventEnd" id="eventEnd" placeholder="예): 2024-04-14" value="${event.eventEnd}" required>
+					        </div>
+					    </div>
 					</div>
+					
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">행사내용</div>
-						<textarea class="form-control" rows="5" name="eventContent">${event.eventContent}</textarea>
+						<textarea class="form-control" rows="5" name="eventContent" required>${event.eventContent}</textarea>
 					</div>
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">유의사항</div>
-						<textarea class="form-control" rows="5" name="eventNotice">${event.eventNotice}</textarea>
+						<textarea class="form-control" rows="5" name="eventNotice" required>${event.eventNotice}</textarea>
 					</div>
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">대표 이미지</div>
-						<input type="file" class="form-control" name="multipartFile" id="eventImg1">
+						<input type="file" class="form-control" name="multipartFile" id="eventImg1" required>
 					</div>
 					<div class="mb-2">
 						<div class="col-sm-2 mb-1 fw-bold">상세 이미지</div>
-						<input type="file" class="form-control" name="multipartFile2" id="eventImg2">
+						<input type="file" class="form-control" name="multipartFile2" id="eventImg2" required>
 					</div>
 				</div>
 			</div>
 		</div>
 		</div>
 		<div style="float: right">
-			<button type="button" class="btn btn-primary ms-1" onclick="location.href='<c:url value="/event/list"/>';">목록</button>
-			<button type="button" class="btn btn-primary ms-1" onclick="location.href='<c:url value="/event/list"/>';">취소</button>
+			<a href ="<c:url value="/event/list"/>" type="button" class="btn btn-primary ms-1">목록</a>
+			<a href ="<c:url value="/event/list"/>" type="button" class="btn btn-primary ms-1">취소</a>
 			<button type="submit" class="btn btn-primary ms-1" id="submitBtn">등록</button>
 		</div>
 		</form>

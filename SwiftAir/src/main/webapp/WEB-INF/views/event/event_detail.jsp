@@ -48,7 +48,7 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td class="fw-bolder lh-base">운영기간</td>
+                                <td class="fw-bolder lh-base" style="width: 15%;">운영기간</td>
                                 <td class="px-6">
                             		<fmt:parseDate var="startDate" value="${eventdetail.eventStart}" pattern="yyyy-MM-dd HH:mm:ss" />
 					               	<fmt:parseDate var="endDate" value="${eventdetail.eventEnd}" pattern="yyyy-MM-dd HH:mm:ss" />

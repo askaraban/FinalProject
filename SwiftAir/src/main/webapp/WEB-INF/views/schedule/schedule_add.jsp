@@ -68,20 +68,23 @@
 		            		<div class="col-sm-2 mb-1 fw-bold">가격</div>
 							<input type="number" class="form-control" name="routePrice" id="routePrice">
 		            	</div>
-						<div class="mb-2">
-							<div class="col-sm-2 mb-1 fw-bold">운항일자</div>
-							<div class="form-group col-md-3 col-lg-12 mb-0">
-								<input type="text" class="form-control double-date" name="scheduleDuration">
-							</div>
+						<div class="mb-4">
+						    <input type="hidden" id="scheduleSchedule">
+						    <div class="col-sm-12">
+						        <div class="col-sm-2 mb-1 fw-bold">출발일</div>
+						            <input type="text" class="form-control" name="scheduleDepartureDate" id="scheduleDepartureDate" placeholder="예): 2024-04-14" value="${schedule.scheduleDepartureDate}" style="margin-bottom: 1rem;" required>
+						        <div class="col-sm-2 mb-1 fw-bold">도착일</div>
+						            <input type="text" class="form-control" name="scheduleArrivalDate" id="scheduleArrivalDate" placeholder="예): 2024-04-14" value="${schedule.scheduleArrivalDate}" required>
+						    </div>
 						</div>
-		            </div>
 				</div>
 			</div>
  		</div>
+ 		</div>
 		<div style="float: right">
 		 <a href ="<c:url value="/schedule/list"/>" type="button" class="btn btn-primary ms-1">목록</a>
-			<a href ="<c:url value="/schedule/list"/>" type="button" class="btn btn-primary ms-1">취소</a>
-		  <button type="submit" class="btn btn-primary ms-1">등록</button>
+		 <a href ="<c:url value="/schedule/list"/>" type="button" class="btn btn-primary ms-1">취소</a>
+		 <button type="submit" class="btn btn-primary ms-1" id="submitBtn">등록</button>
 		</div>
 		</form>
 	</div>
@@ -89,22 +92,22 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-    $('#scheduleFlight').on('change', function(){
-        var selectedFlight = $(this).val();
-        $.ajax({
-            type: 'POST',
-            url: '/schedule/getRouteData',
-            data: { flight: selectedFlight },
-            success: function(response) {
-            	 $('#routeDeparture').val(response.routeDeparture);
-                 $('#routeDestination').val(response.routeDestination);
-                 $('#routeTime').val(response.routeTime);
-                 $('#routePrice').val(response.routePrice);
-            }
-        });
-    });
-});
+$('#submitBtn').click(function() {
+	var scheduleSchedule = $('#scheduleSchedule').val();
+	var values = scheduleSchedule.split(" - ");
+	
+	var first = values[0].split('/');
+	var last = values[1].split('/');
+	
+	var oDepartureDate = first[2] + '/' + first[0] + '/' + first[1];
+	var oArrivalDate = last[2] + '/' + last[0] + '/' + last[1];
+	
+	var scheduleDepartureDate = oStart;
+	var scheduleArrivalDate = oEnd;
+	
+	$('#scheduleDepartureDate').val(scheduleDepartureDate);
+	$('#scheduleArrivalDate').val(scheduleArrivalDate);
+})
 </script>
 
 </body>
