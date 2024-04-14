@@ -98,5 +98,11 @@ public class EventServiceImpl implements EventService{
 	public List<Event> getEndedEvents(LocalDate currentDate) {
 		return eventDAO.selectEndedEvents(currentDate);
 	}
+
+	@Override
+	public List<Event> getEventMainPage() {
+		
+		return eventDAO.eventMainPage();
+	}
 }
 

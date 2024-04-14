@@ -1,7 +1,5 @@
 package swift.air.controller;
 
-
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +18,6 @@ import swift.air.service.ReservationService;
 import swift.air.service.SeatService;
 
 
-//Reservation 테스트
 @Controller
 @SessionAttributes("resInfo")
 @RequestMapping(value = "/reservation")
@@ -34,7 +31,7 @@ public class ReservationController {
         return new HashMap<>();
     }
 	
-	@RequestMapping(value = "/seatgrade")
+	@RequestMapping(value = "/seatgrade1")
 	public String resSeatGrade(@RequestParam Map<String, Object> resScheduleSellection, Model model
 			, @RequestParam int resPassengerCnt
 			, @RequestParam String resDeparture
@@ -43,6 +40,14 @@ public class ReservationController {
 			, @RequestParam String resReturnDate) {
 		
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
+		
+		val departureFlight = reservationService.chooseFlight(resDepartDate, resDeparture, resDestination);
+	    val returnFlight = reservationService.chooseFlight(resReturnDate, resDestination, resDeparture);
+	    
+	    if (departureFlight == null || returnFlight == null) {
+	        model.addAttribute("alertMessage", "조회하신 항공편은 없는 항공편이거나 선택이 불가능한 항공편입니다.");
+	        return "reservation/res_schedule";
+	    }
 		
 		resInfo.putAll(resScheduleSellection);
 		resInfo.put("scheduleId1", reservationService.chooseFlight(resDepartDate, resDeparture, resDestination).getScheduleId());
@@ -55,25 +60,35 @@ public class ReservationController {
 		resInfo.put("routePrice", reservationService.chooseFlight(resDepartDate, resDeparture, resDestination).getRoutePrice());
 		model.addAttribute("resInfo", resInfo);
 		
-		
 		System.out.println("Reservation Information: " + resInfo);
 		
-		//return "redirect:/reservation/seatgrade";
-		return "reservation/res_seat_grade";
+		return "reservation/res_seat_grade_dep";
 	}
 	
-	@RequestMapping(value = "/passengersinfo")
-	public String resPassengersInfo(@RequestParam Map<String, Object> addSeatGrade, Model model) {
+	@RequestMapping(value = "/seatgrade2")
+	public String resPassengersInfo1(@RequestParam String resDepSeatGrade, Model model) {
 		
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
 		
-		resInfo.put("resSeatGrade", addSeatGrade.get("resSeatGrade"));
+		resInfo.put("resDepSeatGrade", resDepSeatGrade);
 		model.addAttribute("resInfo", resInfo);
 		
 		System.out.println("Reservation Information: " + resInfo);
 		
-		//return "redirect:/reservation/passengersinfo";
-	    return "reservation/res_passengers_info";
+	    return "reservation/res_seat_grade_arr";
+	}
+
+	@RequestMapping(value = "/passengersinfo")
+	public String resPassengersInfo2(@RequestParam String resArrSeatGrade, Model model) {
+		
+		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
+		
+		resInfo.put("resArrSeatGrade", resArrSeatGrade);
+		model.addAttribute("resInfo", resInfo);
+		
+		System.out.println("Reservation Information: " + resInfo);
+		
+		return "reservation/res_passengers_info";
 	}
 	
 	@RequestMapping(value = "/seat1")

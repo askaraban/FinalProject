@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,7 +34,11 @@ public class MemberController {
 	
 	@RequestMapping(value = "/joinAction")
 	public String join(@ModelAttribute Member member, Model model) {
+		String hashedPassword = PasswdHash.encrypt(member.getMemberPswd());
+		member.setMemberPswd(hashedPassword);
+		member.setMemberStatus(0);
 		memberService.addMember(member);
+		
 		return "redirect:/member/login";
 		
 	}
@@ -56,11 +62,12 @@ public class MemberController {
 		session.setAttribute("loginMember", authMember); 
 		return "index";   
 		  
-}		
+	}
+	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/member/login";	
+		return "index";	
 	}
 	
 	@RequestMapping(value = "/confirmId")
@@ -125,8 +132,54 @@ public class MemberController {
 	    return "index";
 	}
 	
+	@RequestMapping(value = "/naverLogin")
+	public String naverLogin() {
+		return "member/naverLogin";	
+		
+	}	
 	
+	@RequestMapping(value = "/naverLoginAction")
+	public String naverLoginAction(String age,
+								   String birthDay,
+								   String birthYear,
+								   String email,
+								   String gender,
+								   String mobile,
+								   String name,
+								   String nickName,
+								   String id,
+								   HttpSession session
+								   ) {
+		
+		
+		Member member = new Member();
+		member.setMemberId(email);
+		member.setMemberBirth(birthYear + "-" +birthDay);
+		member.setMemberEmail(email);
+		
+		if(gender.equals("M")) {
+			member.setMemberGender(1);	
+		}else {
+			member.setMemberGender(2);
+		}
+		
+		member.setMemberPhone(mobile);
+		member.setMemberKorName(name);
+		
+		
+		Member authMember = memberService.loginAuth(member);
+		if(authMember == null) {
+			member.setMemberStatus(5); 
+			memberService.addMember(member);	
+		}
+
+		session.setAttribute("loginMember", authMember);
+		
+		return "redirect:/";
+		  
+	}	
 	
+
 }
 	
 	

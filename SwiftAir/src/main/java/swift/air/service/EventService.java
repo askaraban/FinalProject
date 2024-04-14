@@ -15,4 +15,5 @@ public interface EventService {
 	Map<String, Object> getEventListByStatus(int pageNum, int statusId);
 	List<Event> getOngoingEvents(LocalDate currentDate);
     List<Event> getEndedEvents(LocalDate currentDate);
+    List<Event> getEventMainPage();
 }
