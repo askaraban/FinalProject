@@ -76,9 +76,10 @@
 					</div>	
 					
 					<div class="text-center">
-	                    		<a href="#"><img src='<c:url value="/img_a/sns_icon/google_rac.png"/>' style="width: 36px; margin-right: 10px;"></a>
+						<div id="naverIdLogin"><a id="naverIdLogin_loginButton" href="#" role="button"><img src="https://static.nid.naver.com/oauth/big_g.PNG" width=320></a></div>
+	                    		<%-- <a href="#"><img src='<c:url value="/img_a/sns_icon/google_rac.png"/>' style="width: 36px; margin-right: 10px;"></a>
 	                    		<a href="#"><img src='<c:url value="/img_a/sns_icon/kakao_rac.png"/>' style="width: 36px; margin-right: 10px;"></a>
-	                    		<a href="#"><img src='<c:url value="/img_a/sns_icon/naver_rac.png"/>' style="width: 36px; margin-right: 10px;"></a>
+	                    		<a href="#"><img src='<c:url value="/img_a/sns_icon/naver_rac.png"/>' style="width: 36px; margin-right: 10px;"></a> --%>
                     </div>
             
                     	</div>
@@ -91,7 +92,7 @@
         </div>
         <!-- end login -->
 	</div>
-	<!-- end page container -->
+	<!-- end page container -->	
 	
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src='<c:url value="/plugins_a/jquery/jquery-1.9.1.min.js"/>'></script>
@@ -135,4 +136,84 @@
 		
 		
 	</script>
+	
+	<script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<!-- (2) LoginWithNaverId Javscript SDK -->
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
+	<!-- <script type="text/javascript" src="/pms/js/dvpms/naveridlogin_js_sdk_2.0.2.js"></script> -->
+
+	<!-- (3) LoginWithNaverId Javscript 설정 정보 및 초기화 -->
+	<script>
+		window.name='opener';
+		var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "8fLkAVTQU1u1IVb0YcMG",
+				callbackUrl: "http://" + window.location.hostname + ((location.port==""||location.port==undefined)?"":":" + location.port) + "/swiftair/member/naverLogin",
+				/* callbackUrl: "http://127.0.0.1:8080/pms/index.do", */
+				isPopup: true,
+				loginButton: {color: "green", type: 3, height: 60}
+			}
+		);
+		/* (4) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 */
+		naverLogin.init();
+		
+		/* (4-1) 임의의 링크를 설정해줄 필요가 있는 경우 */
+		$("#gnbLogin").attr("href", naverLogin.generateAuthorizeUrl());
+
+		/* (5) 현재 로그인 상태를 확인 */
+		window.addEventListener('load', function () {
+			naverLogin.getLoginStatus(function (status) {
+				if (status) {
+					/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+					setLoginStatus();
+				}
+			});
+		});
+
+		/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+		function setLoginStatus() {
+			var age = naverLogin.user.getAge(); 
+			var birthDay = naverLogin.user.getBirthday();
+			var birthYear = naverLogin.user.getBirthyear();
+			var email = naverLogin.user.getEmail();
+			var gender = naverLogin.user.getGender();
+			var mobile = naverLogin.user.getMobile();
+			var name = naverLogin.user.getName();
+			var profileImage = naverLogin.user.getProfileImage();
+			var nickName = naverLogin.user.getNickName();
+			var id = naverLogin.user.getId();
+			
+			console.log("age : " + age + "/ birthDay : " + birthDay + " / birthYear : " + birthYear);
+			console.log("email : " + email + "/ gender : " + gender + " / mobile : " + mobile);
+			console.log("name : " + name + "/ profileImage : " + profileImage + " / nickName : " + nickName + " / id : " + id);
+			
+			console.log(naverLogin);
+			
+   			var redirect = "http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/swiftair/member/naverLoginAction";
+				redirect += "?age=" + age + "&birthDay=" + birthDay + "&birthYear=" + birthYear;
+				redirect += "&email=" + email + "&gender=" + gender + "&mobile=" + mobile;
+				redirect += "&name=" + name + "&nickName=" + nickName;
+				redirect += "&id=" + id;
+				
+			location.replace(redirect); 
+				
+			var imageViewer = '';
+			if (profileImage) {
+				imageViewer += '<br><br><img src="' + profileImage + '" height=50 /> <p>';
+			}
+			$("#naverIdLogin_loginButton").html(imageViewer + nickName + id + '님 반갑습니다.</p>');
+			$("#gnbLogin").html("Logout");
+			$("#gnbLogin").attr("href", "#"); 
+			
+			
+			/* (7) 로그아웃 버튼을 설정하고 동작을 정의합니다. */
+			$("#gnbLogin").click(function (e) {
+				e.preventDefault();
+				naverLogin.logout();
+				location.replace('/swiftair/index');
+			});
+		}
+	</script>	
 </body>

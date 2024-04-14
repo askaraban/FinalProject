@@ -26,8 +26,6 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public void addMember(Member member) {
-		String hashedPassword = PasswdHash.encrypt(member.getMemberPswd());
-		member.setMemberPswd(hashedPassword);
 		memberDAO.insertMember(member);
 		
 	}
@@ -63,8 +61,8 @@ public class MemberServiceImpl implements MemberService {
 		if(memberId != null) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setTo(memberEmail);
-		message.setSubject(memberKorName+"´ÔÀÇ ¾ÆÀÌµğ Ã£±â °á°úÀÔ´Ï´Ù");
-		message.setText(memberKorName+"´ÔÀÇ ¾ÆÀÌµğ´Â " + memberId + "ÀÔ´Ï´Ù");
+		message.setSubject(memberKorName+"ë‹˜ì˜ ì•„ì´ë”” ì°¾ê¸° ê²°ê³¼ì…ë‹ˆë‹¤");
+		message.setText(memberKorName+"ë‹˜ì˜ ì•„ì´ë””ëŠ” " + memberId + "ì…ë‹ˆë‹¤");
 		javaMailSender.send(message);
 
 		}
@@ -76,8 +74,8 @@ public class MemberServiceImpl implements MemberService {
 		String newPasswd = RandomPasswd.randomPasswd(10);
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setTo(member.getMemberEmail());
-		message.setSubject(member.getMemberId()+"´ÔÀÇ »õ ºñ¹Ğ¹øÈ£°¡ ¹ß±ŞµÇ¾ú½À´Ï´Ù.");
-		message.setText(member.getMemberId()+"´ÔÀÇ »õ ºñ¹Ğ¹øÈ£´Â " + newPasswd + "ÀÔ´Ï´Ù");
+		message.setSubject(member.getMemberId()+"ë‹˜ì˜ ìƒˆ ë¹„ë°€ë²ˆí˜¸ê°€ ë°œê¸‰ë˜ì—ˆìŠµë‹ˆë‹¤.");
+		message.setText(member.getMemberId()+"ë‹˜ì˜ ìƒˆ ë¹„ë°€ë²ˆí˜¸ëŠ” " + newPasswd + "ì…ë‹ˆë‹¤");
 		javaMailSender.send(message);
 		String hashedPassword = PasswdHash.encrypt(newPasswd);
 		member.setMemberPswd(hashedPassword);

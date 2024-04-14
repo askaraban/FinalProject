@@ -91,6 +91,31 @@
   </nav>
 </header>
 
+<script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- (2) LoginWithNaverId Javscript SDK -->
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
+
+<!-- (3) LoginWithNaverId Javscript 설정 정보 및 초기화 -->
+<script>
+	
+function fn_logout() {
+			
+	var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "8fLkAVTQU1u1IVb0YcMG"
+			}
+		);
+	naverLogin.init();
+	naverLogin.logout();
+	
+	var redirect = "http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/swiftair3/member/logout";
+	location.replace(redirect); 		
+	
+}
+
+</script>
+
 
 
 

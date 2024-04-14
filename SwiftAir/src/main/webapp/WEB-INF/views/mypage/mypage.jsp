@@ -60,7 +60,7 @@
 								<h4 class="fw-normal mb-4">(회원번호: ${loginMember.memberNum} )</h4>
 								<h5 class="fw-normal mb-4" style="color: gray;">${loginMember.memberEmail}</h5>
 								<a href="<c:url value = '/member/modifyMember'/>" class="btn btn-secondary btn mb-3">회원 정보 변경</a>
-								<a href="<c:url value = '/member/removeMember'/>" class="btn btn-secondary btn mb-3">회원 탈퇴</a>
+								<a href="<c:url value = '/member/removeMember'/>" class="btn btn-secondary btn mb-3" id = "withdraw">회원 탈퇴</a>
 							</div>
 						</div>
 						<div class="col-md-5 col-lg-4">
@@ -212,6 +212,22 @@ function journeyTableDisplay(pageNum, journey) {
         }
     });
 }
+
+$('#withdraw').click(function(event) {
+   
+    event.preventDefault();
+    
+   
+    var userResponse = confirm("정말로 회원 탈퇴를 하시겠습니까?");
+    
+    if (userResponse) {
+       
+        window.location.href = "/swiftair3/member/removeMember";
+    } else {
+        
+    }
+});
+
 
 </script>
 	
