@@ -45,17 +45,16 @@ public class ReservationController {
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
 		
 		resInfo.putAll(resScheduleSellection);
-		resInfo.put("scheduleId", reservationService.getFlight(resDeparture, resDestination, resDepartDate).getScheduleId());
-		resInfo.put("scheduleDepartureDate", reservationService.getFlight(resDeparture, resDestination, resDepartDate).getScheduleDepartureDate());
-		resInfo.put("scheduleArrivalDate", reservationService.getFlight(resDeparture, resDestination, resDepartDate).getScheduleArrivalDate());
-		resInfo.put("routeDeparture", reservationService.getFlight(resDeparture, resDestination, resDepartDate).getScheduleArrivalDate());
-		resInfo.put("routeDestination", reservationService.getFlight(resDeparture, resDestination, resDepartDate).getRouteDestination());
-		resInfo.put("routeFlight", reservationService.getFlight(resDeparture, resDestination, resDepartDate).getRouteFlight());
-		resInfo.put("routePrice", reservationService.getFlight(resDeparture, resDestination, resDepartDate).getRoutePrice());
+		resInfo.put("scheduleId1", reservationService.chooseFlight(resDepartDate, resDeparture, resDestination).getScheduleId());
+		resInfo.put("scheduleId2", reservationService.chooseFlight(resReturnDate, resDestination, resDeparture).getScheduleId());
+		resInfo.put("scheduleDepartureDate", reservationService.chooseFlight(resDepartDate, resDeparture, resDestination).getScheduleDepartureDate());
+		resInfo.put("scheduleArrivalDate", reservationService.chooseFlight(resDepartDate, resDeparture, resDestination).getScheduleArrivalDate());
+		resInfo.put("routeDeparture", reservationService.chooseFlight(resDepartDate, resDeparture, resDestination).getScheduleArrivalDate());
+		resInfo.put("routeDestination", reservationService.chooseFlight(resDepartDate, resDeparture, resDestination).getRouteDestination());
+		resInfo.put("routeFlight", reservationService.chooseFlight(resDepartDate, resDeparture, resDestination).getRouteFlight());
+		resInfo.put("routePrice", reservationService.chooseFlight(resDepartDate, resDeparture, resDestination).getRoutePrice());
 		model.addAttribute("resInfo", resInfo);
 		
-		model.addAttribute("flight", reservationService.getFlight(resDeparture, resDestination, resDepartDate));
-		//model.addAttribute("flight2", reservationService.getFlight(resDestination, resDeparture, resReturnDate));
 		
 		System.out.println("Reservation Information: " + resInfo);
 		
@@ -84,7 +83,7 @@ public class ReservationController {
 		model.addAttribute("seatList",seatService.getSeatList());
 		
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
-		model.addAttribute("reservedSeatList",seatService.getReservedSeatList((String)resInfo.get("scheduleId")));
+		model.addAttribute("reservedSeatList",seatService.getReservedSeatList((String)resInfo.get("scheduleId1")));
 		
 		
 		resInfo.putAll(addResMember);
@@ -106,7 +105,11 @@ public class ReservationController {
 		model.addAttribute("seatList",seatService.getSeatList());
 		
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
-		model.addAttribute("reservedSeatList",seatService.getReservedSeatList((String)resInfo.get("scheduleId")));
+		if(seatService.getReservedSeatList((String)resInfo.get("scheduleId2"))==null) {
+			model.addAttribute("reservedSeatList2",seatService.getSeatList());
+		} else {
+			model.addAttribute("reservedSeatList2",seatService.getReservedSeatList((String)resInfo.get("scheduleId2")));
+		}
 		
 		resInfo.putAll(addPassengerSeat1);
 		

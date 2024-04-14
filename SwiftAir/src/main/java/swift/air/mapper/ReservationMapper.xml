@@ -35,7 +35,7 @@
 		    , route_flight
 		    , route_price
 		    from schedule join route on route_id = schedule_route_id
-		    where schedule_departure_Date = to_date('#{param1}','mm/dd/yyyy')
+		    where schedule_departure_Date = to_date(#{param1},'mm/dd/yyyy')
 		     and route_departure=#{param2} and route_destination=#{param3}
 	</select>
 </mapper>
