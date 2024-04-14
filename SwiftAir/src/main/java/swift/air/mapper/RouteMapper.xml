@@ -5,4 +5,8 @@
 		select route_id, route_flight, route_departure, route_destination, route_time
 			, route_price from route where route_flight=#{routeFlight}
 	</select>
+
+	<select id="selectAllRoutes" resultType="Route"> 
+		select * from route
+	</select>
 </mapper>

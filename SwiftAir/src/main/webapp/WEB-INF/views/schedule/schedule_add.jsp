@@ -45,28 +45,28 @@
 						</div>
 		            	<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">출발지</div>
-							<input type="text" class="form-control" name="routeDeparture" id="routeDeparture">
+							<input type="text" class="form-control" name="routeDeparture" id="routeDeparture" readonly>
 		            	</div>
 		            	<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">도착지</div>
-							<input type="text" class="form-control" name="routeDestination" id="routeDestination">
+							<input type="text" class="form-control" name="routeDestination" id="routeDestination" readonly>
 		            	</div>
 		            	<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">운항시간</div>
 							<div class="row">
 								<div class="col-sm-5">
-									<input type="text" class="form-control" name="routeTime" id="routeTime">
+									<input type="text" class="form-control" name="routeTime" id="routeTime" readonly>
 								</div>
 								<div class="col-sm-1 mt-2 ms-n3">시간</div>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" name="routeTime" id="routeTime">
+									<input type="text" class="form-control" name="routeTime" id="routeTime" readonly>
 								</div>
 								<div class="col-sm-1 mt-2 ms-n3">분</div>
 							</div>
 						</div>
 						<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">가격</div>
-							<input type="number" class="form-control" name="routePrice" id="routePrice">
+							<input type="number" class="form-control" name="routePrice" id="routePrice" readonly>
 		            	</div>
 						<div class="mb-4">
 						    <input type="hidden" id="scheduleSchedule">
@@ -92,6 +92,36 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+$('#scheduleFlight').change(function() {
+    var selectedFlight = $(this).val();
+    
+    // AJAX 요청을 보냄
+    $.ajax({
+        url: '<c:url value="/schedule/getRouteByFlight"/>', // route 데이터를 가져올 엔드포인트
+        type: 'get',
+        data: {"selectedFlight": selectedFlight}, // 선택된 항공편명을 서버에 전송
+        dataType: "json",
+        success: function(data) {
+            // 서버로부터 받은 route 데이터를 사용하여 출발지, 도착지, 운항시간, 가격을 설정
+            $('#routeDeparture').val(data.routeDeparture);
+            $('#routeDestination').val(data.routeDestination);
+            $('#routeTime').val(data.routeTime);
+            $('#routePrice').val(data.routePrice);
+        },
+        error: function(xhr) {
+            alert(xhr.status) 
+        }
+    });
+
+	// 항공편명을 선택했을 때 입력 필드를 읽기 전용으로 설정
+	$('#scheduleFlight').change(function() {
+	    $('#routeDeparture').prop('readonly', true);
+	    $('#routeDestination').prop('readonly', true);
+	    $('#routeTime').prop('readonly', true);
+	    $('#routePrice').prop('readonly', true);
+	});
+});
+
 $('#submitBtn').click(function() {
 	var scheduleSchedule = $('#scheduleSchedule').val();
 	var values = scheduleSchedule.split(" - ");
@@ -102,12 +132,12 @@ $('#submitBtn').click(function() {
 	var oDepartureDate = first[2] + '/' + first[0] + '/' + first[1];
 	var oArrivalDate = last[2] + '/' + last[0] + '/' + last[1];
 	
-	var scheduleDepartureDate = oStart;
-	var scheduleArrivalDate = oEnd;
+	var scheduleDepartureDate = oDepartureDate;
+	var scheduleArrivalDate = oArrivalDate;
 	
 	$('#scheduleDepartureDate').val(scheduleDepartureDate);
 	$('#scheduleArrivalDate').val(scheduleArrivalDate);
-})
+});
 </script>
 
 </body>

@@ -14,16 +14,16 @@
     <div class="container">
         <div class="col-lg-12">
         <div class="mb-2 mb-lg-0">
-            <span class="badge text-bg-primary fs-6 mb-2" style="line-height: 1.2">${eventdetail.eventStatus}</span>
+            <span class="badge text-bg-primary fs-6 mb-2" style="line-height: 1.2">${eventdetail.eventStatus == 0 ? '진행중' : '종료됨'}</span>
             <h2 class="fw-bolder lh-base">
          		${eventdetail.eventTitle}
             </h2>
-            <date class="meta-date" style="font-size: 1.025rem;">
+            <span class="meta-date" style="font-size: 1.025rem;">
             	<fmt:parseDate var="startDate" value="${eventdetail.eventStart}" pattern="yyyy-MM-dd HH:mm:ss" />
                 <fmt:parseDate var="endDate" value="${eventdetail.eventEnd}" pattern="yyyy-MM-dd HH:mm:ss" />
                 <fmt:formatDate pattern='yyyy-MM-dd' value='${startDate}' /> ~ 
                 <fmt:formatDate pattern='yyyy-MM-dd' value='${endDate}' />
-            </date>
+            </span>
             <hr>
         </div>
         </div>
@@ -71,14 +71,14 @@
                         </tbody>
                     </table>
             </div>
-            <div class="row">
-                <div class="col-sm-8 col-lg-8 ms-md-6"></div>
-                <div class="col-sm-4 col-lg-3">
-                    <a href ="<c:url value="/event/main"/>" class="btn btn-primary w-100">목록으로</a>
-                </div>
-            </div>
         </div>
         </div>
+       <div class="row justify-content-center">
+           <div class="col-sm-8 col-lg-8 ms-md-6"></div>
+           <div class="col-sm-4 col-lg-3">
+               <a href ="<c:url value="/event/main"/>" class="btn btn-primary w-100">목록으로</a>
+           </div>
+       </div>
     </div>
 </section>
 

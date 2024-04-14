@@ -120,6 +120,7 @@ public class EventController {
 		
 		return "event/event_list";
 	}
+	
 
 	@RequestMapping("/delete")
 	public String eventDelete(@RequestParam int eventId) {
@@ -142,7 +143,7 @@ public class EventController {
 		return "redirect:/event/list";
 	}
 
-	
+	/*
 	@RequestMapping("/main")
 	public String eventMain(@RequestParam(defaultValue = "1") int pageNum, Model model,
 			@RequestParam(defaultValue = "0") int statusId) {
@@ -156,14 +157,26 @@ public class EventController {
 			List<Event> ongoingEvents = eventService.getOngoingEvents(currentDate);
 			model.addAttribute("ongoingEvents", ongoingEvents);
 			
-			// 진행 중인 이벤트 처리...
+			// 진행 중인 이벤트 처리
 		} else {
 			LocalDate currentDate = LocalDate.now();
 			List<Event> endedEvents = eventService.getEndedEvents(currentDate);
 			model.addAttribute("ongoingEvents", endedEvents);
-			// 종료된 이벤트 처리...
+			// 종료된 이벤트 처리
 		}
 	
+		return "event/event_main";
+	}
+	*/
+
+	@RequestMapping("/main")
+	public String eventMain(@RequestParam(defaultValue = "1") int pageNum, Model model) {
+		Map<String, Object> map = eventService.getEventList(pageNum);
+		
+		model.addAttribute("pager", map.get("pager"));
+		model.addAttribute("eventList", map.get("eventList"));
+		
+		
 		return "event/event_main";
 	}
 	

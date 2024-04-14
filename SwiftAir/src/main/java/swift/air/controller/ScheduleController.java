@@ -1,5 +1,6 @@
 package swift.air.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -26,19 +27,28 @@ public class ScheduleController {
 	private final RouteService routeService;
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String scheduleAdd() {
-		return "schedule/schedule_add";
+	public String scheduleAdd(Model model) {
+		// GET 요청일 때는 노선 정보를 모델에 추가하여 뷰로 전달
+        List<Route> routes = routeService.getAllRoutes(); // 노선 정보 가져오기
+        model.addAttribute("routes", routes); // 노선 정보를 모델에 추가
+        return "schedule/schedule_add";
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
 	public String scheduleAdd(@RequestParam("routeFlight") String routeFlight, @RequestBody Schedule schedule) {
+		System.out.println("routeFlight: " + routeFlight); // routeFlight 값 콘솔에 출력
+		System.out.println("routeFlight: " + routeFlight); // routeFlight 값 콘솔에 출력
+		
 		// 해당 항공편에 대한 노선 데이터 가져오기
         Route route = routeService.getRouteByFlight(routeFlight);
 		
         if (route != null) {
             // 노선 데이터가 있다면 해당 노선 데이터를 모델에 추가하여 뷰로 전달
-        	schedule.setRouteDeparture(routeFlight);
+        	schedule.setRouteDeparture(route.getRouteDeparture());
+            schedule.setRouteDestination(route.getRouteDestination());
+            schedule.setRouteTime(route.getRouteTime());
+            schedule.setRoutePrice(route.getRoutePrice());
         } else {
             // 노선 데이터가 없을 경우에 대한 처리
             // 예를 들어, 사용자에게 알림을 보여줄 수 있습니다.
@@ -79,4 +89,10 @@ public class ScheduleController {
 		return "schedule/schedule_list";
 	}
 	
+	@RequestMapping(value = "/getRouteByFlight", method = RequestMethod.GET)
+    @ResponseBody
+    public Route getRouteByFlight(@RequestParam("routeFlight") String routeFlight) {
+        return routeService.getRouteByFlight(routeFlight);
+    }
 }
+	
