@@ -98,9 +98,8 @@ $('#scheduleFlight').change(function() {
     // AJAX 요청을 보냄
     $.ajax({
         url: '<c:url value="/schedule/getRouteByFlight"/>', // route 데이터를 가져올 엔드포인트
-        type: 'get',
-        data: {"selectedFlight": selectedFlight}, // 선택된 항공편명을 서버에 전송
-        dataType: "json",
+        type: 'GET',
+        data: {flight: selectedFlight}, // 선택된 항공편명을 서버에 전송
         success: function(data) {
             // 서버로부터 받은 route 데이터를 사용하여 출발지, 도착지, 운항시간, 가격을 설정
             $('#routeDeparture').val(data.routeDeparture);
@@ -108,18 +107,19 @@ $('#scheduleFlight').change(function() {
             $('#routeTime').val(data.routeTime);
             $('#routePrice').val(data.routePrice);
         },
-        error: function(xhr) {
-            alert(xhr.status) 
+        error: function(xhr, status, error) {
+            // 오류 처리
+            console.error('Error:', error);
         }
     });
+});
 
-	// 항공편명을 선택했을 때 입력 필드를 읽기 전용으로 설정
-	$('#scheduleFlight').change(function() {
-	    $('#routeDeparture').prop('readonly', true);
-	    $('#routeDestination').prop('readonly', true);
-	    $('#routeTime').prop('readonly', true);
-	    $('#routePrice').prop('readonly', true);
-	});
+// 항공편명을 선택했을 때 입력 필드를 읽기 전용으로 설정
+$('#scheduleFlight').change(function() {
+    $('#routeDeparture').prop('readonly', true);
+    $('#routeDestination').prop('readonly', true);
+    $('#routeTime').prop('readonly', true);
+    $('#routePrice').prop('readonly', true);
 });
 
 $('#submitBtn').click(function() {

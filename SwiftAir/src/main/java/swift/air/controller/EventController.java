@@ -176,7 +176,6 @@ public class EventController {
 		model.addAttribute("pager", map.get("pager"));
 		model.addAttribute("eventList", map.get("eventList"));
 		
-		
 		return "event/event_main";
 	}
 	

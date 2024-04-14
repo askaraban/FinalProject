@@ -26,12 +26,12 @@ public class ScheduleDAOImpl implements ScheduleDAO{
 	}
 
 	@Override
-	public int deleteSchedule(int scheduleId) {
+	public int deleteSchedule(String scheduleId) {
 		return sqlSession.getMapper(ScheduleMapper.class).deleteSchedule(scheduleId);
 	}
 
 	@Override
-	public Schedule selectSchedule(int scheduleId) {
+	public Schedule selectSchedule(String scheduleId) {
 		return sqlSession.getMapper(ScheduleMapper.class).selectSchedule(scheduleId);
 	}
 

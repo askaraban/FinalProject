@@ -38,15 +38,15 @@
 	  <%-- 게시글 목록 출력 --%> 
        	<c:forEach var="schedule" items="${scheduleList}">
         <tr>
-          <td class="text-capitalize" style="border: 1px solid #dee2e6; font-size: 18px;">${schedule.scheduleFlight}</td>
-          <td class="text-capitalize" style="border: 1px solid #dee2e6; font-size: 18px;">${schedule.routeDeparture}</td>
-          <td class="text-capitalize" style="border: 1px solid #dee2e6; font-size: 18px;">${schedule.routeDestination}</td>
-          <td class="text-capitalize" style="border: 1px solid #dee2e6; font-size: 18px;">${schedule.routeTime}</td>
-          <td class="text-capitalize" style="border: 1px solid #dee2e6; font-size: 18px;">${schedule.routePrice}</td>
-          <td class="text-capitalize" style="border: 1px solid #dee2e6; font-size: 18px;">
+          <td class="text-capitalize" align="center" style="border: 1px solid #dee2e6; font-size: 18px;">${schedule.scheduleFlight}</td>
+          <td class="text-capitalize" align="center" style="border: 1px solid #dee2e6; font-size: 18px;">${schedule.routeDeparture}</td>
+          <td class="text-capitalize" align="center" style="border: 1px solid #dee2e6; font-size: 18px;">${schedule.routeDestination}</td>
+          <td class="text-capitalize" align="center" style="border: 1px solid #dee2e6; font-size: 18px;">${schedule.routeTime}</td>
+          <td class="text-capitalize" align="center" style="border: 1px solid #dee2e6; font-size: 18px;">${schedule.routePrice}</td>
+          <td class="text-capitalize" align="center" style="border: 1px solid #dee2e6; font-size: 18px;">
           	<fmt:parseDate var="DepartureDate" value="${schedule.scheduleDepartureDate}" pattern="yyyy-MM-dd HH:mm:ss" />
          	<fmt:formatDate pattern='yyyy-MM-dd' value='${DepartureDate}' /> 
-          <td class="text-capitalize" style="border: 1px solid #dee2e6; font-size: 18px;">
+          <td class="text-capitalize" align="center" style="border: 1px solid #dee2e6; font-size: 18px;">
          	<fmt:parseDate var="ArrivalDate" value="${schedule.scheduleArrivalDate}" pattern="yyyy-MM-dd HH:mm:ss" />
         	<fmt:formatDate pattern='yyyy-MM-dd' value='${ArrivalDate}' /> 
 	      </td>
@@ -67,47 +67,53 @@
   </div>
 
   <%-- 페이지 번호 출력 --%>
-<section class="my-5">	
-	<nav aria-label="Page navigation example">
-    	<ul class="pagination" style="justify-content: center;">
-			<li class="page-item me-2">
-				<c:choose>
-					<c:when test="${pager.startPage > pager.blockSize }">
-						<a href="<c:url value="/schedule/list"/>?pageNum=${pager.prevPage}">[이전]
-							<i class="fa fa-angle-left" aria-hidden="true"></i>
-						</a>	
-					</c:when>
-					<c:otherwise>
-						[이전]
-					</c:otherwise>
-				</c:choose>
-			</li>	
-				<c:forEach var="i" begin="${pager.startPage }" end="${pager.endPage }" step="1">
-					<c:choose>
-						<c:when test="${pager.pageNum != i }">
-							<a href="<c:url value="/schedule/list"/>?pageNum=${i}">[${i}]</a>
-						</c:when>
-						<c:otherwise>
-							[${i}]
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				
-			<li class="page-item">	
-				<c:choose>
-					<c:when test="${pager.endPage != pager.totalPage }">
-						<a href="<c:url value="/schedule/list"/>?pageNum=${pager.nextPage}">[다음]
-							 <i class="fa fa-angle-right" aria-hidden="true"></i>
-						</a>	 
-					</c:when>
-					<c:otherwise>
-						[다음]
-					</c:otherwise>
-				</c:choose>
-			</li>
-		</ul>
-	</nav>			
+<section class="my-5">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination" style="justify-content: center;">
+      <li class="page-item me-2">
+        <c:choose>
+          <c:when test="${pager.startPage > pager.blockSize}">
+            <a class="page-link" href="<c:url value="/event/list"/>?pageNum=${pager.prevPage}">
+              <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+          </c:when>
+          <c:otherwise>
+            <a class="page-link" href="javascript:void(0)">
+              <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+          </c:otherwise>
+        </c:choose>
+      </li>
+      <c:forEach var="i" begin="${pager.startPage}" end="${pager.endPage}" step="1">
+        <li class="page-item me-2">
+          <c:choose>
+            <c:when test="${pager.pageNum != i}">
+              <a class="page-link" href="<c:url value="/event/list"/>?pageNum=${i}">${i}</a>
+            </c:when>
+            <c:otherwise>
+              <a class="page-link" href="javascript:void(0)">${i}</a>
+            </c:otherwise>
+          </c:choose>
+        </li>
+      </c:forEach>
+      <li class="page-item">
+        <c:choose>
+          <c:when test="${pager.endPage != pager.totalPage}">
+            <a class="page-link" href="<c:url value="/event/list"/>?pageNum=${pager.nextPage}">
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+          </c:when>
+          <c:otherwise>
+            <a class="page-link" href="javascript:void(0)">
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+          </c:otherwise>
+        </c:choose>
+      </li>
+    </ul>
+  </nav>
 </section>
+</div>
 </section>
 
 

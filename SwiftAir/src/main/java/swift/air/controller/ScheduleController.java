@@ -61,7 +61,7 @@ public class ScheduleController {
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public String scheduleModify(@RequestParam int scheduleId, Model model) {
+	public String scheduleModify(@RequestParam String scheduleId, Model model) {
 		Schedule schedulemodify= scheduleService.getSchedule(scheduleId);
 		model.addAttribute("schedule", schedulemodify);
 		return "schedule/schedule_modify";
@@ -74,7 +74,7 @@ public class ScheduleController {
 	}
 	
 	@RequestMapping("/delete")
-	public String scheduleDelete(@RequestParam int scheduleId) {
+	public String scheduleDelete(@RequestParam String scheduleId) {
 		scheduleService.removeSchedule(scheduleId);
 		return "redirect:/schedule/list";
 	}

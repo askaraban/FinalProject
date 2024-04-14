@@ -50,7 +50,7 @@
                	<fmt:formatDate pattern='yyyy-MM-dd' value='${endDate}' /> 
 	          </td>
 	          <td align="center" style="border: 1px solid #dee2e6; font-size: 18px;">
-	            <span class="badge text-bg-primary px-2 py-1">${event.eventStatus}</span>
+	            <span class="badge text-bg-primary px-2 py-1">${event.eventStatus == 0 ? '진행중' : '종료됨'}</span>
 	          </td>
 	          <td class="td-buttons-2" style="border: 1px solid #dee2e6; font-size: 18px; text-align: center; vertical-align: middle;">
 			    <div style="display: flex; justify-content: center; align-items: center; margin: 10px;"> <!-- 여백을 조정하는 부분입니다. -->

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import swift.air.dao.ScheduleDAO;
@@ -38,7 +37,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 	}
 	
 	@Override
-	public void removeSchedule(int scheduleId) {
+	public void removeSchedule(String scheduleId) {
 		if(scheduleDAO.selectSchedule(scheduleId) == null) {
 			throw new RuntimeException("게시글을 찾을 수 없습니다.");
 		}
@@ -47,7 +46,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 	}
 
 	@Override
-	public Schedule getSchedule(int scheduleId) {
+	public Schedule getSchedule(String scheduleId) {
 		return scheduleDAO.selectSchedule(scheduleId);
 	}
 

@@ -8,8 +8,8 @@ import swift.air.dto.Schedule;
 public interface ScheduleMapper {
 	int insertSchedule(Schedule schedule);
 	int updateSchedule(Schedule schedule);
-	int deleteSchedule(int scheduleId);
-	Schedule selectSchedule(int scheduleId);
+	int deleteSchedule(String scheduleId);
+	Schedule selectSchedule(String scheduleId);
 	Schedule selectScheduleByFlight(String scheduleFlight);
 	int selectScheduleCount();
 	List<Schedule> selectScheduleList(Map<String, Object> map);

@@ -57,11 +57,11 @@
 					</div>
 					<div class="mb-4">
 						<div class="col-sm-2 mb-1 fw-bold">대표 이미지</div>
-						<input type="file" class="form-control" name="multipartFile" id="eventImg1" required>${eventmodify.eventImg1}
+						<input type="file" class="form-control" name="multipartFile" id="eventImg1">${eventmodify.eventImg1}
 					</div>
 					<div class="mb-2">
 						<div class="col-sm-2 mb-1 fw-bold">상세 이미지</div>
-						<input type="file" class="form-control" name="multipartFile2" id="eventImg2" required>${eventmodify.eventImg2}
+						<input type="file" class="form-control" name="multipartFile2" id="eventImg2">${eventmodify.eventImg2}
 					</div>
 				</div>
 			</div>

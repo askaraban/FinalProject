@@ -94,7 +94,7 @@ $('#submitBtn').click(function() {
 	
 	$('#eventStart').val(eventStart);
 	$('#eventEnd').val(eventEnd);
-})
+});
 </script>
 
 </body>
