@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,11 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.RequiredArgsConstructor;
 import swift.air.dto.Payment;
 import swift.air.service.PaymentService;
+import swift.air.service.SeatService;
 
 @Controller
 @RequestMapping("/pay")
 @RequiredArgsConstructor
 public class PaymentController {
+	private final SeatService seatService;
 	private final PaymentService paymentService;
 	
 	/*
@@ -34,7 +38,7 @@ public class PaymentController {
 		return "payment/payment_point";
 	}
 	*/
-	
+	/*
 	@RequestMapping(value="/payment", method = RequestMethod.GET)
 	public String pay() {
 		return "payment/res_ticket_confirm";	
@@ -47,6 +51,33 @@ public class PaymentController {
 		session.setAttribute(payment.getMerchantUid(), payment.getPaymentTotal());
 		return "ok";	
 	}
+	*/
+	@RequestMapping(value="/payment")
+	public String pay(@RequestParam(value = "selSeat2", required = true) List<String> values3
+			, Model model, @RequestParam Map<String, Object> addPassengerSeat2) {
+		
+		model.addAttribute("seatList",seatService.getSeatList());
+		
+		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
+		
+		resInfo.putAll(addPassengerSeat2);
+		
+		resInfo.put("selSeat2", values3);
+		model.addAttribute("resInfo", resInfo);
+		
+		
+		System.out.println("Reservation Information: " + resInfo);
+		
+		return "payment/res_ticket_confirm";	
+	}
+	@PostMapping(value="/payment/paying")
+	@ResponseBody
+	public String pay(@RequestBody Payment payment, HttpSession session) {
+		//결제 관련 OpenAPI를 이용하기 전에 결제 금액 검증을 위해 세션에 주문번호(이름)와 결제금액(값)을 저장
+		session.setAttribute(payment.getMerchantUid(), payment.getPaymentTotal());
+		return "ok";	
+	}
+	
 	
 	// 결제 처리 후 결제 금액을 검증하여 응답하는 요청 처리 메소드
 	/*
