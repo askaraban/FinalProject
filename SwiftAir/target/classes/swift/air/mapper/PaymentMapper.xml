@@ -31,9 +31,9 @@
 			, #{passengerPaymentId}, #{passengerSeatName}, #{passengerScheduleId}
 	</insert>
 	
-	<delete id="deletePayment">
-	 delete from payment where payment_id = #{paymentId}
-	</delete>
+	<update id="updatePayment">
+	 	update payment set PAYMENT_STATUS = 2 where payment_id = #{paymentId}
+	</update>
 	
 	<delete id="deletePassenger">
 	 delete from passenger where passenger_payment_id = #{paymentId}

@@ -24,8 +24,8 @@ public class PaymentDAOImpl implements PaymentDAO {
 	}
 
 	@Override
-	public int deletePayment(int paymentId) {
-		return sqlSession.getMapper(PaymentMapper.class).deletePayment(paymentId);
+	public int updatePayment(int paymentId) {
+		return sqlSession.getMapper(PaymentMapper.class).updatePayment(paymentId);
 	}
 
 	@Override

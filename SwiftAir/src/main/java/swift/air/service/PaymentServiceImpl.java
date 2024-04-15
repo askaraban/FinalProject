@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import swift.air.dao.PaymentDAO;
+import swift.air.dto.Passenger;
 import swift.air.dto.Payment;
 
 @Service
@@ -20,9 +21,9 @@ public class PaymentServiceImpl implements PaymentService {
 	private final PaymentDAO paymentDAO;
 
 	@Override
-	public void addPayment(Payment payment) {
+	public void addPayment(Payment payment, Passenger passenger) {
 		paymentDAO.insertPayment(payment);
-		//paymentDAO.insertPassenger(null);
+		paymentDAO.insertPassenger(passenger);
 	}
 
 	//OpneAPI를 사용하기 위해 필요한 토큰을 발급받아 반환하는 메소드
@@ -236,7 +237,9 @@ public class PaymentServiceImpl implements PaymentService {
 					int responseCode=connection.getResponseCode();
 
 					if(responseCode == 200) {
-						returnValue="success";	
+						returnValue="success";
+						paymentDAO.updatePayment(payment.getPaymentId());
+						paymentDAO.deletePassenger(payment.getPaymentId());
 					} else {
 						returnValue="fail";	
 					}
@@ -247,8 +250,5 @@ public class PaymentServiceImpl implements PaymentService {
 				return returnValue;
 
 			}
-
-
-
 
 }

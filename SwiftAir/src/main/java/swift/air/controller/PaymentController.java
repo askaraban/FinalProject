@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import lombok.RequiredArgsConstructor;
-import swift.air.dto.Faq;
 import swift.air.dto.Passenger;
 import swift.air.dto.Payment;
 import swift.air.service.PaymentService;
@@ -65,7 +63,7 @@ public class PaymentController {
 	// 결제 처리 후 결제 금액을 검증하여 응답하는 요청 처리 메소드
 	@RequestMapping(value = "/complete", method = RequestMethod.POST)
 	@ResponseBody
-	public String complete(@RequestBody Payment payment, HttpSession session) {
+	public String complete(@RequestBody Payment payment, Passenger passenger, HttpSession session) {
 		// 접근 토큰을 발급받아 저장
 		String accessToken = paymentService.getAccessToken(payment);
 
@@ -81,7 +79,7 @@ public class PaymentController {
 		Long amount=returnPayment.getPaymentTotal();
 
 		if (beforeAmount.equals(amount)) {// 검증 성공
-			paymentService.addPayment(returnPayment);// 테이블에 결제정보 삽입 처리
+			paymentService.addPayment(returnPayment, passenger);// 테이블에 결제정보 삽입 처리
 			return "success";
 		} else {// 검증 실패(결제 금액 불일치) - 위변조된 결제
 			paymentService.canclePayment(accessToken, returnPayment);
@@ -89,10 +87,8 @@ public class PaymentController {
 		}
 	}
 	
-
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String AddPayment(@ModelAttribute Payment payment, @ModelAttribute Passenger passenger) {
-		paymentService.addPayment(faq);
-		return "redirect:/search/reservation";
+	@PostMapping("/cancel")
+	public String cancel() {
+		return "mypage/mypage_point";
 	}
 }

@@ -50,7 +50,7 @@
 					<h5 style="display: inline;">탑승객 ${i+1} -</h5>
 					<c:forEach var="j" begin="${iStatus.index*2 }" end="${iStatus.index*2 + 1}">
 						<h5 style="display: inline;">${resInfo.addPassengerInfo[j]} </h5>
-						<input type="text" class="form-control" name="faqTitle" value="${faq.faqTitle}">
+						<input type="hidden" class="form-control" name="faqTitle" value="${faq.faqTitle}">
 					</c:forEach>
 				</div>
 				<div style="background-image: url('<c:url value="/img/seat/ticket2.png"/>'); height: 285px; width: 1000px;">

@@ -6,6 +6,6 @@ import swift.air.dto.Payment;
 public interface PaymentDAO {
 	int insertPayment(Payment payment);
 	int insertPassenger(Passenger passenger);
-	int deletePayment(int paymentId);
+	int updatePayment(int paymentId);
 	int deletePassenger(int paymentId);
 }

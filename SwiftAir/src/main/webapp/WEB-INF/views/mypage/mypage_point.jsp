@@ -248,7 +248,7 @@ String strDate = simpleDate.format(date);
 											<td><button class="btn btn-sm btn-white" type="button" disabled>환불 불가</button></td>
 				   						</c:when>
 				   						<c:otherwise>
-											<td><button class="btn btn-sm btn-white" type="button" style="color: red;">환불하기</button></td>
+											<td><button class="btn btn-sm btn-white" id="refund" type="button" style="color: red;">환불하기</button></td>
 				   						</c:otherwise>
 				   					</c:choose>
 				   				</tr>
@@ -337,6 +337,19 @@ function modalClose(){
 	$("#pointModal"). hide();
 }
 
+$('#refund').click(function() {
+    $.ajax({
+        type: 'POST',
+        url:''<c:url value="/pay/cancel"/>'',
+        success: function(response) {
+            alert('환불이 완료되었습니다.');
+        },
+        error: function(xhr, status, error) {
+            alert('환불 요청을 처리하는 동안 오류가 발생했습니다.');
+            console.error(xhr.responseText);
+        }
+    });
+});
 </script>
 </body>
 </html>
