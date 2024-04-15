@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html> 
 <head>
@@ -11,24 +12,25 @@
 	
 	<!-- ================== BEGIN BASE CSS STYLE ================== -->
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-	<link href="/assets_admin/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
-	<link href="assets_admin/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="assets_admin/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-	<link href="assets_admin/css/animate.min.css" rel="stylesheet" />
-	<link href="assets_admin/css/style.min.css" rel="stylesheet" />
-	<link href="assets_admin/css/style-responsive.min.css" rel="stylesheet" />
-	<link href="assets_admin/css/theme/default.css" rel="stylesheet" id="theme" />
+	<link href="<c:url value="/plugins_a/jquery-ui/themes/base/minified/jquery-ui.min.css"/>" rel="stylesheet" />
+	<link href="<c:url value="/plugins_a/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet" />
+	<link href="<c:url value="/plugins_a/font-awesome/css/font-awesome.min.css"/>" rel="stylesheet" />
+	<link href="<c:url value="/css_a/animate.min.css"/>" rel="stylesheet" />
+	<link href="<c:url value="/css_a/style.min.css"/>" rel="stylesheet" />
+	<link href="<c:url value="/css_a/style-responsive.min.css"/>" rel="stylesheet" />
+	<link href="<c:url value="/css_a/theme/default.css"/>" rel="stylesheet" />
+	<link href="" rel="stylesheet" id="theme" />
 	<!-- ================== END BASE CSS STYLE ================== -->
 	
 	<!-- ================== BEGIN PAGE LEVEL CSS STYLE ================== -->
-    <link href="assets_admin/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" />
-    <link href="assets_admin/plugins/bootstrap-calendar/css/bootstrap_calendar.css" rel="stylesheet" />
-    <link href="assets_admin/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />
-    <link href="assets_admin/plugins/morris/morris.css" rel="stylesheet" />
+	<link href="<c:url value="/plugins_a/jquery-jvectormap/jquery-jvectormap-1.2.2.css"/>" rel="stylesheet" />
+	<link href="<c:url value="/plugins_a/bootstrap-calendar/css/bootstrap_calendar.css"/>" rel="stylesheet" />
+	<link href="<c:url value="/plugins_a/gritter/css/jquery.gritter.css"/>" rel="stylesheet" />
+	<link href="<c:url value="/plugins_a/morris/morris.css"/>" rel="stylesheet" />
 	<!-- ================== END PAGE LEVEL CSS STYLE ================== -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->
-	<script src="assets_admin/plugins/pace/pace.min.js"></script>
+	<link href="<c:url value="/plugins_a/pace/pace.min.js"/>" rel="stylesheet" />
 	<!-- ================== END BASE JS ================== -->
 </head>
 <body>
@@ -38,132 +40,19 @@
 	
 	<!-- begin #page-container -->
 	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
-		<!-- begin #header -->
-		<div id="header" class="header navbar navbar-default navbar-fixed-top">
-			<!-- begin container-fluid -->
-			<div class="container-fluid">
-				<!-- begin mobile sidebar expand / collapse button -->
-				<div class="navbar-header">
-					<a href="index.html" class="navbar-brand"><span class="navbar-logo"></span>Swift Air Admin</a>
-					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				</div>
-				<!-- end mobile sidebar expand / collapse button -->
-				
-				<!-- begin header navigation right -->
-				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<form class="navbar-form full-width">
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="검색" />
-								<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-							</div>
-						</form>
-					</li>
-					<li class="dropdown">
-						<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle f-s-14">
-							<i class="fa fa-bell-o"></i>
-							<span class="label">5</span>
-						</a>
-						<ul class="dropdown-menu media-list pull-right animated fadeInDown">
-                            <li class="dropdown-header">Notifications (5)</li>
-                            <li class="media">
-                                <a href="javascript:;">
-                                    <div class="media-left"><i class="fa fa-bug media-object bg-red"></i></div>
-                                    <div class="media-body">
-                                        <h6 class="media-heading">Server Error Reports</h6>
-                                        <div class="text-muted f-s-11">3 minutes ago</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="media">
-                                <a href="javascript:;">
-                                    <div class="media-left"><img src="assets/img/user-1.jpg" class="media-object" alt="" /></div>
-                                    <div class="media-body">
-                                        <h6 class="media-heading">John Smith</h6>
-                                        <p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
-                                        <div class="text-muted f-s-11">25 minutes ago</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="media">
-                                <a href="javascript:;">
-                                    <div class="media-left"><img src="assets/img/user-2.jpg" class="media-object" alt="" /></div>
-                                    <div class="media-body">
-                                        <h6 class="media-heading">Olivia</h6>
-                                        <p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
-                                        <div class="text-muted f-s-11">35 minutes ago</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="media">
-                                <a href="javascript:;">
-                                    <div class="media-left"><i class="fa fa-plus media-object bg-green"></i></div>
-                                    <div class="media-body">
-                                        <h6 class="media-heading"> New User Registered</h6>
-                                        <div class="text-muted f-s-11">1 hour ago</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="media">
-                                <a href="javascript:;">
-                                    <div class="media-left"><i class="fa fa-envelope media-object bg-blue"></i></div>
-                                    <div class="media-body">
-                                        <h6 class="media-heading"> New Email From John</h6>
-                                        <div class="text-muted f-s-11">2 hour ago</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="dropdown-footer text-center">
-                                <a href="javascript:;">View more</a>
-                            </li>
-						</ul>
-					</li>
-					<li class="dropdown navbar-user">
-						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="assets/img/user-13.jpg" alt="" /> 
-							<span class="hidden-xs">Adam Schwartz</span> <b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu animated fadeInLeft">
-							<li class="arrow"></li>
-							<li><a href="javascript:;">개인정보 수정</a></li>
-							<li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> 받은메일함</a></li>
-							<li><a href="javascript:;">캘린더</a></li>
-							<li><a href="javascript:;">설정</a></li>
-							<li class="divider"></li>
-							<li><a href="javascript:;">로그아웃</a></li>
-						</ul>
-					</li>
-				</ul>
-				<!-- end header navigation right -->
-			</div>
-			<!-- end container-fluid -->
-		</div>
-		<!-- end #header -->
 		
 		<!-- begin #sidebar -->
 		<div id="sidebar" class="sidebar">
 			<!-- begin sidebar scrollbar -->
-			<div data-scrollbar="true" data-height="100%">
+			<div data-scrollbar="true" data-height="100%" style="padding-left: 15px;">
 				<!-- begin sidebar user -->
 				<ul class="nav">
-					<li class="nav-profile">
-						<div class="image">
-							<a href="javascript:;"><img src="assets/img/user-13.jpg" alt="" /></a>
-						</div>
-						<div class="info">
-							Sean Ngu
-							<small>Front end developer</small>
-						</div>
-					</li>
+					<div class="nav-header" style="font-weight: bold; font-size: 15px; color: white;">관리자 메뉴</div>
 				</ul>
 				<!-- end sidebar user -->
 				<!-- begin sidebar nav -->
+				<br>
 				<ul class="nav">
-					<li class="nav-header">관리자 메뉴</li>
 					<li class="has-sub active">
 						<a href="javascript:;">
 						    <b class="caret pull-right"></b>
@@ -171,8 +60,8 @@
 						    <span>항공편 관리</span>
 					    </a>
 						<ul class="sub-menu">
-						    <li><a href="index.html">항공기 관리</a></li>
-						    <li class="active"><a href="index_v2.html">항공편 스케줄</a></li>
+						    <li><a href="<c:url value='schedule/add'/>">항공기 관리</a></li>
+						    <li class="active"><a href='<c:url value='schedule/list'/>'>항공편 스케줄</a></li>
 						</ul>
 					</li>
 					<li class="has-sub">
@@ -185,8 +74,8 @@
 							<span>FAQ 관리</span>
 						</a>
 						<ul class="sub-menu">
-						    <li><a href="email_inbox.html">FAQ 등록</a></li>
-						    <li><a href="email_compose.html">FAQ 관리</a></li>
+						    <li><a href="<c:url value='faq/add'/>">FAQ 등록</a></li>
+						    <li><a href="<c:url value='faq/list'/>">FAQ 관리</a></li>
 						</ul>
 					</li>
 					
@@ -197,8 +86,8 @@
 					        <span>공지사항 관리</span>
 					    </a>
 					    <ul class="sub-menu">
-							<li><a href="javascript:;">공지사항 등록</a></li>
-					        <li><a href="../template_content_ajax/index.html">공지사항 관리</a></li>
+							<li><a href="<c:url value='notice/add'/>">공지사항 등록</a></li>
+					        <li><a href="<c:url value='notice/list'/>">공지사항 관리</a></li>
 					    </ul>
 					</li>
 					
@@ -209,8 +98,8 @@
 						    <span>이벤트 관리</span>
 						</a>
 						<ul class="sub-menu">
-							<li><a href="table_basic.html">이벤트 등록</a></li>
-							<li><a href="table_basic.html">이벤트 관리</a></li>
+							<li><a href="<c:url value='event/add'/>">이벤트 등록</a></li>
+							<li><a href="<c:url value='event/list'/>">이벤트 관리</a></li>
 						</ul>
 					</li>
 					
@@ -347,6 +236,7 @@
 			    </div>
 			</div>
 			<!-- end row -->
+			<%-- 
 			<!-- begin row -->
 			<div class="row">
 			    <!-- begin col-4 -->
@@ -362,7 +252,7 @@
                                     <li class="left">
                                         <span class="date-time">yesterday 11:23pm</span>
                                         <a href="javascript:;" class="name">Sowse Bawdy</a>
-                                        <a href="javascript:;" class="image"><img alt="" src="assets/img/user-12.jpg" /></a>
+                                        <a href="javascript:;" class="image"><img alt="" src="<c:url value="/img_a/user-12.jpg"/>" /></a>
                                         <div class="message">
                                             Lorem ipsum dolor sit amet, consectetuer adipiscing elit volutpat. Praesent mattis interdum arcu eu feugiat.
                                         </div>
@@ -370,7 +260,7 @@
                                     <li class="right">
                                         <span class="date-time">08:12am</span>
                                         <a href="#" class="name"><span class="label label-primary">ADMIN</span> Me</a>
-                                        <a href="javascript:;" class="image"><img alt="" src="assets/img/user-13.jpg" /></a>
+                                        <a href="javascript:;" class="image"><img alt="" src="<c:url value="/img_a/user-13.jpg"/>" /></a>
                                         <div class="message">
                                             Nullam posuere, nisl a varius rhoncus, risus tellus hendrerit neque.
                                         </div>
@@ -378,7 +268,7 @@
                                     <li class="left">
                                         <span class="date-time">09:20am</span>
                                         <a href="#" class="name">Neck Jolly</a>
-                                        <a href="javascript:;" class="image"><img alt="" src="assets/img/user-10.jpg" /></a>
+                                        <a href="javascript:;" class="image"><img alt="" src="<c:url value="/img_a/user-10.jpg"/>" /></a>
                                         <div class="message">
                                             Euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
                                         </div>
@@ -386,7 +276,7 @@
                                     <li class="left">
                                         <span class="date-time">11:15am</span>
                                         <a href="#" class="name">Shag Strap</a>
-                                        <a href="javascript:;" class="image"><img alt="" src="assets/img/user-14.jpg" /></a>
+                                        <a href="javascript:;" class="image"><img alt="" src="<c:url value="/img_a/user-14.jpg"/>" /></a>
                                         <div class="message">
                                             Nullam iaculis pharetra pharetra. Proin sodales tristique sapien mattis placerat.
                                         </div>
@@ -501,8 +391,10 @@
 			    </div>-->
 			    <!-- end col-4 -->
 			</div>
+			 --%>
 			<!-- end row -->
 		</div>
+		
 		<!-- end #content -->
 		
         <!-- begin theme-panel -->
@@ -589,28 +481,28 @@
 	<!-- end page container -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->
-	<script src="assets_admin/plugins/jquery/jquery-1.9.1.min.js"></script>
-	<script src="assets_admin/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
-	<script src="assets_admin/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
-	<script src="assets_admin/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="<c:url value="/plugins_a/jquery/jquery-1.9.1.min.js"/>"></script>
+	<script src="<c:url value="/plugins_a/jquery/jquery-migrate-1.1.0.min.js"/>"></script>
+	<script src="<c:url value="/plugins_a/jquery-ui/ui/minified/jquery-ui.min.js"/>"></script>
+	<script src="<c:url value="/plugins_a/bootstrap/js/bootstrap.min.js"/>"></script>
 	<!--[if lt IE 9]>
 		<script src="assets/crossbrowserjs/html5shiv.js"></script>
 		<script src="assets/crossbrowserjs/respond.min.js"></script>
 		<script src="assets/crossbrowserjs/excanvas.min.js"></script>
 	<![endif]-->
-	<script src="assets_admin/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="assets_admin/plugins/jquery-cookie/jquery.cookie.js"></script>
+	<script src="<c:url value="/plugins_a/slimscroll/jquery.slimscroll.min.js"/>"></script>
+	<script src="<c:url value="/plugins_a/jquery-cookie/jquery.cookie.js"/>"></script>
 	<!-- ================== END BASE JS ================== -->
 	
 	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-    <script src="assets_admin/plugins/morris/raphael.min.js"></script>
-    <script src="assets_admin/plugins/morris/morris.js"></script>
-    <script src="assets_admin/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="assets_admin/plugins/jquery-jvectormap/jquery-jvectormap-world-merc-en.js"></script>
-    <script src="assets_admin/plugins/bootstrap-calendar/js/bootstrap_calendar.min.js"></script>
-	<script src="assets_admin/plugins/gritter/js/jquery.gritter.js"></script>
-	<script src="assets_admin/js/dashboard-v2.min.js"></script>
-	<script src="assets_admin/js/apps.min.js"></script>
+	<script src="<c:url value="/plugins_a/morris/raphael.min.js"/>"></script>
+	<script src="<c:url value="/plugins_a/morris/morris.js"/>"></script>
+	<script src="<c:url value="/plugins_a/jquery-jvectormap/jquery-jvectormap-1.2.2.min.js"/>"></script>
+	<script src="<c:url value="/plugins_a/jquery-jvectormap/jquery-jvectormap-world-merc-en.js"/>"></script>
+	<script src="<c:url value="/plugins_a/bootstrap-calendar/js/bootstrap_calendar.min.js"/>"></script>
+	<script src="<c:url value="/plugins_a/gritter/js/jquery.gritter.js"/>"></script>
+	<script src="<c:url value="/js_a/dashboard-v2.min.js"/>"></script>
+	<script src="<c:url value="/js_a/apps.min.js"/>"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
 	
 	<script>
