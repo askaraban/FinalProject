@@ -41,9 +41,14 @@
         <div class="row">
       <!--======= Sidebar =======-->
         <div class="col-md-7 col-lg-8">
+      
             <div class="px-6 py-5 mb-5">
-             	<div>${noticedetail.noticeContent}</div>
-            </div>
+  			  <div style="font-size: 1.2em; color: black; margin-bottom: 10px; white-space: pre-line;">
+      			  ${noticedetail.noticeContent}
+   			  </div>
+			</div>
+            
+            
             <div class="row">
                 <div class="col-sm-8 col-lg-8 ms-md-6"></div>
                 <div class="col-sm-4 col-lg-3">
