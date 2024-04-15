@@ -77,7 +77,7 @@
          		<c:when test="${loginMember.memberStatus eq 9}">
 	            <a href="javascript:0">관리자페이지</a>
 	            <ul class="dropdown">
-	              <li><a href="<c:url value='/'/>">관리자페이지로</a></li>
+	              <li><a href="<c:url value='/admin'/>">관리자페이지로</a></li>
              <!--  <li><a href="contact-us.html">Contact Us</a></li>
               <li><a href="terms-of-services.html">Terms and Conditions</a></li>
               <li><a href="pricing-table.html">Pricing Table</a></li>
