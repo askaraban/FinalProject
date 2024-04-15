@@ -89,8 +89,8 @@
 	<select id="eventMainPage" resultType="Event">
 	  <![CDATA[
 	   select * from (select rownum rn, eventlist.* from (SELECT event_id, event_title, event_img1, event_start, event_end, event_status
-	    FROM event 
-	    WHERE event_end >= TRUNC(SYSDATE)) eventlist) where rn <=3
+	    FROM event
+	    WHERE event_end >= TRUNC(SYSDATE) order by event_end desc) eventlist) where rn <=3
 	  ]]>
 	</select>
 	

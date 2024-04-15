@@ -55,31 +55,32 @@
 			<div class="airplane--div" id="sch1Airplane">
 				<div class="airplane--background" style="background-image: url('<c:url value="/img/seat/airplane_empty2.png"/>');">
 					<div class="b--seat">
-					
 					<%-- 탑승객이 선택한 좌석이 프레미아42일 경우 이코노미 좌석 선택 불가능 --%>
 					<c:choose>
-						<c:when test="${resInfo.resSeatGrade eq 'premia42'}">
+						<c:when test="${resInfo.resDepSeatGrade eq 'premia42'}">
 							<!-- 프레미아42 등급 좌석 -->
 							<c:set var="b" value="1" />
+							<c:set var="cnt" value="0" />
 							<c:forEach var="seatList" items="${seatList }" varStatus="status" begin="0" end="17">
+							<c:if test="${cnt le 17 }">
 								<c:choose>
 									<c:when test="${seatList.seatGrade eq '프레미아42' }">
 										<c:forEach var="reserved" items="${reservedSeatList }">
-										
 											<!-- 예매된 좌석을 확인하기 -->
 											<c:set var="seatName" value="${seatList.seatName }"/>
 											<c:choose>
 												<c:when test="${reserved eq seatName}">
 													<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/business_pre.png"/>'
 													 style="position: relative; left: 100px; top: 590px; width: 55px;">
+													 <c:set var="cnt" value="${cnt+1}" />
+													 <c:set var="b" value="${b + 1}" />
 												</c:when>
-												<c:otherwise>
-													<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/business_not.png"/>'
-													 style="position: relative; left: 100px; top: 590px; width: 55px;" class="pre_business" title="on">
-												</c:otherwise>
-											</c:choose>
-											
+											</c:choose>	
 										</c:forEach>
+											<c:if test="${status.index ne cnt }">
+											</c:if>
+											<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/business_not.png"/>'
+											 style="position: relative; left: 100px; top: 590px; width: 55px;" class="pre_business" title="on">
 									</c:when>
 								</c:choose>
 							<%-- 좌석별 여백 --%>
@@ -96,17 +97,16 @@
 									</c:when>
 								</c:choose>
 								<c:set var="b" value="${b + 1}" />
+								<c:set var="cnt" value="${cnt+1 }" />
+							</c:if>
 							</c:forEach>
-							
 							<%-- 이코노미35 좌석 --%>
 							<c:set var="e" value="1" />
 							<c:forEach var="seatList" items="${seatList }" varStatus="status">
 								<c:choose>
 									<c:when test="${seatList.seatGrade eq '이코노미35' }">
-										<c:forEach var="reserved" items="${reservedSeatList }">
-											<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/economy_pre.png"/>'
-											 style="position: relative; left: 87.5px; top:735px; width: 45px;">
-										</c:forEach>
+										<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/economy_pre.png"/>'
+										 style="position: relative; left: 87.5px; top:735px; width: 45px;">
 									</c:when>
 								</c:choose>
 							<%-- 좌석별 여백 --%>	
@@ -130,10 +130,8 @@
 							<c:forEach var="seatList" items="${seatList }" varStatus="status" begin="0" end="17">
 								<c:choose>
 									<c:when test="${seatList.seatGrade eq '프레미아42' }">
-										<c:forEach var="reserved" items="${reservedSeatList }">
-											<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/business_pre.png"/>'
-											 style="position: relative; left: 100px; top: 590px; width: 55px;">
-										</c:forEach>
+										<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/business_pre.png"/>'
+										 style="position: relative; left: 100px; top: 590px; width: 55px;">
 									</c:when>
 								</c:choose>
 							<%-- 좌석별 여백 --%>
@@ -156,17 +154,17 @@
 							<c:forEach var="seatList" items="${seatList }" varStatus="status">
 								<c:choose>
 									<c:when test="${seatList.seatGrade eq '이코노미35' }">
-										<c:forEach var="reserved" items="${reservedSeatList }">
+										<c:forEach var="reserved" items="${reservedSeatList2 }">
 										
 											<!-- 예매된 좌석을 확인하기 -->
 											<c:set var="seatName" value="${seatList.seatName }"/>
-											<c:if test="${reserved eq seatName}">
-												<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/economy_pre.png"/>'
+											<c:if test="${reserved.passengerSeatName eq seatName}">
+												<img id="${reserved.passengerSeatName }" alt="image" src='<c:url value="/img/seat/economy_pre.png"/>'
 												 style="position: relative; left: 87.5px; top:735px; width: 45px;">
 											</c:if>
+												<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/economy_not.png"/>'
+												 style="position: relative; left: 87.5px; top:735px; width: 45px;" class="pre_economy" title="on"">
 										</c:forEach>
-										<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/economy_not.png"/>'
-										 style="position: relative; left: 87.5px; top:735px; width: 45px;" class="pre_economy" title="on"">
 									</c:when>
 								</c:choose>
 							<%-- 좌석별 여백 --%>	
@@ -196,7 +194,7 @@
 		      <!-- Breadcrumb -->
     <nav class="bg-transparent breadcrumb breadcrumb-2 px-0 mb-5" aria-label="breadcrumb">
       <ul class="list-unstyled d-flex p-0 m-0">
-        <li class="breadcrumb-item active" aria-current="page">${resInfo.resDeparture }-${resInfo.resDestination }</a></li>
+        <li class="breadcrumb-item active" aria-current="page">${resInfo.resDestination }-${resInfo.resDeparture }</a></li>
       </ul>
     </nav>
         <div class="mb-6">
