@@ -68,7 +68,8 @@ public class PaymentController {
 
 		// 토큰과 결제고유값을 전달하여 OpenAPI를 이용하여 결제정보를 반환받아 저장
 		Payment returnPayment = paymentService.getPayment(accessToken, payment.getImpUid());
-
+		returnPayment.setPaymentMemberNum(payment.getPaymentMemberNum());
+		
 		// 세션에 저장된 결제 금액을 반환받아 저장
 		Long beforeAmount = (Long) session.getAttribute(payment.getMerchantUid());
 		session.removeAttribute(payment.getMerchantUid());

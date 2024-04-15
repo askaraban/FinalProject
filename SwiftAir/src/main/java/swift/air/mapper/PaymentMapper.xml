@@ -23,8 +23,7 @@
 		</selectKey>
 		insert into payment values(#{paymentId}, #{paymentPassenger}, #{paymentMemberNum}
 			, #{paymentScheduleId1}, sysdate, #{paymentTotal}, #{paymentStatus}, #{paymentMethod}
-			, #{routeDeparture}, #{routeDestination}, #{scheduleFlight}, #{paymentScheduleId2}
-			,#{impUid}, #{merchantUid})
+			,#{paymentScheduleId2},#{impUid}, #{merchantUid})
 	</insert>
 	
 	<insert id="insertPassenger">

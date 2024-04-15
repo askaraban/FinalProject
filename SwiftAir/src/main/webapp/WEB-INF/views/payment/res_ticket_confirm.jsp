@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>  
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <head>
 <style type="text/css">
@@ -113,50 +114,6 @@
 						<div class="col mt-9">
 							<div class="col-sm-11">❗탑승객 정보 및 항공편 정보를<br>&nbsp;&nbsp;&nbsp;&nbsp; 반드시 확인하세요.</div>
 						</div>
-						<!-- <div class="col">
-							<div class="col-sm-0"><h6></h6></div>
-						</div> -->
-						<!-- 두번째 줄
-						<div class="col">
-							<div class="row">
-								<div class="col-sm-5">From</div>
-								<div class="col-sm-5">To</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="row">
-								<div class="col-sm-5"><h6>ICN</h6></div>
-								<div class="col-sm-5"><h6>LAX</h6></div>
-							</div>
-						</div>
-						삼번째 줄
-						<div class="col">
-							<div class="row">
-								<div class="col-sm-3">Flight</div>
-								<div class="col-sm-5">Date</div>
-								<div class="col-sm-3">Time</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="row">
-								<div class="col-sm-3"><h6>SA747</h6></div>
-								<div class="col-sm-5"><h6>01 APR 23</h6></div>
-								<div class="col-sm-3"><h6>13:45</h6></div>
-							</div>
-						</div>
-						사번째 줄
-						<div class="col">
-							<div class="row">
-								<div class="col-sm-5">Gate</div>
-								<div class="col-sm-4">Seat</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="row">
-								<div class="col-sm-5"><h6>22</h6></div>
-								<div class="col-sm-4"><h6>23A</h6></div>
-							</div>
-						</div> -->
 					</div>
 				</div>
 			</div>
@@ -176,16 +133,16 @@
 		            <div class="col-sm-12">
 						<div class="row">
 							<div class="col-sm-5"><h6>항공 운임</h6></div>
-							<div class="col-sm-7"><h6>360,000원</h6></div>
+							<div class="col-sm-7"><h6>${resInfo.routePrice*resInfo.resPassengerCnt}원</h6></div>
 							<div class="col-sm-5"><h6>(세부 내용)</h6></div>
-							<div class="col-sm-7"><h6>(120,000원 * 3)</h6></div>
+							<div class="col-sm-7"><h6>(${resInfo.routePrice}원 * ${resInfo.resPassengerCnt}명)</h6></div>
 							<div class="col-sm-5"><h6>공항시설 사용료</h6></div>
-							<div class="col-sm-7"><h6>65,432원</h6></div>
+							<div class="col-sm-7"><h6>65,000원</h6></div>
 							<div class="col-sm-5"><h6>유류 할증료</h6></div>
-							<div class="col-sm-7"><h6>88,888원</h6></div>
+							<div class="col-sm-7"><h6>88,535원</h6></div>
 							<hr>
 							<div class="col-sm-5"><h6>총 결제 금액</h6></div>
-							<div class="col-sm-7"><h6>1,234,000원</h6></div>
+							<div class="col-sm-7"><h6><fmt:formatNumber value="${resInfo.routePrice*resInfo.resPassengerCnt+65000+88535}" pattern="#,###"/>원</h6></div>
 						</div>
 		            </div>
 				</div>
@@ -200,18 +157,14 @@
 						</select>
 					</div>
 					<div class="col-sm-8 p-3">
-						<div class="col-sm-12">
-							<div class="card" style="display: none;">
+						<div >
+							<div id="card" style="display: none;">
 							<div class="row">
-								<div class="col-sm-6">
-								<button type="button" id="html5_inicis" class="btn btn-primary pay">일반결재(KG이니시스)</button>
-								</div>
-								<div class="col-sm-6">
-								<button type="button" id="kakaopay" class="btn btn-primary ms-1 pay">간편결제(카카오페이)</button>
-								</div>
+								<button type="button" id="html5_inicis" class="btn btn-primary col-sm-4 pay" style="margin: 5px;">일반결재(KG이니시스)</button>
+								<button type="button" id="kakaopay" class="btn btn-primary col-sm-4 pay" style="margin: 5px;">간편결제(카카오페이)</button>
 							</div>	
 							</div>
-							<div class="point" style="display: none;">
+							<div id="point" style="display: none;">
 								<div class="form-group mb-3">
 									<div class="form-control border border-end-0 ">보유 포인트 : ${loginMember.memberPoint }p</div>
 								</div>
@@ -244,7 +197,7 @@
 			<h5>총 결제금액(세금포함) </h5>
 		</div>
 		<div class="col-sm-2 col-lg-2 align-self-center">
-			<h5>2,345,678 원</h5>
+			<h5><fmt:formatNumber value="${resInfo.routePrice*resInfo.resPassengerCnt+65000+88535}" pattern="#,###"/> 원</h5>
 		</div>
 		<div class="col-sm-2 col-lg-2">
 			<button type="submit" class="btn btn-primary w-75" id="payBtn" disabled>결제하기</button>
@@ -266,12 +219,12 @@ var totalAmount = 10; // 총 결제금액
 	// 만약 선택된 옵션이 1번인 경우
 	if (selectedOption == 1) {
 		// 아래 버튼들 보이기
-		$('.card').show();
-		$('.point').hide();
+		$('#card').show();
+		$('#point').hide();
 	} else if (selectedOption == 2) {
 		// 아래 버튼들 숨기기
-		$('.card').hide();
-		$('.point').show();
+		$('#card').hide();
+		$('#point').show();
 			if (availablePoints < totalAmount) {
 		    	$('#message1').text('보유하신 포인트가 부족합니다.').show(); // 메시지 출력
 		    } else {
@@ -280,13 +233,13 @@ var totalAmount = 10; // 총 결제금액
 	}
 });
 
-$('.point button').click(function(){
-var enteredAmount = parseInt($('.point input').val());
+$('#point button').click(function(){
+var enteredAmount = parseInt($('#point input').val());
 		if (enteredAmount > availablePoints) {
 			$('#message2').text('보유하신 포인트 금액을 초과하였습니다.');
 			$('#payBtn').prop('disabled', true);
 		} else {
-			$('.point input').css('color', '#007bff'); // 파란색으로 글자색 변경
+			$('#point input').css('color', '#007bff'); // 파란색으로 글자색 변경
             $(this).text('적용됨').css({ backgroundColor: '#007bff', color: 'white' }); // 버튼 스타일 변경
             $('#message2').hide(); // 메시지 숨기기
 			handleCheckboxChange();
@@ -326,7 +279,7 @@ $(".pay").click(function() {
 		//주문번호 - 주문테이블에서 제공된 값 사용
 		var merchantUid="merchant_"+new Date().getTime();
 		//결제금액 - 주문테이블에서 제공된 값 사용
-		var amount=10;
+		var paymentTotal=${resInfo.routePrice*resInfo.resPassengerCnt+65000+88535};
 		
 		//결제 전 주문번호와 결제금액을 세션에 저장하기 위한 페이지 요청
 		// => 결제 후 결제정보와 비교하여 검증하기 위해 세션에 저장 
@@ -334,7 +287,7 @@ $(".pay").click(function() {
 			type: "post",
 			url: "<c:url value="/pay/payment/api"/>",
 			contentType: "application/json",
-			data: JSON.stringify({"merchantUid":merchantUid, "amount":amount}),
+			data: JSON.stringify({"merchantUid":merchantUid, "paymentTotal":paymentTotal}),
 			dataType: "text",
 			success: function(result) {
 				if(result=="ok") {
@@ -347,9 +300,9 @@ $(".pay").click(function() {
 						//주문번호
 						merchant_uid : merchantUid,
 						//결제금액
-						amount : amount,
+						amount : paymentTotal,
 						//결제창에 보여질 제품명
-						name: "컴퓨터",
+						name: "스위프트Airline 항공권",
 						//결제 사용자의 이메일 주소 
 			            buyer_email: "${loginMember.memberEmail}",
 			            buyer_name: "${loginMember.memberKorName}",//결제 사용자 이름
@@ -363,9 +316,10 @@ $(".pay").click(function() {
 							//결제금액을 검증하기 위한 페이지를 요청
 							$.ajax({
 								type: "post",
-								url: "<c:url value="/pay/complate"/>",
+								url: "<c:url value="/pay/complete"/>",
 								contentType: "application/json",
-								data: JSON.stringify({"impUid": response.imp_uid, "merchantUid": response.merchant_uid}),
+								data: JSON.stringify({"impUid": response.imp_uid, "merchantUid": response.merchant_uid
+									,"paymentMemberNum": ${loginMember.memberNum}}),
 								dataType: "text",
 								success: function(result) {
 									if(result == "success") {

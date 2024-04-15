@@ -121,7 +121,7 @@ public class PaymentServiceImpl implements PaymentService {
 				}
 				br.close();
 				
-				//System.out.println("result(payment) = "+result);
+				System.out.println("result(payment) = "+result);
 				/*
 				{
 					  "code": 0,
@@ -194,8 +194,8 @@ public class PaymentServiceImpl implements PaymentService {
 				
 				payment.setImpUid((String)responseObject.get("imp_uid"));
 				payment.setMerchantUid((String)responseObject.get("merchant_uid"));
-				//payment.setPaymentTotal((Long)responseObject.get("amount")); 
-				//payment.setPaymentStatus((String)responseObject.get("status"));
+				payment.setPaymentTotal((Long)responseObject.get("amount")); 
+				payment.setPaymentStatus((int)responseObject.get("status"));
 			} else {
 				return null;
 			}

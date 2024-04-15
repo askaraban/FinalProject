@@ -19,7 +19,7 @@ PAYMENT_merchantUid          VARCHAR2
 
 @Data
 public class Payment {
-	private String paymentId; 
+	private int paymentId; 
 	private int paymentPassenger; 
 	private int paymentMemberNum; 
 	private String paymentScheduleId1; 
