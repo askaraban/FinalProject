@@ -40,6 +40,9 @@ String strDate = simpleDate.format(date);
 	align-items :center;
 	display: none;
 }
+  .modal-backdrop {
+    display: none;
+  }
 </style>
 </head>
 <body id="body" class="body-wrapper boxed-menu">
