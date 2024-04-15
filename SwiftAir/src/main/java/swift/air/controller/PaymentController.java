@@ -77,7 +77,7 @@ public class PaymentController {
 		// 결제된 결제금액을 반환받아 저장
 		Long amount=returnPayment.getPaymentTotal();
 
-		if (beforeAmount == amount) {// 검증 성공
+		if (beforeAmount.equals(amount)) {// 검증 성공
 			paymentService.addPayment(returnPayment);// 테이블에 결제정보 삽입 처리
 			return "success";
 		} else {// 검증 실패(결제 금액 불일치) - 위변조된 결제
