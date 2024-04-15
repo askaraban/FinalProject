@@ -23,7 +23,7 @@
             <c:otherwise>
             	<div class="float-right btn-wrapper" style="padding-top: 10px;">
 	                <span style="font-weight: bold;">[<a href="../mypage/" style="color: #2196f3;">${loginMember.memberKorName}</a>님, 환영합니다.]</span>&nbsp;&nbsp;
-	                <a href="<c:url value = '/member/logout'/>">로그아웃</a>&nbsp;&nbsp;
+	               <a href="javascript:fn_logout()">로그아웃</a>&nbsp;&nbsp;
                 </div>
             </c:otherwise>
         </c:choose>
@@ -113,7 +113,7 @@ function fn_logout() {
 	naverLogin.init();
 	naverLogin.logout();
 	
-	var redirect = "http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/swiftair3/member/logout";
+	var redirect = "http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/swiftair/member/logout";
 	location.replace(redirect); 		
 	
 }
