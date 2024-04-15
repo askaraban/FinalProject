@@ -1,21 +1,16 @@
 package swift.air.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
-import swift.air.dto.Route;
 import swift.air.dto.Schedule;
-import swift.air.service.RouteService;
 import swift.air.service.ScheduleService;
 
 
@@ -24,46 +19,32 @@ import swift.air.service.ScheduleService;
 @RequiredArgsConstructor
 public class ScheduleController {
 	private final ScheduleService scheduleService;
-	private final RouteService routeService;
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String scheduleAdd(Model model) {
-		// GET 요청일 때는 노선 정보를 모델에 추가하여 뷰로 전달
-        List<Route> routes = routeService.getAllRoutes(); // 노선 정보 가져오기
-        model.addAttribute("routes", routes); // 노선 정보를 모델에 추가
+	public String scheduleAdd() {
         return "schedule/schedule_add";
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	@ResponseBody
-	public String scheduleAdd(@RequestParam("routeFlight") String routeFlight, @RequestBody Schedule schedule) {
-		System.out.println("routeFlight: " + routeFlight); // routeFlight 값 콘솔에 출력
-		System.out.println("routeFlight: " + routeFlight); // routeFlight 값 콘솔에 출력
-		
-		// 해당 항공편에 대한 노선 데이터 가져오기
-        Route route = routeService.getRouteByFlight(routeFlight);
-		
-        if (route != null) {
-            // 노선 데이터가 있다면 해당 노선 데이터를 모델에 추가하여 뷰로 전달
-        	schedule.setRouteDeparture(route.getRouteDeparture());
-            schedule.setRouteDestination(route.getRouteDestination());
-            schedule.setRouteTime(route.getRouteTime());
-            schedule.setRoutePrice(route.getRoutePrice());
-        } else {
-            // 노선 데이터가 없을 경우에 대한 처리
-            // 예를 들어, 사용자에게 알림을 보여줄 수 있습니다.
-            // 여기에서는 간단하게 예외 처리하도록 합니다.
-            throw new RuntimeException("해당 항공편에 대한 노선 정보가 없습니다.");
-        }
-        
-        scheduleService.addSchedule(schedule);
+	public String scheduleAdd(@ModelAttribute Schedule schedule) {
+		scheduleService.addSchedule(schedule);
 		return "redirect:/schedule/list";
+	}
+
+	@RequestMapping(value = "/list")
+	public String scheduleList(@RequestParam(defaultValue = "1") int pageNum, Model model) {
+		Map<String, Object> map=scheduleService.getScheduleList(pageNum);
+		
+		model.addAttribute("pager", map.get("pager"));
+		model.addAttribute("scheduleList", map.get("scheduleList"));
+		
+		return "schedule/schedule_list";
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public String scheduleModify(@RequestParam String scheduleId, Model model) {
 		Schedule schedulemodify= scheduleService.getSchedule(scheduleId);
-		model.addAttribute("schedule", schedulemodify);
+		model.addAttribute("schedulemodify", schedulemodify);
 		return "schedule/schedule_modify";
 	}
 	
@@ -79,20 +60,6 @@ public class ScheduleController {
 		return "redirect:/schedule/list";
 	}
 	
-	@RequestMapping(value = "/list")
-	public String scheduleList(@RequestParam(defaultValue = "1") int pageNum, Model model) {
-		Map<String, Object> map=scheduleService.getScheduleList(pageNum);
-		
-		model.addAttribute("pager", map.get("pager"));
-		model.addAttribute("scheduleList", map.get("scheduleList"));
-		
-		return "schedule/schedule_list";
-	}
 	
-	@RequestMapping(value = "/getRouteByFlight", method = RequestMethod.GET)
-    @ResponseBody
-    public Route getRouteByFlight(@RequestParam("routeFlight") String routeFlight) {
-        return routeService.getRouteByFlight(routeFlight);
-    }
 }
 	

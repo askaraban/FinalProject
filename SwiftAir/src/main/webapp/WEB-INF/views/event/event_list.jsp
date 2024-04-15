@@ -19,20 +19,20 @@
 <div class="main-wrapper">
 
 <!-- ====================================
-———	MY BOOKINGS
+———	나의 예약
 ===================================== -->
 <section class="pb-8 pt-5 mt-9 height100vh">
   <div class="container">
 
-    <!-- My Bookings -->
+    <!-- 나의 예약 -->
     <table id="my-booking" class="display nowrap table-data-default" style="width:100%">
-      <thead style="text-align:center">
+      <thead style="text-align:center; border-bottom: 1px solid #dee2e6;">
 		<tr>
-         <th style="border: 1px solid #dee2e6; font-size: 20px;">제목</th>
-	     <th style="border: 1px solid #dee2e6; font-size: 20px;">시작일</th>
-	     <th style="border: 1px solid #dee2e6; font-size: 20px;">종료일</th>
-	     <th style="border: 1px solid #dee2e6; font-size: 20px;">진행상태</th>
-	     <th style="border: 1px solid #dee2e6; font-size: 20px;">편집</th>
+         <th style="border-bottom: none; font-size: 20px;">제목</th>
+	     <th style="border-bottom: none; font-size: 20px;">시작일</th>
+	     <th style="border-bottom: none; font-size: 20px;">종료일</th>
+	     <th style="border-bottom: none; font-size: 20px;">진행상태</th>
+	     <th style="border-bottom: none; font-size: 20px;">편집</th>
         </tr>
       </thead>
      
@@ -40,19 +40,19 @@
 	  <%-- 게시글 목록 출력 --%> 
 		<c:forEach var="event" items="${eventList}">
 	        <tr>
-	          <td class="text-capitalize" style="border: 1px solid #dee2e6; font-size: 18px; padding-top: 10px; padding-bottom: 10px;">${event.eventTitle}</td>
-	          <td class="text-capitalize" align="center" style="border: 1px solid #dee2e6; font-size: 18px;">
+	          <td class="text-capitalize" style="border-top: none; border-bottom: 1px solid #dee2e6; font-size: 18px; padding-top: 10px; padding-bottom: 10px;">${event.eventTitle}</td>
+	          <td class="text-capitalize" align="center" style="border-top: none; border-bottom: 1px solid #dee2e6; font-size: 18px;">
 	          	<fmt:parseDate var="startDate" value="${event.eventStart}" pattern="yyyy-MM-dd HH:mm:ss" />
                	<fmt:formatDate pattern='yyyy-MM-dd' value='${startDate}' /> 
 	          </td>
-	          <td class="text-capitalize" align="center" style="border: 1px solid #dee2e6; font-size: 18px;">
+	          <td class="text-capitalize" align="center" style="border-top: none; border-bottom: 1px solid #dee2e6; font-size: 18px;">
 	          	<fmt:parseDate var="endDate" value="${event.eventEnd}" pattern="yyyy-MM-dd HH:mm:ss" />
                	<fmt:formatDate pattern='yyyy-MM-dd' value='${endDate}' /> 
 	          </td>
-	          <td align="center" style="border: 1px solid #dee2e6; font-size: 18px;">
+	          <td align="center" style="border-top: none; border-bottom: 1px solid #dee2e6; font-size: 18px;">
 	            <span class="badge text-bg-primary px-2 py-1">${event.eventStatus == 0 ? '진행중' : '종료됨'}</span>
 	          </td>
-	          <td class="td-buttons-2" style="border: 1px solid #dee2e6; font-size: 18px; text-align: center; vertical-align: middle;">
+	          <td class="td-buttons-2" style="border-top: none; border-bottom: 1px solid #dee2e6; font-size: 18px; text-align: center; vertical-align: middle;">
 			    <div style="display: flex; justify-content: center; align-items: center; margin: 10px;"> <!-- 여백을 조정하는 부분입니다. -->
 			        <a class="btn btn-outline-primary btn-sm me-lg-3 mb-0" href="<c:url value='/event/modify'/>?eventId=${event.eventId}" style="font-size: 15px;">
 			            <i class="fa fa-edit"></i> 수정
@@ -121,4 +121,3 @@
 </div> <!-- element wrapper ends -->
 
 </body>
-  
