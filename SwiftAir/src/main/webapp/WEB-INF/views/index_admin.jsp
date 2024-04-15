@@ -44,20 +44,15 @@
 		<!-- begin #sidebar -->
 		<div id="sidebar" class="sidebar">
 			<!-- begin sidebar scrollbar -->
-			<div data-scrollbar="true" data-height="100%">
+			<div data-scrollbar="true" data-height="100%" style="padding-left: 15px;">
 				<!-- begin sidebar user -->
 				<ul class="nav">
-					<li class="nav-profile">
-						<div class="image">
-						</div>
-						<div class="info">
-						</div>
-					</li>
+					<div class="nav-header" style="font-weight: bold; font-size: 15px; color: white;">관리자 메뉴</div>
 				</ul>
 				<!-- end sidebar user -->
 				<!-- begin sidebar nav -->
+				<br>
 				<ul class="nav">
-					<li class="nav-header">관리자 메뉴</li>
 					<li class="has-sub active">
 						<a href="javascript:;">
 						    <b class="caret pull-right"></b>
