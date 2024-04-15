@@ -20,20 +20,17 @@ public class PaymentDAOImpl implements PaymentDAO {
 
 	@Override
 	public int insertPassenger(Passenger passenger) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.getMapper(PaymentMapper.class).insertPassenger(passenger);
 	}
 
 	@Override
 	public int deletePayment(int paymentId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.getMapper(PaymentMapper.class).deletePayment(paymentId);
 	}
 
 	@Override
 	public int deletePassenger(int paymentId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.getMapper(PaymentMapper.class).deletePassenger(paymentId);
 	}
 
 }

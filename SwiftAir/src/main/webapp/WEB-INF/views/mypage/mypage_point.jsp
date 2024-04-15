@@ -73,7 +73,7 @@ String strDate = simpleDate.format(date);
 						<div class="col-md-5 col-lg-4" style="float: right;">
 							<div class="card-profile-img py-6" style="text-align: center;">
 								<div>
-									<a href="#modal" class="btn btn-white btn-lg" data-toggle="modal" data-target="#pointModal" onclick="openModal()">
+									<a href="#pointModal" class="btn btn-white btn-lg" data-toggle="modal" data-target="#pointModal" onclick="openModal()">
 										<img class="img" data-src=<c:url value="/img/mypage/point_saving.png"/>
 											src=<c:url value="/img/mypage/point_saving.png"/> alt="Image">
 									</a>

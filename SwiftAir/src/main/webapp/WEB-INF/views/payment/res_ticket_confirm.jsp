@@ -41,85 +41,88 @@
 ===================================== -->
 <section class="py-7 py-md-10">
 	<div class="container">
+	<form action="<c:url value="/faq/add"/>" method="post">
 	<h3>탑승객 및 항공편 예매 내역</h3>
 		<!-- 픽셀 고정이라 화면 작아지면 짤림 -->
 		<c:forEach var="i" begin="0" end="${resInfo.resPassengerCnt - 1}" varStatus="iStatus" >
-		<div id="div${i}" style="margin: 30px;">
-		<div class="col" style="margin: 10px;">	
-			<h5 style="display: inline;">탑승객 ${i+1} -</h5>
-			<c:forEach var="j" begin="${iStatus.index*2 }" end="${iStatus.index*2 + 1}">
-				<h5 style="display: inline;">${resInfo.addPassengerInfo[j]} </h5>
-			</c:forEach>
-		</div>
-		<div style="background-image: url('<c:url value="/img/seat/ticket2.png"/>'); height: 285px; width: 1000px;">
-			<div class="col-sm-12">
-				<div class="row">
-					<!-- 첫번째 row -->
-					<div class="col-sm-9">
-						<!-- 첫번째 줄 -->
-						<div class="col ms-5 mt-9">
-							<div class="row">
-								<div class="col-sm-4">Name</div>
-								<div class="col-sm-2">Flight</div>
-								<div class="col-sm-2">Outbound</div>
-								<div class="col-sm-2">Return</div>
+			<div id="div${i}" style="margin: 30px;">
+				<div class="col" style="margin: 10px;">	
+					<h5 style="display: inline;">탑승객 ${i+1} -</h5>
+					<c:forEach var="j" begin="${iStatus.index*2 }" end="${iStatus.index*2 + 1}">
+						<h5 style="display: inline;">${resInfo.addPassengerInfo[j]} </h5>
+						<input type="text" class="form-control" name="faqTitle" value="${faq.faqTitle}">
+					</c:forEach>
+				</div>
+				<div style="background-image: url('<c:url value="/img/seat/ticket2.png"/>'); height: 285px; width: 1000px;">
+					<div class="col-sm-12">
+						<div class="row">
+							<!-- 첫번째 row -->
+							<div class="col-sm-9">
+								<!-- 첫번째 줄 -->
+								<div class="col ms-5 mt-9">
+									<div class="row">
+										<div class="col-sm-4">Name</div>
+										<div class="col-sm-2">Flight</div>
+										<div class="col-sm-2">Outbound</div>
+										<div class="col-sm-2">Return</div>
+									</div>
+								</div>
+								<div class="col ms-5">
+									<div class="row">
+										<div class="col-sm-4">
+										<c:forEach var="j" begin="${iStatus.index*2 }" end="${iStatus.index*2 + 1}">
+										<h5 style="display: inline;">${resInfo.addPassengerInfo[j]}</h5>
+										</c:forEach>
+										</div>								
+										<div class="col-sm-2"><h5>>${resInfo.routeFlight}</h5></div>
+										<div class="col-sm-2"><h6>${resInfo.scheduleDepartureDate.substring(0,10)}</h6></div>
+										<div class="col-sm-2"><h6>${resInfo.scheduleArrivalDate.substring(0,10)}</h6></div>
+									</div>
+								</div>
+								<!-- 두번째 줄 -->
+								<div class="col ms-5 mt-2">
+									<div class="row">
+										<div class="col-sm-4">birthday</div>
+										<div class="col-sm-2">Round-trip</div>
+										<div class="col-sm-2">Round-trip</div>
+									</div>
+								</div>
+								<div class="col ms-5">
+									<div class="row">
+										<div class="col-sm-4"><h5>${resInfo.addPassengerBirth[i] }</h5></div>
+										<div class="col-sm-2"><h5>${resInfo.resDeparture }</h5></div>
+										<div class="col-sm-2"><h5>${resInfo.resDestination}</h5></div>
+									</div>
+								</div>
+								<!-- 삼번째 줄 -->
+								<div class="col ms-5 mt-2">
+									<div class="row">
+										<div class="col-sm-4"></div>
+										<div class="col-sm-4">Boarding Time</div>
+										<div class="col-sm-4">Seat</div>
+									</div>
+								</div>
+								<div class="col ms-5">
+									<div class="row">
+										<div class="col-sm-4"><h5></h5></div>
+										<div class="col-sm-4"><h5>12:55</h5></div>
+										<div class="col-sm-4"><h5>${resInfo.selSeat1[i]}, ${resInfo.selSeat2[i]}</h5></div>
+									</div>
+								</div>
 							</div>
-						</div>
-						<div class="col ms-5">
-							<div class="row">
-								<div class="col-sm-4">
-								<c:forEach var="j" begin="${iStatus.index*2 }" end="${iStatus.index*2 + 1}">
-								<h5 style="display: inline;">${resInfo.addPassengerInfo[j]}</h5>
-								</c:forEach>
-								</div>								
-								<div class="col-sm-2"><h5>>${resInfo.routeFlight}</h5></div>
-								<div class="col-sm-2"><h6>${resInfo.scheduleDepartureDate.substring(0,10)}</h6></div>
-								<div class="col-sm-2"><h6>${resInfo.scheduleArrivalDate.substring(0,10)}</h6></div>
+							<!-- 2번째 row -->
+							<div class="col-sm-3">
+								<!-- 첫번째 줄 -->
+								<div class="col mt-9">
+									<div class="col-sm-11">❗탑승객 정보 및 항공편 정보를<br>&nbsp;&nbsp;&nbsp;&nbsp; 반드시 확인하세요.</div>
+								</div>
 							</div>
-						</div>
-						<!-- 두번째 줄 -->
-						<div class="col ms-5 mt-2">
-							<div class="row">
-								<div class="col-sm-4">birthday</div>
-								<div class="col-sm-2">Round-trip</div>
-								<div class="col-sm-2">Round-trip</div>
-							</div>
-						</div>
-						<div class="col ms-5">
-							<div class="row">
-								<div class="col-sm-4"><h5>${resInfo.addPassengerBirth[i] }</h5></div>
-								<div class="col-sm-2"><h5>${resInfo.resDeparture }</h5></div>
-								<div class="col-sm-2"><h5>${resInfo.resDestination}</h5></div>
-							</div>
-						</div>
-						<!-- 삼번째 줄 -->
-						<div class="col ms-5 mt-2">
-							<div class="row">
-								<div class="col-sm-4"></div>
-								<div class="col-sm-4">Boarding Time</div>
-								<div class="col-sm-4">Seat</div>
-							</div>
-						</div>
-						<div class="col ms-5">
-							<div class="row">
-								<div class="col-sm-4"><h5></h5></div>
-								<div class="col-sm-4"><h5>12:55</h5></div>
-								<div class="col-sm-4"><h5>${resInfo.selSeat1[i]}, ${resInfo.selSeat2[i]}</h5></div>
-							</div>
-						</div>
-					</div>
-					<!-- 2번째 row -->
-					<div class="col-sm-3">
-						<!-- 첫번째 줄 -->
-						<div class="col mt-9">
-							<div class="col-sm-11">❗탑승객 정보 및 항공편 정보를<br>&nbsp;&nbsp;&nbsp;&nbsp; 반드시 확인하세요.</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
 		</c:forEach>
+	</form>
 	</div><!-- container -->
 </section>
 

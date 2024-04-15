@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import lombok.RequiredArgsConstructor;
+import swift.air.dto.Faq;
+import swift.air.dto.Passenger;
 import swift.air.dto.Payment;
 import swift.air.service.PaymentService;
 import swift.air.service.SeatService;
@@ -84,5 +87,12 @@ public class PaymentController {
 			paymentService.canclePayment(accessToken, returnPayment);
 			return "forgery";
 		}
+	}
+	
+
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public String AddPayment(@ModelAttribute Payment payment, @ModelAttribute Passenger passenger) {
+		paymentService.addPayment(faq);
+		return "redirect:/search/reservation";
 	}
 }
