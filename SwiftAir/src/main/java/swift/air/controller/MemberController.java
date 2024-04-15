@@ -60,14 +60,14 @@ public class MemberController {
 			return "redirect:/member/login";	
 		} 
 		session.setAttribute("loginMember", authMember); 
-		return "index";   
+		return "redirect:/";  
 		  
 	}
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "index";	
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/confirmId")
@@ -99,7 +99,7 @@ public class MemberController {
 	public String searchIdAction(@RequestParam("memberKorName") String memberKorName, 
 			@RequestParam("memberEmail") String memberEmail) {
 		memberService.findId(memberKorName, memberEmail);
-		return "index";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/searchPasswd") 
@@ -110,7 +110,7 @@ public class MemberController {
 	@RequestMapping(value = "/searchPasswdAction") 
 	public String searchPasswdAction(@ModelAttribute Member member) {
 		memberService.findPasswd(member);
-		return "index";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/modifyMember")
@@ -122,14 +122,14 @@ public class MemberController {
 	public String modifyMember(@ModelAttribute Member member, HttpSession session) {
 		memberService.modifyMember(member);		
 		session.invalidate();
-		return "index";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/removeMember")
 	public String removeMember(@ModelAttribute Member member, HttpSession session) {
 	    memberService.removeMember(member, session);
 	    session.invalidate();
-	    return "index";
+	    return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/naverLogin")
