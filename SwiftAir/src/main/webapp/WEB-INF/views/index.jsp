@@ -3,6 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
   <body id="body" class="up-scroll">
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,56 +113,29 @@
 			<div><span style="color: gray; font-size: 15px;"><a href='<c:url value="/event/main"/>'>더보기</a></span></div>
 		</div>
 		<div class="row">
-			<c:forEach var="elist" items="eventList">
+			<c:forEach var="i" begin="0" end="2">
 			<div class="col-sm-4 col-xs-12">
 		        <div class="card border-0 bg-transparent">
 					<a href="<c:url value="/event/main"/>">
-						<img class="card-img-top rounded lazyestload" data-src="<c:url value="/img/event/SFOtemp.jpg"/>" src="<c:url value="/img/blog/blog-article-3.jpg"/>" alt="Card image cap">
+						<img class="card-img-top rounded lazyestload" data-src="<c:url value='/img/event/${fn:split(eventList[i].eventImg1, \"_\")[1]}'/>" src="<c:url value="/img/blog/blog-article-3.jpg"/>" alt="Card image cap">
 					</a>
 		         	<div class="card-body p-0 pt-5">
 			            <div class="meta-post" style="display: flex; justify-content: space-between;">
-			              <date class="meta-date">2024-04-12 ~ 2024-04-30</date>
+			              <date class="meta-date">
+			              <fmt:parseDate var="startDate" value="${eventList[i].eventStart}" pattern="yyyy-MM-dd HH:mm:ss" />
+                          <fmt:parseDate var="endDate" value="${eventList[i].eventEnd}" pattern="yyyy-MM-dd HH:mm:ss" />
+			              <fmt:formatDate pattern='yyyy-MM-dd' value='${startDate }' /> ~  
+			              <fmt:formatDate pattern='yyyy-MM-dd' value='${endDate }' />
+			              </date>
 			              <span class="badge text-bg-primary fs-6">진행 중</span>
 			            </div>
 						<h4 class="card-title" style="font-weight: bold;">
-							<a href="<c:url value="/event/main"/>">장거리 여행도 여유롭게 샌프란시스코 특가</a>
+							<a href="<c:url value="/event/main"/>">${eventList[i].eventTitle }</a>
 						</h4>
 					</div>
 				</div>
 			</div>
 			</c:forEach>
-			<div class="col-sm-4 col-xs-12">
-	        	<div class="card border-0 bg-transparent">
-				<a href="<c:url value="/event/main"/>">
-					<img class="card-img-top rounded lazyestload" data-src="<c:url value="/img/event/SFOsaleMarch.jpg"/>" src="<c:url value="/img/blog/blog-article-2.jpg"/>" alt="Card image cap">
-				</a>
-				<div class="card-body p-0 pt-5">
-	            	<div class="meta-post" style="display: flex; justify-content: space-between;">
-	              		<date class="meta-date">2024-03-30 ~ 2024-04-24</date>
-	              		<span class="badge text-bg-primary fs-6">진행 중</span>
-	            	</div>
-					<h4 class="card-title" style="font-weight: bold;">
-						<a href="<c:url value="/event/main"/>">샌프란시스코 이코노미 좌석 20% 할인특가</a>
-					</h4>
-				</div>
-				</div>
-			</div>
-			<div class="col-sm-4 col-xs-12">
-				<div class="card border-0 bg-transparent">
-					<a href="<c:url value="/event/main"/>">
-						<img class="card-img-top rounded lazyestload" data-src="<c:url value="/img/event/BKsale.jpg"/>" src="<c:url value="/img/blog/blog-article-1.jpg"/>" alt="Card image cap">
-					</a>
-         			 <div class="card-body p-0 pt-5">
-						<div class="meta-post" style="display: flex; justify-content: space-between;">
-							<date class="meta-date">2024-04-01 ~ 2024-04-20</date>
-							<span class="badge text-bg-primary fs-6">진행 중</span>
-						</div>
-						<h4 class="card-title" style="font-weight: bold;">
-							<a href="<c:url value="/event/main"/>"> 당장 떠나기 좋은 방콕 노선 임박특가</a>
-						</h4>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </section>

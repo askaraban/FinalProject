@@ -58,10 +58,12 @@
 					
 					<%-- 탑승객이 선택한 좌석이 프레미아42일 경우 이코노미 좌석 선택 불가능 --%>
 					<c:choose>
-						<c:when test="${resInfo.resSeatGrade eq 'premia42'}">
+						<c:when test="${resInfo.resArrSeatGrade eq 'premia42'}">
 							<!-- 프레미아42 등급 좌석 -->
 							<c:set var="b" value="1" />
+							<c:set var="cnt" value="0" />
 							<c:forEach var="seatList" items="${seatList }" varStatus="status" begin="0" end="17">
+							<c:if test="${cnt le 17 }">
 								<c:choose>
 									<c:when test="${seatList.seatGrade eq '프레미아42' }">
 										<c:forEach var="reserved" items="${reservedSeatList2 }">
@@ -71,14 +73,15 @@
 												<c:when test="${reserved eq seatName}">
 													<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/business_pre.png"/>'
 													 style="position: relative; left: 100px; top: 590px; width: 55px;">
+													 <c:set var="cnt" value="${cnt+1}" />
+													 <c:set var="b" value="${b + 1}" />
 												</c:when>
-												<c:otherwise>
-													<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/business_not.png"/>'
-													 style="position: relative; left: 100px; top: 590px; width: 55px;" class="pre_business" title="on">
-												</c:otherwise>
-											</c:choose>
-											
+											</c:choose>	
 										</c:forEach>
+											<c:if test="${status.index ne cnt }">
+											</c:if>
+											<img id="${seatList.seatName }" alt="image" src='<c:url value="/img/seat/business_not.png"/>'
+											 style="position: relative; left: 100px; top: 590px; width: 55px;" class="pre_business" title="on">
 									</c:when>
 								</c:choose>
 							<%-- 좌석별 여백 --%>
@@ -95,8 +98,9 @@
 									</c:when>
 								</c:choose>
 								<c:set var="b" value="${b + 1}" />
+								<c:set var="cnt" value="${cnt+1 }" />
+							</c:if>
 							</c:forEach>
-							
 							<%-- 이코노미35 좌석 --%>
 							<c:set var="e" value="1" />
 							<c:forEach var="seatList" items="${seatList }" varStatus="status">

@@ -25,14 +25,14 @@ import swift.air.service.EventService;
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
-	private static EventService eventService;
+	private final EventService eventService;
 	
 
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {
 		
-		//model.addAttribute("eventList", eventService.getEventMainPage());
-		
+		model.addAttribute("eventList", eventService.getEventMainPage());
+		System.out.println(eventService.getEventMainPage());
 		return "index";
 	}
 	

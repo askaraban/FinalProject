@@ -6,12 +6,21 @@
 
 <body id="body" class="up-scroll">
 
+<section class="bg-light py-8">
+  <div class="container">
+    <nav class="bg-transparent breadcrumb breadcrumb-2 px-0 mb-5" aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
+      <h2 class="fw-normal mb-4 mb-md-0" style="font-size: 40px;">운항일정 수정</h2>
+    </nav>
+  </div>
+</section>
+
 <!-- ====================================
 ———	운항일정 수정
 ===================================== -->
 <section class="py-7 py-md-10">
 	<div class="container">
-		<h2 class="fw-normal mb-4 mb-md-5">운항일정 수정</h2>
+	<form action="<c:url value="/schedule/modify"/>" method="post">
+			<input type="hidden" name="scheduleId" value="${schedulemodify.scheduleId}"/>
 		<div class="col-12">
 
         <!-- 운항일정 정보 -->
@@ -23,42 +32,23 @@
 				<div class="col-sm-8">
 		            	<div class="mb-4">
 							<div class="col-sm-2 mb-1 fw-bold">항공편명</div>
-								<div class="select-default bg-white">
-									<select class="select-location">
-										<option>항공편명</option>
-										<option>SW1011</option>
-										<option>SW1012</option>
-										<option>SW2011</option>
-										<option>SW2012</option>
-										<option>SW3011</option>
-										<option>SW3012</option>
-									</select>
-								</div>
+							<input type="text" name="scheduleFlight" class="form-control" value="${schedulemodify.scheduleFlight}" required>
 						</div>
 		            	<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">출발지</div>
-							<input type="text" class="form-control" value="${schedulemodify.routeDeparture}">
+							<input type="text" name="routeDeparture" class="form-control" value="${schedulemodify.routeDeparture}" required>
 		            	</div>
 		            	<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">도착지</div>
-							<input type="text" class="form-control" value="${schedulemodify.routeDestination}">
+							<input type="text" name="routeDestination" class="form-control" value="${schedulemodify.routeDestination}" required>
 		            	</div>
 		            	<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">운항시간</div>
-							<div class="row">
-								<div class="col-sm-5">
-									<input type="number" class="form-control" required>
-								</div>
-								<div class="col-sm-1 mt-2 ms-n3">시간</div>
-								<div class="col-sm-5">
-									<input type="number" class="form-control" required>
-								</div>
-								<div class="col-sm-1 mt-2 ms-n3">분</div>
-							</div>
-						</div>
+							<input type="text" name="routeTime" class="form-control" value="${schedulemodify.routeTime}" required>
+		            	</div>
 						<div class="mb-4">
 		            		<div class="col-sm-2 mb-1 fw-bold">가격</div>
-							<input type="text" class="form-control" required>
+							<input type="text" name="routePrice" class="form-control" value="${schedulemodify.routePrice}" required>
 		            	</div>
 						<div class="mb-4">
 						    <input type="hidden" id="scheduleSchedule">
@@ -78,6 +68,7 @@
 			<a href ="<c:url value="/schedule/list"/>" type="button" class="btn btn-primary ms-1">취소</a>
 			<button type="submit" class="btn btn-primary ms-1" id="submitBtn">수정</button>
 		</div>
+		</form>
 	</div>
 </section>
 

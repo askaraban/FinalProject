@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import swift.air.dao.ScheduleDAO;
-import swift.air.dto.Route;
 import swift.air.dto.Schedule;
 import swift.air.util.Pager;
 
@@ -16,19 +15,10 @@ import swift.air.util.Pager;
 @RequiredArgsConstructor
 public class ScheduleServiceImpl implements ScheduleService{
 	private final ScheduleDAO scheduleDAO;
-	private final RouteService routeService;
 
 	@Override
 	public void addSchedule(Schedule schedule) {
-		String routeFlight = schedule.getScheduleFlight(); // 스케줄에서 항공편 정보 가져오기
-		Route route = routeService.getRouteByFlight(routeFlight); // 항공편 정보를 기반으로 노선 조회
-		
-		if (route != null) {
-            schedule.setScheduleRouteId(route.getRouteId()); // 스케줄에 노선 ID 설정
-            scheduleDAO.insertSchedule(schedule); // 스케줄 삽입
-        } else {
-        	throw new RuntimeException("해당 항공편에 대한 노선 정보가 없습니다.");
-        }
+            scheduleDAO.insertSchedule(schedule);
     }
 	
 	@Override
@@ -38,10 +28,6 @@ public class ScheduleServiceImpl implements ScheduleService{
 	
 	@Override
 	public void removeSchedule(String scheduleId) {
-		if(scheduleDAO.selectSchedule(scheduleId) == null) {
-			throw new RuntimeException("게시글을 찾을 수 없습니다.");
-		}
-		
 		scheduleDAO.deleteSchedule(scheduleId);
 	}
 

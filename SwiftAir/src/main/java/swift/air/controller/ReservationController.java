@@ -98,8 +98,8 @@ public class ReservationController {
 		model.addAttribute("seatList",seatService.getSeatList());
 		
 		Map<String, Object> resInfo = (Map<String, Object>) model.getAttribute("resInfo");
-		model.addAttribute("reservedSeatList",seatService.getReservedSeatList((String)resInfo.get("scheduleId1")));
 		
+		model.addAttribute("reservedSeatList",seatService.getReservedSeatList((String)resInfo.get("scheduleId1")));
 		
 		resInfo.putAll(addResMember);
 		
@@ -110,6 +110,7 @@ public class ReservationController {
 		model.addAttribute("bitrh", birth);
 		
 		
+		System.out.println("Reservation Information: " + seatService.getReservedSeatList((String)resInfo.get("scheduleId1")));
 		System.out.println("Reservation Information: " + resInfo);
 	    //return "redirect:/reservation/seat";
 	    return "reservation/res_seat_dep";
