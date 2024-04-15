@@ -51,17 +51,17 @@
           <li class="">
             <a href="javascript:0">스위트프 멤버스</a>
             <ul class="dropdown">
-              <li><a href="index.html">포인트 적립</a></li>
-              <li><a href="index-2.html">포인트 사용</a></li>
+              <li><a href="<c:url value='/'/>">포인트 적립</a></li>
+              <li><a href="<c:url value='/'/>">포인트 사용</a></li>
             </ul>
           </li>
           <li class="">
             <a href="javascript:0">기내</a>
             <ul class="dropdown">
-              <li><a href="index.html">클래스별 서비스</a></li>
-              <li><a href="index-2.html">기내 서비스</a></li>
-              <li><a href="index-2.html">기내 엔터테인먼트</a></li>
-              <li><a href="index-2.html">항공기 소개</a></li>
+              <li><a href="<c:url value='/'/>">클래스별 서비스</a></li>
+              <li><a href="<c:url value='/'/>">기내 서비스</a></li>
+              <li><a href="<c:url value='/'/>">기내 엔터테인먼트</a></li>
+              <li><a href="<c:url value='/'/>">항공기 소개</a></li>
             </ul>
           </li>
           <li class="">
@@ -77,7 +77,7 @@
          		<c:when test="${loginMember.memberStatus eq 9}">
 	            <a href="javascript:0">관리자페이지</a>
 	            <ul class="dropdown">
-	              <li><a href="contact-us.html">관리자페이지로</a></li>
+	              <li><a href="<c:url value='/'/>">관리자페이지로</a></li>
              <!--  <li><a href="contact-us.html">Contact Us</a></li>
               <li><a href="terms-of-services.html">Terms and Conditions</a></li>
               <li><a href="pricing-table.html">Pricing Table</a></li>
