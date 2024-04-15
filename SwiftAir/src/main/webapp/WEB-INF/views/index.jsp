@@ -117,7 +117,7 @@
 			<div class="col-sm-4 col-xs-12">
 		        <div class="card border-0 bg-transparent">
 					<a href="<c:url value="/event/main"/>">
-						<img class="card-img-top rounded lazyestload" data-src="<c:url value='/img/event/${fn:split(eventList[i].eventImg1, \"_\")[1]}'/>" src="<c:url value="/img/blog/blog-article-3.jpg"/>" alt="Card image cap">
+						<img class="card-img-top rounded lazyestload" data-src="<c:url value='/img/event/${fn:split(eventList[i].eventImg1, \"_\")[1]}'/>" src="<c:url value='/img/event/${fn:split(eventList[i].eventImg1, \"_\")[1]}'/>" alt="Card image cap">
 					</a>
 		         	<div class="card-body p-0 pt-5">
 			            <div class="meta-post" style="display: flex; justify-content: space-between;">
